@@ -96,3 +96,43 @@ admin.site.register(Question)
 &nbsp;  
 &nbsp;  
 
+### [tutorial-03](https://docs.djangoproject.com/en/3.1/intro/tutorial03/)
+
+动态的url配置
+> polls/urls.py  
+```python
+from django.urls import path
+
+from . import views
+
+# 备注:
+# django 从 2.0 版本开始就一直采用 path(非正则表达式), 在此之前采用的是 url(正则表达式).
+# path是一种 DSL, 用于简化表达式, 但是其内部最终还是要转换回到标准的正则表达式.
+urlpatterns = [
+    # ex: /polls/
+    path('', views.index, name='index'),
+    # ex: /polls/5/
+    path('<int:question_id>/', views.detail, name='detail'),
+    # ex: /polls/5/results/
+    path('<int:question_id>/results/', views.results, name='results'),
+    # ex: /polls/5/vote/
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
+```
+> polls/views.py
+```python
+from django.http import HttpResponse
+
+def detail(request, question_id):
+    return HttpResponse("You're looking at question %s." % question_id)
+
+def results(request, question_id):
+    response = "You're looking at the results of question %s."
+    return HttpResponse(response % question_id)
+
+def vote(request, question_id):
+    return HttpResponse("You're voting on question %s." % question_id)
+```
+
+&nbsp;  
+
