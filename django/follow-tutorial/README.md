@@ -136,3 +136,36 @@ def vote(request, question_id):
 
 &nbsp;  
 
+编写一个模板页面
+> 1. 创建 polls/templates/polls/index.html 模板文件   
+> 2. 编辑 polls/views.py 文件, 重构 def index 函数   
+> 3. 在 def index 函数中使用 django.shortcuts.render 渲染模板文件   
+
+
+&nbsp;  
+
+关于报错
+> All Django wants is that HttpResponse. Or an exception. 
+
+&nbsp;
+  
+抛出一个404例子
+> 1. 创建 polls/templates/polls/detail.html 模板文件   
+> 2. 编辑 polls/views.py 文件, 重构 def detail 函数   
+> 3. 在 def detail 函数中使用 orm 查询数据库:   
+>    q = Question.objects.get(pk=question_id)   
+>    如果q存在, 那么就返回正常的 detail 渲染结果;   
+>    如果q不存在, 那么就主动抛出一个Http404异常.   
+
+&nbsp;  
+
+使用模板语言
+> 模板语言支持变量引用, orm操作, for, if 等语法操作.  
+
+&nbsp;  
+urls中的命名空间
+> 在 polls.urls.py 中添加 app_name = 'polls' 变量.    
+> 在模板文件中使用 {% url 'polls.detail' question.id %},  
+> 其中'polls.detail'对应的是 app_name 和 path中的name='detail',  
+> question 是 def detail 中 render 提供的变量: render(request, 'polls/detail.html', {'question': question}) 
+
