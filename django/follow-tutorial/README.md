@@ -169,3 +169,23 @@ urls中的命名空间
 > 其中'polls.detail'对应的是 app_name 和 path中的name='detail',  
 > question 是 def detail 中 render 提供的变量: render(request, 'polls/detail.html', {'question': question}) 
 
+
+&nbsp;  
+&nbsp;   
+ 
+ ### [tutorial-04]()
+ 
+ 模板关语法介绍
+```text
+{% csrf_token %}            # Cross Site Request Forgeries(跨站请求伪造)
+                            # Django 提供 csrf_token 防止跨站请求伪造机制, 
+                            # post表单的模板中, 只要使用 {% csrf_token %} 就可以解决此问题.
+
+{{ forloop }}               # 这是Django提供的一个template tag(数据对象), 用于记录循环统计信息.
+                            # forloop.parentloop: 父循环对象.
+                            # forloop.counter:    遍历次数, 从1开始.
+                            # forloop.revcounter: 集合总数, 从总数开始递减.
+                            # forloop.first:      是否第一次.
+                            # forloop.last:       是否最后一次.
+``` 
+
