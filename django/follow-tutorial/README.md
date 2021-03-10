@@ -189,3 +189,16 @@ urls中的命名空间
                             # forloop.last:       是否最后一次.
 ``` 
 
+&nbsp;  
+泛型试图介绍
+> Django 提供了一组泛型试图(DetailView/ListView/FormView/CreateView/UpdateView/DeleteView/...), 用于简化特定场景的代码编写, 加速开发进度.      
+> 
+> DetailView: 显示一个详情页; DetailView 的理念是使用 ORM 的特性, 一条数据对象可以查询到一个关联表( model.relatetable1_set.all )的数据, 多个表的关联可以通过一条数据无限扩展开来.      
+>    
+> ListView: 显示一个列表页; ListView 的理念是也是使用 ORM 的特性, 返回一个列表给模板文件, 由模板文件通过关联查询来拉取需要的字段.   
+>
+> 经过简略的源码追踪发现:   
+> 继承了泛型试图的对象的 model 属性和 get_queryset 方法必须提供至少二选一的定义, 也可以两者都定义.     
+> 定义 model 属性是告诉泛型试图, 围绕这个model对象来提取数据;   
+> 定义 get_queryset 方法是告诉泛型试图, 按照我定义的 get_queryset 查询数据集即可;   
+> 如果两者都定义了, get_queryset将会优先执行来提取数据, 并且会忽略 model (即: 不会再automatically的去提取这个model的数据). 
