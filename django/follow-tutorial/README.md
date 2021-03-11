@@ -290,3 +290,12 @@ b'\n    <ul>\n    \n        <li><a href="/polls/1/">What&#x27;s up?</a></li>\n  
 >>> response.context['latest_question_list']
 <QuerySet [<Question: What's up?>]>
 ```
+
+&nbsp;  
+&nbsp;  
+### [tutorial-06](https://docs.djangoproject.com/en/3.1/intro/tutorial06/)
+静态文件
+> 以 app 名 polls 为例, django 要求静态文件路径格式为: polls/static   
+> 如果文件存放在: polls/static/style.css ; 那么在模板内引用为: {% static style.css %}    
+> 如果文件存放在: polls/static/abc/style.css ; 那么在模板内引用为: {% static abc/style.css %}
+> 
