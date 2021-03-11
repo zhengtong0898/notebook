@@ -264,3 +264,29 @@ class QuestionModelTests(TestCase):
 ```shell
 # python mysite/manage.py test polls
 ```
+
+&nbsp;   
+用于测试目的的http client
+> django基于wsgi封装一个http client于django.test中, 
+> 即:通过这个django.test.Client可以调用内部的urls快速的完成一些请求测试场景.   
+> 
+> 为什么要封装这个http client, 用 requests 不行吗?   
+> 答案是: 不行, 因为 django 还做了很多封装, 尤其是 context 也封装出来了, 而 requests 则没有; 通过 context 可以验证渲染时传递的变量是否符合预期.
+```shell
+# python mysite/manage.py shell
+>>> from django.test.utils import setup_test_environment
+>>> setup_test_environment()
+>>>
+>>> from django.test import Client
+>>> client = Client()
+>>>
+>>> from django.urls import reverse
+>>> uri = reverse('polls:index')        # /polls/
+>>> response = client.get(uri)
+>>> response.status_code
+200
+>>> response.content
+b'\n    <ul>\n    \n        <li><a href="/polls/1/">What&#x27;s up?</a></li>\n    \n    </ul>\n\n'
+>>> response.context['latest_question_list']
+<QuerySet [<Question: What's up?>]>
+```
