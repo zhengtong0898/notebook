@@ -316,5 +316,61 @@ b'\n    <ul>\n    \n        <li><a href="/polls/1/">What&#x27;s up?</a></li>\n  
 - [添加关联对象](https://docs.djangoproject.com/en/3.1/intro/tutorial07/#adding-related-objects)   
    在表单中可以将关联表的字段纳入到主表单中, 支持两种方式: 栈排列(StackedInline) , 表格排列(TabularInline) .
 
-![自定义admin表单](mysite/imgs/custom_admin_form_01.jpg#pic_center)   
+  ![自定义admin表单](mysite/imgs/custom_admin_form_01.jpg#pic_center)   
 
+&nbsp;  
+
+自定义admin列表
+- 每行数据显示哪些字段
+  ```shell
+  # django.contrib.admin.ModelAdmin.list_display = (field1, field2, field3, ...)
+  class QuestionAdmin(admin.ModelAdmin):
+      # 列表每行显示哪些字段
+      # django 除了支持显示字段信息, 也支持显示 model 的方法: was_published_recently.
+      list_display = ('question_text', 'pub_date', 'was_published_recently')
+  ```
+
+- 定义列表字段头描述(默认情况是以大写的字段名显示)
+  ```shell
+  # django.contrib.admin.ModelAdmin.Field.verbose_name
+  class Question(models.Model):
+      # verbose_name: 列表头(column head)
+      question_text = models.CharField(verbose_name='问题标题', max_length=200)
+  
+      # 特殊情况: 为方法设定字段头显示的信息
+      # 给 was_published_recently 方法添加一些属性.
+      was_published_recently.admin_order_field = 'pub_date'
+      was_published_recently.boolean = True
+      was_published_recently.short_description = '近期发布?'
+  ```
+
+- 搜索哪个字段
+  ```shell
+  # django.contrib.admin.ModelAdmin.search_fields = [field1, field2, field3, ...]
+  class Question(models.Model):
+      # 模糊查询: 根据给定的字段进行模糊查询.
+      # 如果只给定 question_text 字段, 那么就只搜索question_text.
+      # 如果给定 question_text 和 pub_date, 那么任意一个字段匹配命中都会显示该行数据.
+      search_fields = ['question_text', 'pub_date']
+  ```
+
+- 按分类筛选
+  ```shell
+  class QuestionAdmin(admin.ModelAdmin):
+      # 按类型筛选, bool(会有两个筛选条件), 时间(会有today/past 7 days/this month/this year筛选条件)
+      list_filter = ['pub_date']
+  ```
+  
+  ![自定义admin表单02](mysite/imgs/custom_admin_form_02.jpg#pic_center)
+ 
+
+&nbsp;  
+
+自定义admin页面的标语(默认是: Django Administration)
+```shell
+1. 创建文件夹 polls/templates/admin
+2. 复制django模板文件: copy django/contrib/admin/templates/base_site.html to polls/templates/admin/
+3. 编辑 polls/templates/admin/base_site.html 文件
+4. 找到 <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+5. 更改为 <h1 id="site-name"><a href="{% url 'admin:index' %}">管理页面</a></h1>
+```

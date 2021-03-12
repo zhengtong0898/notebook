@@ -32,6 +32,17 @@ class QuestionAdmin(admin.ModelAdmin):
     # 显示关联表信息
     inlines = [ChoiceTabularInline]
 
+    # 列表每行显示哪些字段
+    list_display = ('question_text', 'pub_date', 'was_published_recently')
+
+    # 按类型筛选, bool(会有两个筛选条件), 时间(会有today/past 7 days/this month/this year筛选条件)
+    list_filter = ['pub_date']
+
+    # 模糊查询: 根据给定的字段进行模糊查询.
+    # 如果只给定 question_text 字段, 那么就只搜索question_text.
+    # 如果给定 question_text 和 pub_date, 那么任意一个字段匹配命中都会显示该行数据.
+    search_fields = ['question_text', 'pub_date']
+
 
 admin.site.register(Question, QuestionAdmin)
 
