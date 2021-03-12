@@ -299,3 +299,20 @@ b'\n    <ul>\n    \n        <li><a href="/polls/1/">What&#x27;s up?</a></li>\n  
 > 如果文件存放在: polls/static/style.css ; 那么在模板内引用为: {% static style.css %}    
 > 如果文件存放在: polls/static/abc/style.css ; 那么在模板内引用为: {% static abc/style.css %}
 > 
+
+
+&nbsp;  
+&nbsp;  
+
+### [tutorial-07](https://docs.djangoproject.com/en/3.1/intro/tutorial07/)
+
+自定义admin表单(新增/修改)
+> django 提供了 django.contrib.admin.ModelAdmin 对象, 用于控制字段的显示顺序, 数据写入方式(支持填写关联表信息).
+
+- [字段排序](https://docs.djangoproject.com/en/3.1/intro/tutorial07/#customize-the-admin-form)   
+   对于那些字段很多表, 字段显示的顺序的重要性不言而喻.   
+   django.contrib.admin.ModelAdmin.fields 的fields字段用于控制字段的顺序.
+
+- [添加关联对象](https://docs.djangoproject.com/en/3.1/intro/tutorial07/#adding-related-objects)   
+   在表单中可以将关联表的字段纳入到主表单中, 支持两种方式: 栈排列(StackedInline) , 表格排列(TabularInline) .
+   
