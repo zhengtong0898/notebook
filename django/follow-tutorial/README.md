@@ -315,4 +315,6 @@ b'\n    <ul>\n    \n        <li><a href="/polls/1/">What&#x27;s up?</a></li>\n  
 
 - [添加关联对象](https://docs.djangoproject.com/en/3.1/intro/tutorial07/#adding-related-objects)   
    在表单中可以将关联表的字段纳入到主表单中, 支持两种方式: 栈排列(StackedInline) , 表格排列(TabularInline) .
-   
+
+![自定义admin表单](mysite/imgs/custom_admin_form_01.jpg#pic_center)   
+
