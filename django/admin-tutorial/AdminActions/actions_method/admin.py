@@ -8,6 +8,7 @@ from django.utils.translation import ngettext
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'status']
     ordering = ['title']                            # 排序
+    # actions = None                                # 关闭批量操作(页面中将不在显示批量操作下拉菜单)
     actions = ['make_published']                    # 批量操作(按make_published函数来操作: 批量更新发布状态.)
 
     def make_published(self, request, queryset):
@@ -31,6 +32,21 @@ class ArticleAdmin(admin.ModelAdmin):
         ) % updated, messages.ERROR)
 
     make_published.short_description = "Mark selected stories as published"
+
+    # get_actions 是 admin.ModelAdmin 的公开接口,
+    # 这里重新定义(覆盖)这个接口, 用于根据不同条件来返回不同的actions.
+    def get_actions(self, request):
+
+        # 执行父类的get_actions方法, 用于获取 actions.
+        actions = super().get_actions(request)
+
+        # 如果某个用户满足某个条件, 并且 actions 中含有 delete_selected, 那么就把它删除掉.
+        # 所以, 想要根据什么条件返回什么actions, 在这里写具体的条件即可.
+        if request.user.username[0].upper() != 'J':
+            if 'delete_selected' in actions:
+                del actions['delete_selected']
+
+        return actions
 
 
 admin.site.register(Article2, ArticleAdmin)
