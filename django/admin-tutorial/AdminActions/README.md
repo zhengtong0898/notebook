@@ -17,7 +17,7 @@ django 默认情况下提供了批量删除功能,
 &nbsp;  
 
 ### 批量更新字段状态(方法)
-`actions = ['make_published', ]` 列表内用字符串表示按`admin.ModelAdmin`的`self.make_published`方法来操作.
+[admin.py](actions_method/admin.py#L9) 中 `actions = ['make_published', ]` 列表内用字符串表示按`admin.ModelAdmin`的`self.make_published`方法来操作.
 <p align="center">
   <img src="actions_method/imgs/update_field_status_by_method.jpg" alt="批量更新字段状态(方法)"/>
 </p>
