@@ -7,9 +7,16 @@ from django.utils.translation import ngettext
 # Register your models here.
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'status']
-    ordering = ['title']                            # 排序
-    # actions = None                                # 关闭批量操作(页面中将不在显示批量操作下拉菜单)
-    actions = ['make_published']                    # 批量操作(按make_published函数来操作: 批量更新发布状态.)
+    ordering = ['title']                         # 排序
+
+    # actions = None                             # 关闭批量操作(页面中将不在显示批量操作下拉菜单)
+
+    actions = ['make_published']                 # 批量操作(按make_published函数来操作: 批量更新发布状态.)
+
+    # actions_selection_counter = False          # 默认是True, 表示显示已选中计数器; 设定为False则表示不显示计数器.
+
+    # actions_on_top = False                     # actions_on_top 和 actions_on_bottom 需要两个同时配置, 如果两个都是True,
+    # actions_on_bottom = True                   # 那么会再头部显示一行批量操作栏, 再底部也显示一行批量操作栏.
 
     def make_published(self, request, queryset):
         # queryset.update 返回的是一个数字,
