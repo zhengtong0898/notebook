@@ -3,6 +3,10 @@
  当 `change list` 表格的数据的创建时间分布于当年不同时间, 那么时间分层器会显示当年具体月份时间(按所有数据-月-分组所得).    
  当 `change list` 表格的数据的创建时间分布于不同年份, 那么时间分层器会显示不同年份时间(按所有数据-年-分组所得).    
  
+`admin.ModelAdmin.date_hierarchy` 支持两种写法:
+- [普通字段](simple/admin.py#L8)
+- [关联字段](simple_relate/admin.py#L14)
+ 
 <p align="center">
   <img src="simple/imgs/date_hierarchy.jpg" alt="date_hierarchy"/>
 </p>
