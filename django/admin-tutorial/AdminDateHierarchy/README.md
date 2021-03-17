@@ -10,6 +10,6 @@
   </p>
 - [关联字段](simple_relate/admin.py#L14)
   <p align="center">
-    <img src="simple_relate/imgs/date_hierarchy.jpg" alt="date_hierarchy"/>
+    <img src="simple_relate/imgs/related_hierarchy.jpg" alt="date_hierarchy"/>
   </p>
  
