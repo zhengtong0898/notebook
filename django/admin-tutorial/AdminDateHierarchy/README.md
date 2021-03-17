@@ -5,8 +5,11 @@
  
 `admin.ModelAdmin.date_hierarchy` 支持两种写法:
 - [普通字段](simple/admin.py#L8)
+  <p align="center">
+    <img src="simple/imgs/date_hierarchy.jpg" alt="date_hierarchy"/>
+  </p>
 - [关联字段](simple_relate/admin.py#L14)
+  <p align="center">
+    <img src="simple_relate/imgs/date_hierarchy.jpg" alt="date_hierarchy"/>
+  </p>
  
-<p align="center">
-  <img src="simple/imgs/date_hierarchy.jpg" alt="date_hierarchy"/>
-</p>
