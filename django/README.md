@@ -37,4 +37,6 @@ python AdminActions/manage.py runserver
 &nbsp;  
 
 ### Django Admin 操作清单
-- [批量更新字段状态](admin-tutorial/AdminActions/README.md#L10)
+- [批量操作](admin-tutorial/AdminActions/README.md#L10)
+- [时间分层器](admin-tutorial/AdminDateHierarchy/README.md)
+
