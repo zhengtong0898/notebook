@@ -15,3 +15,11 @@
 <p align="center">
   <img src="filter_horizontal_/imgs/filter_vertical.jpg" alt="filter_vertical"/>
 </p>
+
+&nbsp;  
+### list_display_links
+[admin.ModelAdmin.list_display_links](filter_horizontal_/admin.py#L11) 将链接显示在指定字段, 默认是显示在第一个字段.   
+
+<p align="center">
+  <img src="filter_horizontal_/imgs/list_display_links.jpg" alt="list_display_links"/>
+</p>

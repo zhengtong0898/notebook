@@ -7,6 +7,9 @@ class ArticleModelAdmin(admin.ModelAdmin):
     # filter_horizontal = ('publications', )
     filter_vertical = ('publications', )
 
+    list_display = ('headline', 'content')
+    list_display_links = ('content', )
+
 
 class PublicationModelAdmin(admin.ModelAdmin):
     pass

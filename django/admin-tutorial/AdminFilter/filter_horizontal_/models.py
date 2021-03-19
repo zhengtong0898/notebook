@@ -14,6 +14,7 @@ class Publication(models.Model):
 
 class Article(models.Model):
     headline = models.CharField(verbose_name="文章标题", max_length=100)
+    content = models.TextField(verbose_name="文章内容", default='')
     publications = models.ManyToManyField(Publication)
 
     class Meta:
