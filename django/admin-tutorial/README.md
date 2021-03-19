@@ -20,9 +20,9 @@
     checks_class = BaseModelAdminChecks    
 
 - class ModelAdmin  
-    [list_display = ('__str__',)](../follow-tutorial/README.md#tutorial-07)  
-    [list_display_links = ()](../admin-tutorial/AdminFilter/README.md#list_display_links)  
-    [list_filter = ()](../follow-tutorial/README.md#tutorial-07)  
+    [list_display = ('__str__',)](../follow-tutorial/README.md#tutorial-07)    
+    [list_display_links = ()](../admin-tutorial/AdminFilter/README.md#list_display_links)     
+    [list_filter = ()](../follow-tutorial/README.md#tutorial-07)    
     list_select_related = False  
     list_per_page = 100  
     list_max_show_all = 200  
