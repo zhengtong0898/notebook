@@ -1,0 +1,52 @@
+# ModelAdmin 属性一览
+
+- class BaseModelAdmin  
+    autocomplete_fields = ()  
+    raw_id_fields = ()  
+    [fields = None](AdminFields/README.md#L9)						
+    [exclude = None](AdminFields/README.md#L1)					
+    [fieldsets = None](AdminFields/README.md#17)				
+    form = forms.ModelForm													
+    [filter_vertical = ()](AdminFilter/README.md#6)			
+    [filter_horizontal = ()](AdminFilter/README.md#13)			
+    radio_fields = {}  
+    prepopulated_fields = {}  
+    formfield_overrides = {}  
+    readonly_fields = ()  
+    ordering = None  
+    sortable_by = None  
+    view_on_site = True  
+    show_full_result_count = True  
+    checks_class = BaseModelAdminChecks  
+
+- class ModelAdmin  
+    [list_display = ('__str__',)](../follow-tutorial/README.md#tutorial-07)  
+    list_display_links = ()  
+    [list_filter = ()](../follow-tutorial/README.md#tutorial-07)  
+    list_select_related = False  
+    list_per_page = 100  
+    list_max_show_all = 200  
+    list_editable = ()  
+    [search_fields = ()](../follow-tutorial/README.md#tutorial-07)  
+    [date_hierarchy = None](AdminDateHierarchy/README.md)  
+    save_as = False  
+    save_as_continue = True  
+    save_on_top = False  
+    paginator = Paginator  
+    preserve_filters = True  
+    [inlines = []](../follow-tutorial/README.md#tutorial-07)  
+
+    add_form_template = None  
+    change_form_template = None  
+    change_list_template = None  
+    delete_confirmation_template = None  
+    delete_selected_confirmation_template = None  
+    object_history_template = None  
+    popup_response_template = None  
+
+    [actions = []](AdminActions/README.md#批量更新字段状态方法)  
+    action_form = helpers.ActionForm  
+    [actions_on_top = True](AdminActions/README.md#批量操作下拉菜单位置控制上或下)  
+    [actions_on_bottom = False](AdminActions/README.md#批量操作下拉菜单位置控制上或下)  
+    actions_selection_counter = True  
+    checks_class = ModelAdminChecks  

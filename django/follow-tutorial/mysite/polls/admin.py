@@ -12,7 +12,7 @@ class ChoiceInline(admin.StackedInline):                # admin.StackedInline �
 class ChoiceTabularInline(admin.TabularInline):         # admin.TabularInline 表格排列
     model = Choice
     extra = 1
-    verbose_name_plural = "投标关联表"
+    verbose_name_plural = "投票关联表"
 
 
 class QuestionAdmin(admin.ModelAdmin):
