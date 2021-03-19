@@ -23,3 +23,11 @@
 <p align="center">
   <img src="filter_horizontal_/imgs/list_display_links.jpg" alt="list_display_links"/>
 </p>
+
+&nbsp;   
+### list_per_page
+[admin.ModelAdmin.list_per_page](filter_horizontal_/admin.py#L13) `change`列表页面, 每页显示多少条数据.     
+[admin.ModelAdmin.list_max_show_all](filter_horizontal_/admin.py#L14) 列表页面下方的分页最右侧的`Show all`, 显示多少条数据.      
+<p align="center">
+  <img src="filter_horizontal_/imgs/list_per_page.jpg" alt="list_per_page"/>
+</p>

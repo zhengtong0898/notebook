@@ -10,6 +10,9 @@ class ArticleModelAdmin(admin.ModelAdmin):
     list_display = ('headline', 'content')
     list_display_links = ('content', )
 
+    list_per_page = 3
+    list_max_show_all = 200
+
 
 class PublicationModelAdmin(admin.ModelAdmin):
     pass

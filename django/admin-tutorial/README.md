@@ -3,12 +3,12 @@
 - class BaseModelAdmin  
     autocomplete_fields = ()    
     raw_id_fields = ()    
-    [fields = None](AdminFields/README.md#L9) <br />					   	
-    [exclude = None](AdminFields/README.md#L1) <br />					   
-    [fieldsets = None](AdminFields/README.md#17) <br />				   
-    form = forms.ModelForm											 
-    [filter_vertical = ()](AdminFilter/README.md#6) <br />			   
-    [filter_horizontal = ()](AdminFilter/README.md#13) <br />			   
+    [fields = None](AdminFields/README.md#L9)            
+    [exclude = None](AdminFields/README.md#L1)                    
+    [fieldsets = None](AdminFields/README.md#17)                
+    form = forms.ModelForm        
+    [filter_vertical = ()](AdminFilter/README.md#6)                     
+    [filter_horizontal = ()](AdminFilter/README.md#13)                   
     radio_fields = {}     
     prepopulated_fields = {}    
     formfield_overrides = {}    
@@ -24,8 +24,8 @@
     [list_display_links = ()](../admin-tutorial/AdminFilter/README.md#list_display_links)     
     [list_filter = ()](../follow-tutorial/README.md#tutorial-07)    
     list_select_related = False  
-    list_per_page = 100  
-    list_max_show_all = 200  
+    [list_per_page = 100](../admin-tutorial/AdminFilter/README.md#)       
+    [list_max_show_all = 200]()        
     list_editable = ()  
     [search_fields = ()](../follow-tutorial/README.md#tutorial-07)  
     [date_hierarchy = None](AdminDateHierarchy/README.md)  
