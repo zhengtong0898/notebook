@@ -47,3 +47,9 @@
 <p align="center">
   <img src="ordering_/imgs/ordering.jpg" alt="ordering"/>
 </p>
+
+&nbsp;  
+### sortable_by
+[admin.ModelAdmin.sortable_by](ordering_/admin.py#10) 在 `change` 列表页面, 限定可排序字段.   
+默认情况下, `Django` 允许所有字段拥有排序功能(即: 点击字段头可以进行该字段的升序或降序功能).  
+通过定义 `sortable_by` 字段, 告诉 `Django` 只有这个范围的字段可以排序, 其他字段关闭排序功能.

@@ -14,7 +14,7 @@
     formfield_overrides = {}    
     readonly_fields = ()   
     [ordering = None](AdminFilter/README.md#ordering)   
-    sortable_by = None   
+    [sortable_by = None](AdminFilter/README.md#sortable_by)   
     view_on_site = True   
     show_full_result_count = True    
     checks_class = BaseModelAdminChecks    

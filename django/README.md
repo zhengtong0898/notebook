@@ -42,4 +42,5 @@ python AdminActions/manage.py runserver
 - [时间分层器](admin-tutorial/AdminDateHierarchy/README.md)
 - [表单字段排版控制](admin-tutorial/AdminFields/README.md)
 - [多对多字段修饰](admin-tutorial/AdminFilter/README.md)
-- [列表排序](admin-tutorial/AdminFilter/README.md#L16)
+- [列表排序](admin-tutorial/README.md#L16)
+- [字段排序](admin-tutorial/README.md#L17)
