@@ -9,5 +9,8 @@ class ArticleModelAdmin(admin.ModelAdmin):
     ordering = ('title', 'date_joined')                             # 按字段排序, 对应sql是: order by .
     sortable_by = ('tags', )
 
+    search_fields = ('title', )
+    show_full_result_count = True
+
 
 admin.site.register(ArticleModel, ArticleModelAdmin)

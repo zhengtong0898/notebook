@@ -56,3 +56,10 @@
 <p align="center">
   <img src="ordering_/imgs/sortable_by.jpg" alt="sortable_by"/>
 </p>
+
+&nbsp;  
+### show_full_result_count
+[admin.ModelAdmin.show_full_result_count](ordering_/admin.py#13) 该属性配合`search_fields`, 共同显示搜索命中几条数据和总共几条数据信息.   
+<p align="center">
+  <img src="ordering_/imgs/show_full_result_count.jpg" alt="show_full_result_count"/>
+</p>

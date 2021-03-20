@@ -16,7 +16,7 @@
     [ordering = None](AdminFilter/README.md#ordering)   
     [sortable_by = None](AdminFilter/README.md#sortable_by)   
     view_on_site = True   
-    show_full_result_count = True    
+    [show_full_result_count = True](AdminFilter/README.md#show_full_result_count)    
     checks_class = BaseModelAdminChecks    
 
 - class ModelAdmin  
