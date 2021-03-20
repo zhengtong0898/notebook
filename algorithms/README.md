@@ -8,7 +8,7 @@
 | 符号 | 名称 |
 |---|:---:|
 | O(1) | [常量阶](time_complexity/O1.md) |
-| O(logn) | 对数阶 |
+| O(logn) | [对数阶](time_complexity/On.md) |
 | O(n) | 线性阶 |
 | O(nlogn) | 线性对数阶 |
 | O(n^2) | 平方阶 |
