@@ -13,7 +13,7 @@
     prepopulated_fields = {}    
     formfield_overrides = {}    
     readonly_fields = ()   
-    ordering = None   
+    [ordering = None](AdminFilter/README.md#ordering)   
     sortable_by = None   
     view_on_site = True   
     show_full_result_count = True    
@@ -48,5 +48,5 @@
     action_form = helpers.ActionForm  
     [actions_on_top = True](AdminActions/README.md#批量操作下拉菜单位置控制上或下)  
     [actions_on_bottom = False](AdminActions/README.md#批量操作下拉菜单位置控制上或下)  
-    actions_selection_counter = True  
+    [actions_selection_counter = True](AdminActions/README.md#隐藏批量操作右侧的已选中计数器)  
     checks_class = ModelAdminChecks  

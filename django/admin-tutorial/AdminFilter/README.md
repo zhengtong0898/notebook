@@ -39,4 +39,11 @@
 只有一种情况会主动去查询关联表信息, 即: 当`list_display` 集合中包含了外键字段时, 才会主动去查询关联表信息(select_related).   
 另外一种情况那就是当 `list_select_related` 属性是 `True` 时, `Django`也会主动去查询关联表信息(select_related).   
 
-`select_related`方法回归到原始`sql`是采用了 `inner join` 把两张表的字段都提取出来; 
+`select_related`方法回归到原始`sql`是采用了 `inner join` 把两张表的字段都提取出来;
+
+&nbsp;  
+### ordering
+[admin.ModelAdmin.ordering](ordering_/admin.py#9) 在 `change` 列表页面, 按给定的字段排序显示数据.  
+<p align="center">
+  <img src="ordering_/imgs/ordering.jpg" alt="ordering"/>
+</p>
