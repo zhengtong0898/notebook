@@ -64,7 +64,7 @@ def heap_permutation(data, n):
         else:
             data[0], data[n-1] = data[n-1], data[0]
 
-data = [1, 2, 3]
+data = [1, 2, 3, 4]
 heap_permutation(data, len(data))
 
 
@@ -97,4 +97,4 @@ heap_permutation(data, len(data))
 
 &nbsp;  
 ### 参考
-[Understanding time complexity with Python examples](https://towardsdatascience.com/understanding-time-complexity-with-python-examples-2bda6e8158a7)
+[Understanding time complexity with Python examples](https://towardsdatascience.com/understanding-time-complexity-with-python-examples-2bda6e8158a7)\
