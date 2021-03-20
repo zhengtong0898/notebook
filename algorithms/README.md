@@ -14,7 +14,7 @@
 | O(n^2) | Quadratic Time | [平方阶](time_complexity/On^2.md) |
 | O(n^3) | Cubic Time | [立方阶](time_complexity/On^3.md) |
 | O(2^n) | Exponential Time | [指数阶](time_complexity/O2^n.md) |
-| O(n!) |Factorial Time | 阶乘阶 |
+| O(n!) |Factorial Time | [阶乘阶](time_complexity/On!.md) |
 
 
 &nbsp;  
