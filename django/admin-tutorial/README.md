@@ -33,7 +33,7 @@
     save_as_continue = True  
     save_on_top = False  
     paginator = Paginator  
-    preserve_filters = True  
+    [preserve_filters = True](AdminFilter/README.md#preserve_filters)  
     [inlines = []](../follow-tutorial/README.md#tutorial-07)  
 
     add_form_template = None  

@@ -43,14 +43,14 @@
 
 &nbsp;  
 ### ordering
-[admin.ModelAdmin.ordering](ordering_/admin.py#9) 在 `change` 列表页面, 按给定的字段排序显示数据.  
+[admin.ModelAdmin.ordering](ordering_/admin.py#L9) 在 `change` 列表页面, 按给定的字段排序显示数据.  
 <p align="center">
   <img src="ordering_/imgs/ordering.jpg" alt="ordering"/>
 </p>
 
 &nbsp;  
 ### sortable_by
-[admin.ModelAdmin.sortable_by](ordering_/admin.py#10) 在 `change` 列表页面, 限定可排序字段.   
+[admin.ModelAdmin.sortable_by](ordering_/admin.py#L10) 在 `change` 列表页面, 限定可排序字段.   
 默认情况下, `Django` 允许所有字段拥有排序功能(即: 点击字段头可以进行该字段的升序或降序功能).  
 通过定义 `sortable_by` 字段, 告诉 `Django` 只有这个范围的字段可以排序, 其他字段关闭排序功能.
 <p align="center">
@@ -59,7 +59,16 @@
 
 &nbsp;  
 ### show_full_result_count
-[admin.ModelAdmin.show_full_result_count](ordering_/admin.py#13) 该属性配合`search_fields`, 共同显示搜索命中几条数据和总共几条数据信息.   
+[admin.ModelAdmin.show_full_result_count](ordering_/admin.py#L13) 该属性配合`search_fields`, 共同显示搜索命中几条数据和总共几条数据信息.   
 <p align="center">
   <img src="ordering_/imgs/show_full_result_count.jpg" alt="show_full_result_count"/>
+</p>
+
+&nbsp;  
+### preserve_filters
+[admin.ModelAdmin.preserve_filters](ordering_/admin.py#L15)  
+在已过滤(搜索)的列表中修改、删除、创建数据完成后再次返回到列表页面时, 是否保留搜索状态.  
+`preserve_filters` 是 `bool`类型变量, `True`时表示保留搜索状态, `False`时表示不保留搜索状态;  
+<p align="center">
+  <img src="ordering_/imgs/preserve_filters.jpg" alt="preserve_filters"/>
 </p>
