@@ -72,3 +72,12 @@
 <p align="center">
   <img src="ordering_/imgs/preserve_filters.jpg" alt="preserve_filters"/>
 </p>
+
+&nbsp;  
+### list_editable
+[admin.ModelAdmin.list_editable](ordering_/admin.py#L17) 
+`Django`允许在`change`列表页面一次性编辑多条数据.   
+`list_editable` 是 `list` / `tuple` 类型变量, 填写字段名, 表示字段可以在`chang`列表页面编辑多条数据.  
+<p align="center">
+  <img src="ordering_/imgs/list_editable.jpg" alt="list_editable"/>
+</p>

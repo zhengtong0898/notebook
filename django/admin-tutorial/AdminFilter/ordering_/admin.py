@@ -12,7 +12,9 @@ class ArticleModelAdmin(admin.ModelAdmin):
     search_fields = ('title', )
     show_full_result_count = True
 
-    preserve_filters = False
+    preserve_filters = True
+
+    list_editable = ('tags', 'date_joined')
 
 
 admin.site.register(ArticleModel, ArticleModelAdmin)

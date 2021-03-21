@@ -26,7 +26,7 @@
     [list_select_related = False](../admin-tutorial/AdminFilter/README.md#list_select_related)    
     [list_per_page = 100](../admin-tutorial/AdminFilter/README.md#list_per_page)       
     [list_max_show_all = 200](../admin-tutorial/AdminFilter/README.md#list_per_page)        
-    list_editable = ()  
+    [list_editable = ()](AdminFilter/README.md#)  
     [search_fields = ()](../follow-tutorial/README.md#tutorial-07)  
     [date_hierarchy = None](AdminDateHierarchy/README.md)  
     save_as = False  
