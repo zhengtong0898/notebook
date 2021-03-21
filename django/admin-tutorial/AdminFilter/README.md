@@ -102,3 +102,13 @@
    <p align="center">
      <img src="ordering_/imgs/view_on_site_in_change_list.jpg" alt="view_on_site_in_change_list"/>
    </p>
+
+&nbsp;  
+### raw_id_fields
+[admin.ModelAdmin.raw_id_fields](ordering_/admin.py#L16)
+将`drop-down`或`select-box`字段的风格, 替换成`input`.  
+当该字段是`ForeignKey`时, 只显示该`id`; 
+当该字段时`ManyToMany`时, 用逗号分隔并显示多个`id`; 
+<p align="center">
+  <img src="ordering_/imgs/raw_id_fields.jpg" alt="raw_id_fields"/>
+</p>

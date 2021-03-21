@@ -2,7 +2,7 @@
 
 - class BaseModelAdmin  
     autocomplete_fields = ()    
-    raw_id_fields = ()    
+    [raw_id_fields = ()](AdminFilter/README.md#raw_id_fields)    
     [fields = None](AdminFields/README.md#L9)            
     [exclude = None](AdminFields/README.md#L1)                    
     [fieldsets = None](AdminFields/README.md#17)                

@@ -13,6 +13,8 @@ class ArticleModelAdmin(admin.ModelAdmin):
     list_per_page = 3
     list_max_show_all = 200
 
+    raw_id_fields = ('publications', )
+
 
 class PublicationModelAdmin(admin.ModelAdmin):
     pass
