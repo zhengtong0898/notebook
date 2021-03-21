@@ -15,7 +15,7 @@
     readonly_fields = ()   
     [ordering = None](AdminFilter/README.md#ordering)   
     [sortable_by = None](AdminFilter/README.md#sortable_by)   
-    view_on_site = True   
+    [view_on_site = True](AdminFilter/README.md#view_on_site)   
     [show_full_result_count = True](AdminFilter/README.md#show_full_result_count)    
     checks_class = BaseModelAdminChecks    
 

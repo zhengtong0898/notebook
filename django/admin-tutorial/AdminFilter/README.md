@@ -81,3 +81,24 @@
 <p align="center">
   <img src="ordering_/imgs/list_editable.jpg" alt="list_editable"/>
 </p>
+
+&nbsp;  
+### view_on_site
+[admin.ModelAdmin.view_on_site](ordering_/admin.py#L20) 
+`Django`提供了一个`change_form`模板, 
+用于在修改数据页面的表单上方显示一个自定义链接("VIEW ON SITE"), 
+通过这个链接可以跳转到任何网站(但通常是与该条数据相关的网址, 良心功能).    
+
+1. `view_on_site` 是 `True` 时, 
+   需定义 `admin.ModelAdmin.get_absolute_url` 方法, 
+   此时 `Django` 会使用 `django.urls.reverse('admin:view_on_site')` 生成对应的 `admin` 站内链接.  
+2. `view_on_site` 是 `False` 时, 不显示 "VIEW ON SITE" 链接.   
+3. `view_on_site` 是方法时, 在修改数据页面的表单上方显示 "VIEW ON SITE" 链接.  
+   <p align="center">
+     <img src="ordering_/imgs/view_on_site_in_change_page.jpg" alt="view_on_site_in_change_page"/>
+   </p>
+4. `view_on_site` 是方法时, 可以在 `list_display` 中加入 `view_on_site` 字段, 
+   在`change`列表页面显示链接, 可快速的跳转到对应的数据页面(良心功能).
+   <p align="center">
+     <img src="ordering_/imgs/view_on_site_in_change_list.jpg" alt="view_on_site_in_change_list"/>
+   </p>
