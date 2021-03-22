@@ -115,8 +115,17 @@
 
 &nbsp;  
 ### radio_fields
-[admin.ModelAdmin.radio_fields](../AdminDateHierarchy/simple_relate/admin.py#L21)
+[admin.ModelAdmin.radio_fields](../AdminDateHierarchy/simple_relate/admin.py#L25)
 将`drop-down`替换成`radio`, 支持`Choices`和`ForeignKey`字段.   
 <p align="center">
-  <img src="../AdminDateHierarchy/simple_relate/radio_fields.jpg" alt="radio_fields"/>
+  <img src="../AdminDateHierarchy/simple_relate/imgs/radio_fields.jpg" alt="radio_fields"/>
+</p>
+
+&nbsp;  
+### autocompelete_fields
+[admin.ModelAdmin.autocompelete_fields](../AdminDateHierarchy/simple_relate/admin.py#L27)
+将`select`替换成`select2`, 支持搜索功能, 作用于`ForeignKey`字段.   
+`autocompelete_fields` 属性依赖 [`search_fields`](../AdminDateHierarchy/simple_relate/admin.py#L7) 字段一起使用.
+<p align="center">
+  <img src="../AdminDateHierarchy/simple_relate/imgs/autocompelete_fields.jpg" alt="autocompelete_fields"/>
 </p>

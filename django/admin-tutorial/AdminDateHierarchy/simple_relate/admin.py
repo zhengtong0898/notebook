@@ -3,6 +3,10 @@ from .models import ArticleModel, AuthorModel
 
 
 # Register your models here.
+class AuthorModelAdmin(admin.ModelAdmin):
+    search_fields = ('name', )
+
+
 class ArticleModelAdmin(admin.ModelAdmin):
     list_display = ['title',
                     'author',
@@ -20,6 +24,8 @@ class ArticleModelAdmin(admin.ModelAdmin):
 
     radio_fields = {'author': admin.HORIZONTAL}
 
+    autocomplete_fields = ('author', )
+
 
 admin.site.register(ArticleModel, ArticleModelAdmin)
-admin.site.register(AuthorModel, admin.ModelAdmin)
+admin.site.register(AuthorModel, AuthorModelAdmin)
