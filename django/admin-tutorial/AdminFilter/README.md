@@ -112,3 +112,11 @@
 <p align="center">
   <img src="ordering_/imgs/raw_id_fields.jpg" alt="raw_id_fields"/>
 </p>
+
+&nbsp;  
+### radio_fields
+[admin.ModelAdmin.radio_fields](../AdminDateHierarchy/simple_relate/admin.py#L21)
+将`drop-down`替换成`radio`, 支持`Choices`和`ForeignKey`字段.   
+<p align="center">
+  <img src="../AdminDateHierarchy/simple_relate/radio_fields.jpg" alt="radio_fields"/>
+</p>

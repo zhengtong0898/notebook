@@ -18,6 +18,8 @@ class ArticleModelAdmin(admin.ModelAdmin):
 
     author__date_joined.short_description = "作者加入时间(这是一个关联延申字段)"
 
+    radio_fields = {'author': admin.HORIZONTAL}
+
 
 admin.site.register(ArticleModel, ArticleModelAdmin)
 admin.site.register(AuthorModel, admin.ModelAdmin)
