@@ -1,7 +1,7 @@
 # ModelAdmin 属性一览
 
 - class BaseModelAdmin  
-    autocomplete_fields = ()    
+    [autocomplete_fields = ()](AdminFilter/README.md#autocompelete_fields)    
     [raw_id_fields = ()](AdminFilter/README.md#raw_id_fields)    
     [fields = None](AdminFields/README.md#L9)            
     [exclude = None](AdminFields/README.md#L1)                    
@@ -12,7 +12,7 @@
     [radio_fields = {}](AdminFilter/README.md#radio_fields)     
     prepopulated_fields = {}    
     formfield_overrides = {}    
-    readonly_fields = ()   
+    [readonly_fields = ()](AdminFilter/README.md#readonly_fields)   
     [ordering = None](AdminFilter/README.md#ordering)   
     [sortable_by = None](AdminFilter/README.md#sortable_by)   
     [view_on_site = True](AdminFilter/README.md#view_on_site)   

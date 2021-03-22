@@ -129,3 +129,18 @@
 <p align="center">
   <img src="../AdminDateHierarchy/simple_relate/imgs/autocompelete_fields.jpg" alt="autocompelete_fields"/>
 </p>
+
+&nbsp;  
+### readonly_fields
+[admin.ModelAdmin.readonly_fields](../AdminDateHierarchy/simple_relate/admin.py#L29)
+将指定字段设定为只读, 在新增、编辑页面中都不可编辑(观点: 这不符合已有字段的使用场景).  
+该属性支持读取方法的运行结果作为字段值, 这就让它变得非常有意义了, 这使得它甚至跟`view_on_site`一样有意义.   
+通过在方法内自定义显示的html内容, 可以补充外链去展示自己想展示的信息.
+- `change`列表页面  
+    <p align="center">
+      <img src="../AdminDateHierarchy/simple_relate/imgs/readonly_fields_1.jpg" alt="readonly_fields_1"/>
+    </p>
+- `add`新增页面
+    <p align="center">
+      <img src="../AdminDateHierarchy/simple_relate/imgs/readonly_fields_2.jpg" alt="readonly_fields_2"/>
+    </p>
