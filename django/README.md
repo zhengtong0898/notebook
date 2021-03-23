@@ -37,8 +37,59 @@ python AdminActions/manage.py runserver
 &nbsp;  
 
 ### Django Admin 操作清单
+- BaseModelAdmin
+
+  | 属性 | 描述 | 位置 |
+  |---|:---:| :---: |
+  |autocompelete_fields = ()| 让外键下拉菜单支持搜索功能 | 新增、编辑页面 |
+  |raw_id_fields = ()| 将下拉菜单替换成文本输入框 | 新增、编辑页面 |
+  |fields = None| 表单字段排版 | 新增、编辑页面 |
+  |exclude = None| 表单中排除字段 | 新增、编辑页面 |
+  |fieldsets = None| 表单字段排版(支持分组) | 新增、编辑页面 |
+  |form = forms.ModelForm |   | - |
+  |filter_vertical = ()| 多对多字段的表单纵向控件装饰 | 新增、编辑页面 |
+  |filter_horizontal = ()| 多对多字段的表单横向控件装饰 | 新增、编辑页面 |
+  |radio_fields = {}|  将下拉菜单替换成radio控件 | 新增、编辑页面 |
+  |prepopulated_fields = {}| 自动填值功能(需配合slugField字段)  | 新增、编辑页面 |
+  |formfield_overrides = {}| 控件替换 | 新增、编辑页面 |
+  |readonly_fields = ()|  自读字段 |新增、编辑、`change`列表页面 |
+  |ordering = None| 按给定的字段排序显示数据  | `change`列表页面 |
+  |sortable_by = None| 仅允许指定字段头拥有排序功能  | `change`列表页面 |
+  |view_on_site = True| 快捷跳转到于该数据象关的页面hook | 编辑页面 |
+  |show_full_result_count = True| 搜索右侧计数器的总合数字 | `change`列表页面 |
+  |checks_class = BaseModelAdminChecks |  | - |
+
 - ModelAdmin   
 
-| 属性 | 描述 |
-|---|:---:|
-|actions = []| [批量更新字段、隐藏批量操作栏目](./ModelAdmin.md#actions) |
+  | 属性 | 描述 | 位置 |
+  |---|:---:| :---: |
+  |list_display = ('\_\_str\_\_',) | 控制字段显示 | `change`列表页面 | 
+  |list_display_links = () | 将链接显示在指定字段 | `change`列表页面 |
+  |list_filter = () | 按分配筛选 | `change`列表页面 |
+  |list_select_related = False | 是否查询关联表 | `change`列表页面 | 
+  |list_per_page = 100 | 每页显示几行数据 | `change`列表页面 |
+  |list_max_show_all = 200 | `show_all`链接显示几行数据 | `change`列表页面 |
+  |list_editable = () | 同时编辑多行数据 | `change`列表页面 |
+  |search_fields = () | 指定模糊查询字段 | `change`列表页面 |
+  |date_hierarchy = None | 时间分层器 | `change`列表页面 |
+  |save_as = False | 用编辑的表单数据创建新数据| 编辑页面 |
+  |save_as_continue = True | 是否跳转回列表页面| 编辑页面 |
+  |save_on_top = False | 表单上方显示按钮保存栏| 编辑页面 |
+  |paginator = Paginator | | - |
+  |preserve_filters = True | 保留搜索内容| `change`列表页面 |
+  |inlines = [] | 关联表数据展示 | `change`列表页面 |
+  | | | -|
+  |add_form_template = None| | -|
+  |change_form_template = None| | -|
+  |change_list_template = None| | -|
+  |delete_confirmation_template = None| | -|
+  |delete_selected_confirmation_template = None| | -|
+  |object_history_template = None| | -|
+  |popup_response_template = None| | -|
+  | | -|
+  |actions = []| [批量更新字段](./ModelAdmin.md#actions) | `change`列表页面 |
+  |action_form = helpers.ActionForm| | - |
+  |actions_on_top = True| [批量操作栏目位置](./ModelAdmin.md#actions_on_top) | `change`列表页面 |
+  |actions_on_bottom = False| [批量操作栏目位置](./ModelAdmin.md#actions_on_top) | `change`列表页面 |
+  |actions_selection_counter = True| [批量操作右侧已选中计数器](./ModelAdmin.md#actions) | `change`列表页面 |
+  |checks_class = ModelAdminChecks| - |
