@@ -37,10 +37,8 @@ python AdminActions/manage.py runserver
 &nbsp;  
 
 ### Django Admin 操作清单
-- [ModelAdmin 属性一览](admin-tutorial/README.md)
-- [批量操作](admin-tutorial/AdminActions/README.md#L10)
-- [时间分层器](admin-tutorial/AdminDateHierarchy/README.md)
-- [表单字段排版控制](admin-tutorial/AdminFields/README.md)
-- [多对多字段修饰](admin-tutorial/AdminFilter/README.md)
-- [列表排序](admin-tutorial/README.md#L16)
-- [字段排序](admin-tutorial/README.md#L17)
+- ModelAdmin   
+
+| 属性 | 描述 |
+|---|:---:|
+|actions = []| [批量更新字段、隐藏批量操作栏目](./ModelAdmin.md#actions) |
