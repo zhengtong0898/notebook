@@ -161,3 +161,15 @@
 <p align="center">
   <img src="../AdminDateHierarchy/simple_relate/imgs/formfield_overrides.jpg" alt="formfield_overrides"/>
 </p>
+
+&nbsp;  
+### save_as
+[admin.ModelAdmin.save_as](../AdminDateHierarchy/simple_relate/admin.py#L60)
+该属性作用在 change 编辑页面.      
+`False` 时, 表单底部显示 'Save and add another' 按钮.    
+`True` 时, 表单底部显示 'save as new' 按钮.     
+'save as new' 的作用是, 当模块表单字段过多, 新建一条数据时间成本较高时,    
+可以采取编辑一条数据, 按需更改几个必要字段后, 点击 'save as new' 完成一条数据的创建.   
+<p align="center">
+  <img src="../AdminDateHierarchy/simple_relate/imgs/save_as.jpg" alt="save_as"/>
+</p>

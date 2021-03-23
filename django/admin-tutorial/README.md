@@ -29,7 +29,7 @@
     [list_editable = ()](AdminFilter/README.md#)  
     [search_fields = ()](../follow-tutorial/README.md#tutorial-07)  
     [date_hierarchy = None](AdminDateHierarchy/README.md)  
-    save_as = False  
+    [save_as = False](AdminFilter/README.md#save_as)  
     save_as_continue = True  
     save_on_top = False  
     paginator = Paginator  
