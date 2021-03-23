@@ -59,6 +59,8 @@ class ArticleModelAdmin(admin.ModelAdmin):
     # 可以采取编辑一条数据, 按需更改几个必要字段后, 点击 'save as new' 完成一条数据的创建.
     save_as = True
 
+    # 开启这个属性, 会出现两行按钮保存栏, 他们分别出现在表单的头部和表单的底部.
+    save_on_top = True
 
 admin.site.register(ArticleModel, ArticleModelAdmin)
 admin.site.register(AuthorModel, AuthorModelAdmin)

@@ -175,8 +175,16 @@
 </p>
 
 &nbsp;  
+### save_as_continue
 [admin.ModelAdmin.save_as_continue](../AdminDateHierarchy/simple_relate/admin.py#L60)
 该属性作用在 `save_as=True` 基础上, 告诉`Django`数据创建完成后, 是进入编辑界面还是返回`change`列表页面.  
 `save_as_continue=True` 时, 数据创建完成后， 重定向到编辑页面.
 `save_as_continue=False` 时, 数据创建完成后, 重定向到`change`列表页面.
+
+&nbsp; 
+### save_on_top 
+[admin.ModelAdmin.save_on_top](../AdminDateHierarchy/simple_relate/admin.py#L63) 开启这个属性, 会出现两行按钮保存栏, 他们分别出现在表单的头部和表单的底部.
+<p align="center">
+  <img src="../AdminDateHierarchy/simple_relate/imgs/save_on_top.jpg" alt="save_on_top"/>
+</p>
  
