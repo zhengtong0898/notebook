@@ -173,3 +173,10 @@
 <p align="center">
   <img src="../AdminDateHierarchy/simple_relate/imgs/save_as.jpg" alt="save_as"/>
 </p>
+
+&nbsp;  
+[admin.ModelAdmin.save_as_continue](../AdminDateHierarchy/simple_relate/admin.py#L60)
+该属性作用在 `save_as=True` 基础上, 告诉`Django`数据创建完成后, 是进入编辑界面还是返回`change`列表页面.  
+`save_as_continue=True` 时, 数据创建完成后， 重定向到编辑页面.
+`save_as_continue=False` 时, 数据创建完成后, 重定向到`change`列表页面.
+ 

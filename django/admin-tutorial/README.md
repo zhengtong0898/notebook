@@ -30,7 +30,7 @@
     [search_fields = ()](../follow-tutorial/README.md#tutorial-07)  
     [date_hierarchy = None](AdminDateHierarchy/README.md)  
     [save_as = False](AdminFilter/README.md#save_as)  
-    save_as_continue = True  
+    [save_as_continue = True](AdminFilter/README.md#save_as_continue)  
     save_on_top = False  
     paginator = Paginator  
     [preserve_filters = True](AdminFilter/README.md#preserve_filters)  
