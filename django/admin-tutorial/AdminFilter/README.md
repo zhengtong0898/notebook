@@ -144,3 +144,12 @@
     <p align="center">
       <img src="../AdminDateHierarchy/simple_relate/imgs/readonly_fields_2.jpg" alt="readonly_fields_2"/>
     </p>
+
+&nbsp;  
+### prepopulated_fields
+[admin.ModelAdmin.prepopulated_fields](../AdminDateHierarchy/simple_relate/admin.py#L41) 
+该字段用于配合 `slugField` 字段来预填充值;    
+在`add`和`change`表单中, `javascript`会监控指定字段的`change`事件, 实时把更新填写到`slugField`字段中.  
+<p align="center">
+  <img src="../AdminDateHierarchy/simple_relate/imgs/prepopulated_fields.jpg" alt="prepopulated_fields"/>
+</p>

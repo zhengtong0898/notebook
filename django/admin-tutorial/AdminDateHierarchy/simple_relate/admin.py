@@ -38,6 +38,7 @@ class ArticleModelAdmin(admin.ModelAdmin):
         from django.utils.safestring import mark_safe
         return mark_safe("<span class='errors'>show something</span>")
 
+    prepopulated_fields = {"slug": ("title", 'content')}
 
 admin.site.register(ArticleModel, ArticleModelAdmin)
 admin.site.register(AuthorModel, AuthorModelAdmin)
