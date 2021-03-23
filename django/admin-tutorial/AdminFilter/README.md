@@ -153,3 +153,11 @@
 <p align="center">
   <img src="../AdminDateHierarchy/simple_relate/imgs/prepopulated_fields.jpg" alt="prepopulated_fields"/>
 </p>
+
+&nbsp;  
+### formfield_overrides
+[admin.ModelAdmin.formfield_overrides](../AdminDateHierarchy/simple_relate/admin.py#L51)
+该属性用于替换表单控件;
+<p align="center">
+  <img src="../AdminDateHierarchy/simple_relate/imgs/formfield_overrides.jpg" alt="formfield_overrides"/>
+</p>

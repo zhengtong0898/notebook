@@ -40,5 +40,16 @@ class ArticleModelAdmin(admin.ModelAdmin):
 
     prepopulated_fields = {"slug": ("title", 'content')}
 
+    from django.db import models
+    from django.forms import TextInput
+
+    # 一般情况下, TextField 通过多态重定义 self.formfield 方法,
+    # 在该方法内声明 {'widget': forms.Textarea }, 进而可以在页面中显示 TextArea 表单控件.
+    #
+    # formfield_overrides 在这里将 forms.Textarea 改为 forms.CharField 控件对象.
+    formfield_overrides = {
+        models.TextField: {'widget': TextInput},
+    }
+
 admin.site.register(ArticleModel, ArticleModelAdmin)
 admin.site.register(AuthorModel, AuthorModelAdmin)

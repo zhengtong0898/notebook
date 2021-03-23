@@ -11,7 +11,7 @@
     [filter_horizontal = ()](AdminFilter/README.md#13)                   
     [radio_fields = {}](AdminFilter/README.md#radio_fields)     
     [prepopulated_fields = {}](AdminFilter/README.md#repopulated_fields)    
-    formfield_overrides = {}    
+    [formfield_overrides = {}](AdminFilter/README.md#formfield_overrides)    
     [readonly_fields = ()](AdminFilter/README.md#readonly_fields)   
     [ordering = None](AdminFilter/README.md#ordering)   
     [sortable_by = None](AdminFilter/README.md#sortable_by)   
