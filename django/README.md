@@ -41,22 +41,22 @@ python AdminActions/manage.py runserver
 
   | 属性 | 描述 | 位置 |
   |---|:---:| :---: |
-  |autocompelete_fields = ()| 让外键下拉菜单支持搜索功能 | 新增、编辑页面 |
-  |raw_id_fields = ()| 将下拉菜单替换成文本输入框 | 新增、编辑页面 |
-  |fields = None| 表单字段排版 | 新增、编辑页面 |
-  |exclude = None| 表单中排除字段 | 新增、编辑页面 |
-  |fieldsets = None| 表单字段排版(支持分组) | 新增、编辑页面 |
+  |autocompelete_fields = ()| [让外键下拉菜单支持搜索功能](./BaseModelAdmin.md#autocompelete_fields) | 新增、编辑页面 |
+  |raw_id_fields = ()| [将下拉菜单替换成文本输入框](./BaseModelAdmin.md#raw_id_fields) | 新增、编辑页面 |
+  |fields = None| [表单字段排版](./BaseModelAdmin.md#fields) | 新增、编辑页面 |
+  |exclude = None| [表单中排除字段](./BaseModelAdmin.md#exclude) | 新增、编辑页面 |
+  |fieldsets = None| [表单字段排版(支持分组)](./BaseModelAdmin.md#fieldsets) | 新增、编辑页面 |
   |form = forms.ModelForm |   | - |
-  |filter_vertical = ()| 多对多字段的表单纵向控件装饰 | 新增、编辑页面 |
-  |filter_horizontal = ()| 多对多字段的表单横向控件装饰 | 新增、编辑页面 |
-  |radio_fields = {}|  将下拉菜单替换成radio控件 | 新增、编辑页面 |
-  |prepopulated_fields = {}| 自动填值功能(需配合slugField字段)  | 新增、编辑页面 |
-  |formfield_overrides = {}| 控件替换 | 新增、编辑页面 |
-  |readonly_fields = ()|  自读字段 |新增、编辑、`change`列表页面 |
-  |ordering = None| 按给定的字段排序显示数据  | `change`列表页面 |
-  |sortable_by = None| 仅允许指定字段头拥有排序功能  | `change`列表页面 |
-  |view_on_site = True| 快捷跳转到于该数据象关的页面hook | 编辑页面 |
-  |show_full_result_count = True| 搜索右侧计数器的总合数字 | `change`列表页面 |
+  |filter_vertical = ()| [多对多字段的表单纵向控件装饰](./BaseModelAdmin.md#filter_vertical) | 新增、编辑页面 |
+  |filter_horizontal = ()| [多对多字段的表单横向控件装饰](./BaseModelAdmin.md#filter_horizontal) | 新增、编辑页面 |
+  |radio_fields = {}|  [将下拉菜单替换成radio控件](./BaseModelAdmin.md#radio_fields) | 新增、编辑页面 |
+  |prepopulated_fields = {}| [自动填值功能(需配合slugField字段)](./BaseModelAdmin.md#prepopulated_fields)  | 新增、编辑页面 |
+  |formfield_overrides = {}| [表单字段控件替换](./BaseModelAdmin.md#formfield_overrides) | 新增、编辑页面 |
+  |readonly_fields = ()|  [只读字段](./BaseModelAdmin.md#readonly_fields) |新增、编辑、`change`列表页面 |
+  |ordering = None| [按给定的字段排序显示数据](./BaseModelAdmin.md#ordering)  | `change`列表页面 |
+  |sortable_by = None| [仅允许指定字段头拥有排序功能](./BaseModelAdmin.md#sortable_by)  | `change`列表页面 |
+  |view_on_site = True| [快捷跳转到于该数据象关的页面hook](./BaseModelAdmin.md#view_on_site) | 编辑页面 |
+  |show_full_result_count = True| [搜索右侧计数器的总合数字](./BaseModelAdmin.md#show_full_result_count) | `change`列表页面 |
   |checks_class = BaseModelAdminChecks |  | - |
 
 - ModelAdmin   

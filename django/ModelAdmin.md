@@ -1,5 +1,5 @@
 ### list_display
-[admin.ModelAdmin.list_display](follow-tutorial/mysite/polls/admin.py#36) 
+[admin.ModelAdmin.list_display](follow-tutorial/mysite/polls/admin.py#L36) 
 该属性用于控制字段显示, 即`change`列表的每行显示几个字段.   
 <p align="center">
   <img src="follow-tutorial/mysite/imgs/list_display.jpg" alt="list_display"/>
@@ -18,7 +18,7 @@
 &nbsp;  
 &nbsp;   
 ### list_filter
-[admin.ModelAdmin.list_filter](follow-tutorial/mysite/polls/admin.py#39) 
+[admin.ModelAdmin.list_filter](follow-tutorial/mysite/polls/admin.py#L39) 
 该属性用于指定字段分类筛选, 最佳实践适用于`bool`类型字段, 时间类型字段, 和少量`choices`类型字段.  
 <p align="center">
   <img src="follow-tutorial/mysite/imgs/list_filter.jpg" alt="list_filter"/>
@@ -48,7 +48,7 @@
 &nbsp;  
 &nbsp;  
 ### list_editable
-[admin.ModelAdmin.list_editable](admin-tutorial/AdminFilter/ordering_/admin.py#L17) 
+[admin.ModelAdmin.list_editable](admin-tutorial/AdminFilter/ordering_/admin.py#L18) 
 `Django`允许在`change`列表页面一次性编辑多条数据.   
 `list_editable` 是 `list` / `tuple` 类型变量, 填写字段名, 表示字段可以在`chang`列表页面编辑多条数据.  
 <p align="center">
@@ -59,7 +59,7 @@
 &nbsp;   
 &nbsp;   
 ### search_fields
-[admin.ModelAdmin.search_fields](follow-tutorial/mysite/polls/admin.py#44) 
+[admin.ModelAdmin.search_fields](follow-tutorial/mysite/polls/admin.py#L44) 
 该属性用于模糊搜索指定字段, 模糊搜索在`sql`中采用的是 `like '%search%'`语法.   
 <p align="center">
   <img src="follow-tutorial/mysite/imgs/search_fields.jpg" alt="search_fields"/>
@@ -124,7 +124,7 @@
 在已过滤(搜索)的列表中修改、删除、创建数据完成后再次返回到列表页面时, 是否保留搜索状态.  
 `preserve_filters` 是 `bool`类型变量, `True`时表示保留搜索状态, `False`时表示不保留搜索状态;  
 <p align="center">
-  <img src="ordering_/imgs/preserve_filters.jpg" alt="preserve_filters"/>
+  <img src="admin-tutorial/AdminFilter/ordering_/imgs/preserve_filters.jpg" alt="preserve_filters"/>
 </p>
 
 
