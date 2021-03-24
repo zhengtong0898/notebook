@@ -64,20 +64,20 @@ python AdminActions/manage.py runserver
   | 属性 | 描述 | 位置 |
   |---|:---:| :---: |
   |list_display = ('\_\_str\_\_',) | [控制字段显示](./ModelAdmin.md#list_display) | `change`列表页面 | 
-  |list_display_links = () | 将链接显示在指定字段 | `change`列表页面 |
+  |list_display_links = () | [将编辑数据的链接显示在指定字段](./ModelAdmin.md#list_display_links) | `change`列表页面 |
   |list_filter = () | [按分类筛选](./ModelAdmin.md#list_filter) | `change`列表页面 |
-  |list_select_related = False | 是否查询关联表 | `change`列表页面 | 
-  |list_per_page = 100 | 每页显示几行数据 | `change`列表页面 |
-  |list_max_show_all = 200 | `show_all`链接显示几行数据 | `change`列表页面 |
-  |list_editable = () | 同时编辑多行数据 | `change`列表页面 |
+  |list_select_related = False | [是否查询关联表](./ModelAdmin.md#list_select_related) | `change`列表页面 | 
+  |list_per_page = 100 | [每页显示几行数据](./ModelAdmin.md#list_per_page) | `change`列表页面 |
+  |list_max_show_all = 200 | [`show_all`链接显示几行数据](./ModelAdmin.md#list_per_page) | `change`列表页面 |
+  |list_editable = () | [同时编辑多行数据](./ModelAdmin.md#list_editable) | `change`列表页面 |
   |search_fields = () | [指定模糊查询字段](./ModelAdmin.md#search_fields) | `change`列表页面 |
-  |date_hierarchy = None | 时间分层器 | `change`列表页面 |
-  |save_as = False | 用编辑的表单数据创建新数据| 编辑页面 |
-  |save_as_continue = True | 是否跳转回列表页面| 编辑页面 |
-  |save_on_top = False | 表单上方显示按钮保存栏| 编辑页面 |
+  |date_hierarchy = None | [时间分层器](./ModelAdmin.md#date_hierarchy) | `change`列表页面 |
+  |save_as = False | [用编辑的表单数据创建新数据](./ModelAdmin.md#save_as)| 编辑页面 |
+  |save_as_continue = True | [是否跳转回列表页面](./ModelAdmin.md#save_as_continue)| 编辑页面 |
+  |save_on_top = False | [表单上方显示按钮保存栏](./ModelAdmin.md#save_on_top)| 编辑页面 |
   |paginator = Paginator | | - |
-  |preserve_filters = True | 保留搜索内容| `change`列表页面 |
-  |inlines = [] | 关联表数据展示 | `change`列表页面 |
+  |preserve_filters = True | [保留搜索内容](./ModelAdmin.md#preserve_filters)| `change`列表页面 |
+  |inlines = [] | [关联表数据展示](./ModelAdmin.md#inlines) | 编辑页面 |
   | | | -|
   |add_form_template = None| | -|
   |change_form_template = None| | -|
@@ -92,4 +92,4 @@ python AdminActions/manage.py runserver
   |actions_on_top = True| [批量操作栏目位置](./ModelAdmin.md#actions_on_top) | `change`列表页面 |
   |actions_on_bottom = False| [批量操作栏目位置](./ModelAdmin.md#actions_on_top) | `change`列表页面 |
   |actions_selection_counter = True| [批量操作右侧已选中计数器](./ModelAdmin.md#actions) | `change`列表页面 |
-  |checks_class = ModelAdminChecks| - |
+  |checks_class = ModelAdminChecks| | - |
