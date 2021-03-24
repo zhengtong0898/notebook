@@ -31,7 +31,7 @@
 &nbsp;      
 &nbsp;  
 ### exclude  
-[admin.BaseModelAdmin.fields](admin-tutorial/AdminFields/exclude_/admin.py#L18)
+[admin.BaseModelAdmin.exclude](admin-tutorial/AdminFields/exclude_/admin.py#L18)
 定义在 `exclude` 集合中的字段, 将不会显示在表单中.
 <p align="center">
   <img src="admin-tutorial/AdminFields/exclude_/imgs/exclude_indirectly_void_form_validation.jpg" alt="exclude"/>
@@ -143,7 +143,7 @@
 &nbsp;  
 &nbsp;  
 ### ordering
-[admin.BaseModelAdmin.ordering](admin-tutorial/AdminFilter/ordering_/admin.py#L9) 
+[admin.BaseModelAdmin.ordering](admin-tutorial/AdminFilter/ordering_/admin.py#L10) 
 在 `change` 列表页面, 按给定的字段排序显示数据.  
 <p align="center">
   <img src="admin-tutorial/AdminFilter/ordering_/imgs/ordering.jpg" alt="ordering"/>
@@ -153,7 +153,7 @@
 &nbsp;  
 &nbsp;  
 ### sortable_by
-[admin.BaseModelAdmin.sortable_by](admin-tutorial/AdminFilter/ordering_/admin.py#L10) 
+[admin.BaseModelAdmin.sortable_by](admin-tutorial/AdminFilter/ordering_/admin.py#L11) 
 在 `change` 列表页面, 限定可排序字段.   
 默认情况下, `Django` 允许所有字段拥有排序功能(即: 点击字段头可以进行该字段的升序或降序功能).  
 通过定义 `sortable_by` 字段, 告诉 `Django` 只有这个范围的字段可以排序, 其他字段关闭排序功能.
@@ -188,7 +188,7 @@
 &nbsp;  
 &nbsp;  
 ### show_full_result_count
-[admin.BaseModelAdmin.show_full_result_count](admin-tutorial/AdminFilter/ordering_/admin.py#L13) 
+[admin.BaseModelAdmin.show_full_result_count](admin-tutorial/AdminFilter/ordering_/admin.py#L14) 
 该属性配合`search_fields`, 共同显示搜索命中几条数据和总共几条数据信息.   
 <p align="center">
   <img src="admin-tutorial/AdminFilter/ordering_/imgs/show_full_result_count.jpg" alt="show_full_result_count"/>

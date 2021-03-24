@@ -69,14 +69,14 @@
 &nbsp;  
 &nbsp; 
 ### date_hierarchy
-[admin.ModelAdmin.date_hierarchy](admin-tutorial/AdminDateHierarchy/simple/admin.py#L18)   
+[admin.ModelAdmin.date_hierarchy](admin-tutorial/AdminDateHierarchy/simple/admin.py#L8)   
 `Django` 提供了一个按[时间分层器](https://docs.djangoproject.com/en/3.1/ref/contrib/admin/#django.contrib.admin.ModelAdmin.date_hierarchy)来筛选数据功能, 从页面中能看到的是一个 `drilldown` 导航栏;  
  当 `change list` 表格的数据的创建时间分布于当月不同时间, 那么时间分层器会显示当月具体日期时间(按所有数据-日-分组所得).     
  当 `change list` 表格的数据的创建时间分布于当年不同时间, 那么时间分层器会显示当年具体月份时间(按所有数据-月-分组所得).    
  当 `change list` 表格的数据的创建时间分布于不同年份, 那么时间分层器会显示不同年份时间(按所有数据-年-分组所得).    
  
 `admin.ModelAdmin.date_hierarchy` 支持两种写法:
-- [普通字段](admin-tutorial/AdminDateHierarchy/simple/admin.py#L18)
+- [普通字段](admin-tutorial/AdminDateHierarchy/simple/admin.py#L8)
   <p align="center">
     <img src="admin-tutorial/AdminDateHierarchy/simple/imgs/date_hierarchy.jpg" alt="date_hierarchy"/>
   </p>
@@ -102,7 +102,7 @@
 &nbsp;  
 &nbsp;  
 ### save_as_continue
-[admin.ModelAdmin.save_as_continue](admin-tutorial/AdminDateHierarchy/simple_relate/admin.py#L60)
+[admin.ModelAdmin.save_as_continue](admin-tutorial/AdminDateHierarchy/simple_relate/admin.py#L65)
 该属性作用在 `save_as=True` 基础上, 告诉`Django`数据创建完成后, 是进入编辑界面还是返回`change`列表页面.  
 `save_as_continue=True` 时, 数据创建完成后， 重定向到编辑页面.
 `save_as_continue=False` 时, 数据创建完成后, 重定向到`change`列表页面.
@@ -120,7 +120,7 @@
 &nbsp;   
 &nbsp;  
 ### preserve_filters
-[admin.ModelAdmin.preserve_filters](admin-tutorial/AdminFilter/ordering_/admin.py#L15)  
+[admin.ModelAdmin.preserve_filters](admin-tutorial/AdminFilter/ordering_/admin.py#L16)  
 在已过滤(搜索)的列表中修改、删除、创建数据完成后再次返回到列表页面时, 是否保留搜索状态.  
 `preserve_filters` 是 `bool`类型变量, `True`时表示保留搜索状态, `False`时表示不保留搜索状态;  
 <p align="center">

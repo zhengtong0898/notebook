@@ -62,5 +62,7 @@ class ArticleModelAdmin(admin.ModelAdmin):
     # 开启这个属性, 会出现两行按钮保存栏, 他们分别出现在表单的头部和表单的底部.
     save_on_top = True
 
+    save_as_continue = False
+
 admin.site.register(ArticleModel, ArticleModelAdmin)
 admin.site.register(AuthorModel, AuthorModelAdmin)
