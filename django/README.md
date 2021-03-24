@@ -93,3 +93,71 @@ python AdminActions/manage.py runserver
   |actions_on_bottom = False| [批量操作栏目位置](./ModelAdmin.md#actions_on_top) | `change`列表页面 |
   |actions_selection_counter = True| [批量操作右侧已选中计数器](./ModelAdmin.md#actions) | `change`列表页面 |
   |checks_class = ModelAdminChecks| | - |
+
+
+### Django Model 操作清单 
+- db.models.query.QuerySet  
+  `Django ORM`中, 所有的查询都要通过`QuerySet`对象来完成, 
+  包括常见的 `objects` 其实也是一个 `QuerySet` 对象.
+  
+  | 属性 | 类型 | 描述 |
+  |---|:---:| :---: |
+  | self.model = model |  | |
+  | self._db = using | | |
+  | self._hints = hints or {} | | |
+  | self._query = query or sql.Query(self.model) | | |
+  | self._result_cache = None | | |
+  | self._sticky_filter = False | |
+  | self._for_write = False | | |
+  | self._prefetch_related_lookups = () | | |
+  | self._prefetch_done = False | | |
+  | self._known_related_objects = {}  # {rel_field: {pk: rel_obj}} | | |
+  | self._iterable_class = ModelIterable | | |
+  | self._fields = None | | |
+  | self._defer_next_filter = False | | |
+  | self._deferred_filter = None | | |
+  | | |-|
+  | @property<br> def query(self)  | |-|
+  |def iterator(self, chunk_size=2000)| |-|
+  |def aggregate(self, *args, **kwargs)| |-|
+  |def count(self)| |-|
+  |def get(self, *args, **kwargs)| |-|
+  |def create(self, **kwargs)| |-|
+  |def bulk_create(self, objs, batch_size=None, ignore_conflicts=False)| |-|
+  |def bulk_update(self, objs, fields, batch_size=None)| |-|
+  |def get_or_create(self, defaults=None, **kwargs)| |-|
+  |def update_or_create(self, defaults=None, **kwargs)| |-|
+  |def earliest(self, *fields)| |-|
+  |def latest(self, *fields)| |-|
+  |def first(self)| |-|
+  |def last(self)| |-|
+  |def in_bulk(self, id_list=None, *, field_name='pk')| |-|
+  |def delete(self)| |-|
+  |def update(self, **kwargs)| |-|
+  |def exists(self)| |-|
+  |def explain(self, *, format=None, **options)| |-|
+  |def raw(self, raw_query, params=None, translations=None, using=None) | |-|
+  |def values(self, *fields, **expressions) | |-|
+  |def values_list(self, *fields, flat=False, named=False) | |-|
+  |def dates(self, field_name, kind, order='ASC') | |-|
+  |def datetimes(self, field_name, kind, order='ASC', tzinfo=None, is_dst=None) | |-|
+  |def none(self) | |-|
+  |def filter(self, *args, **kwargs) | |-|
+  |def exclude(self, *args, **kwargs) | |-|
+  |def complex_filter(self, filter_obj) | |-|
+  |def union(self, *other_qs, all=False) | |-|
+  |def intersection(self, *other_qs) | |-|
+  |def difference(self, *other_qs) | |-|
+  |def select_for_update(self, nowait=False, skip_locked=False, of=()) | |-|
+  |def select_related(self, *fields) | |-|
+  |def prefetch_related(self, *lookups) | |-|
+  |def annotate(self, *args, **kwargs) | |-|
+  |def order_by(self, *field_names) | |-|
+  |def distinct(self, *field_names) | |-|
+  |def extra(self, select=None, where=None, params=None, tables=None, order_by=None, select_params=None) | |-|
+  |def reverse(self) | |-|
+  |def defer(self, *fields) | |-|
+  |def only(self, *fields) | |-|
+  |def using(self, alias) | |-|
+  |@property <br> def ordered(self) | |-|
+  |@property <br> def db(self) | |-|
