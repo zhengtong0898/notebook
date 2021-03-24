@@ -1,3 +1,33 @@
+### list_display
+[admin.ModelAdmin.list_display](follow-tutorial/mysite/polls/admin.py#36) 
+该属性用于控制字段显示, 即`change`列表的每行显示几个字段.   
+<p align="center">
+  <img src="follow-tutorial/mysite/list_display.jpg" alt="list_display"/>
+</p>
+
+&nbsp;   
+&nbsp;   
+
+### search_fields
+[admin.ModelAdmin.search_fields](follow-tutorial/mysite/polls/admin.py#44) 
+该属性用于模糊搜索指定字段, 模糊搜索在`sql`中采用的是 `like '%search%'`语法.   
+<p align="center">
+  <img src="follow-tutorial/mysite/search_fields.jpg" alt="search_fields"/>
+</p>
+
+&nbsp;  
+&nbsp;   
+### list_filter
+[admin.ModelAdmin.list_filter](follow-tutorial/mysite/polls/admin.py#39) 
+该属性用于指定字段分类筛选, 最佳实践适用于`bool`类型字段, 时间类型字段, 和少量`choices`类型字段.  
+<p align="center">
+  <img src="follow-tutorial/mysite/list_filter.jpg" alt="list_filter"/>
+</p>
+
+
+&nbsp;  
+&nbsp;   
+
 ### actions
 [admin.ModelAdmin.actions](admin-tutorial/AdminActions/actions/admin.py#L16)
 该属性用于控制 `批量操作` 功能的表现;  

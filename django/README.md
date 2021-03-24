@@ -63,14 +63,14 @@ python AdminActions/manage.py runserver
 
   | 属性 | 描述 | 位置 |
   |---|:---:| :---: |
-  |list_display = ('\_\_str\_\_',) | 控制字段显示 | `change`列表页面 | 
+  |list_display = ('\_\_str\_\_',) | [控制字段显示](./ModelAdmin.md#list_display) | `change`列表页面 | 
   |list_display_links = () | 将链接显示在指定字段 | `change`列表页面 |
-  |list_filter = () | 按分配筛选 | `change`列表页面 |
+  |list_filter = () | [按分类筛选](./ModelAdmin.md#list_filter) | `change`列表页面 |
   |list_select_related = False | 是否查询关联表 | `change`列表页面 | 
   |list_per_page = 100 | 每页显示几行数据 | `change`列表页面 |
   |list_max_show_all = 200 | `show_all`链接显示几行数据 | `change`列表页面 |
   |list_editable = () | 同时编辑多行数据 | `change`列表页面 |
-  |search_fields = () | 指定模糊查询字段 | `change`列表页面 |
+  |search_fields = () | [指定模糊查询字段](./ModelAdmin.md#search_fields) | `change`列表页面 |
   |date_hierarchy = None | 时间分层器 | `change`列表页面 |
   |save_as = False | 用编辑的表单数据创建新数据| 编辑页面 |
   |save_as_continue = True | 是否跳转回列表页面| 编辑页面 |
