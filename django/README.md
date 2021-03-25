@@ -95,6 +95,8 @@ python AdminActions/manage.py runserver
   |checks_class = ModelAdminChecks| | - |
 
 
+&nbsp;  
+&nbsp;  
 ### Django Model 操作清单 
 - db.models.query.QuerySet  
   `Django ORM`中, 所有的查询都要通过`QuerySet`对象来完成, 
@@ -154,7 +156,7 @@ python AdminActions/manage.py runserver
   |def annotate(self, *args, **kwargs) | |-|
   |def order_by(self, *field_names) | |-|
   |def distinct(self, *field_names) | |-|
-  |def extra(self, select=None, where=None, params=None, tables=None, order_by=None, select_params=None) | |-|
+  |def extra(self, select=None, where=None, params=None, <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tables=None, order_by=None, select_params=None) | |-|
   |def reverse(self) | |-|
   |def defer(self, *fields) | |-|
   |def only(self, *fields) | |-|
