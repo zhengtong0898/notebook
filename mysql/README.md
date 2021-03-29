@@ -16,6 +16,8 @@
    ```
 
 ### 数据库语言
+> 参考资料:   
+> https://sites.google.com/site/prgimr/sql
 
 - DML  
   Data Manipulation Language: 数据操纵语言   
