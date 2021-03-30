@@ -16,7 +16,6 @@ CREATE TABLE `article` (
   KEY `author_id` (`author_id`),
 
   -- `author`表在这里被视为是`article`表的父表.
-  -- ON DELETE CASCADE: `author`数据被删除时, 也会对应删除当前表关联的数据.
   FOREIGN KEY (`author_id`) REFERENCES `author` (`id`) ON UPDATE RESTRICT
 );
 

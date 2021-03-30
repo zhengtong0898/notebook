@@ -11,12 +11,12 @@ CREATE TABLE `article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   `content` mediumtext NOT NULL,
-  `author_id` int(11) NOT NULL,
+  `author_id` int(11),
   PRIMARY KEY (`id`),
   KEY `author_id` (`author_id`),
 
   -- `author`表在这里被视为是`article`表的父表.
-  FOREIGN KEY (`author_id`) REFERENCES `author` (`id`) ON DELETE RESTRICT
+  FOREIGN KEY (`author_id`) REFERENCES `author` (`id`) ON DELETE SET NULL
 );
 
 
@@ -27,17 +27,10 @@ insert into `article` (`title`, `content`, `author_id`) values ('文章-2', '内
 commit;
 
 
--- 测试-1: 删除没有被关联的数据,
-delete from `author` where id=2;
--- 断言-1: 可以正常被删除.
-select * from `author`;
-
-
--- 测试-2: 删除 `author`.`id` = 1 的数据
+-- 测试-1: 删除 `author`.`id` = 1 的数据
 delete from `author` where id=1;
--- 断言-2: 期望在删除数据时, 数据库会报错, 不让删除.
--- 所以: 解决办法是, 先删除掉子表中对应的关联数据, 然后再更改或删除父表中的数据.
--- Error: Cannot delete or update a parent row: a foreign key constraint fails (`sss`.`article`, CONSTRAINT `article_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`))
+-- 断言-1: 确认 `article` 表中的'文章-1' 和 '文章-2' 这两条数据的`author_id`字段被清空.
+select * from `article`;
 
 
 -- 恢复: 删除表 `author` 和 `article`
