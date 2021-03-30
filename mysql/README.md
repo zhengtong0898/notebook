@@ -15,6 +15,8 @@
    SET GLOBAL general_log = 'ON';
    ```
 
+&nbsp;  
+&nbsp;  
 ### 数据库语言
 > 参考资料:   
 > https://sites.google.com/site/prgimr/sql
@@ -31,7 +33,28 @@
   Data Control Language: 数据库控制语言   
   grant, revoke 语句都会在这里执行.
   
-- TCL
-  Transaction Control Language: 事务控制语言
+- TCL  
+  Transaction Control Language: 事务控制语言  
   commit, rollback, savepoint, set transaction 语句都会在这里执行.
+
+
+&nbsp;  
+&nbsp;  
+### 外键操作(Referential Actions)
+> 参考资料:   
+> [create-table-foreign-keys](https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html)   
+> [mysql-on-delete-cascade](https://www.mysqltutorial.org/mysql-on-delete-cascade/)   
+> [difference-between-on-delete-cascade-on-update-cascade-in-mysql](https://dba.stackexchange.com/questions/74627/difference-between-on-delete-cascade-on-update-cascade-in-mysql)
+
+- CASCADE  
+  如果在父表中[删除](tests/foreign_key_on_delete_cascade.sql)了一行数据, 子表中对应的关联数据也会被删除.   
+  如果在父表中[更新](tests/foreign_key_on_update_cascade.sql)了一行数据的`Primary Key`字段的值, 子表中对应的关联数据也会更新关联字段的`id`值.
+
+- SET NULL
+
+- RESTRICT
+
+- NO ACTION
+
+- SET DEFAULT
 
