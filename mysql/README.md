@@ -47,12 +47,17 @@
 > [difference-between-on-delete-cascade-on-update-cascade-in-mysql](https://dba.stackexchange.com/questions/74627/difference-between-on-delete-cascade-on-update-cascade-in-mysql)
 
 - CASCADE  
-  如果在父表中[删除](tests/foreign_key_on_delete_cascade.sql)了一行数据, 子表中对应的关联数据也会被删除.   
-  如果在父表中[更新](tests/foreign_key_on_update_cascade.sql)了一行数据的`Primary Key`字段的值, 子表中对应的关联数据也会更新关联字段的`id`值.
+  如果在父表中[删除](tests/foreign_keys/on_delete_cascade.sql)了一行数据, 子表中对应的关联数据也会被删除.   
+  如果在父表中[更新](tests/foreign_keys/on_update_cascade.sql)了一行数据的`Primary Key`字段的值, 子表中对应的关联数据也会自动更新外键值.
 
 - SET NULL
 
-- RESTRICT
+- RESTRICT  
+  如果在父表中[删除](tests/foreign_keys/on_delete_restrict.sql)一行数据, 该行数据被子表的数据关联, 那么就会报错(可以通过上面的`CASCADE`解决这个问题).   
+  如果在父表中[删除](tests/foreign_keys/on_delete_restrict.sql)一行数据, 该行数据没有被子表的数据关联, 那么就可以正常删除.   
+  
+  如果再父表中[更新](tests/foreign_keys/on_update_restrict.sql)一行数据的`Primary Key`字段的值, 该行数据被子表的数据关联, 那么就会报错.   
+  如果再父表中[更新](tests/foreign_keys/on_update_restrict.sql)一行数据的`Primary Key`字段的值, 该行数据没有被子表的数据关联, 那么就可以正常更新.   
 
 - NO ACTION
 
