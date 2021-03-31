@@ -1,9 +1,9 @@
-### 长连接
-有些时候 MySQL 占用内存涨得特别快, 这是因为 MySQL 在执行过程中临时使用的内存是管理在连接对象里面的.  
+### 内存溢出
+有些时候 MySQL 占用内存涨得特别快, 这很有可能是因为 MySQL 在执行过程中临时使用的内存是管理在连接对象里面的.  
 这些资源会在连接断开的时候才释放, 所以如果长连接累积下来, 可能导致内存占用太大，被系统强行杀掉(OOM).   
 
 解决办法:   
-通过执行`mysql_reset_connection`来重新初始化长连接, 使其释放掉内存.
+客户端程序在每次执行了大的查询之后, 可以通过执行`mysql_reset_connection`来重新初始化长连接, 使其释放掉内存.
 
 
 &nbsp;  
@@ -28,12 +28,6 @@ TODO: 决策细节?
   8. 结果集返回给客户端.
 - 有索引的情况  
   TODO: 待补充  
-  
-&nbsp;  
-&nbsp;  
-### 慢查询日志
-可以通过慢查询日志中查看到 `row_examined` 字段, 它表示这个语句执行过程中扫描了多少行.   
-TODO: 慢查询日志在哪里? 是在`show variables`里面吗?
 
 
 &nbsp;  
@@ -52,7 +46,12 @@ TODO: binlog 是磁盘文件吗? 在哪里?
 &nbsp;  
 ### 执行计划(Explain)
 > 参考:   
+> https://mengkang.net/1124.html   
 > https://mysqlserverteam.com/mysql-explain-analyze/   
 > https://dev.mysql.com/doc/index-other.html   
-> https://dev.mysql.com/doc/refman/5.6/en/explain-output.html#explain-join-types
+> https://dev.mysql.com/doc/refman/5.6/en/explain-output.html#explain-join-types   
+> https://dev.mysql.com/doc/workbench/en/wb-performance-explain.html   
+> https://dev.mysql.com/doc/sakila/en/   
+> http://www.cnitblog.com/aliyiyi08/archive/2008/09/09/48878.html   
+
 
