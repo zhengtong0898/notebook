@@ -3,7 +3,7 @@ import random
 
 
 # 桶排序--线性表
-def bucket_sort_linear(items, bucket_size: int):
+def bucket_sort_linear(items, bucket_size: int) -> list:
     """
     桶排序, 也是区间分组算法.
 
@@ -67,4 +67,5 @@ def bucket_sort_linear(items, bucket_size: int):
 
 if __name__ == '__main__':
     collection = random.sample(range(-50, 50), 50)
-    assert bucket_sort_linear(collection, 5) == sorted(collection)
+    sorted_collection = sorted(collection)
+    assert bucket_sort_linear(collection, 5) == sorted_collection

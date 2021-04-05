@@ -1,5 +1,6 @@
 # 冒泡排序
 # 原理: https://www.bilibili.com/video/BV1Zz4y1D7ZE/?spm_id_from=trigger_reload
+import random
 
 
 def loop_for_swap_v1(items, sorted_count: int) -> (bool, int, int):
@@ -45,7 +46,6 @@ def bubble_sort_linear(items):
 
 
 if __name__ == '__main__':
-    collection = [29, 15, -32, -15, 32, -41, 20, 23, -31, 16, 21, -14, -6, -8, 12, 37, 10, -34, 41, -13, -19, -30,
-                  -22, 0, -20, -5, 11, 2, 3, 47, 14, 9, -43, 4, 35, -18, 7, 38, 46, -45, 19, -10, -37, -33, -26, 26,
-                  -24, 27, -23, -27]
-    assert bubble_sort_linear(collection) == sorted(collection)
+    collection = random.sample(range(-50, 50), 50)
+    sorted_collection = sorted(collection)
+    assert bubble_sort_linear(collection) == sorted_collection
