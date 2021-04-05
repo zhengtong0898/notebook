@@ -5,7 +5,7 @@ import random
 # 桶排序--线性表
 def bucket_sort_linear(items, bucket_size: int):
     """
-    区间分组算法
+    桶排序, 也是区间分组算法.
 
     假设: [29,37,3,9,21,25,43,49,100]
     假设: bucket_size = 5;
@@ -60,6 +60,8 @@ def bucket_sort_linear(items, bucket_size: int):
         index = max((int_index - 1), 0) if float_index - int_index == 0 else int_index
         buckets[index].append(item)
 
+    # 上面这些代码只是将数据分门别类放在不同的桶里面, 没有任何排序效果.
+    # 这里还是要调用 sorted 来排序.
     return [v for bucket in buckets for v in sorted(bucket)]
 
 
