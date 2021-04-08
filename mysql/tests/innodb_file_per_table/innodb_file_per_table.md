@@ -16,7 +16,7 @@
    经观察, ifpt.ibd(表空间文件)不存在, 但是会有一个 ifpt.frm 文件(这是一个表结构信息文件).
 4. 恢复 `innodb_file_per_table` 参数值为 `On`.   
 5. 插入10万条数据.  
-   运行 `innodb_file_per_table.py` 程序
+   运行 [`innodb_file_per_table.py`](./innodb_file_per_table.py) 程序
 6. 断言:   
    经观察, C:\Program Files\MariaDB 10.5\data\ibddata1 文件大小从 70M 增加到了 140M.
 7. 删除 ifpt 表.   

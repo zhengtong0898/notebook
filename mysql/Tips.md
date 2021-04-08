@@ -59,10 +59,6 @@ TODO: binlog 是磁盘文件吗? 在哪里?
 &nbsp;  
 &nbsp;   
 ### 查询所有字段(select *) vs 查询指定字段(select column)
-> 参考:   
-> https://stackoverflow.com/questions/3639861/why-is-select-considered-harmful   
-> https://blog.csdn.net/qq_15037231/article/details/87891683   
-   
 
 - 数据传输消耗      
   `select *`会每次返回所有字段, 当某些不用的字段是`Text`,    
@@ -75,8 +71,20 @@ TODO: binlog 是磁盘文件吗? 在哪里?
 
 - 覆盖索引问题   
   指定的列如果是聚集索引字段(`primary`, `unique`, `联合索引`), 那么就会覆盖索引,   
-  指定的列如果是普通索引那么就会涉及到回表.   
-  指定的列如果不是索引字段, 那么就会查找磁盘?   TODO: 待验证
+  指定的列如果是普通索引那么就会涉及到回表, 回表也是极快的.
+
+> 补充说明:  
+> 网上有大量讨论说, 使用了 `select *` 会导致拒绝覆盖索引, 我认为这种说法是不正确的.    
+> 首先 `InnoDB` 的表数据是按照聚集索引排序的组织形式来存储的, 即: 数据会保存在B+树的LeafNode中.     
+> 当使用了聚集索引字段来做where比较时, 直接找到聚集索引的B+树对应的LeafNode, 直接取到字段值.  
+> 当使用了辅助索引字段来做where比较时, 找到辅助索引的B+树对应的LeafNode后, 取到的值是一个指针, 
+> 该指针指向聚集索引的B+树的对应的LeafNode, 然后再去取值. 这个过程也是极快的.   
+> 毕竟二分查找, 在一个一亿个元素的集合中查找某个元素, 只要26次匹配就能命中, 这是极快的.
+>      
+> 参考:   
+> https://stackoverflow.com/questions/3639861/why-is-select-considered-harmful   
+> https://blog.csdn.net/qq_15037231/article/details/87891683   
+        
 
 
 &nbsp;  
