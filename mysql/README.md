@@ -3,10 +3,12 @@
 | :--- | :--- | :--- |   
 |datadir|C:\Program Files\MariaDB 10.5\data\| 数据库的数据目录 |
 |innodb_page_size| 16384 (byte)| 每个 page 的大小|
-|innodb_file_per_table|On|每个表一个.ibd文件(称为表空间)|
-|innodb_data_file_path|C:\Program Files\MariaDB 10.5\data\ibdata1| 默认表空间(innodb_file_per_table=Off)时, <br>所有表信息都保存在默认表空间内. |
+|[innodb_file_per_table](./tests/innodb_file_per_table/innodb_file_per_table.md#描述)|On|每个表一个.ibd文件(称为表空间)|
+|[innodb_data_file_path](./tests/innodb_file_per_table/innodb_file_per_table.md#表空间)|C:\Program Files\MariaDB 10.5\data\ibdata1| 共享表空间(innodb_file_per_table=Off)时, <br>所有表信息都保存在共享表空间内. |
 
 
+&nbsp;  
+&nbsp;  
 ### 查看历史操作记录
 查看数据库历史操作之前, 需要先开启日志功能.   
 
@@ -150,4 +152,24 @@
 &nbsp;   
 &nbsp;   
 ### 执行计划
+
+&nbsp;  
+&nbsp;  
+### 表空间
+`MySQL`的表空间是一个.ibd后缀的实体文件.   
+表空间文件内由段(`segment`), 区(`extent`), 页(`page`), 行(`row`)组成.   
+它们之前的关系是包含关系: 段包含区, 区包含页, 页包含行, 而一行就代表着实际的表中的一行(多个字段)数据.  
+由于`InnoDB`存储引擎是按照聚集索引形式来组织数据的分布, 因此数据即索引, 索引即数据.   
+
+- 段(segment)   
+  常见的段有: 叶子节点段(Leaf node segment), 非叶子节点(Non-Leaf node segment), 回滚段(Rollback segment).
+
+- 区(extent)   
+  在任何情况下每个区的大小都是`1MB`, 每个页(page)默认大小是`16KB`拿, `64`个页可以填满一个区, `64 * 16KB`即为`1M`.  
+
+- 页(page)   
+  每个页存放的行记录数量规则是: 2 ~ 7992(16kb / 2 - 200) 行.
+  
+- 行(row)  
+  表中一行各字段的数据实际的数据.  
 
