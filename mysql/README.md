@@ -1,3 +1,12 @@
+ ### 参数表
+| 字段名 | 默认值 | 描述 |   
+| :--- | :--- | :--- |   
+|datadir|C:\Program Files\MariaDB 10.5\data\| 数据库的数据目录 |
+|innodb_page_size| 16384 (byte)| 每个 page 的大小|
+|innodb_file_per_table|On|每个表一个.ibd文件(称为表空间)|
+|innodb_data_file_path|C:\Program Files\MariaDB 10.5\data\ibdata1| 默认表空间(innodb_file_per_table=Off)时, <br>所有表信息都保存在默认表空间内. |
+
+
 ### 查看历史操作记录
 查看数据库历史操作之前, 需要先开启日志功能.   
 
@@ -137,3 +146,8 @@
   mysql> set global log_throttle_queries_not_using_indexes = 3;             # 每分钟允许写入三条
   mysql> show variables like 'log_throttle_queries_not_using_indexes';      # 查看配置
   ```
+
+&nbsp;   
+&nbsp;   
+### 执行计划
+
