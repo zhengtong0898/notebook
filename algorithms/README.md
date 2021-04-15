@@ -22,4 +22,5 @@
 ### 学习资源
 [C语言中文网](http://c.biancheng.net/data_structure/)   
 [数据结构、算法与应用](https://book.douban.com/subject/26421141/)   
-[极客时间-王争-数据结构与算法之美](https://time.geekbang.org/column/126)
+[极客时间-王争-数据结构与算法之美](https://time.geekbang.org/column/126)   
+[LeetCode101题精讲](./LeetCode101-A-LeetCode-Grinding-Guide-(CPP-Version).pdf)

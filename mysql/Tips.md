@@ -124,13 +124,9 @@ TODO: binlog 是磁盘文件吗? 在哪里?
 
 &nbsp;  
 &nbsp;  
-### 执行计划(Explain)
-> 参考:   
-> https://mengkang.net/1124.html   
-> https://mysqlserverteam.com/mysql-explain-analyze/   
-> https://dev.mysql.com/doc/index-other.html   
-> https://dev.mysql.com/doc/refman/5.6/en/explain-output.html#explain-join-types   
-> https://dev.mysql.com/doc/workbench/en/wb-performance-explain.html   
-> https://dev.mysql.com/doc/sakila/en/   
-> http://www.cnitblog.com/aliyiyi08/archive/2008/09/09/48878.html 
-> https://segmentfault.com/a/1190000016591055  
+### 快查表
+| 字段名 | 描述 |   
+| :--- | :--- |
+|[Aggregate Function](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_group-concat)|`group_concat` `count` `avg` `max` `min` `sum` `...`|
+
+
