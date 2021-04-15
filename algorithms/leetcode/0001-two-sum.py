@@ -1,6 +1,8 @@
 from typing import List
 
 
+# 题目链接
+# https://leetcode-cn.com/problems/two-sum/
 class TwoSum:
 
     # 时间复杂度: O(n^2)

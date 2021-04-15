@@ -1,6 +1,8 @@
 from typing import List
 
 
+# 题目链接
+# https://leetcode-cn.com/problems/assign-cookies/
 class AssignCookies:
 
     def assign_cookie(self, greed: List[int], size: List[int]):
