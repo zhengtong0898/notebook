@@ -3,14 +3,16 @@ from typing import List
 
 class TwoSum:
 
-    def two_sum_1(self, nums: list, target: int) -> List[int]:
+    # 时间复杂度: O(n^2)
+    def two_sum_1(self, nums: List[int], target: int) -> List[int]:
         for inum, i in enumerate(nums):
             for jnum, j in enumerate(nums):
                 if i + j == target:
                     return [inum, jnum]
         return []
 
-    def two_sum_2(self, nums: list, target: int) -> List[int]:
+    # 时间复杂度: O(n)
+    def two_sum_2(self, nums: List[int], target: int) -> List[int]:
         hash_map = {}
         for index, i in enumerate(nums):
             ss = target - i
