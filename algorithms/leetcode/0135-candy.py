@@ -1,6 +1,8 @@
 from typing import List
 
 
+# 题目链接
+# https://leetcode-cn.com/problems/candy/
 class Candy:
 
     def candy_v1(self, ratings: List[int]) -> int:
