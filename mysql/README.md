@@ -236,7 +236,108 @@
   |Select tables optimized away|这个值意味着仅通过使用索引，优化器可能仅从聚合函数结果中返回一行|  
   
 - 参考
-  > https://stackoverflow.com/a/4528433
-  > https://segmentfault.com/a/1190000016591055
-  > https://dev.mysql.com/doc/refman/5.6/en/explain-output.html
+  > https://stackoverflow.com/a/4528433   
+  > https://segmentfault.com/a/1190000016591055   
+  > https://dev.mysql.com/doc/refman/5.6/en/explain-output.html   
+
+
+
+&nbsp;  
+&nbsp;   
+### 查询所有字段(select *) vs 查询指定字段(select column)
+
+> 覆盖索引    
+> 由于辅助索引(Secondary Index)的LeafNode的Key就是字段值,    
+> 所以当`select column`是索引字段名时, 直接返回Key而不需要回表(这个过程被称为覆盖索引).
+>    
+> 回表    
+> 但是当`select column`不是索引字段名时, 辅助索引就会根据value的值(指向聚集索引的key),   
+> 到聚集索引去找到对应的key(这个过程被称为回表).
+
+- 数据传输消耗      
+  `select *`会每次返回所有字段, 当某些不用的字段是`Text`,    
+  `MediumText`且该字段存储大量内容时, 读取/传输/渲染/都会占用大量内存和网络消耗.   
+  
+  因此, 不是每个功能的数据响应都需要全部字段, 所以最好是按需使用.   
+
+- 绑定问题  
+  如果查询语句是`join`, 那么`select *`就会出现相同字段名冲突.
+
+- 覆盖索引问题   
+  - where命中索引的情况下:   
+    当 `select column` 不是一个索引字段时, 需要回表, 性能略差.   
+    当 `select column` 是一个索引字段时, 不需要回表, 性能优.   
+    
+    对于单条数据的回表的性能问题不大, 但是当数据集较大时, 频繁的回表操作势必会造成一定的性能影响, 因此能走覆盖索引就没有理由走回表.   
+
+  - where没有命中索引的情况下:  
+    全表扫描.
+
+
+> 参考:   
+> https://stackoverflow.com/questions/3639861/why-is-select-considered-harmful   
+> https://blog.csdn.net/qq_15037231/article/details/87891683   
+> https://www.jianshu.com/p/9b3406bcb199   
+        
+
+
+
+
+&nbsp;  
+&nbsp;  
+### 没有定义主键会发生什么?   
+[官方有提到](https://dev.mysql.com/doc/refman/8.0/en/innodb-index-types.html)   
+如果没有定义主键(Primary Key), `InnoDB`会尝试找唯一索引(Unique Key)来当聚集索引.   
+如果即没有定义主键(Primary Key), 也没有定义唯一索引(Unique Key), 那么`MySQL`会简历一个隐藏的主键.
+
+> 关于性能   
+> 因为无法使用聚集索引特性, 那么在做where条件时自然就不能享受聚集索引的效率.  
+> 但还是可以使用 辅助索引(普通索引/联合索引) 来提速.  
+> 因此总体上来说问题不大.  
+
+
+
+&nbsp;  
+&nbsp;  
+### int(11)是什么意思?  
+从编程语言的角度去看一个`int`类型对象, 一个`int`占用`4`个字节,    
+`Signed int`(默认)它的最小存储数字是`-2147483648`, 它最大存储的数字是`2147483647`,    
+`UnSigned int`它的最小存储数字是`0`, 它最大存储的数字是`4294967295`.   
+
+> 最大值最小值是怎么计算出来的?  
+- Signed Int   
+  `signed_min_int = 2 ** (4 * 8) / 2 * -1 == -2147483648`  
+  `signed_max_int = 2 ** (4 * 8) / 2 - 1  == 2147483647`  
+  
+- UnSigned Int  
+  `unsigned_min_int = 0`   
+  `unsigned_max_int = 2 ** (4 * 8) - 1    == 4294967295`
+
+> 以 `UnSinged int`为例, 观察二进制形式的规律.     
+
+|字节(byte)|位(bit)|二进制(binary)|最大值|python表达式|
+|:---:|:---:|:---:|:---:|:---:|
+|1|8|11111111|255|int('0b11111111', 2)|  
+|2|16|`11111111` `11111111`|65535|int('0b1111111111111111', 2)|  
+|3|24|`11111111` `11111111` `11111111`|16777215|int('0b111111111111111111111111', 2)|  
+|4|32|`11111111` `11111111` `11111111` `11111111`|4294967295|int('0b11111111111111111111111111111111', 2)|  
+
+了解了`int`背后相关的知识之后, 再回来看数据库中的`int(11)`的问题,   
+`MySQL`在存储时并不关注建表时定义的限定值, 比如说建表时定义了 `int(1)`,    
+实际存储`10`, `100`, `1000` 都是可以存储的, 只要不超过`2147483647`,    
+也就是说, 这个限定值对于`MySQL`来说是没有意义的.    
+
+它的作用是, 让像`Django ORM`这种客户端程序来约束程序的规范.  
+ 
+ 
+
+
+&nbsp;  
+&nbsp;  
+### 内存溢出
+有些时候 MySQL 占用内存涨得特别快, 这很有可能是因为 MySQL 在执行过程中临时使用的内存是管理在连接对象里面的.  
+这些资源会在连接断开的时候才释放, 所以如果长连接累积下来, 可能导致内存占用太大，被系统强行杀掉(OOM).   
+
+解决办法:   
+客户端程序在每次执行了大的查询之后, 可以通过执行`mysql_reset_connection`来重新初始化长连接, 使其释放掉内存.
 
