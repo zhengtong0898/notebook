@@ -8,8 +8,10 @@ caps = {"platformName": "Android",
         "appPackage": "org.chromium.webview_shell",   # adb shell dumpsys activity recents | grep "RecentTaskInfo #0" -A 5 | awk '/baseIntent/{print $(NF-1)}'
         "appActivity": ".WebViewBrowserActivity"}
 
+
 driver = webdriver.webdriver.WebDriver("http://localhost:4723/wd/hub", desired_capabilities=caps)
 time.sleep(5)
+
 
 # 启动一个app
 # adb shell am start -W -n com.android.gallery3d/.app.GalleryActivity
