@@ -8,3 +8,10 @@
 2. `java_home` 可以填写 `jre` 的路径.   
 ![android_home_and_java_home](./imgs/android_home_and_java_home.jpg)   
 
+
+&nbsp;  
+&nbsp;  
+### 找不到 mFocusedApp
+一般情况下使用: `adb shell dumpsys window windows` 指令, 可以列出当前`包名`和`界面名`.   
+然而`Android Q`版本的窗体响应中不再包含`mFocusedApp`信息, 解决办法是:  
+`adb shell dumpsys window displays | grep -i "mFocusedApp"`   
