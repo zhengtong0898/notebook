@@ -16,3 +16,11 @@ adb 全名 Android Debug Bridge, 是一个调试工具.
 |logcat| 获取日志信息 |
 |devices| 查看当前所有已连接的设备 |
 
+
+### appium api
+
+|参数|模块|说明|
+|---|---|---|
+|WebDriver.start_activity|activities.Activities| 启动一个app |
+|WebDriver.current_activity|activities.Activities| 获取当前界面名 |
+|WebDriver.current_package|common.Common| 获取当前界面名 |
