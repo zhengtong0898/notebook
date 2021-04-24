@@ -3,6 +3,7 @@
 > index % list.size()
 
 &nbsp;  
+&nbsp;  
 
 ### 常见的时间复杂度
 | 符号 | 英文名 | 中文名 |
@@ -18,7 +19,12 @@
 
 
 &nbsp;  
+&nbsp;  
+### leetcode
 
+
+&nbsp;  
+&nbsp;   
 ### 学习资源
 [C语言中文网](http://c.biancheng.net/data_structure/)   
 [数据结构、算法与应用](https://book.douban.com/subject/26421141/)   
