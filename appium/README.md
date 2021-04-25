@@ -30,5 +30,11 @@ adb 全名 Android Debug Bridge, 是一个调试工具.
 |remove_app|appium.webdriver.extensions.applications.Applications| [卸载一个app](./scripts/0004-install-app.py#L17) |
 |query_app_state|appium.webdriver.extensions.applications.Applications| [查询一个app的状态](scripts/0005-app-state-and-background.py#L20) |
 |background_app|appium.webdriver.extensions.applications.Applications| [长按 `Home` 键, 将app放置后台(单位: 秒), 然后再回到屏幕前](scripts/0005-app-state-and-background.py#L26) |
+|find_element_by_id|selenium.webdriver.remote.webdriver.WebDriver| [对应于: resource-id 标签](scripts/0006-find-element-by.py#L25) |
+|find_element_by_class_name|selenium.webdriver.remote.webdriver.WebDriver| [对应于: class 标签](scripts/0006-find-element-by.py#L34) |
+|find_element_by_xpath|selenium.webdriver.remote.webdriver.WebDriver| [按 xpath 规则查找元素](scripts/0006-find-element-by.py#L35) |
+|find_element_by_css_selector|selenium.webdriver.remote.webdriver.WebDriver| [按 css_selector 规则查找元素](scripts/0006-find-element-by.py#L36) |
+|click|appium.webdriver.webelement.WebElement| [点击控件](scripts/0006-find-element-by.py#L25) |
+|send_key|appium.webdriver.webelement.WebElement| [输入内容](scripts/0006-find-element-by.py#L34) |
 
 
