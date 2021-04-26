@@ -17,6 +17,12 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // 给当前Activity增加 secure flag 之后,
+        // UIAutomatorViewer 就无法获取到截屏和组件树信息了.
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                             WindowManager.LayoutParams.FLAG_SECURE);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
