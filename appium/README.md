@@ -30,12 +30,15 @@ adb 全名 Android Debug Bridge, 是一个调试工具.
 |remove_app|appium.webdriver.extensions.applications.Applications| [卸载一个app](./scripts/0004-install-app.py#L17) |
 |query_app_state|appium.webdriver.extensions.applications.Applications| [查询一个app的状态](scripts/0005-app-state-and-background.py#L20) |
 |background_app|appium.webdriver.extensions.applications.Applications| [长按 `Home` 键, 将app放置后台(单位: 秒), 然后再回到屏幕前](scripts/0005-app-state-and-background.py#L26) |
-|find_element_by_id|selenium.webdriver.remote.webdriver.WebDriver| [对应于: resource-id 标签](scripts/0006-find-element-by.py#L25) |
-|find_element_by_class_name|selenium.webdriver.remote.webdriver.WebDriver| [对应于: class 标签](scripts/0006-find-element-by.py#L34) |
-|find_element_by_xpath|selenium.webdriver.remote.webdriver.WebDriver| [按 xpath 规则查找元素](scripts/0006-find-element-by.py#L35) |
-|find_element_by_css_selector|selenium.webdriver.remote.webdriver.WebDriver| [按 css_selector 规则查找元素](scripts/0006-find-element-by.py#L36) |
-|click|appium.webdriver.webelement.WebElement| [点击控件](scripts/0006-find-element-by.py#L25) |
-|send_key|appium.webdriver.webelement.WebElement| [输入内容](scripts/0006-find-element-by.py#L34) |
+|find_element_by_id|selenium.webdriver.remote.webdriver.WebDriver| [对应于: resource-id 标签](scripts/0006-find-element-by.py#L26) |
+|find_element_by_class_name|selenium.webdriver.remote.webdriver.WebDriver| [对应于: class 标签](scripts/0006-find-element-by.py#L36) |
+|find_element_by_xpath|selenium.webdriver.remote.webdriver.WebDriver| [按 xpath 规则查找元素](scripts/0006-find-element-by.py#L37) |
+|find_element_by_css_selector|selenium.webdriver.remote.webdriver.WebDriver| [按 css_selector 规则查找元素](scripts/0006-find-element-by.py#L38) |
+|click|appium.webdriver.webelement.WebElement| [点击控件](scripts/0006-find-element-by.py#L26) |
+|send_key|appium.webdriver.webelement.WebElement| [输入内容](scripts/0006-find-element-by.py#L31) |
 |get_attribute|appium.webdriver.webelement.WebElement| [获取当前组件的属性值](scripts/0007-get-attribute.py#L22) |
+|swipe|[webdriver.extentions.action_helpers.ActionHelpers](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/action_helpers.py#L111)| [按象数, 有惯性, 支持滑动时长](scripts/0008-scroll.py#L39) |
+|scroll|[webdriver.extentions.action_helpers.ActionHelpers](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/action_helpers.py#L31)| [按元素, 有惯性, 支持滑动时长](scripts/0008-scroll.py#L47) |
+|drag_and_drop|[webdriver.extentions.action_helpers.ActionHelpers](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/action_helpers.py#L58)| [按元素, 无惯性, 不支持滑动时长](scripts/0008-scroll.py#L51) |
 
 

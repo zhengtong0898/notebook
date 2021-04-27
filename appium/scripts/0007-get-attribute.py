@@ -20,4 +20,8 @@ ss = driver.find_element_by_xpath("//android.widget.ViewFlipper//android.widget.
 # api:     '/wd/hub/session/${session-id}/element/${element-id}/attribute/content-desc'
 # params:  '{"name": "content-desc", "id": "${element-id}"}'
 content = ss.get_attribute("content-desc")
+
+
+# [142,93][606,158]
+# 左上角x,y坐标 和 右下角x,y坐标.
 bounds = ss.get_attribute("bounds")
