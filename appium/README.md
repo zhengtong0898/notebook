@@ -40,5 +40,12 @@ adb 全名 Android Debug Bridge, 是一个调试工具.
 |swipe|[webdriver.extentions.action_helpers.ActionHelpers](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/action_helpers.py#L111)| [按象数, 有惯性, 支持滑动时长](scripts/0008-scroll.py#L39) |
 |scroll|[webdriver.extentions.action_helpers.ActionHelpers](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/action_helpers.py#L31)| [按元素, 有惯性, 支持滑动时长](scripts/0008-scroll.py#L47) |
 |drag_and_drop|[webdriver.extentions.action_helpers.ActionHelpers](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/action_helpers.py#L58)| [按元素, 无惯性, 不支持滑动时长](scripts/0008-scroll.py#L51) |
+|TouchAction.tap|[webdriver.common.touch_action.TouchAction](https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py#L43)| 轻微触碰, 支持坐标, 类似click |
+|TouchAction.press|[webdriver.common.touch_action.TouchAction](https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py#L66)| [按住](scripts/0009-touch-action.py#L40) |
+|TouchAction.long_press|[webdriver.common.touch_action.TouchAction](https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py#L89)| [长按](scripts/0009-touch-action.py#L32) |
+|TouchAction.wait|[webdriver.common.touch_action.TouchAction](https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py#L111)| [等待](scripts/0009-touch-action.py#L39) |
+|TouchAction.move_to|[webdriver.common.touch_action.TouchAction](https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py#L129)| [移动](scripts/0009-touch-action.py#L41) |
+|TouchAction.release|[webdriver.common.touch_action.TouchAction](https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py#L144)| [松开/释放](scripts/0009-touch-action.py#L46) |
+|TouchAction.perform|[webdriver.common.touch_action.TouchAction](https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py#L154)| [执行](scripts/0009-touch-action.py#L47) |
 
 
