@@ -119,7 +119,7 @@
 
 &nbsp;  
 &nbsp;  
-### 最左前缀匹配原则
+### 索引最左前缀匹配原则
 一般情况下当我们说建一个索引, 对于`MySQL`的`InnoDB`来说就是创建一颗`B+树`.   
 一个包含多字段的联合索引, 例如: (`name`, `cid`, `school`) 三个字段组成的联合索引;   
 对应于`MySQL`的`InnoDB`来说, 就是创建一颗`B+树`(辅助索引), Key保存的是三个字段的值, Value是指向聚集索引的Key.   
@@ -186,6 +186,31 @@
 这个参数可以在查找聚集索引时实时处理where过滤条件, 含 `like` . 
 
 
+&nbsp;  
+&nbsp;  
+### 索引添加原则
+当 `联合索引` 和其他字段组成查询条件时, 需要额外增加索引;   
+索引添加规则需根据 [索引最左前缀匹配原则] 指导来进行, 例如:  
+```shell script
+-- 创建一张 geek 表
+CREATE TABLE `geek` (
+  `a` int(11) NOT NULL,
+  `b` int(11) NOT NULL,
+  `c` int(11) NOT NULL,
+  `d` int(11) NOT NULL,
+  PRIMARY KEY (`a`,`b`),
+) ENGINE=InnoDB;
+
+-- select * from `geek` where c=10 and a=10;
+-- 首先这个(c, a)组合的查询条件, 无法使用索引. 
+-- 要建立一个有效的索引有两种方式: 
+--     1. 建立一个 (c, a) 的联合索引;   alter table `geek` add index idex_c_a (`c`, `a`);
+--     2. 建立一个单独的 c 的索引;      alter table `geek` add index idex_c (`c`);
+--     3. 查看建立的索引;              show index from `geek`;
+-- 当选择建立(c,a)的联合索引时, 可以命中索引; 因为 (c, a) 索引会带上聚集索引的字段(a, b), 但是由于 a 已经使用, 所以优化器会仅选择 b; 即: c, a, b 顺序
+-- 当选择建立单独的 c 的索引时, 也可以命中索引; 因为 c 索引会带上聚集索引的字段(a, b); 即: c, a, b 顺序
+-- 在这种情况下, (a,b,c)/(a,c,b)/(b,a,c)/(b,c,a)/(c,a,b)/(c,b,a)的组合查询, 优化器都会选择(a,b)聚集索引, 直接从聚集索引的行数据中读取c字段的值.   
+```
 
 
 &nbsp;   
