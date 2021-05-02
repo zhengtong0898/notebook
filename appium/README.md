@@ -1,4 +1,4 @@
-### adb
+### adb api
 
 adb 全名 Android Debug Bridge, 是一个调试工具.
 
@@ -17,6 +17,8 @@ adb 全名 Android Debug Bridge, 是一个调试工具.
 |devices| 查看当前所有已连接的设备 |
 
 
+&nbsp;  
+&nbsp;  
 ### appium api
 
 |方法|模块|说明|
@@ -47,5 +49,8 @@ adb 全名 Android Debug Bridge, 是一个调试工具.
 |TouchAction.move_to|[webdriver.common.touch_action.TouchAction](https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py#L129)| [移动](scripts/0009-touch-action.py#L41) |
 |TouchAction.release|[webdriver.common.touch_action.TouchAction](https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py#L144)| [松开/释放](scripts/0009-touch-action.py#L46) |
 |TouchAction.perform|[webdriver.common.touch_action.TouchAction](https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py#L154)| [执行](scripts/0009-touch-action.py#L47) |
+|network_connection|[webdriver.extensions.android.network.Network](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/network.py#L44)| [获取手机网络类型](scripts/0010-networking.py#L37) |
+|set_network_connection|[webdriver.extensions.android.network.Network](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/network.py#L52)| [设置手机网络类型](scripts/0010-networking.py#L43) |
+|toggle_wifi|[webdriver.extensions.android.network.Network](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/network.py#L82)| [关闭或开启wifi模式](scripts/0010-networking.py#L50) |
 
 
