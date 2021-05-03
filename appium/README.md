@@ -25,7 +25,7 @@ adb 全名 Android Debug Bridge, 是一个调试工具.
 |---|---|---|
 |start_activity|appium.webdriver.extensions.android.activities.Activities| [启动一个app](./scripts/0002-get-package-and-activity.py#L18) |
 |current_activity|appium.webdriver.extensions.android.activities.Activities| [获取当前界面名](./scripts/0002-get-package-and-activity.py#L28) |
-|current_package|appium.webdriver.extensions.android.common.Common| [获取当前包名](./scripts/0002-get-package-and-activity.py#L23) |
+|current_package|[webdriver.extensions.android.common.Common](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/common.py#L58)| [获取当前包名](./scripts/0002-get-package-and-activity.py#L23) |
 |terminate_app|appium.webdriver.extensions.applications.Applications| [关闭一个app](./scripts/0003-terminate-app.py#L23) |
 |is_app_installed|appium.webdriver.extensions.applications.Applications| [检查app是否已安装](./scripts/0004-install-app.py#L12) |
 |install_app|appium.webdriver.extensions.applications.Applications| [安装一个app](./scripts/0004-install-app.py#L24) |
@@ -53,3 +53,4 @@ adb 全名 Android Debug Bridge, 是一个调试工具.
 |set_network_connection|[webdriver.extensions.android.network.Network](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/network.py#L52)| [设置手机网络类型](scripts/0010-networking.py#L43) |
 |toggle_wifi|[webdriver.extensions.android.network.Network](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/network.py#L82)| [关闭或开启wifi模式](scripts/0010-networking.py#L50) |
 |press_keycode|[Android KeyCode](https://blog.csdn.net/feizhixuan46789/article/details/16801429)| [快捷键](scripts/0012-press-keycode.py#L24) |
+|open_notifications|[webdriver.extensions.android.common.Common](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/common.py#L48)| [打开通知栏](scripts/0013-open-notifications.py#L12) |
