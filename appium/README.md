@@ -52,5 +52,4 @@ adb 全名 Android Debug Bridge, 是一个调试工具.
 |network_connection|[webdriver.extensions.android.network.Network](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/network.py#L44)| [获取手机网络类型](scripts/0010-networking.py#L37) |
 |set_network_connection|[webdriver.extensions.android.network.Network](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/network.py#L52)| [设置手机网络类型](scripts/0010-networking.py#L43) |
 |toggle_wifi|[webdriver.extensions.android.network.Network](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/network.py#L82)| [关闭或开启wifi模式](scripts/0010-networking.py#L50) |
-
-
+|press_keycode|[Android KeyCode](https://blog.csdn.net/feizhixuan46789/article/details/16801429)| [快捷键](scripts/0012-press-keycode.py#L24) |
