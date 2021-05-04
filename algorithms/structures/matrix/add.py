@@ -3,23 +3,6 @@ from typing import List
 
 class Add:
     """
-    一个 m x n 的矩阵,
-    转置之后是,
-    一个 n x m 的矩阵.
-
-    例如:
-    [[ 1,  2,  3,  4],
-     [ 5,  6,  7,  8],
-     [ 9, 10, 11, 12]]
-
-    转置后是
-    [[ 1,  5,  9],
-     [ 2,  6, 10],
-     [ 3,  7, 11],
-     [ 4,  8, 12]]
-
-    python 中的 zip 就是一个标准的矩阵转置函数, 可以模仿zip的表现来做实现.
-
     参考:  https://www.programiz.com/python-programming/examples/add-matrix
     """
 
@@ -57,7 +40,7 @@ class Add:
                     if j < min_j:
                         result[i][j] = a[i][j] + b[i][j]
                     else:
-                        result[i][j] = max_xy[i][j]                 
+                        result[i][j] = max_xy[i][j]
             else:                                                   # 当 i 大于某一边时, 将大得对象得值搬到结果集中.
                 result[i] = max_ab[i]
 
