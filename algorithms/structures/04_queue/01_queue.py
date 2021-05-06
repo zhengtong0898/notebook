@@ -22,7 +22,7 @@ class Queue:
 
     def front_pop(self):
         if self.size() <= 0:
-            raise IndexError("can't pop empty stack.")
+            raise IndexError("can't pop empty queue.")
 
         # 整个列表向左移动一次
         for i in range(1, self.size()):
@@ -53,3 +53,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
