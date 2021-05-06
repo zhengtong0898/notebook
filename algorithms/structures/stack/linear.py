@@ -13,12 +13,11 @@ class StackLinear:
 
     def pop(self):
         if self.size() <= 0:
-            raise IndexError("pop empty stack.")
+            raise IndexError("can't pop empty stack.")
         return self.stack.pop()
 
     def append(self, item):
         self.stack.append(item)
-
 
 def test_1():
 
@@ -38,4 +37,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
