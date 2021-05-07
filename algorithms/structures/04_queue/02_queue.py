@@ -39,7 +39,7 @@ class Queue:
         self.begin += 1
         self.queue_size -= 1
 
-    def append(self, item):
+    def back_append(self, item):
         if self.size() >= self.max_size:
             raise IndexError("queue size exceeds limit.")
 
@@ -79,11 +79,11 @@ def main():
     assert q.queue == [None, None, None, None, None, None, None, None, None, None]
 
     # 测试插入
-    q.append("a")
-    q.append("b")
-    q.append("c")
-    q.append("d")
-    q.append("e")
+    q.back_append("a")
+    q.back_append("b")
+    q.back_append("c")
+    q.back_append("d")
+    q.back_append("e")
     assert q.size() == 5
     assert q.begin == 0
     assert q.stop == 5
@@ -99,18 +99,18 @@ def main():
     # 测试多次移除, 多次添加(到末端)
     q.front_pop()
     q.front_pop()
-    q.append("v")
-    q.append("w")
-    q.append("x")
-    q.append("y")
-    q.append("z")
+    q.back_append("v")
+    q.back_append("w")
+    q.back_append("x")
+    q.back_append("y")
+    q.back_append("z")
     assert q.size() == 4 - 2 + 5
     assert q.begin == 3
     assert q.stop == 10
     assert q.queue == [None, None, None, "d", "e", "v", "w", "x", "y", "z"]
 
     # 再次添加, 触发整体向左移动到队首.
-    q.append("hello")
+    q.back_append("hello")
     assert q.size() == 8
     assert q.begin == 0
     assert q.stop == 8
