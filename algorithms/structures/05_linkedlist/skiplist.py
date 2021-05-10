@@ -22,10 +22,11 @@ class Node(Generic[KT, VT]):
         self.forward: list[Node[KT, VT]] = []
 
     def __repr__(self) -> str:
-        return f"<Node key={self.key} value={self.value} at {hex(id(self))}>"
+        return f"<Node key={self.key} value={self.value} forward_size={self.forward_size} at {hex(id(self))}>"
 
     @property
-    def level(self) -> int:
+    def forward_size(self) -> int:
+        """ 这里仅表示 forward 列表中有几个Node对象, 并不是表示当前Node属于哪个链表层级. """
         return len(self.forward)
 
 
@@ -37,6 +38,7 @@ class SkipList(Generic[KT, VT]):
 
         # 默认情况下, 最大层级: 16
         # pow(2, 16) = 65536, 即: max_level = 16 的情况下, 当前 SkipList 允许最多存储 65536 个节点.
+        # math.log2(65536) = 16; 通过节点数量逆运算出理想的层高.
         #
         # 第 1层链表,包含所有节点.                                               一共有 65536 个节点
         # 第 2层链表,每间隔    2个(第1层链表)节点,复制当前节点作为第 2层链表的节点;一共有 32768 个节点
@@ -128,7 +130,7 @@ class SkipList(Generic[KT, VT]):
             # forwards 从外部视角看, 即: SkipList.head.forward
             #          它的存储规则是: 最后一个元素是抛硬币连续递增1得出最大层级的那个数字.
             #
-            forwards[: node.level] = node.forward
+            forwards[: node.forward_size] = node.forward
 
         lines.append("None".ljust(label_size) + "* " * len(forwards))
         return f"SkipList(level={self.level})\n" + "\n".join(lines)                         # None    * * * * * * *
@@ -149,8 +151,26 @@ class SkipList(Generic[KT, VT]):
         3. random() < self.p == 随机数 < 0.5, 即: 小于0.5, 相当于是扔硬币的概率, 百分之五十.
         4. 只要扔出来的硬币小于 0.5, 则 level 递增 1; 直到扔出来的硬币大于 0.5 则退出当前定级函数.
 
-        TODO: 如何保证每个level的链表不超过该链表应有长度?            思路: 插入时, 增加一个边界条件.
-        TODO: 如何保证每个level的链表都是按照理想的间隔位置排列?      思路: 插入时, 增加一个求模条件.
+        自问自答:
+        这是一个理想状态下的跳表的间隔和层高.
+        1       5       9
+        1   3   5   7   9
+        1 2 3 4 5 6 7 8 9
+             样本-1
+
+        由于跳表采用的是 random_level 来确定一个节点的层高,
+        实际上的相同链表节点每次生成的结果是不一样的.
+                  6
+                5 6
+                5 6 7
+          2     5 6 7
+        1 2 3 4 5 6 7 8 9
+             样本-2
+
+        在不采用跳表的情况下, 有序链表找到 8 需要查找 8 次, 即: O(n).
+        在采用跳表的情况下, 最差情况下, 每次随机层高定级都是1, 那么查找到 8 也是需要查找 8 次, 即: O(n).
+        在采用跳表的情况下, 理想情况下, 排列像样本-1, 那么查找到 8 需要查找 3 次, 即: O(logn).
+        在采用跳表的情况下, 一般情况下, 排列像样本-2, 那么查找到 8 需要查找 4 次, 即: O(logn).
         """
         level = 1
         while random() < self.p and level < self.max_level:
@@ -163,27 +183,34 @@ class SkipList(Generic[KT, VT]):
 
         node = self.head
 
+        # reversed(range(self.level)): 从最高层级的链表的右侧开始查找.
         for i in reversed(range(self.level)):
-            # i < node.level - When node level is lesser than `i` decrement `i`.
-            # node.forward[i].key < key - Jumping to node with key value higher
-            #                             or equal to searched key would result
-            #                             in skipping searched key.
-            while i < node.level and node.forward[i].key < key:
-                node = node.forward[i]
-            # Each leftmost node (relative to searched node) will potentially have to
-            # be updated.
+            while True:
+                # 当最高层级的索引 >= node.forward_size 数量时, 表示不能比较 key 对象.
+                index_invalid = i >= node.forward_size
+                if index_invalid:
+                    break
+
+                # 当前层级最大的节点的 key 小于 参数key.
+                rightmost_node = node.forward[i]
+                if rightmost_node.key < key:
+                    node = rightmost_node
+
+            # 将每个层级链表最右侧的节点, 并小于 key 的节点, 添加到 update_vector 中.
+            # SkipList的层级有多高, update_vector 就有多少个元素.
             update_vector.append(node)
 
-        update_vector.reverse()  # Note that we were inserting values in reverse order.
+        # 由于 update_vector 的元素是反向匹配, 所以现在要反转回正序.
+        update_vector.reverse()
 
-        # len(node.forward) != 0 - If current node doesn't contain any further
-        #                          references then searched key is not present.
-        # node.forward[0].key == key - Next node key should be equal to search key
-        #                              if key is present.
-        if len(node.forward) != 0 and node.forward[0].key == key:
-            return node.forward[0], update_vector
-        else:
+        # key 匹配未命中.
+        node_not_exist = len(node.forward) == 0
+        if node_not_exist:
             return None, update_vector
+
+        # key 匹配命中.
+        if node.forward[0].key == key:
+            return node.forward[0], update_vector
 
     def delete(self, key: KT):
         node, update_vector = self._locate_node(key)
@@ -191,8 +218,8 @@ class SkipList(Generic[KT, VT]):
         if node is not None:
             for i, update_node in enumerate(update_vector):
                 # Remove or replace all references to removed node.
-                if update_node.level > i and update_node.forward[i].key == key:
-                    if node.level > i:
+                if update_node.forward_size > i and update_node.forward[i].key == key:
+                    if node.forward_size > i:
                         update_node.forward[i] = node.forward[i]
                     else:
                         update_node.forward = update_node.forward[:i]
@@ -203,7 +230,9 @@ class SkipList(Generic[KT, VT]):
         # node:           当从跳表中查找到节点数据时, node 就是该数据节点.
         #                 当从跳表中没有查找到节点数据时, node is None.
         #
-        # update_vector:
+        # update_vector:  TODO: 这里查找的是 key 的层级?
+        #                       如果 key 存在的话, update_vector 是该 key 所在层级的链表?
+        #                       如果 key 不存在的话, update_vector 是什么?
         node, update_vector = self._locate_node(key)
 
         # 当 node is not None 时, 表示有重复 key, 这里采取覆盖的形式, 即: 不支持多个相同key存在.
@@ -213,9 +242,11 @@ class SkipList(Generic[KT, VT]):
         # 当 node is None 时, 构建跳表结构.
         else:
 
-            #
+            # 随机获取一个层级.
             level = self.random_level()
 
+            # 当随机层级 高于 当前最高层级时.
+            # 将 update_vector 的元素数量填充至 level + 1 高度, TODO: 为什么这里 + 1.
             if level > self.level:
                 # After level increase we have to add additional nodes to head.
                 for i in range(self.level - 1, level):
@@ -226,11 +257,13 @@ class SkipList(Generic[KT, VT]):
 
             for i, update_node in enumerate(update_vector[:level]):
                 # Change references to pass through new node.
-                if update_node.level > i:
+                if update_node.forward_size > i:
                     new_node.forward.append(update_node.forward[i])
 
-                if update_node.level < i + 1:
+                # 这里的 if else 试图构建一个有序的链表结构, TODO: 待确认.
+                if update_node.forward_size < i + 1:
                     update_node.forward.append(new_node)
+                #
                 else:
                     update_node.forward[i] = new_node
 
@@ -252,7 +285,7 @@ def test_insert():
 
     node = skip_list.head
     all_values = {}
-    while node.level != 0:
+    while node.forward_size != 0:
         node = node.forward[0]
         all_values[node.key] = node.value
 
@@ -278,7 +311,7 @@ def test_insert_overrides_existing_value():
 
     node = skip_list.head
     all_values = {}
-    while node.level != 0:
+    while node.forward_size != 0:
         node = node.forward[0]
         all_values[node.key] = node.value
 
@@ -422,21 +455,35 @@ def pytests():
 
         test_iter_always_yields_sorted_values()
 
-
 def main():
-    skip_list = SkipList()
-    skip_list.insert(1, "2")
-    skip_list.insert(2, "2")
-    skip_list.insert(3, "4")
-    skip_list.insert(4, "4")
-    skip_list.insert(5, "5")
-    skip_list.insert(6, "4")
-    skip_list.insert(7, "5")
-    skip_list.insert(8, "4")
-    skip_list.insert(9, "4")
+    test_insert()
+    test_insert_overrides_existing_value()
 
-    print(skip_list)
-    print(skip_list)
+    test_searching_empty_list_returns_none()
+    test_search()
+
+    test_deleting_item_from_empty_list_do_nothing()
+    test_deleted_items_are_not_founded_by_find_method()
+    test_delete_removes_only_given_key()
+    test_delete_doesnt_leave_dead_nodes()
+
+    test_iter_always_yields_sorted_values()
+    # skip_list = SkipList()
+    # skip_list.insert(1, "2")
+    # skip_list.insert(2, "2")
+    # skip_list.insert(3, "4")
+    # skip_list.insert(4, "4")
+    # skip_list.insert(5, "5")
+    #
+    # print(skip_list)
+    #
+    # skip_list.insert(6, "4")
+    # skip_list.insert(7, "5")
+    # skip_list.insert(8, "4")
+    # skip_list.insert(9, "4")
+    #
+    # print(skip_list)
+    # print(skip_list)
 
 
 if __name__ == "__main__":
