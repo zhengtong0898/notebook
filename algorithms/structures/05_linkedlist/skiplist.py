@@ -185,32 +185,53 @@ class SkipList(Generic[KT, VT]):
 
         # reversed(range(self.level)): 从最高层级的链表的右侧开始查找.
         for i in reversed(range(self.level)):
+
             while True:
-                # 当最高层级的索引 >= node.forward_size 数量时, 表示不能比较 key 对象.
+
                 index_invalid = i >= node.forward_size
                 if index_invalid:
                     break
 
-                # 当前层级最大的节点的 key 小于 参数key.
                 rightmost_node = node.forward[i]
-                if rightmost_node.key < key:
-                    node = rightmost_node
+                if rightmost_node.key >= key:
+                    break
 
-            # 将每个层级链表最右侧的节点, 并小于 key 的节点, 添加到 update_vector 中.
-            # SkipList的层级有多高, update_vector 就有多少个元素.
+                # 当第i层链表的最右节点的key 小于 参数key时,
+                # 尝试切换到低一个层级的链表.
+                #
+                # 当前跳表, 第5层链表是最高层级, 第5层链表最右节点是6.
+                #           6
+                #         5 6
+                #         5 6 7
+                #   2     5 6 7
+                # 1 2 3 4 5 6 7 8 9
+                # 按照当前样本模型, 查找 8, 操作如下:
+                # 第5层链表的最右节点(6) < 8, 切换到低一个层级的链表.
+                # 第4层链表的最右节点(6) < 8, 切换到低一个层级的链表.
+                # 第3层链表的最右节点(7) < 8, 切换到低一个层级的链表.
+                # 第2层链表的最右节点(7) < 8, 切换到低一个层级的链表.
+                # 第1层链表的最右节点(9) > 8, 满足上面的 rightmost_node.key >= key, 所以break跳出while循环.
+                node = rightmost_node
+
+            # 当 i 不是 node.forward 的有效索引时, node就是上一层最右节点, 并且这个上一层最右节点的key小于参数key.
+            # 当 rightmost_node.key >= key 时
+            # TODO: 这里待确认.
             update_vector.append(node)
 
         # 由于 update_vector 的元素是反向匹配, 所以现在要反转回正序.
         update_vector.reverse()
 
         # key 匹配未命中.
-        node_not_exist = len(node.forward) == 0
-        if node_not_exist:
+        node_notexist = len(node.forward) == 0
+        if node_notexist:
+            return None, update_vector
+
+        nodekey_notequal = node.forward[0].key != key
+        if nodekey_notequal:
             return None, update_vector
 
         # key 匹配命中.
-        if node.forward[0].key == key:
-            return node.forward[0], update_vector
+        return node.forward[0], update_vector
 
     def delete(self, key: KT):
         node, update_vector = self._locate_node(key)
@@ -456,18 +477,7 @@ def pytests():
         test_iter_always_yields_sorted_values()
 
 def main():
-    test_insert()
-    test_insert_overrides_existing_value()
-
-    test_searching_empty_list_returns_none()
-    test_search()
-
-    test_deleting_item_from_empty_list_do_nothing()
-    test_deleted_items_are_not_founded_by_find_method()
-    test_delete_removes_only_given_key()
-    test_delete_doesnt_leave_dead_nodes()
-
-    test_iter_always_yields_sorted_values()
+    pytests()
     # skip_list = SkipList()
     # skip_list.insert(1, "2")
     # skip_list.insert(2, "2")
