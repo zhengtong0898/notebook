@@ -181,56 +181,53 @@ class SkipList(Generic[KT, VT]):
     def _locate_node(self, key) -> tuple[Optional[Node[KT, VT]], list[Node[KT, VT]]]:
         update_vector = []
 
+        # self.head 是 root 节点, 也就是说 node 在这里
+        # 不属于任意一个层级的链表, 它仅仅是一个入口.
         node = self.head
 
-        # reversed(range(self.level)): 从最高层级的链表的右侧开始查找.
+        # 从最高一层的链表的最右节点开始遍历跳表.
         for i in reversed(range(self.level)):
 
             while True:
 
+                # 无效索引, 下沉一级, 再进行下一次比较.
                 index_invalid = i >= node.forward_size
                 if index_invalid:
                     break
 
+                # 当 rightmost_node.key >= key 时, 下沉一级, 再进行下一次比较.            关键字: 下沉
                 rightmost_node = node.forward[i]
                 if rightmost_node.key >= key:
                     break
 
-                # 当第i层链表的最右节点的key 小于 参数key时,
-                # 尝试切换到低一个层级的链表.
-                #
-                # 当前跳表, 第5层链表是最高层级, 第5层链表最右节点是6.
-                #           6
-                #         5 6
-                #         5 6 7
-                #   2     5 6 7
-                # 1 2 3 4 5 6 7 8 9
-                # 按照当前样本模型, 查找 8, 操作如下:
-                # 第5层链表的最右节点(6) < 8, 切换到低一个层级的链表.
-                # 第4层链表的最右节点(6) < 8, 切换到低一个层级的链表.
-                # 第3层链表的最右节点(7) < 8, 切换到低一个层级的链表.
-                # 第2层链表的最右节点(7) < 8, 切换到低一个层级的链表.
-                # 第1层链表的最右节点(9) > 8, 满足上面的 rightmost_node.key >= key, 所以break跳出while循环.
+                # 当 rightmost_node.key < key 时, 保持在同一层级,
+                # rightmost_node向左移一个节点, 再进行下一次比较.                         关键字: 左移
                 node = rightmost_node
 
-            # 当 i 不是 node.forward 的有效索引时, node就是上一层最右节点, 并且这个上一层最右节点的key小于参数key.
-            # 当 rightmost_node.key >= key 时
-            # TODO: 这里待确认.
+            # 每次下沉之前, 都需要将 node 添加到 update_vector.
+            # 当 rightmost_node.key 大于或等于 参数key 时, 该 rightmost_node 一定是同层级内最接近 参数key 的节点.(右边最靠左)
+            # 当 rightmost_node.key 小于      参数key 时, 该 rightmost_node 一定是同层级内最接近 参数key 的节点.(左边最靠右)
             update_vector.append(node)
 
-        # 由于 update_vector 的元素是反向匹配, 所以现在要反转回正序.
+        # 由于 update_vector 的元素是反向匹配, 所以现在要反转回正序(从大到小, 到小到大).
         update_vector.reverse()
 
-        # key 匹配未命中.
+        # 当 len(node.forward) == 0 时, node已经是第1层的最右节点, 因为没有下一个节点了.
+        # 参数key 大于第一层的最右节点, 所以是匹配没有命中.
         node_notexist = len(node.forward) == 0
         if node_notexist:
             return None, update_vector
 
+        # 当 len(node.forward) != 0 时, 首先表示 node 不是第1层链表, node.forward[0] 才是第1层链表.
+        # 经过上面 for 和 while 的赛选, node.forward[0] 要么 == 参数 key, 要么最接近 参数key.
+        # 当 node.forward[0].key != 参数key 时, 则表示匹配没有命中.
         nodekey_notequal = node.forward[0].key != key
         if nodekey_notequal:
             return None, update_vector
 
-        # key 匹配命中.
+        # 当 len(node.forward) != 0 时, 首先表示 node 不是第1层链表, node.forward[0] 才是第1层链表.
+        # 经过上面 for 和 while 的赛选, node.forward[0] 要么 == 参数 key, 要么最接近 参数key.
+        # 当 node.forward[0].key == 参数key 时, 则表示匹配命中.
         return node.forward[0], update_vector
 
     def delete(self, key: KT):
@@ -251,12 +248,13 @@ class SkipList(Generic[KT, VT]):
         # node:           当从跳表中查找到节点数据时, node 就是该数据节点.
         #                 当从跳表中没有查找到节点数据时, node is None.
         #
-        # update_vector:  TODO: 这里查找的是 key 的层级?
-        #                       如果 key 存在的话, update_vector 是该 key 所在层级的链表?
-        #                       如果 key 不存在的话, update_vector 是什么?
+        # update_vector:  这是一个层级集合, 比如说:
+        #                 update_vector[0] 表示跳表的第1层的链表, 是同层级内最接近 参数key 的节点.
+        #                 update_vector[1] 表示跳表的第2层的链表, 是同层级内最接近 参数key 的节点.
+        #                 update_vector[2] 表示跳表的第3层的链表, 是同层级内最接近 参数key 的节点, 以此类推...
         node, update_vector = self._locate_node(key)
 
-        # 当 node is not None 时, 表示有重复 key, 这里采取覆盖的形式, 即: 不支持多个相同key存在.
+        # 表示有重复 key, 这里采取覆盖的形式, 即: 不支持多个相同key存在.
         if node is not None:
             node.value = value
 
@@ -477,23 +475,23 @@ def pytests():
         test_iter_always_yields_sorted_values()
 
 def main():
-    pytests()
-    # skip_list = SkipList()
-    # skip_list.insert(1, "2")
-    # skip_list.insert(2, "2")
-    # skip_list.insert(3, "4")
-    # skip_list.insert(4, "4")
-    # skip_list.insert(5, "5")
-    #
-    # print(skip_list)
-    #
-    # skip_list.insert(6, "4")
-    # skip_list.insert(7, "5")
-    # skip_list.insert(8, "4")
-    # skip_list.insert(9, "4")
-    #
-    # print(skip_list)
-    # print(skip_list)
+    # pytests()
+    skip_list = SkipList()
+    skip_list.insert(1, "2")
+    skip_list.insert(2, "2")
+    skip_list.insert(3, "4")
+    skip_list.insert(4, "4")
+    skip_list.insert(5, "5")
+
+    print(skip_list)
+
+    skip_list.insert(6, "4")
+    skip_list.insert(7, "5")
+    skip_list.insert(8, "4")
+    skip_list.insert(9, "4")
+
+    print(skip_list)
+    print(skip_list)
 
 
 if __name__ == "__main__":
