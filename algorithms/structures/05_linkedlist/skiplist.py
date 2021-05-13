@@ -22,48 +22,112 @@ class Node(Generic[KT, VT]):
         self.forward: list[Node[KT, VT]] = []
 
     def __repr__(self) -> str:
-        return f"<Node key={self.key} value={self.value} forward_size={self.forward_size} at {hex(id(self))}>"
+        return f"<Node key={self.key} value={self.value} level={self.level} at {hex(id(self))}>"
 
     @property
-    def forward_size(self) -> int:
-        """ 这里仅表示 forward 列表中有几个Node对象, 并不是表示当前Node属于哪个链表层级. """
+    def level(self) -> int:
+        """
+        level 表示的是链表层级总数.
+
+
+        样本 level = 4
+        结构
+                    7                                                         SkipList.head.forward[3] == <Node key=7>
+          2 3     6 7                                                         SkipList.head.forward[2] == <Node key=2>
+          2 3     6 7 8                                                       SkipList.head.forward[1] == <Node key=2>
+        1 2 3 4 5 6 7 8 9                                                     SkipList.head.forward[0] == <Node key=1>
+              Root                                                            SkipList.head
+
+        链表结构
+        SkipList.head            ==                                           Node
+        SkipList.head.forward    ==                                           Node.forward
+
+        SkipList.head.forward[0]                                              第一层链表第0个节点(最左节点)  <Node key=1>
+        SkipList.head.forward[0].forward[0]                                   第一层链表第1个节点           <Node Key=2>
+        SkipList.head.forward[0].forward[0].forward[0]                        第一层链表第2个节点           <Node Key=3>
+        SkipList.head.forward[0].forward[0].forward[0].forward[0]             第一层链表第3个节点           <Node key=4>
+        SkipList.head.forward[0].forward[0].forward[0].forward[0]
+                     .forward[0].forward[0].forward[0].forward[0].forward[0]  以此类推到最后一个节点是       <Node key=9>
+
+
+        SkipList.head.forward[1]                                              第二层链表第0个节点(最左节点)  <Node key=2>
+        SkipList.head.forward[1].forward[1]                                   第二层链表第1个节点           <Node key=3>
+        SkipList.head.forward[1].forward[1].forward[1]                        第二层链表第2个节点           <Node key=6>
+        SkipList.head.forward[1].forward[1].forward[1].forward[1]             第二层链表第3个节点           <Node key=7>
+        SkipList.head.forward[1].forward[1].forward[1].forward[1].forward[1]  第二层链表第4个节点(最右节点)  <Node key=8>
+
+
+        SkipList.head.forward[2]                                              第三层链表第0个节点(最左节点)  <Node key=2>
+        SkipList.head.forward[2].forward[0]                                   第三层链表第1个节点           <Node key=3>
+        SkipList.head.forward[2].forward[0].forward[0]                        第三层链表第2个节点           <Node key=6>
+        SkipList.head.forward[2].forward[0].forward[0].forward[0]             第三层链表第3个节点(最右节点)  <Node key=7>
+
+
+        SkipList.head.forward[3]                                              第四层链表第0个节点(最左节点)  <Node key=7>
+
+
+
+
+
+        样本 level = 5
+        结构
+        1                                                                     SkipList.head.forward[4] == <Node key=1>
+        1 2                                                                   SkipList.head.forward[3] == <Node key=1>
+        1 2   4   6 7                                                         SkipList.head.forward[2] == <Node key=1>
+        1 2 3 4   6 7 8                                                       SkipList.head.forward[1] == <Node key=1>
+        1 2 3 4 5 6 7 8 9                                                     SkipList.head.forward[0] == <Node key=1>
+              Root                                                            SkipList.head
+
+        链表结构
+        SkipList.head            ==                                           Node
+        SkipList.head.forward    ==                                           Node.forward
+
+        SkipList.head.forward[0]                                              第一层链表第0个节点(最左节点)  <Node key=1>
+        SkipList.head.forward[0].forward[0]                                   第一层链表第1个节点           <Node Key=2>
+        SkipList.head.forward[0].forward[0].forward[0]                        第一层链表第2个节点           <Node Key=3>
+        SkipList.head.forward[0].forward[0].forward[0].forward[0]             第一层链表第3个节点           <Node key=4>
+        SkipList.head.forward[0].forward[0].forward[0].forward[0]
+                     .forward[0].forward[0].forward[0].forward[0]
+                     .forward[0]                                              以此类推到最后一个节点是       <Node key=9>
+
+
+        SkipList.head.forward[1]                                              第二层链表第0个节点(最左节点)  <Node key=1>
+        SkipList.head.forward[1].forward[1]                                   第二层链表第1个节点           <Node key=2>
+        SkipList.head.forward[1].forward[1].forward[1]                        第二层链表第2个节点           <Node key=3>
+        SkipList.head.forward[1].forward[1].forward[1].forward[1]             第二层链表第3个节点           <Node key=4>
+        SkipList.head.forward[1].forward[1].forward[1].forward[1].forward[1]  第二层链表第4个节点           <Node key=6>
+        SkipList.head.forward[1].forward[1].forward[1].forward[1].forward[1]
+                     .forward[1]                                              第二层链表第5个节点           <Node key=7>
+        SkipList.head.forward[1].forward[1].forward[1].forward[1].forward[1]
+                     .forward[1].forward[1]                                   第二层链表第6个节点(最右节点)  <Node key=8>
+
+
+        SkipList.head.forward[2]                                              第三层链表第0个节点(最左节点)  <Node key=1>
+        SkipList.head.forward[2].forward[2]                                   第三层链表第1个节点           <Node key=2>
+        SkipList.head.forward[2].forward[2].forward[2]                        第三层链表第2个节点           <Node key=4>
+        SkipList.head.forward[2].forward[2].forward[2].forward[2]             第三层链表第3个节点           <Node key=6>
+        SkipList.head.forward[2].forward[2].forward[2].forward[2].forward[2]  第三层链表第4个节点(最右节点)  <Node key=7>
+
+
+        SkipList.head.forward[3]                                              第四层链表第0个节点(最左节点)  <Node key=1>
+        SkipList.head.forward[3].forward[3]                                   第四层链表第1个节点(最右节点)  <Node key=2>
+
+
+        SkipList.head.forward[4]                                              第四层链表第0个节点           <Node key=1>
+        """
         return len(self.forward)
 
 
 class SkipList(Generic[KT, VT]):
+
     def __init__(self, p: float = 0.5, max_level: int = 16):
         self.head = Node("root", None)           # 根节点
         self.level = 0                           # 跳表层级
         self.p = p                               # 硬币概率: 0.5 == 50%
-
-        # 默认情况下, 最大层级: 16
-        # pow(2, 16) = 65536, 即: max_level = 16 的情况下, 当前 SkipList 允许最多存储 65536 个节点.
-        # math.log2(65536) = 16; 通过节点数量逆运算出理想的层高.
-        #
-        # 第 1层链表,包含所有节点.                                               一共有 65536 个节点
-        # 第 2层链表,每间隔    2个(第1层链表)节点,复制当前节点作为第 2层链表的节点;一共有 32768 个节点
-        # 第 3层链表,每间隔    4个(第1层链表)节点,复制当前节点作为第 3层链表的节点;一共有 16384 个节点
-        # 第 4层链表,每间隔    8个(第1层链表)节点,复制当前节点作为第 4层链表的节点;一共有 8192 个节点
-        # 第 5层链表,每间隔   16个(第1层链表)节点,复制当前节点作为第 5层链表的节点;一共有 4096 个节点
-        # 第 6层链表,每间隔   32个(第1层链表)节点,复制当前节点作为第 6层链表的节点;一共有 2048 个节点
-        # 第 7层链表,每间隔   64个(第1层链表)节点,复制当前节点作为第 7层链表的节点;一共有 1024 个节点
-        # 第 8层链表,每间隔  128个(第1层链表)节点,复制当前节点作为第 8层链表的节点;一共有 512 个节点
-        # 第 9层链表,每间隔  256个(第1层链表)节点,复制当前节点作为第 9层链表的节点;一共有 256 个节点
-        # 第10层链表,每间隔  512个(第1层链表)节点,复制当前节点作为第10层链表的节点;一共有 128 个节点
-        # 第11层链表,每间隔 1024个(第1层链表)节点,复制当前节点作为第11层链表的节点;一共有 64 个节点
-        # 第12层链表,每间隔 2048个(第1层链表)节点,复制当前节点作为第12层链表的节点;一共有 32 个节点
-        # 第13层链表,每间隔 4096个(第1层链表)节点,复制当前节点作为第13层链表的节点;一共有 16 个节点
-        # 第14层链表,每间隔 8192个(第1层链表)节点,复制当前节点作为第14层链表的节点;一共有  8 个节点
-        # 第15层链表,每间隔16384个(第1层链表)节点,复制当前节点作为第15层链表的节点;一共有  4 个节点(node-0, node-16384, node-49152, node-65536)
-        # 第16层链表,每间隔32768个(第1层链表)节点,复制当前节点作为第16层链表的节点;一共有  3 个节点(node-0, node-32768, node-65536)
-        #
-        # 边界情况:
-        # 第 16 层会在 32768 个节点出建立一个节点, 即: 0-32767 为有效左, 32768 - 65535 为有效右,
-        # 由此得出第 16 层最多可以存储 65536 个节点.
-        self.max_level = max_level
+        self.max_level = max_level               # 限定最大层级; 关于层级和节点数量关系的思考, 参考 skiplist_utils.py 文件.
 
     def __str__(self) -> str:
-        # 从 self.head。forward 中的第0个元素中一直去到末端.
+        # 从 self.head.forward 中的第0个元素中一直去到末端.
         # 即: items = 第0层数据的Node的所有keys.
         items = list(self)
 
@@ -130,7 +194,7 @@ class SkipList(Generic[KT, VT]):
             # forwards 从外部视角看, 即: SkipList.head.forward
             #          它的存储规则是: 最后一个元素是抛硬币连续递增1得出最大层级的那个数字.
             #
-            forwards[: node.forward_size] = node.forward
+            forwards[: node.level] = node.forward
 
         lines.append("None".ljust(label_size) + "* " * len(forwards))
         return f"SkipList(level={self.level})\n" + "\n".join(lines)                         # None    * * * * * * *
@@ -152,14 +216,14 @@ class SkipList(Generic[KT, VT]):
         4. 只要扔出来的硬币小于 0.5, 则 level 递增 1; 直到扔出来的硬币大于 0.5 则退出当前定级函数.
 
         自问自答:
-        这是一个理想状态下的跳表的间隔和层高.
+        这是一个理想状态下的跳表的间隔和层高.                                 被称为平衡树结构.
         1       5       9
         1   3   5   7   9
         1 2 3 4 5 6 7 8 9
              样本-1
 
         由于跳表采用的是 random_level 来确定一个节点的层高,
-        实际上的相同链表节点每次生成的结果是不一样的.
+        实际上的相同链表节点每次生成的结果是不一样的.                          被称为随机概率树结构.
                   6
                 5 6
                 5 6 7
@@ -179,10 +243,27 @@ class SkipList(Generic[KT, VT]):
         return level
 
     def _locate_node(self, key) -> tuple[Optional[Node[KT, VT]], list[Node[KT, VT]]]:
+        """
+        这是一个根据 参数key 查找 node.key 的函数,
+        当匹配到   参数key 相同的 node 节点时, node是一个有效对象.
+        当未匹配到 参数key 相同的 node 节点时, node是一个 None 对象.
+
+        查找的过程中无论是否匹配到 参数key, 都会维护一个完整的 update_vector,
+        update_vector 是一个列表集合,
+        update_vector 列表的长度代表着链表的层级高度,
+        update_vector 第0个元素表示, 第一层链表最接近或等于参数key的节点,
+        update_vector 第1个元素表示, 第二层链表最接近或等于参数key的节点,
+        update_vector 第2个元素表示, 第三层链表最接近或等于参数key的节点.
+
+        返回值: node, update_vector 或 None, update_vector
+        """
+
+        # 列表的长度对标层级, 比如说: 有三个元素, 则表示有三个层级.
+        # 每个层级都是最接近或等于 参数key 的node节点.
         update_vector = []
 
-        # self.head 是 root 节点, 也就是说 node 在这里
-        # 不属于任意一个层级的链表, 它仅仅是一个入口.
+        # self.head 是 root 节点, 它是跳表的入口, 不属于任何层级.
+        # node 在这里是完全引用 self.head.
         node = self.head
 
         # 从最高一层的链表的最右节点开始遍历跳表.
@@ -191,7 +272,7 @@ class SkipList(Generic[KT, VT]):
             while True:
 
                 # 无效索引, 下沉一级, 再进行下一次比较.
-                index_invalid = i >= node.forward_size
+                index_invalid = i >= node.level
                 if index_invalid:
                     break
 
@@ -205,28 +286,27 @@ class SkipList(Generic[KT, VT]):
                 node = rightmost_node
 
             # 每次下沉之前, 都需要将 node 添加到 update_vector.
-            # 当 rightmost_node.key 大于或等于 参数key 时, 该 rightmost_node 一定是同层级内最接近 参数key 的节点.(右边最靠左)
+            # 当 rightmost_node.key 大于或等于 参数key 时, 该 rightmost_node 一定是同层级内最右节点.
             # 当 rightmost_node.key 小于      参数key 时, 该 rightmost_node 一定是同层级内最接近 参数key 的节点.(左边最靠右)
             update_vector.append(node)
 
-        # 由于 update_vector 的元素是反向匹配, 所以现在要反转回正序(从大到小, 到小到大).
+        # 由于 update_vector 的元素是从高层级到低层级匹配,
+        # 所以现在要将结果反转回正序(即: 反转回从低层级到高层级).
         update_vector.reverse()
 
-        # 当 len(node.forward) == 0 时, node已经是第1层的最右节点, 因为没有下一个节点了.
-        # 参数key 大于第一层的最右节点, 所以是匹配没有命中.
+        # 当 len(node.forward) == 0 时, node是第1层链表的最右节点, 因为没有下一个节点了.
+        # 由于这里采取前置匹配, 当 node.forward 为空时, 无法做前置匹配, 所以
         node_notexist = len(node.forward) == 0
         if node_notexist:
             return None, update_vector
 
-        # 当 len(node.forward) != 0 时, 首先表示 node 不是第1层链表, node.forward[0] 才是第1层链表.
-        # 经过上面 for 和 while 的赛选, node.forward[0] 要么 == 参数 key, 要么最接近 参数key.
+        # 当 len(node.forward) != 0 时, node是第1层链表, 但不是最右节点.
         # 当 node.forward[0].key != 参数key 时, 则表示匹配没有命中.
         nodekey_notequal = node.forward[0].key != key
         if nodekey_notequal:
             return None, update_vector
 
-        # 当 len(node.forward) != 0 时, 首先表示 node 不是第1层链表, node.forward[0] 才是第1层链表.
-        # 经过上面 for 和 while 的赛选, node.forward[0] 要么 == 参数 key, 要么最接近 参数key.
+        # 当 len(node.forward) != 0 时, node是第1层链表, 但不是最右节点.
         # 当 node.forward[0].key == 参数key 时, 则表示匹配命中.
         return node.forward[0], update_vector
 
@@ -236,8 +316,8 @@ class SkipList(Generic[KT, VT]):
         if node is not None:
             for i, update_node in enumerate(update_vector):
                 # Remove or replace all references to removed node.
-                if update_node.forward_size > i and update_node.forward[i].key == key:
-                    if node.forward_size > i:
+                if update_node.level > i and update_node.forward[i].key == key:
+                    if node.level > i:
                         update_node.forward[i] = node.forward[i]
                     else:
                         update_node.forward = update_node.forward[:i]
@@ -275,15 +355,31 @@ class SkipList(Generic[KT, VT]):
             new_node = Node(key, value)
 
             for i, update_node in enumerate(update_vector[:level]):
-                # Change references to pass through new node.
-                if update_node.forward_size > i:
-                    new_node.forward.append(update_node.forward[i])
-
-                # 这里的 if else 试图构建一个有序的链表结构, TODO: 待确认.
-                if update_node.forward_size < i + 1:
-                    update_node.forward.append(new_node)
+                # i, update_node 层级强一致;
                 #
+                # 当 i=0 时, update_node=第1层级;
+                # 当 i=1 时, update_node=第2层级;
+                # 当 i=2 时, update_node=第3层级;
+                #
+                # 当 update_node.key >= 参数key 时, update_node 一定是该层级最右节点.
+                #
+                # 当 update_node.level > i 意味着 update_node 不是最右节点(右侧还有节点),
+                #                         间接意味着 update_node.key 小于 参数key,
+                #                         因此, 这里需要将右侧节点截断, 重新指向到 new_node,
+                #                         然后, 下面的代码将new_node 放在 update_node 的右侧,
+                #                         通过这种方式完成一个节点的有序插入.
+                if update_node.level > i:
+                    print("111111111")
+                    nextone_node = update_node.forward[i]
+                    new_node.forward.append(nextone_node)
+
+                if update_node.level < i + 1:
+                    print("222222222")
+                    update_node.forward.append(new_node)
+
+                # TODO: 搞清楚这里为什么要这样写.
                 else:
+                    print("333333333: update_node.level: %s; i: %s;" % (update_node.level, i))
                     update_node.forward[i] = new_node
 
     def find(self, key: VT) -> Optional[VT]:
@@ -304,7 +400,7 @@ def test_insert():
 
     node = skip_list.head
     all_values = {}
-    while node.forward_size != 0:
+    while node.level != 0:
         node = node.forward[0]
         all_values[node.key] = node.value
 
@@ -330,7 +426,7 @@ def test_insert_overrides_existing_value():
 
     node = skip_list.head
     all_values = {}
-    while node.forward_size != 0:
+    while node.level != 0:
         node = node.forward[0]
         all_values[node.key] = node.value
 
@@ -474,24 +570,26 @@ def pytests():
 
         test_iter_always_yields_sorted_values()
 
+
 def main():
-    # pytests()
-    skip_list = SkipList()
-    skip_list.insert(1, "2")
-    skip_list.insert(2, "2")
-    skip_list.insert(3, "4")
-    skip_list.insert(4, "4")
-    skip_list.insert(5, "5")
-
-    print(skip_list)
-
-    skip_list.insert(6, "4")
-    skip_list.insert(7, "5")
-    skip_list.insert(8, "4")
-    skip_list.insert(9, "4")
-
-    print(skip_list)
-    print(skip_list)
+    pytests()
+    # skip_list = SkipList()
+    # skip_list.insert(1, "2")
+    # skip_list.insert(2, "2")
+    # skip_list.insert(4, "4")
+    # skip_list.insert(5, "5")
+    #
+    # # print(skip_list)
+    # skip_list.insert(3, "4")
+    # key = input("find key: ")
+    # skip_list.find(int(key))
+    #
+    # skip_list.insert(6, "4")
+    # skip_list.insert(7, "5")
+    # skip_list.insert(8, "4")
+    # skip_list.insert(9, "4")
+    #
+    # print(skip_list)
 
 
 if __name__ == "__main__":
