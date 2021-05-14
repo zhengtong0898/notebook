@@ -316,7 +316,11 @@ class SkipList(Generic[KT, VT]):
         if node is not None:
             for i, update_node in enumerate(update_vector):
                 # Remove or replace all references to removed node.
+                # 当 update_node.level > i 意味着 update_node 不是最右节点(右侧还有节点),
+                #                         间接意味着 update_node.key 小于 参数key.
                 if update_node.level > i and update_node.forward[i].key == key:
+
+                    # 当 node.level > i 意味着 node 不是最右节点(右侧还有节点),
                     if node.level > i:
                         update_node.forward[i] = node.forward[i]
                     else:
@@ -366,21 +370,17 @@ class SkipList(Generic[KT, VT]):
                 # 当 update_node.level > i 意味着 update_node 不是最右节点(右侧还有节点),
                 #                         间接意味着 update_node.key 小于 参数key,
                 #                         因此, 这里需要将右侧节点截断, 重新指向到 new_node,
-                #                         然后, 下面的代码将new_node 放在 update_node 的右侧,
+                #                         然后将 new_node 放在 update_node 的右侧,
                 #                         通过这种方式完成一个节点的有序插入.
                 if update_node.level > i:
-                    print("111111111")
                     nextone_node = update_node.forward[i]
                     new_node.forward.append(nextone_node)
-
-                if update_node.level < i + 1:
-                    print("222222222")
-                    update_node.forward.append(new_node)
-
-                # TODO: 搞清楚这里为什么要这样写.
-                else:
-                    print("333333333: update_node.level: %s; i: %s;" % (update_node.level, i))
                     update_node.forward[i] = new_node
+
+                # 当 update_node.level <= i 时, 等同于 else, 意味着 update_node 是最右节点(右侧没有节点了).
+                #                               因此将 new_node 放在 update_node 的右侧.
+                else:
+                    update_node.forward.append(new_node)
 
     def find(self, key: VT) -> Optional[VT]:
         node, _ = self._locate_node(key)
