@@ -313,18 +313,51 @@ class SkipList(Generic[KT, VT]):
     def delete(self, key: KT):
         node, update_vector = self._locate_node(key)
 
-        if node is not None:
-            for i, update_node in enumerate(update_vector):
-                # Remove or replace all references to removed node.
-                # 当 update_node.level > i 意味着 update_node 不是最右节点(右侧还有节点),
-                #                         间接意味着 update_node.key 小于 参数key.
-                if update_node.level > i and update_node.forward[i].key == key:
+        if node is None:
+            return
 
-                    # 当 node.level > i 意味着 node 不是最右节点(右侧还有节点),
-                    if node.level > i:
-                        update_node.forward[i] = node.forward[i]
-                    else:
-                        update_node.forward = update_node.forward[:i]
+        # node 匹配命中, 即: node.key == 参数key
+        # node.forward[0] == 第 1 层链表中的下一个元素.
+        # node.forward[1] == 第 2 层链表中的下一个元素.
+        # node.forward[2] == 第 3 层链表中的下一个元素.
+        # node.forward[3] == 第 4 层链表中的下一个元素.
+        # 以此类推.
+        for i, update_node in enumerate(update_vector):
+            # 当 i = 0 时, 表示当前是要做第1层链表的匹配工作.
+            # 当 i = 1 时, 表示当前是要做第2层链表的匹配工作.
+            # 以此类推.
+            index_invalid = update_node.level <= i
+            if index_invalid:
+                continue
+
+            if update_node.forward[i].key != key:
+                continue
+
+            rightmost_node = node.level <= i
+            if not rightmost_node:
+                # update_node.forward[i]     == node
+                # update_node.forward[i].key == node.key == key
+                # 因此 node.forward[i] 是 node 和 update_node.forward[i] 的下一个节点.
+                # 因此 update_node.forward[i] = node.forward[i] 等同于 node = node.forward[i].
+                # 具体的意思是:
+                # 当 node 不是最右节点时, 将下一个节点覆盖掉当前节点, 目的时起到删除作用.
+                update_node.forward[i] = node.forward[i]
+
+            # else 等同于 rightmost_node == True
+            else:
+                #   2
+                # 1 2   4 5
+                # 1 2 3 4 5   7 
+                # 1 2 3 4 5 6 7 8 9
+                # 假设 i == 1, key == 7;
+                # update_node         ==  <Node key=5 value='' level=2>
+                # update_node.forward == [<Node key=6 value='' level=1>,        第 0 层级链表的下一个节点
+                #                         <Node key=7 value='' level=1>]        第 1 层级链表的下一个节点
+                #
+                # update_node.forward[:1] == [<Node key=6 value='' level=1>]    即: 移除了第 1 层级链表的下一个节点.
+                # 具体的意思是:
+                # 当 node 是最右节点时, 从 update_node.forward 中移除掉 == node 的那个节点.
+                update_node.forward = update_node.forward[:i]
 
     def insert(self, key: KT, value: VT):
         # 根据提供的 key 查找跳表:
@@ -349,10 +382,12 @@ class SkipList(Generic[KT, VT]):
             level = self.random_level()
 
             # 当随机层级 高于 当前最高层级时.
-            # 将 update_vector 的元素数量填充至 level + 1 高度, TODO: 为什么这里 + 1.
+            # 将 update_vector 的元素数量填充至 level + 1 高度,
+            # TODO: 为什么这里 + 1.
+            # FIXED: 移除掉也没有问题, 因为下面代码中并没有使用到 + 1 的特性.
             if level > self.level:
                 # After level increase we have to add additional nodes to head.
-                for i in range(self.level - 1, level):
+                for i in range(self.level, level):
                     update_vector.append(self.head)
                 self.level = level
 
@@ -573,23 +608,21 @@ def pytests():
 
 def main():
     pytests()
-    # skip_list = SkipList()
-    # skip_list.insert(1, "2")
-    # skip_list.insert(2, "2")
-    # skip_list.insert(4, "4")
-    # skip_list.insert(5, "5")
-    #
-    # # print(skip_list)
-    # skip_list.insert(3, "4")
-    # key = input("find key: ")
-    # skip_list.find(int(key))
-    #
-    # skip_list.insert(6, "4")
-    # skip_list.insert(7, "5")
-    # skip_list.insert(8, "4")
-    # skip_list.insert(9, "4")
-    #
-    # print(skip_list)
+    skip_list = SkipList()
+    skip_list.insert(1, "2")
+    skip_list.insert(2, "2")
+    skip_list.insert(3, "4")
+    skip_list.insert(4, "4")
+    skip_list.insert(5, "5")
+    skip_list.insert(6, "4")
+    skip_list.insert(7, "5")
+    skip_list.insert(8, "4")
+
+    print(skip_list)
+    skip_list.insert(9, "4")
+
+    key = input("find key: ")
+    skip_list.delete(int(key))
 
 
 if __name__ == "__main__":
