@@ -408,8 +408,8 @@ class SkipList(Generic[KT, VT]):
                 #                         然后将 new_node 放在 update_node 的右侧,
                 #                         通过这种方式完成一个节点的有序插入.
                 if update_node.level > i:
-                    nextone_node = update_node.forward[i]
-                    new_node.forward.append(nextone_node)
+                    the_next = update_node.forward[i]
+                    new_node.forward.append(the_next)
                     update_node.forward[i] = new_node
 
                 # 当 update_node.level <= i 时, 等同于 else, 意味着 update_node 是最右节点(右侧没有节点了).
