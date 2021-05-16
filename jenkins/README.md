@@ -4,7 +4,7 @@
 
 - 预备操作
   ```shell script
-  yum install vim wget net-tools mlocate -y
+  yum install vim wget net-tools mlocate git gcc -y
   systemctl stop firewalld
   systemctl disable firewalld
   sed -ie 's/SELINUX=.*/SELINUX=disabled2/g' /etc/selinux/config
@@ -31,3 +31,16 @@
   /etc/init.d/jenkins start
   ```
 
+- 通过代理启动Jenkins  
+  Jenkins 启动后, 在安装向导页面->安装插件页面, 很多插件在安装过程中会出现Read Time Out的情况, 这时就需要为 jenkins 做网络代理.
+  ```shell script
+  git config --global http.proxy socks5://127.0.0.1:1080
+  git config --global https.proxy socks5://127.0.0.1:1080  
+  git clone https://github.com/rofl0r/proxychains-ng.git 
+  cd proxychains-ng 
+  ./configure && make && make install  
+  sed -ie "s/socks4 127.0.0.1 9050/socks5 127.0.0.1 1080/g" /usr/local/etc/proxychains.conf
+  
+  rm -rf ~/.jenkins/
+  proxychains4 java -jar /usr/lib/jenkins/jenkins.war --httpPort=8080
+  ```  
