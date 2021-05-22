@@ -3,6 +3,7 @@ import random
 
 # 10:44 - 11:27
 # TODO: 一直在报错，带调试.
+# 已修复, 是delete方法, 当node是最右节点时代码写错了.
 class Node:
 
     def __init__(self, key, value):
@@ -84,7 +85,7 @@ class SkipList:
             return node
 
         level = self.random_level()
-        if level >= self.level:
+        if level > self.level:
             for i in range(self.level, level):
                 update_vector.append(self.head)
             self.level = level
@@ -112,7 +113,7 @@ class SkipList:
                 continue
 
             if i >= node.level:
-                node.forward = node.forward[:i]
+                update_node.forward = update_node.forward[:i]
             else:
                 update_node.forward[i] = node.forward[i]
 
