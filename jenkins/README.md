@@ -1,3 +1,22 @@
+### 开始之前: 一些术语
+|术语|全称| 描述 |
+|---|---|---|
+|SCM|Source Code Management| [源代码管理平台.](https://intellipaat.com/community/25572/jenkins-scm-what-does-scm-mean-in-jenkins) |
+|DSL|Domain Specific Language|[领域特定语言](https://medium.com/tech-learn-share/jenkins-job-dsl-667e88afc2f3), 适用于Pipeline声明式语法.|
+|Pipeline|Pipeline|[流水线](https://www.jenkins.io/doc/book/pipeline/#overview)描述的是代码从构建、部署、测试、到产出质量报告的过程. |
+|CICD|Continuous Intergration, Continuous Delivery| [持续继承, 持续交付.](https://www.redhat.com/zh/topics/devops/what-is-ci-cd) |
+
+
+&nbsp;  
+> [RedHat 对 CIDCD 的描述](https://www.redhat.com/zh/topics/devops/what-is-ci-cd):    
+> CI指的是研发提交代码后, 自动运行基于单元测试的全量回归测试(含当前提交的单元测试), 测试通过后, 自动合并代码.  
+> CI解决的是研发中由过多应用分支和冲突问题.    
+> CD指的是从代码仓库发布到生产环境的部署过程(产品呈现在目标客户的面前).   
+> 
+> CIDCD就是强调自动化的过程和自动化的程度, 最终的目的还是为了能够加速软件开发到发布的生命周期的进程, 减少人的工作量.   
+
+&nbsp;  
+&nbsp;  
 ### 安装Jenkins
 操作系统: CentOS 7.6   
 安装教程: [Jenkins官网](https://pkg.jenkins.io/redhat-stable/)
@@ -44,3 +63,10 @@
   rm -rf ~/.jenkins/
   proxychains4 java -jar /usr/lib/jenkins/jenkins.war --httpPort=8080
   ```  
+
+&nbsp;  
+&nbsp;  
+### Tips
+[1. 如何切换Jenkins的语言?](./tips/switch_language.md)   
+[2. 什么是jenkinsfile?](./tips/jenkinsfile.md)   
+[3. 如何生成和添加密钥凭证?](./tips/generate_credential.md)
