@@ -69,4 +69,5 @@
 ### Tips
 [1. 如何切换Jenkins的语言?](./tips/switch_language.md)   
 [2. 什么是jenkinsfile?](./tips/jenkinsfile.md)   
-[3. 如何生成和添加密钥凭证?](./tips/generate_credential.md)
+[3. 如何生成和添加密钥凭证?](./tips/generate_credential.md)   
+[4. 如何添加一个节点?](./tips/new_node.md)   
