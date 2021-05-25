@@ -67,11 +67,10 @@ class GroupBy:
         while self.key == groupkey:
             yield self.value
 
-            # 由于 _grouper 函数是在 __next__ 函数内执行,
-            # 因此当遇到 StopIteration 时, 也不会报错, 而是跳出 __next__ 函数.
-            # 这里为了让逻辑代码能持续运行下去, 采取 try 来防止跳出 __next__ 函数.
-            # 采取 return 仅跳出当前 _grouper 函数.
-            # TODO: 待确认.
+            # 如果 _grouper 是普通函数, 执行 next(self.it) 触发 StopIteration 时, 不会报错而是跳出外部循环.
+            # 但是 _grouper 采用了 while + yield, 使 _grouper 变成了生成器(不是一个普通的函数).
+            # 生成器内部使用 next(self.it) 就会触发 StopIteration 报错.
+            # 所以这里需要使用 try 来处理边界取值情况.
             try:
                 self.value = next(self.it)
             except StopIteration:
