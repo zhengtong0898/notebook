@@ -21,4 +21,10 @@
   
 &nbsp;  
 - test suite(测试套件)  
-  测试套件是一个测试用例集合, 通过`suite`可以将不同的用例组合在一起, 从而达成某个目标或任务。  
+  测试套件是一个测试用例集合, 通过`suite`可以将不同的用例组合在一起, 从而达成某个目标或任务.   
+  
+&nbsp;  
+- test runner(测试执行器)   
+  负责执行测试用力并汇总结果(默认是纯文本: `TextTestRunner` 和 `TextTestResult`)反馈给用户.    
+  也可以使用第三方`runner`, 比如说: `htmltestrunner.HTMLTestRunner` 和 `htmltestrunner._TestResult`.
+  
