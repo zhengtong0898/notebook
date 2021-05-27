@@ -1,4 +1,4 @@
-### 术语
+### unittest terms(术语)
 - test case(测试用例)  
   框架使用者视角:  
   &nbsp; &nbsp; &nbsp; &nbsp; `class TestCase`用来组织测试用例.  
@@ -28,3 +28,21 @@
   负责执行测试用力并汇总结果(默认是纯文本: `TextTestRunner` 和 `TextTestResult`)反馈给用户.    
   也可以使用第三方`runner`, 比如说: `htmltestrunner.HTMLTestRunner` 和 `htmltestrunner._TestResult`.
   
+&nbsp;  
+&nbsp;  
+### [fixture](https://docs.pytest.org/en/stable/fixture.html#what-fixtures-are)
+In the simplest terms, a test is meant to look at the result of a particular behavior, and make sure that result aligns with what you would expect. Behavior is not something that can be empirically measured, which is why writing tests can be challenging.  
+> 测试就是输入一组数据, 然后断言其结果是否于预期一致.  
+> 断言可以分为: 过程断言 和 结果断言.  
+> 
+> 过程断言: 关注其过程的表现是否符合预期;      
+> &nbsp; &nbsp; &nbsp; &nbsp;例如: 一个流程性质的用例需要多个接口配合, 需要为每个接口断言一次或多次.     
+> 
+> 结果断言: 关注其最终结果的表现是否符合预期.  
+> 
+> 代码复用, 是动一发而牵全身的典型场景, 由于某个代码的改动,   
+> 很多模块中的很多功能都不同程度的出现了问题.  
+> 这也就是为什么软件在迭代过程中时常会出现令人不可预期的表现,  
+> 自动化的回归测试(单元测试、接口测试、ui自动化测试),  
+> 就是为了能在CICD过程中第一时间反映出软件的潜在问题.  
+
