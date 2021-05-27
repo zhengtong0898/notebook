@@ -30,7 +30,7 @@
   
 &nbsp;  
 &nbsp;  
-### [fixture](https://docs.pytest.org/en/stable/fixture.html#what-fixtures-are)
+### [Why writing tests](https://docs.pytest.org/en/stable/fixture.html#what-fixtures-are)
 In the simplest terms, a test is meant to look at the result of a particular behavior, and make sure that result aligns with what you would expect. Behavior is not something that can be empirically measured, which is why writing tests can be challenging.  
 > 测试就是输入一组数据, 然后断言其结果是否于预期一致.  
 > 断言可以分为: 过程断言 和 结果断言.  
@@ -45,4 +45,14 @@ In the simplest terms, a test is meant to look at the result of a particular beh
 > 这也就是为什么软件在迭代过程中时常会出现令人不可预期的表现,  
 > 自动化的回归测试(单元测试、接口测试、ui自动化测试),  
 > 就是为了能在CICD过程中第一时间反映出软件的潜在问题.  
+
+
+&nbsp;  
+&nbsp;  
+### 参考资料
+[unittest: terms](https://docs.python.org/3/library/unittest.html)  
+[pytest: what fixtures are](https://docs.pytest.org/en/stable/fixture.html#what-fixtures-are)  
+[框架比较: 三种最流行的Python测试框架，我该用哪一个？](https://slxiao.github.io/2019/06/03/py-test/)  
+[框架比较: Pytest why its more popular than unittest](https://blog.j-labs.pl/2019/02/Pytest-why-its-more-popular-than-unittest)  
+[框架比较: unittest vs pytest](https://stackoverflow.com/questions/27954702/unittest-vs-pytest)  
 
