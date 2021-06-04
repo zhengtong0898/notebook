@@ -66,22 +66,35 @@ def combinations(iterable, comb_size):
             # 当 for 循环没有触发 break 时, 会进入这里, 跳出 while 循环, 也跳出函数.
             return
 
-        # 当 i = 1 时, 代码来到这里表示, indices[1] 并不是最后一个元素, 所以这里会做追加操作.
+        # 当 i == 1, 且 indices[1] == 3 时, 是无法抵达这里的,
+        # 因为会被上面的 continue 进入下一个 i(即: i == 0).
+        # 代码能来到这里, 表示 indices[i] 不是最后一个元素.
+        pass
+
+        # iterable[i] 右移一个位置.
+        # 当 i == 1, indices_len == 2, indices == [0, 1], iterable[0] == 'A', iterable[1] == 'B';
+        # 右移一个位置:                  indices == [0, 2], iterable[0] == 'A', iterable[2] == 'C';
+        # 再右移一个位置:                indices == [0, 3], iterable[0] == 'A', iterable[3] == 'D';
+        #
+        # 当 i == 0, indices_len == 2, indices == [0, 3], iterable[0] == 'A', iterable[3] == 'D';
+        # 右移一个位置:                  indices == [1, 3], iterable[1] == 'B', iterable[3] == 'D';
         indices[i] += 1
 
-        # TODO: 待补充
+        # 当 i == 0, comb_size == 2, j == 1, indices == [1, 3], iterable[1] == 'B', iterable[3] == 'D'时;
+        # indices[j - 1] + 1 == indices[0] + 1 == 1 + 1 == 2;
+        # indices[j] = indices[j - 1] + 1 == indices[1] = 2;
+        # (重点)这个动作可以被称为是复位,
+        # (重点)由于复位后的 indices[1] 不是最后一个元素,
+        # (重点)所以 i 会再次 == 1, 直到 indices[1] 再次抵达最后一个元素, 那么就会再次执行复位动作, 循环往复.
         for j in range(i+1, comb_size):
             indices[j] = indices[j-1] + 1
 
-        yield tuple(tuple_value[i] for i in indices)            # 返回第二个组合, 第三个组合, ...
+        yield tuple(tuple_value[i] for i in indices)
 
 
 def main():
-    # ss = list(combinations('ABCD', 2))
-    # assert ss == [('A', 'B'), ('A', 'C'), ('A', 'D'), ('B', 'C'), ('B', 'D'), ('C', 'D')]
-
-    for i in combinations('ABCD', 2):
-        print(i)
+    ss = list(combinations('ABCD', 2))
+    assert ss == [('A', 'B'), ('A', 'C'), ('A', 'D'), ('B', 'C'), ('B', 'D'), ('C', 'D')]
 
 
 if __name__ == '__main__':
