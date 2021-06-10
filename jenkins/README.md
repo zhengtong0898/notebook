@@ -5,6 +5,9 @@
 |DSL|Domain Specific Language|[领域特定语言](https://medium.com/tech-learn-share/jenkins-job-dsl-667e88afc2f3), 适用于Pipeline声明式语法.|
 |Pipeline|Pipeline|[流水线](https://www.jenkins.io/doc/book/pipeline/#overview)描述的是代码从构建、部署、测试、到产出质量报告的过程. |
 |CICD|Continuous Intergration, Continuous Delivery| [持续继承, 持续交付.](https://www.redhat.com/zh/topics/devops/what-is-ci-cd) |
+|ETA|Estimated Time of Arrival|预计到达时间|
+|ETD|Estimated Time of Departure|预计离开时间|
+|ETC|Estimated Time of closing|预计关闭时间|
 
 
 &nbsp;  
