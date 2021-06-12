@@ -14,7 +14,7 @@ class Node:
         return len(self.forward)
 
     def __repr__(self):
-        return f"<Node key='{self.key}' value='{self.value}' level='{self.value}' at {hex(id(self))}>"
+        return f"<Node key='{self.key}' value='{self.value}' level='{self.level}' at {hex(id(self))}>"
 
 
 class SkipList:
