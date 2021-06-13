@@ -6,7 +6,7 @@ import re
 import socket
 
 
-def socket_makefile():
+def socket_makefile(host: str = "192.168.1.3", port: int = 80):
     # protocol: 'HTTP/1.1'
     # api:      '/'
     # method:   'GET'
@@ -20,7 +20,7 @@ def socket_makefile():
     maxline = 65535
     total_size = 0
     sock = socket.socket()
-    address = ("192.168.1.3", 80)
+    address = (host, port)
     sock.connect(address)
     sock.sendall(ss)
     fp = sock.makefile("rb")
@@ -83,7 +83,7 @@ import re
 import socket
 
 
-def socket_recv():
+def socket_recv(host: str = "192.168.1.3", port: int = 80):
     ss = b"GET http://192.168.1.3/ HTTP/1.1\r\n"   \
          b"Host: 192.168.1.3\r\n"                  \
          b"User-Agent: python-requests/2.25.1\r\n" \
@@ -142,3 +142,26 @@ def socket_recv():
             break
 
 ```
+
+&nbsp;  
+&nbsp;  
+# Socket走系统代理
+
+### windows 最佳实践
+安装并启动 `Fiddler`,   
+在 `Settings` -> `Connections` 中指定 `8866` 代理监听端口;  
+在 `Settings` -> `Gateway` 中指定 `Use system proxy(recommended)` 选项.   
+
+通过这种代理的方式, 网络请求都会被 `Fiddler` 嗅探到.  
+```python
+def socket_makefile_with_proxy():
+    import urllib.request
+    import urllib3.util.url
+    proxies = urllib.request.getproxies()
+    proxy_url: urllib3.util.url.Url = urllib3.util.url.parse_url(proxies["http"])
+    proxy_host = proxy_url.host
+    proxy_port = proxy_url.port
+
+    socket_makefile(proxy_host, proxy_port)
+```  
+ 
