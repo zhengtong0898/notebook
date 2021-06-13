@@ -1,6 +1,3 @@
-# 客户端获取响应数据
-### socket.makefile
-```python
 import time
 import re
 import socket
@@ -10,7 +7,7 @@ def socket_makefile(host: str = "192.168.1.3", port: int = 80):
     # protocol: 'HTTP/1.1'
     # api:      '/'
     # method:   'GET'
-    ss = b"GET http://192.168.1.3/ HTTP/1.1\r\n"   \
+    ss = b"GET http://192.168.1.3/ HTTP/1.0\r\n"   \
          b"Host: 192.168.1.3\r\n"                  \
          b"User-Agent: python-requests/2.25.1\r\n" \
          b"Accept-Encoding: gzip, deflate\r\n"     \
@@ -45,6 +42,7 @@ def socket_makefile(host: str = "192.168.1.3", port: int = 80):
     oneline = fp.readline(maxline)
     oneline = str(oneline, encoding="latin-1")
     version, status, reason = oneline.split(sep=None, maxsplit=2)
+    print(oneline)
 
     # response headers
     headers = []
@@ -53,6 +51,7 @@ def socket_makefile(host: str = "192.168.1.3", port: int = 80):
     while True:
         oneline = fp.readline(maxline)
         headers.append(oneline)
+        print(oneline)
 
         matched = re.match(pattern, oneline)
         if isinstance(matched, re.Match):
@@ -71,16 +70,6 @@ def socket_makefile(host: str = "192.168.1.3", port: int = 80):
         print(time.time(), len(oneline), oneline)
         if total_size >= content_length:
             break
-
-```
-
-&nbsp;  
-&nbsp;  
-### socket.recv
-```shell script
-import time
-import re
-import socket
 
 
 def socket_recv(host: str = "192.168.1.3", port: int = 80):
@@ -141,19 +130,7 @@ def socket_recv(host: str = "192.168.1.3", port: int = 80):
         if total_size >= content_length:
             break
 
-```
 
-&nbsp;  
-&nbsp;  
-# Socket走系统代理
-
-### windows 最佳实践
-安装并启动 `Fiddler`,   
-在 `Settings` -> `Connections` 中指定 `8866` 代理监听端口;  
-在 `Settings` -> `Gateway` 中指定 `Use system proxy(recommended)` 选项.   
-
-通过这种代理的方式, 网络请求都会被 `Fiddler` 嗅探到.  
-```python
 def socket_makefile_with_proxy():
     import urllib.request
     import urllib3.util.url
@@ -163,5 +140,9 @@ def socket_makefile_with_proxy():
     proxy_port = proxy_url.port
 
     socket_makefile(proxy_host, proxy_port)
-```  
- 
+
+
+if __name__ == '__main__':
+    socket_makefile()
+    socket_recv()
+    socket_makefile_with_proxy()
