@@ -152,3 +152,20 @@ if __name__ == "__main__":
 # 将本机的 /tmp目录 挂在到 'mount-test'容器的 /tmp目录.
 docker run --name mount-test -v /tmp:/tmp -itd centos:7  
 ```
+
+
+### 给容器做代理
+```shell script
+vim ~/.docker/config.json  
+{
+    "proxies":
+    {
+        "default":
+        {
+            "httpProxy": "socks5h://192.168.1.10:3128",
+            "httpsProxy": "socks5h://192.168.1.10:3128",
+            "noProxy": "localhost,127.0.0.1,.example.com,192.168.1.100,192.168.1.101,192.168.1.102"
+        }
+    }
+}
+```
