@@ -1,3 +1,18 @@
+### 安装gitlab(Docker版)
+```shell script
+# 拉取镜像
+docker pull gitlab/gitlab-ce
+
+# 启动镜像
+docker run --detach --publish 88:80 --name gitlab-example --hostname gitlab-example gitlab/gitlab-ce
+
+# 观察日志
+docker logs -f gitlab-example
+
+# 访问gitlab
+http://localhost:88/
+```
+
 ### 取消代理
 ```shell script
 git config --global --unset http.proxy

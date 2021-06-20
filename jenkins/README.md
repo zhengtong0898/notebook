@@ -20,7 +20,7 @@
 
 &nbsp;  
 &nbsp;  
-### 安装Jenkins
+### 安装Jenkins(实体版本)
 操作系统: CentOS 7.6   
 安装教程: [Jenkins官网](https://pkg.jenkins.io/redhat-stable/)
 
@@ -66,6 +66,21 @@
   rm -rf ~/.jenkins/
   proxychains4 java -jar /usr/lib/jenkins/jenkins.war --httpPort=8080
   ```  
+
+&nbsp;  
+&nbsp;  
+### 安装Jenkins(Docker版本)
+```shell script
+# 拉取镜像
+docker pull jenkins/jenkins
+
+# 启动镜像
+docker run --name=jenkins-example --publish 8080:8080 --publish 50000:50000 --detach jenkins/jenkins  
+
+# 观察日志
+docker logs -f jenkins-example
+```
+
 
 &nbsp;  
 &nbsp;  
