@@ -1,8 +1,10 @@
-### 运行
-```shell script
-cd examples/live_logs;
-pytest main.py
+### 实时的日志输出
+默认情况下, pytest在执行用例的过程中, 不会输出任何信息, 而是再执行完毕后统一输出.    
+通过将 `log_cli` 相关的参数定义在 `pytest.init` 中, 使其支持实时的日志输出.  
 
+```shell script
+source venv/bin/activate
+pytest main.py
 
 
 # 输出
