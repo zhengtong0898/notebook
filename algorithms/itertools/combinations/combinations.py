@@ -1,18 +1,5 @@
 
 
-"""
-按指定数量列出不重复(非穷尽)的组合, 例如:
-combinations('ABCD', 2) -> 'AB',   'AC',  'AD',  'BC', 'BD', 'CD'
-combinations('ABCD', 3) -> 'ABC', 'ABD', 'ACD', 'BCD'
-
-重复指的是:
-'ABC' -> 'CBA'
-'ABD' -> 'DBA'
-'ACD' -> 'DCA'
-'BCD' -> 'DCB'
-"""
-
-
 def combinations(iterable, comb_size):
 
     """
