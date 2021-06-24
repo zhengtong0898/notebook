@@ -8,5 +8,4 @@
 1. [术语](Terms.md)
 2. [图标](UMLIcons.md)  
 3. [UML元素(TODO: 与图标合并)](UMLElements.md)
-4. [描述事物(TODO: 待合并)](Describe.md)
-5. [UML视图(TODO: 拆成更具体的视图)](UMLViews.md)
+4. [UML视图(TODO: 拆成更具体的视图)](UMLViews.md)
