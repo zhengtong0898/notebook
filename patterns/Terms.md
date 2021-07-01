@@ -53,6 +53,20 @@
 > 3). 用蒸笼煮饭, 算一个用例.  
 > 4). 炒菜, 算一个用例.
  
+### 业务用例(Business Use Case)
+业务用例(Business Use Case) == 用例(Use Case),  
+所以后续业务用力统统会被成为用例.  
+[参考资料-1](https://stackoverflow.com/a/3294069) 、
+[参考资料-2](https://sceweb.uhcl.edu/helm/RationalUnifiedProcess/process/modguide/md_buc.htm) 、
+[参考资料-3](https://sceweb.uhcl.edu/helm/RationalUnifiedProcess/process/modguide/md_uc.htm)    
+
+### 用例实例(Use Case Instance)  
+用例实例 == 业务用例实现(Business use case realization),  
+就像对象实例与之对象, 一个用例实例也只是用例的一个侧面.  
+`Pytest`的参数化就是一组用例实例, 用于验证用例的完整性.    
+page-68, [参考资料-1](https://sceweb.uhcl.edu/helm/RationalUnifiedProcess/process/modguide/md_uc.htm)
+
+
 ### 领域模型  
 领域模型描述那些对业务有着重要意义的业务对象, page-112.  
 
