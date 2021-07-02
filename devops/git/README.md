@@ -11,6 +11,7 @@
 - 如何将远程仓库最新的代码同步到本地?
 - [如何将`A分支的某个commit`合并到`B分支`?](CherryPick.md)
 - `merge`和`rebase`的区别?
+- [选择编辑器引擎](ChangeCommitEditor.md)
 
 ### 分支
 - [如何创建一个分支?](CreateBranch.md)
