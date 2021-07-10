@@ -4,13 +4,17 @@
 docker pull gitlab/gitlab-ce
 
 # 启动镜像
-docker run --detach --publish 88:80 --name gitlab-example --hostname gitlab-example gitlab/gitlab-ce
+docker run --detach --publish 80:80 --name gitlab-example --hostname gitlab-example gitlab/gitlab-ce
 
 # 观察日志
 docker logs -f gitlab-example
 
 # 访问gitlab
-http://localhost:88/
+http://localhost/
+
+# 重置 root 密码
+docker exec -it -u root gitlab-example bash
+gitlab-rake "gitlab:password:reset[root]"
 ```
 
 ### 取消代理
