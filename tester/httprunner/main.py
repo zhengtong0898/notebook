@@ -10,9 +10,13 @@ if __name__ == '__main__':
 
     # sys.argv.append("apis/login-api-v2-success.yml")
     # sys.argv.append("apis/login-api-v3-success.yml")
+    sys.argv.append("apis/variable-priority-parent.yml")
 
     # sys.argv.append("testcases/create-user-ref.yml")
     # sys.argv.append("testcases/create-user-extract.yml")
-    sys.argv.append("testcases/create-user-export.yml")
+    # sys.argv.append("testcases/create-user-export.yml")
+    # sys.argv.append("testcases/login-fail-ref.yml")
+    # sys.argv.append("testcases/login-online-ref.yml")
+    # sys.argv.append("testcases/request_with_parameters_test.py")
 
     sys.exit(main())

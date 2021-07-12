@@ -13,12 +13,12 @@
 9. [流程性用例-分层机制](docs/LayerCase.md)
 10. [流程性用例-提取变量](docs/WorkflowCaseExtract.md)
 11. [流程性用例-导出变量](docs/WorkflowCaseExport.md)
-12. [流程性用例-增量断言(已实现)](docs/WorkflowIncrementValidate.md)
-13. [流程性用例-失败重试(已实现)](docs/WorkflowErrorRetry.md)
-14. [流程性用例-使用Fixture(尚未实现)](docs/TagCase.md)
-15. [流程性用例-打标签(尚未实现)](docs/TagCase.md)
-16. [生成测试报告]()
-17. [优化测试报告]()
+12. [流程性用例-增量断言](docs/WorkflowIncrementValidate.md)
+13. [流程性用例-失败重试](docs/WorkflowErrorRetry.md)
+14. [流程性用例-使用Fixture](https://github.com/httprunner/httprunner/issues/1153)
+15. [流程性用例-打标签](https://github.com/httprunner/httprunner/issues/1153)
+16. [生成测试报告-allure](https://github.com/httprunner/httprunner/issues/1155)
+
 
 
 &nbsp;  
