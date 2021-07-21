@@ -99,6 +99,8 @@ teststeps:
 `httprunner`允许父用例直接导出子用例中的`module variable`作为当前用例的`module variable`,  
 后续的步骤都可以直接使用这个变量, 从使用的角度来看是便捷的, 从维护的角度来看也是直观的.  
 
+API测试用例(httprunner-3.x语法)
+
 ```yaml
 
 
@@ -136,7 +138,7 @@ teststeps:
 ```
 
 
-流程性测试用例(httprunner-3.x语法): [create-user-export.yml](../testcases/create-user-export.yml)   
+流程性测试用例(httprunner-3.x语法)  
 
 ```yaml
 
