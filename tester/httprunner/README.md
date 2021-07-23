@@ -14,7 +14,7 @@
 10. [流程性用例-覆盖断言(尚未实现)](docs/WorkflowCaseExport.md)
 11. [流程性用例-增量断言(尚未实现)](docs/WorkflowCaseExport.md)
 11. [流程性用例-循环调用(尚未实现)](docs/WorkflowCaseExport.md)
-12. [分层用例](docs/LayerCase.md)
+12. [测试用例-分层机制](docs/LayerCase.md)
 13. [给用例打标签(尚未实现)](docs/TagCase.md)
 14. [生成测试报告]()
 15. [优化测试报告]()
