@@ -1,0 +1,6 @@
+@startuml
+'actor 是一个专有单词, 用于表示参与者.
+actor ZhangSan
+ZhangSan -> System: 访问
+ZhangSan <- System: 返回
+@enduml

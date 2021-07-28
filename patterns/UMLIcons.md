@@ -1,3 +1,21 @@
+### 参与者(actor)
+参与者是在系统之外与系统交互的某人或某事物, page-43, [参考-1](https://plantuml.com/zh/sequence-diagram#5d2ed256d73a7298)  
+- [actor.plantuml](plant_umls/actor.plantuml)
+  ```plantuml
+  @startuml
+  'actor 是一个专有单词, 用于表示参与者. 
+  actor ZhangSan
+  ZhangSan -> System: 访问
+  ZhangSan <- System: 返回
+  @enduml
+  ```
+- [actor.png](plant_umls/actor.png)
+  <p align="center">
+    <img src="plant_umls/actor.png">
+  </p>
+
+&nbsp;  
+&nbsp;  
 ### 给自己发消息  
 参与者可以给自己发信息, [参考-1](), [参考-2](https://forum.plantuml.net/6180/message-displayed-standard-immediately-before-deactivate).   
 
