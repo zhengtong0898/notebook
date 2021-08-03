@@ -140,5 +140,8 @@ TODO: 待补充
 
 &nbsp;  
 &nbsp;  
-### 组合关系(Composition)  
-TODO: 待补充
+### 组合关系(Composition)
+|语法|说明|图|代码|
+|---|---|---|---|
+|A *- B|**组合** <br />B组合到A上, A是组合体. |![composition](plant_umls/composition.png)|[composition.plantuml](plant_umls/composition.plantuml)|
+

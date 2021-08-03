@@ -1,0 +1,4 @@
+@startuml
+'B组合到A上, A是组合体.
+A *- B : \t
+@enduml
