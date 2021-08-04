@@ -1,0 +1,6 @@
+@startuml
+'实现
+interface SiteSearch
+Class SearchService
+SiteSearch <|. SearchService: \t\t
+@enduml

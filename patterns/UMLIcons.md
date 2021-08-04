@@ -109,7 +109,12 @@
 &nbsp;  
 &nbsp;  
 ### 实现关系(Realize)
-TODO: 待补充
+[参考资料-1](https://www.uml-diagrams.org/realization.html)  
+
+|语法|说明|图|代码|
+|---|---|---|---|
+|interface SiteSearch <br />Class SearchService <br /> SiteSearch </. SearchService|**依赖** <br /> SearchService实现了SiteSearch接口.|![realize](plant_umls/realize.png)|[realize.plantuml](plant_umls/realize.plantuml)|
+
 
 &nbsp;  
 &nbsp;  
