@@ -1,0 +1,4 @@
+@startuml
+'B聚合到A上, A是聚合体.
+A o- B : \t
+@enduml

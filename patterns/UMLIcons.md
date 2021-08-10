@@ -133,7 +133,10 @@ TODO: 待补充
 &nbsp;  
 &nbsp;  
 ### 聚合关系(Aggregation)
-TODO: 待补充
+|语法|说明|图|代码|
+|---|---|---|---|
+|A o- B|**聚合** <br />B聚合到A上, A是聚合体. |![aggregation](plant_umls/aggregation.png)|[aggregation.plantuml](plant_umls/aggregation.plantuml)|
+
 
 &nbsp;  
 &nbsp;  
