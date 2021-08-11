@@ -86,7 +86,7 @@
 &nbsp;  
 &nbsp;  
 ### 关联关系(Association)  
-[参考资料-1](https://plantuml.com/zh/class-diagram)
+[参考资料-1](https://plantuml.com/zh/class-diagram) 、
 [参考资料-2](https://creately.com/blog/diagrams/class-diagram-relationships/) 、
 [参考资料-3](https://forum.plantuml.net/8022/how-to-make-the-horizontal-line-longer)  
 
@@ -96,12 +96,15 @@
 |--|**一对一** <br />纵向向连接两个对象|![association_2](plant_umls/association_2.png)|[association_2.plantuml](plant_umls/association_2.plantuml)|
 |Student "1..*" -  Teacher|**一对多** <br />一个老师对应多个学生|![association_3](plant_umls/association_3.png)|[association_3.plantuml](plant_umls/association_3.plantuml)|
 |Class "0..*" - "1..*" Teachers <br />(Class, Teachers) .. Enrollment|**多对多** <br />一个班级有多个老师, <br />一个老师也可以带多个班级. |![association_4](plant_umls/association_4.png)|[association_4.plantuml](plant_umls/association_4.plantuml)|
+|A->B|**强调方向** <br />A知道B, 而B不知道A. |![association_5](plant_umls/association_5.png)|[association_5.plantuml](plant_umls/association_5.plantuml)|
 
 
 &nbsp;  
 &nbsp;  
 ### 依赖关系(Dependency)  
-TODO: 待补充
+|语法|说明|图|代码|
+|---|---|---|---|
+|A .> B|**依赖** <br /> A依赖B(A use B)|![dependency](plant_umls/dependency.png)|[dependency.plantuml](plant_umls/dependency.plantuml)|
 
 &nbsp;  
 &nbsp;  

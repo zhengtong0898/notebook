@@ -1,0 +1,4 @@
+@startuml
+'A依赖B, A use B.
+A .> B: \t<use>\t
+@enduml

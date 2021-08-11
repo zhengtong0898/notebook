@@ -1,0 +1,4 @@
+@startuml
+'A知道B, 而B不知道A.
+A -> B: \t\t
+@enduml
