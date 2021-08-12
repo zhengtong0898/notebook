@@ -301,7 +301,44 @@ XP强调将一个大的任务拆解成可以在较短周期解决的一个个子
 **一对一:** 乘车人和车票之间的一对一是符合"规则"的关系; 公民和身份证之间的一对一是符合"法律"的关系.    
 **一对多:** 一个班级和多个学生之间是一对多的关系;  
 **多对多:** 班级和老师之间的关系, 一个班级有多个老师, 一个老师也可以带多个班级.  
+> **Django ORM**     
+> [一对一](https://docs.djangoproject.com/en/4.0/topics/db/examples/one_to_one/) 采取成员变量(`models.OneToOneField`)来获得, 成员变量对象的生命周期随主对象结束而结束.  
+> [一对多、多对多](https://docs.djangoproject.com/en/4.0/topics/db/examples/many_to_one/) 采取中间对象(`TableName_set`)来获得, 成员变量对象的生命周期随主对象结束而结束.  
+
 
 ### 依赖关系(Dependency)
 依赖关系描述一个对象在运行时会使用另一个对象的关系.  
 依赖关系是一种临时关系, 通常是在运行时产生, 等价于函数定义了一个参数表示函数以来这个参数, page-86, [箭头参考](./UMLIcons.md#依赖关系(Dependency)) .  
+
+### 聚合关系(Aggregation)  
+聚合关系表达整体由部分构成, 整体和部分不是强依赖的,   
+即使整体不存在了, 部分仍然存在(因为这个部分是由外部实例化的), page-90, [参考资料-1](https://faun.pub/association-aggregation-composition-python-ec9947832cbd) , [参考资料-2](https://gist.githubusercontent.com/sohaib-dev/d65a8d61be4cf5b529cba826703a5d96/raw/fee8cd8c804af63e3cc581e33e2c3c7cb98553c3/aggregation.py) .
+```python3
+# 来源
+# https://faun.pub/association-aggregation-composition-python-ec9947832cbd
+# https://gist.githubusercontent.com/sohaib-dev/d65a8d61be4cf5b529cba826703a5d96/raw/fee8cd8c804af63e3cc581e33e2c3c7cb98553c3/aggregation.py
+class Student:
+
+    def __init__(self, id):
+        self._id = id
+
+    def registration_number(self, department_id) -> str:
+        return str(self._id) + '-' + department_id
+
+
+class Department:                                           # Department 就是整体
+
+    def __init__(self, id, student: Student):
+        self._id = id
+        self._student = student                             # Student 就是部分
+
+    def student_registration(self):
+        return self._student.registration_number(self._id)
+
+
+if __name__ == '__main__':
+    student = Student(10)
+    department = Department('ENG', student)                 # 聚合关系想表达: 即便 Department 被销毁了, student 仍然存在.  
+    print(department.student_registration())
+
+```
