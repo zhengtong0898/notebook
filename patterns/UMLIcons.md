@@ -113,13 +113,22 @@
 
 |语法|说明|图|代码|
 |---|---|---|---|
-|interface SiteSearch <br />Class SearchService <br /> SiteSearch </. SearchService|**依赖** <br /> SearchService实现了SiteSearch接口.|![realize](plant_umls/realize.png)|[realize.plantuml](plant_umls/realize.plantuml)|
+|interface SiteSearch <br />Class SearchService <br /> SiteSearch </. SearchService|**接口** <br /> SearchService实现了SiteSearch接口.|![realize](plant_umls/realize.png)|[realize.plantuml](plant_umls/realize.plantuml)|
 
 
 &nbsp;  
 &nbsp;  
 ### 精化关系(Refine)
 TODO: 待补充
+
+
+&nbsp;  
+&nbsp;  
+### 继承关系(Inheritance)/泛化关系(Generalization)
+|语法|说明|图|代码|
+|---|---|---|---|
+|A </- B|**继承** <br /> B继承A, A是基类, B是派生类.|![inheritance](plant_umls/inheritance.png)|[inheritance.plantuml](plant_umls/inheritance.plantuml)|
+
 
 &nbsp;  
 &nbsp;  

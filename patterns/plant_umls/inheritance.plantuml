@@ -1,0 +1,4 @@
+@startuml
+'B继承A, A是基类, B是派生类.
+A <|- B: \t\t
+@enduml
