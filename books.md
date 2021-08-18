@@ -1,10 +1,4 @@
 ### 读书
-- 杀死一只知更鸟
-- 温暖与百感交集的旅程
-- 月亮与六便士
-- 咱们仨
-- 边城
-- 挪威的森林
-- 万历十五年
-- 时间会给你答案
-- 
+- [Cucumber: 行为驱动开发指南-BDD](https://item.jd.com/10042869685877.html)  , [参考资料-1](https://cucumber.io/docs/bdd/history/)
+- [编程珠玑](https://item.jd.com/12724458.html)  
+- [coveragepy](https://github.com/nedbat/coveragepy)  
