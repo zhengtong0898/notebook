@@ -342,3 +342,35 @@ if __name__ == '__main__':
     print(department.student_registration())
 
 ```
+
+### 组合关系(Composition)  
+组合关系表达整是拥有部分的, 是强依赖的关系,   
+如果整体不存在了, 部分也将消亡(因为这个部分是有整体内部实例化的), page-90, [参考资料-1](https://faun.pub/association-aggregation-composition-python-ec9947832cbd) , [参考资料-2](https://gist.githubusercontent.com/sohaib-dev/04c670df1733e80764c217feb69761d6/raw/d96e720244739cd09898ea329da287ea4932a794/composition.py) .  
+
+```python3
+# 来源
+# https://faun.pub/association-aggregation-composition-python-ec9947832cbd
+# https://gist.githubusercontent.com/sohaib-dev/04c670df1733e80764c217feb69761d6/raw/d96e720244739cd09898ea329da287ea4932a794/composition.py
+class Student:
+
+    def __init__(self, id):
+        self._id = id
+
+    def registration_number(self, department_id) -> str:
+        return str(self._id) + '-' + department_id
+
+
+class Department:
+
+    def __init__(self, department_id, student_id):
+        self._id = department_id
+        self._student = Student(student_id)                 # Student这个部分, 由Department这个整体来实例化.
+
+    def student_registration(self):
+        return self._student.registration_number(self._id)
+
+
+if __name__ == '__main__':
+    department = Department('ENG', 10)                      # 组合关系想表达: 如果Department被销毁了, student也就不存在了.  
+    print(department.student_registration())
+```
