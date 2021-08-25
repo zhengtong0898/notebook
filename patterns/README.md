@@ -1,5 +1,6 @@
 > 参考资料:  
-> [PlantUML](https://plantuml.com/zh/)  
+> [UML官方网站](https://www.uml-diagrams.org/)    
+> [PlantUML官方网站](https://plantuml.com/zh/)  
 > [Thinking in UML(第二版)](https://item.jd.com/10971142.html)
 
 
