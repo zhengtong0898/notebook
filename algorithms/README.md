@@ -6,6 +6,10 @@
 &nbsp;  
 
 ### 常见的时间复杂度
+![Big-O-Complexity-Chart](./Big-O-Complexity-Chart.jpg)   
+
+&nbsp;   
+
 | 符号 | 英文名 | 中文名 |
 |---|:---:|:---:|
 | O(1) | Constant Time  | [常量阶](time_complexity/O1.md) |
@@ -16,6 +20,7 @@
 | O(n^3) | Cubic Time | [立方阶](time_complexity/On^3.md) |
 | O(2^n) | Exponential Time | [指数阶](time_complexity/O2^n.md) |
 | O(n!) |Factorial Time | [阶乘阶](time_complexity/On!.md) |
+
 
 
 &nbsp;  
@@ -29,4 +34,5 @@
 [C语言中文网](http://c.biancheng.net/data_structure/)   
 [数据结构、算法与应用](https://book.douban.com/subject/26421141/)   
 [极客时间-王争-数据结构与算法之美](https://time.geekbang.org/column/126)   
-[LeetCode101题精讲](./LeetCode101-A-LeetCode-Grinding-Guide-(CPP-Version).pdf)
+[LeetCode101题精讲](./LeetCode101-A-LeetCode-Grinding-Guide-(CPP-Version).pdf)   
+[Understanding time complexity with Python examples](https://towardsdatascience.com/understanding-time-complexity-with-python-examples-2bda6e8158a7)
