@@ -2,7 +2,7 @@
 - [如何设置`git`代理?](Proxy.md)
 
 ### 提交 / 合并
-- 如何修改已提交的代码的`message`?
+- [如何修改已提交的代码的`message`?](CommitAmend.md)
 - 如何调整`commit`顺序?
 - 如何合并多个`commit`?
 - 如何将远程仓库最新的代码同步到本地?
