@@ -56,6 +56,7 @@ class Solution:
         # AND 操作:
         # 1. 仅保留两边都相同的k/v.
         # 2. 两个相同k, 保留小的那个值.
+        # 高价值参考资料:  https://realpython.com/python-bitwise-operators/#reader-comments
         all_dict = solution_dict & guess_dict
         # 仅取数值(类型是List[int])
         b = all_dict.values()
