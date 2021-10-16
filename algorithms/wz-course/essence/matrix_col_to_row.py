@@ -23,7 +23,6 @@ def swap_row_and_col():
 
 
 def main():
-    # 其实也就是90度旋转
     assert get_column(0) == [1, 1, 1, 1, 1]
     assert get_column(1) == [2, 2, 2, 2, 2]
     assert get_column(2) == [3, 3, 3, 3, 3]
