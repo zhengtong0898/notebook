@@ -3,17 +3,14 @@ from typing import List
 
 # 顺序旋转 90 度
 def sequence_rotate(matrix: List[List[int]]):
-    reverse_row = matrix[::-1]                      # 将行反向排序
-    return list(zip(*reverse_row))                  # 将列转行
+    reverse_row = matrix[::-1]                          # 将行反向排序
+    return list(zip(*reverse_row))                      # 将列转行
 
 
 # 反向旋转 90 度
 def reverse_rotate(matrix: List[List[int]]):
-    matrix_copied = matrix[:]
-    for index, row in enumerate(matrix_copied):
-        matrix_copied[index] = row[::-1]            # 将每一行内的元素反向排序
-
-    return list(zip(*matrix_copied))                # 将列转行
+    matrix_reversed_row = [i[::-1] for i in matrix]     # 将每一行内的元素反向排序
+    return list(zip(*matrix_reversed_row))              # 将列转行
 
 
 def main():
