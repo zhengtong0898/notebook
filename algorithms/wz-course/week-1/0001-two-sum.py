@@ -15,23 +15,28 @@ class Solution:
 
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         """
-        # 这里虽然是只有一个循环, 但是由于使用了两个游标,
-        # 并且这两个游标存在层级关系, 所以这个算法的时间复杂度其实是 n * (n-1) == O(n^2)
-        """
-        pos_1 = 0
-        pos_2 = 1
+        当前的写法是: A下标 永远小于 B下标.
+        最好情况的时间复杂度是: O(1).
+        最坏情况的时间复杂度是: O(n^2), 即: (n * (n - 1)) / 2.
+
+        这段代码等同于:
         num_len = len(nums)
-        while True:
-            if (nums[pos_1] + nums[pos_2]) == target:
-                return [pos_1, pos_2]
+        for i in range(num_len):
+            for j in range(i + 1, num_len):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+        """
+        curr_index = 0
+        next_index = 1
+        num_len = len(nums)
+        while curr_index < num_len:
+            if (nums[curr_index] + nums[next_index]) == target:
+                return [curr_index, next_index]
 
-            pos_2 += 1
-            if pos_1 >= num_len:
-                return [-1, -1]
-
-            if pos_2 >= num_len:
-                pos_1 += 1
-                pos_2 = pos_1 + 1
+            next_index += 1
+            if next_index >= num_len:
+                curr_index += 1
+                next_index = curr_index + 1
                 continue
 
     # 时间复杂度: O(n^2)
@@ -55,8 +60,26 @@ class Solution:
 
 def test():
     solution = Solution()
-    result = solution.twoSum(nums=[2,5,5,11], target=10)
-    assert result == [0, 1]
+
+    inputs = [2, 7, 11, 15]
+    expect = [0, 1]
+    result = solution.twoSum(nums=inputs, target=9)
+    assert result == expect
+
+    inputs = [3, 2, 4]
+    expect = [1, 2]
+    result = solution.twoSum(nums=inputs, target=6)
+    assert result == expect
+
+    inputs = [3,3]
+    expect = [0, 1]
+    result = solution.twoSum(nums=inputs, target=6)
+    assert result == expect
+
+    inputs = [2, 5, 5, 11]
+    expect = [1, 2]
+    result = solution.twoSum(nums=inputs, target=10)
+    assert result == expect
 
 
 def main():
