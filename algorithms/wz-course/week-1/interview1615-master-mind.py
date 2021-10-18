@@ -16,6 +16,8 @@ class Solution:
     编写一个方法返回猜中和伪猜中的次数answer，
     其中answer[0]为猜中的次数，answer[1]为伪猜中的次数。
 
+    https://leetcode-cn.com/problems/master-mind-lcci/
+
     已知条件:
     1. len(solution) = len(guess) = 4
     2. solution 和 guess 仅包含"R","G","B","Y"这4种字符

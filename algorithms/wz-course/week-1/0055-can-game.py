@@ -9,6 +9,8 @@ class Solution:
     数组中的每个元素代表你在该位置可以跳跃的最大长度。
 
     判断你是否能够到达最后一个下标。
+
+    https://leetcode-cn.com/problems/jump-game/
     """
 
     def canJump(self, nums: List[int]) -> bool:

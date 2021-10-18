@@ -8,6 +8,8 @@ class Solution:
 
     每行的元素从左到右升序排列。
     每列的元素从上到下升序排列。
+
+    https://leetcode-cn.com/problems/search-a-2d-matrix-ii/
     """
 
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:

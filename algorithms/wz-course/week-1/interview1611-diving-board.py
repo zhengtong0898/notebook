@@ -8,6 +8,8 @@ class Solution:
 
     返回的长度需要从小到大排列。
 
+    https://leetcode-cn.com/problems/diving-board-lcci/
+
     已知条件:
     1. 只有两个对象, longer 和 shorter.
     2. shorter <= longer.

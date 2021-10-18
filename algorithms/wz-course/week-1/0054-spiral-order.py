@@ -3,6 +3,12 @@ from typing import List
 
 class Solution:
 
+    """
+    给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
+
+    https://leetcode-cn.com/problems/spiral-matrix/
+    """
+
     def spiralOrder(self, matrix: List[List[int]], result: List[int]) -> List[int]:
 
         # 当前程序处理失败的场景

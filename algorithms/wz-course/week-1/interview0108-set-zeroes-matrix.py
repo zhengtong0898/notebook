@@ -3,6 +3,12 @@ from typing import List
 
 class Solution:
 
+    """
+    编写一种算法，若M × N矩阵中某个元素为0，则将其所在的行与列清零。
+
+    https://leetcode-cn.com/problems/zero-matrix-lcci/
+    """
+
     def setZeroes(self, matrix: List[List[int]]) -> None:
         # 获取 0 的坐标
         zeroes = []
