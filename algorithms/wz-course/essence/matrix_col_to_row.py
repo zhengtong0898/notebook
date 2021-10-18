@@ -2,13 +2,13 @@ from typing import List
 
 
 # 列转行
-def swap_row_and_col_v1(matrix: List[List[int]]):
+def col_to_row_v1(matrix: List[List[int]]):
     ss = list(zip(*matrix))
     return ss
 
 
 # 列转行
-def swap_row_and_col_v2(matrix: List[List[int]]):
+def col_to_row_v2(matrix: List[List[int]]):
     result = [[0] * len(i) for i in matrix]
     for col in range(len(matrix)):                       # [col] 以列为主
         for row in range(len(matrix)):                   # [row] 以行为辅
@@ -24,14 +24,14 @@ def main():
         [1, 2, 3, 4, 5],
         [1, 2, 3, 4, 5],
     ]
-    result = swap_row_and_col_v1(s)
+    result = col_to_row_v1(s)
     assert result == [(1, 1, 1, 1, 1),
                       (2, 2, 2, 2, 2),
                       (3, 3, 3, 3, 3),
                       (4, 4, 4, 4, 4),
                       (5, 5, 5, 5, 5)]
 
-    result = swap_row_and_col_v2(s)
+    result = col_to_row_v2(s)
     assert result == [[1, 1, 1, 1, 1],
                       [2, 2, 2, 2, 2],
                       [3, 3, 3, 3, 3],
