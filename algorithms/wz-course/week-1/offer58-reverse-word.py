@@ -31,6 +31,9 @@ class Solution:
         """
         return " ".join(s.split(sep=None)[::-1])
 
+    def reverseWords_3(self, s: str) -> str:
+        pass
+
 
 def test():
     solution = Solution()

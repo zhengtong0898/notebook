@@ -1,12 +1,12 @@
 ### 纯编程题
 
-1. [leet-code-0001. 两数之和（简单）](0001-two-sum.py) 
+1. [leet-code-0001. 两数之和（简单）](./0001-two-sum.py) 
 
-2. leet-code-1108. IP 地址无效化（简单） 
+2. [leet-code-1108. IP 地址无效化（简单）](./1108-defang-ip-addr.py) 
 
-3. leet-code-0344. 反转字符串（简单）
+3. [leet-code-0344. 反转字符串（简单）](./0344-reverse-string.py)
 
-4. 剑指Offer-58 - I. 翻转单词顺序（简单）
+4. [剑指Offer-58 - I. 翻转单词顺序（简单）](./offer58-reverse-word.py)
 
 5. leet-code-0125. 验证回文串 （简单） 
 

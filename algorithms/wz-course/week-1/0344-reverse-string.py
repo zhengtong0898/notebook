@@ -38,23 +38,33 @@ class Solution:
     def reverseString_3(self, s: List[str]) -> None:
         s = s[::-1]
 
+    def reverseString_4(self, s: List[str]) -> None:
+        length = len(s)
+        iseven = length % 2 == 0
+        items = int((length / 2) if iseven else (length - 1) / 2)
+        for item in range(items):
+            s[length - item - 1], s[item] = s[item], s[length - item - 1]
+
 
 def test():
     solution = Solution()
 
     result = ["h", "e", "l", "l", "o"]
-    solution.reverseString_2(s=result)
+    # solution.reverseString_2(s=result)
+    solution.reverseString_4(s=result)
     assert result == ["o", "l", "l", "e", "h"]
 
     result = ["H", "a", "n", "n", "a", "h"]
-    solution.reverseString_2(s=result)
+    # solution.reverseString_2(s=result)
+    solution.reverseString_4(s=result)
     assert result == ["h", "a", "n", "n", "a", "H"]
 
     result = ["A", " ", "m", "a", "n", ",", " ", "a", " ", "p", "l", "a", "n", ",", " ",
               "a", " ", "c", "a", "n", "a", "l", ":", " ", "P", "a", "n", "a", "m", "a"]
     expect = ["a", "m", "a", "n", "a", "P", " ", ":", "l", "a", "n", "a", "c", " ", "a",
               " ", ",", "n", "a", "l", "p", " ", "a", " ", ",", "n", "a", "m", " ", "A"]
-    solution.reverseString_2(s=result)
+    # solution.reverseString_2(s=result)
+    solution.reverseString_4(s=result)
     assert result == expect
 
 
