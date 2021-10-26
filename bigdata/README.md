@@ -4,3 +4,8 @@
 ### hive
 1. [hive 创建的库保存在哪里?](./HiveDatabaseLocation.md)
 2. [hive 创建一张表保存在哪里?](./HiveTableLocation.md)
+
+### hadoop
+1. [开发环境准备](./HadoopDevEnvPrepare.md)
+2. [hadoop 端口监听清单](./HadoopPorts.md)
+3. [hadoop 权限](./HadoopPermissions.md)

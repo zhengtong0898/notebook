@@ -155,4 +155,4 @@ Server started listening on 8080
 DB configs consistency check: no errors and warnings were found.
 ```
 登录后的界面如下
-![img.png](imgs/img.png)
+![img.png](imgs/HDP-Ambari.png)
