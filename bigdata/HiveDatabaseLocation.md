@@ -1,35 +1,65 @@
 ### hive 创建的库保存在哪里?
 
-```
-# hive
-> create database if not exists zt_tmp_20210903;
-> show create database zt_tmp_20210903;
-
-+-----------------------------------------------------------------------------------------+
-|                   createdb_stmt                                                         |
-+-----------------------------------------------------------------------------------------+
-| CREATE DATABASE `zt_tmp_20210903`                                                       |
-| LOCATION                                                                                |
-|   'hdfs://hdp-1.example.com:8020/warehouse/tablespace/external/hive/zt_tmp_20210903.db' |
-+-----------------------------------------------------------------------------------------+
-```
-
-存储的路径是由 /etc/hive/conf/hive-site.xml 的 hive.metastore.warehouse.external.dir 参数来定义.
-
+1. 创建一个数据库
 ```shell
-  <property>
-    <name>hive.metastore.warehouse.external.dir</name>
-    <value>/warehouse/tablespace/external/hive</value>
-  </property>
+> create database if not exists zt_tmp_20211026;
 ```
 
-数据库结构
-
+2. 查看建表语句: 即, 元数据
 ```shell
-# 注意: 这是一个文件夹
-[zt@sandbox ~]$ hadoop fs -ls /apps/hive/warehouse/ | grep "zt_tmp_20210903"
-drwxrwxrwx   - zt hdfs     0 2021-09-14 17:52    /apps/hive/warehouse/zt_tmp_20210903.db
+> show create database zt_tmp_20211026;
+
++--------------------------------------------------------------------------------------------------+
+|                   createdb_stmt                                                                  |
++--------------------------------------------------------------------------------------------------+
+| CREATE DATABASE `zt_tmp_20210903`                                                                |
+| LOCATION                                                                                         |
+|   'hdfs://sandbox-hdp.hortonworks.com:8020/warehouse/tablespace/managed/hive/zt_tmp_20211026.db' |
++--------------------------------------------------------------------------------------------------+
 ```
 
-总结   
-创建一个库，体现在 hdfs 中的是一个文件夹，并没有看到一个实体的数据库文件。
+3. 观察库路径
+```shell
+# 有两个线索.
+[root@sandbox-hdp /]# hadoop fs -find /warehouse | grep "zt_tmp_20211026"
+/warehouse/tablespace/external/hive/zt_tmp_20211026.db
+/warehouse/tablespace/managed/hive/zt_tmp_20211026.db
+
+# 它们都是目录
+[root@sandbox-hdp /]# hadoop fs -ls /warehouse/tablespace/external/hive/
+drwxrwxrwx+  - hive hadoop          0 2021-10-26 05:22 /warehouse/tablespace/external/hive/zt_tmp_20211026.db
+[root@sandbox-hdp /]# hadoop fs -ls /warehouse/tablespace/managed/hive/
+drwxrwxrwx+  - hive hadoop          0 2021-10-26 05:22 /warehouse/tablespace/managed/hive/zt_tmp_20211026.db
+
+```
+
+4. 目录结构的创建依据
+```shell
+[root@sandbox-hdp /]# vi /etc/hive/conf/hive-site.xml
+
+<configuration  xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    ...
+
+    <!-- 内部表目录结构依据 -->
+    <property>
+      <name>hive.metastore.warehouse.dir</name>
+      <value>/warehouse/tablespace/managed/hive</value>
+    </property>
+
+
+    <!-- 外部表目录结构依据 -->
+    <property>
+      <name>hive.metastore.warehouse.external.dir</name>
+      <value>/warehouse/tablespace/external/hive</value>
+    </property>
+    
+    ...
+    
+</configuration>
+```
+
+
+5. 结论   
+在 Hive 中创建一个库，并不会产生任何文件，而是仅在 hdfs 中生成两个目录路径。  
+一个目录路径是外部表路径，一个目录路径是内部表路径。
