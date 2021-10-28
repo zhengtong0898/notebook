@@ -216,7 +216,7 @@ class LinkedListV2(LinkedListV1):
 
     def __init__(self):
         super(LinkedListV2, self).__init__()
-        self.tail = Node(value="tail", next_node=None)                  # 虚拟尾节点
+        self.tail = self.head                                           # 虚拟尾节点
 
     def front_insert(self, value: str):
         is_head_empty = not self.head.next
@@ -251,13 +251,8 @@ class LinkedListV2(LinkedListV1):
         这有可能会破坏链接内部的结构, 否则次优化无效.
         """
         new_node = Node(value=value)
-        is_head_empty = not self.head.next
-        if is_head_empty:
-            self.head.next = new_node
-            self.tail = self.head.next
-        else:
-            self.tail.next = new_node
-            self.tail = self.tail.next
+        self.tail.next = new_node
+        self.tail = new_node
 
 
 def test_llv2_front_insert():
