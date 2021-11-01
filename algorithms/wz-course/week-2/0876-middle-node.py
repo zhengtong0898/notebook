@@ -59,8 +59,22 @@ class Solution:
         return curr_node
 
     def middleNode_v2(self, head: ListNode) -> ListNode:
-        # TODO: 添加快慢指针写法
-        pass
+        """
+        遍历三要素
+
+        指针初始值:      slow = head; fast = head;           # 在同一个赛道上;
+        遍历的结束条件:   fast is None or                     # 当链表数量是奇数时(触发 fast.next = None),
+                        fast.next is None                   # 当链表数量是偶数时(触发 faster = None)
+        遍历的核心逻辑:   slow = slow.next                    
+                        fast = fast.next.next
+        """
+        slow = head
+        fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        return slow
 
 
 def main():
@@ -71,12 +85,13 @@ def main():
     ln_10.next.next.next.next = ListNode(val=5)
     assert ln_10.walk() == [1, 2, 3, 4, 5]
     ss = Solution().middleNode(ln_10)
+    ss = Solution().middleNode_v2(ln_10)
     assert ss.walk() == [3, 4, 5]
 
     ln_10 = ListNode(val=1)
     assert ln_10.walk() == [1]
     ss = Solution().middleNode(ln_10)
-    xx = ss.walk()
+    ss = Solution().middleNode_v2(ln_10)
     assert ss.walk() == [1]
 
 
