@@ -15,5 +15,6 @@
 ### 分支
 - [如何创建一个分支?](CreateBranch.md)
 - [如何删除一个分支?](DeleteBranch.md)
+- [如何删除远程分支?](DeleteRemoteBranch.md)
 - [如何重命名一个分支?](RenameBranch.md)
 - [如何将分支推送到远程?](BranchPushToRemote.md)
