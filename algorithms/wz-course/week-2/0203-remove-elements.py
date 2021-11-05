@@ -8,7 +8,7 @@ class ListNode:
         self.next = next_
 
     def __str__(self):
-        return f"<{self.__class__.__name__} val={self.val} id={id(self)} next={self.next} >"
+        return f"{self.walk()}"
 
     def walk(self) -> List[int]:
         result = []
@@ -33,8 +33,8 @@ class Solution:
 
         创建一个新的链表头节点, 将不等于 val 的节点, back_append 到新的链表头节点中.
         """
-        new_node = ListNode()
-        tail_node = new_node
+        head_node = ListNode()
+        tail_node = head_node
         curr_node = head
 
         while curr_node:
@@ -46,10 +46,10 @@ class Solution:
             next_node = curr_node.next              # curr_node 链条切换节点-1: 先将下一个节点取出来
             curr_node.next = None                   # curr_node 链条解引用, 将链条截断后变成单一的节点.
             tail_node.next = curr_node              # tail_node 链条 back_append 尾部添加 curr_node 这个单一节点.
-            tail_node = curr_node                   # tail_node 链条切换到下一个节点(时刻都要处于链表的尾部).
+            tail_node = tail_node.next              # tail_node 链条切换到下一个节点(时刻都要处于链表的尾部).
             curr_node = next_node                   # curr_node 链条切换节点-2: 切换到下一个节点
 
-        return new_node.next
+        return head_node.next
 
     def removeElements_v2(self, head: ListNode, val: int) -> ListNode:
         """
@@ -79,7 +79,7 @@ def main():
     ln_10.next.next.next.next.next = ListNode(val=5)
     ln_10.next.next.next.next.next.next = ListNode(val=6)
     assert ln_10.walk() == [1, 2, 6, 3, 4, 5, 6]
-    ss = Solution().removeElements_v2(ln_10, 6)
+    ss = Solution().removeElements(ln_10, 6)
     assert ss.walk() == [1, 2, 3, 4, 5]
 
 
