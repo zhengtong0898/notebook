@@ -30,6 +30,14 @@ def middle_node(head: ListNode) -> ListNode:
                     fast.next is None                   # 当链表数量是偶数时(触发 faster = None)
     遍历的核心逻辑:   slow = slow.next
                     fast = fast.next.next
+
+    特别注意:
+    slow = head
+    fast = head
+    这两个赋值动作表示对 head 增加两次引用, 也可以理解为在head位置多建立两个游标.
+    当触发 slow = slow.next 时, 仅触发游标右移一位,
+    当触发 fast = fast.next.next 时, 仅触发游标右移两位,
+    这两个右移操作不会印象 head 的游标位置和值.
     """
     slow = head
     fast = head
