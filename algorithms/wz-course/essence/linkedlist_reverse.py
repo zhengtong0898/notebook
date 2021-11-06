@@ -30,13 +30,24 @@ def reverse(head: ListNode) -> ListNode:
     """
     reverse_node = ListNode()
     curr_node = head
-    while curr_node:
+    while curr_node:                                                  # 时间复杂度: O(n)
         next_node = curr_node.next
         curr_node.next = None                        # 截断 head
         curr_node.next = reverse_node.next           # 反向拼接
-        reverse_node = ListNode(next_=curr_node)     # 反向添加
+        reverse_node = ListNode(next_=curr_node)     # 反向添加        # 空间复杂度: O(n)
         curr_node = next_node
     return reverse_node.next
+
+
+def reverse_v2(head: ListNode) -> ListNode:
+    reverse_node = None
+    curr_node = head
+    while curr_node:                                                  # 时间复杂度: O(n), 空间复杂度: O(1)
+        next_node = curr_node.next
+        curr_node.next = reverse_node
+        reverse_node = curr_node
+        curr_node = next_node
+    return reverse_node
 
 
 def main():
@@ -45,7 +56,7 @@ def main():
     ln_10.next.next = ListNode(val=3)
     ln_10.next.next.next = ListNode(val=4)
     ln_10.next.next.next.next = ListNode(val=5)
-    assert reverse(ln_10).walk() == [5, 4, 3, 2, 1]
+    assert reverse_v2(ln_10).walk() == [5, 4, 3, 2, 1]
 
 
 if __name__ == '__main__':
