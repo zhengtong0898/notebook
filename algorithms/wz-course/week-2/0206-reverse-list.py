@@ -36,18 +36,23 @@ class Solution:
     """
 
     def reverseList(self, head: ListNode) -> ListNode:
-        """
-        解题思路:
-        在循环体内创建一个 head_node,
-        将 head.next
-        """
+        prev_node = None                                # "上一个"指针节点
+        curr_node = head                                # 当前指针节点
+        while curr_node:                                                                             # 时间复杂度 O(n)
+            next_node = curr_node.next                  # 创建临时变量保存"下一个节点"
+            curr_node.next = prev_node                  # 截断 curr_node 链表, 将"上一个"节点, 链接到此处.
+            prev_node = curr_node                       # 将 curr_node 存放在 prev_node 中.
+            curr_node = next_node                       # curr_node 向右移动一位.
+        return prev_node
+
+    def reverseList_v2(self, head: ListNode) -> ListNode:
         if not head: return head
         rst_node = ListNode()
-        while head:
+        while head:                                                                                  # 时间复杂度 O(n)
             head_next = head.next                       # 创建临时变量保存 head 链表的后续节点
-            head.next = None                            # 阶段 head 链表, 使其变成一个 "尾节点" 状态
+            head.next = None                            # 截断 head 链表, 使其变成一个 "尾节点" 状态
             head.next = rst_node.next                   # 将 rst_node 链表的所有节点，对接到 head 链表
-            rst_node = ListNode(next_=head)             # 将 rst_node 向左移动一位
+            rst_node = ListNode(next_=head)             # 将 rst_node 向左移动一位                       空间复杂度 O(n)
             head = head_next                            # head 向右移动一位
         return rst_node.next
 
