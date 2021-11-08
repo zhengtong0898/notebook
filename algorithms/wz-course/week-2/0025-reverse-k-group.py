@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 
 class ListNode:
@@ -44,8 +44,48 @@ class Solution:
     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
     """
 
-    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        pass
+    def reverseKGroup(self, head, k):
+        """
+        https://leetcode.com/problems/reverse-nodes-in-k-group/discuss/11491/Succinct-iterative-Python-O(n)-time-O(1)-space
+        """
+        dummy_head = ListNode(next_=head)
+        dummy_tail = dummy_head
+
+        left = head
+        right = head
+
+        while True:
+            count = 0
+            while right and count < k:                                      # use r to locate the range
+                right = right.next
+                count += 1
+            if count == k:                                          # if size k satisfied, reverse the inner linked list
+                pre, cur = right, left
+                for _ in range(k):
+                    cur.next, cur, pre = pre, cur.next, cur                 # standard reversing      TODO: 这是什么意思?
+                dummy_tail.next, dummy_tail, left = pre, left, right        # connect two k-groups
+            else:
+                return dummy_head.next
+
+    def reverseKGroup_v2(self, head, k):
+        """
+        https://leetcode.com/problems/reverse-nodes-in-k-group/discuss/11491/Succinct-iterative-Python-O(n)-time-O(1)-space
+        """
+        dummy = jump = ListNode(0)
+        dummy.next = l = r = head
+
+        while True:
+            count = 0
+            while r and count < k:  # use r to locate the range
+                r = r.next
+                count += 1
+            if count == k:  # if size k satisfied, reverse the inner linked list
+                pre, cur = r, l
+                for _ in range(k):
+                    cur.next, cur, pre = pre, cur.next, cur  # standard reversing
+                jump.next, jump, l = pre, l, r  # connect two k-groups
+            else:
+                return dummy.next
 
     def reverseKGroup_failed(self, head: ListNode, k: int) -> ListNode:
         """
