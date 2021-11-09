@@ -9,3 +9,6 @@
 1. [开发环境准备](./HadoopDevEnvPrepare.md)
 2. [hadoop 端口监听清单](./HadoopPorts.md)
 3. [hadoop 权限](./HadoopPermissions.md)
+
+### mapreduce
+1. [Python版-气象数据操作](./mapreduce-py/MapReduce-Python.md)
