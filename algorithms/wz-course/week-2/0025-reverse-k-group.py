@@ -21,6 +21,8 @@ class ListNode:
 class Solution:
 
     """
+    0025. K 个一组翻转链表
+
     给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。
 
     k 是一个正整数，它的值小于或等于链表的长度。
@@ -48,90 +50,71 @@ class Solution:
         """
         https://leetcode.com/problems/reverse-nodes-in-k-group/discuss/11491/Succinct-iterative-Python-O(n)-time-O(1)-space
         """
+        # 虚拟头节点、虚拟尾节点
         dummy_head = ListNode(next_=head)
         dummy_tail = dummy_head
 
-        left = head
-        right = head
-
+        # 实际头节点、实际尾结点
+        left = right = head
         while True:
+            # real_tail 尾节点 持续右移,
+            # 当 count == k 时, 满足 reverse 的条件, 跳出二级while循环.
             count = 0
-            while right and count < k:                                      # use r to locate the range
+            while right and count < k:
                 right = right.next
                 count += 1
-            if count == k:                                          # if size k satisfied, reverse the inner linked list
-                pre, cur = right, left
-                for _ in range(k):
-                    cur.next, cur, pre = pre, cur.next, cur                 # standard reversing      TODO: 这是什么意思?
-                dummy_tail.next, dummy_tail, left = pre, left, right        # connect two k-groups
-            else:
+
+            # 当 count != k 时, 满足结束条件, 跳出一级while循环.
+            if count != k:
                 return dummy_head.next
 
-    def reverseKGroup_v2(self, head, k):
-        """
-        https://leetcode.com/problems/reverse-nodes-in-k-group/discuss/11491/Succinct-iterative-Python-O(n)-time-O(1)-space
-        """
+            # 执行 reverse 操作.
+            prev, curr = right, left
+            for _ in range(k):
+                # curr.next, prev, curr = prev, curr, curr.next
+                # 假设链表是: 1 -> 2 -> 3 -> 4 -> 5
+                # 禁止使用这种写法, 容易把人绕进去, 因为如果直接将代码拆分成:
+                # curr.next = prev                                                        # curr = 1 -> 4 -> 5
+                # prev = curr                                                             # prev = 1 -> 4 -> 5
+                # curr = curr.next                                                        # curr = 4 -> 5
+                # 这种拆分写法会在第二次循环的时候就造成环引用问题.
+                # 如果不拆分则不存在环引用问题, 这很费解.
+                # 经过查阅资料得知: Python内部会帮建立一个栈来保存变量,
+                # 这也算是临时变量了, 然后再根据实际情况来决定如何交换变量.
+                # 参考资料:
+                # https://www.zhihu.com/question/63859022
+                # https://blog.csdn.net/hanzheng992/article/details/52430475
+                # https://stackoverflow.com/a/47529318
+                # https://www.jianshu.com/p/bf5819490120
+                curr_next = curr.next                                                     # curr_next = 2 -> 3 -> 4 -> 5
+                curr.next = prev                                                          # curr = 1 -> 4 -> 5
+                prev = curr                                                               # prev = 1 -> 4 -> 5
+                curr = curr_next                                                          # curr = 2 -> 3 -> 4 -> 5
+
+            # 链接后续节点
+            # dummy_tail.next, dummy_tail, real_head = prev, real_head, real_tail         # connect two k-groups
+            # 由于这里并没有产生环引用，所以可以直接拆分赋值语句
+            dummy_tail.next = prev                                                        # 3 -> 2 -> 1 -> 4 -> 5
+            dummy_tail = left                                                             # 1 -> 4 -> 5
+            left = right                                                                  # 4 -> 5
+
+    def reverseKGroup_idiomatic(self, head, k):
         dummy = jump = ListNode(0)
         dummy.next = l = r = head
 
         while True:
             count = 0
-            while r and count < k:  # use r to locate the range
+            while r and count < k:                                                           # use r to locate the range
                 r = r.next
                 count += 1
-            if count == k:  # if size k satisfied, reverse the inner linked list
+            if count == k:                                          # if size k satisfied, reverse the inner linked list
                 pre, cur = r, l
                 for _ in range(k):
-                    cur.next, cur, pre = pre, cur.next, cur  # standard reversing
-                jump.next, jump, l = pre, l, r  # connect two k-groups
+                    # 难点在这里, 这里有涉及到嵌套, 参考上面的拆解.
+                    cur.next, cur, pre = pre, cur.next, cur                                         # standard reversing
+                jump.next, jump, l = pre, l, r                                                    # connect two k-groups
             else:
                 return dummy.next
-
-    def reverseKGroup_failed(self, head: ListNode, k: int) -> ListNode:
-        """
-        这是一个失败的写法, 无法通过 head = [1, 2], k = 2 的场景.
-        """
-        head_node = ListNode()
-        tail_node = head_node
-
-        final_head_node = ListNode()
-        final_tail_node = final_head_node
-
-        count = 0
-        curr_node = head
-        while curr_node:
-
-            if count == k:
-                count = 0
-                temp_node = self.reverseList(head_node.next)
-                while temp_node:
-                    next_temp_node = temp_node.next
-                    temp_node.next = None
-                    final_tail_node.next = temp_node
-                    final_tail_node = final_tail_node.next
-                    temp_node = next_temp_node
-                head_node = ListNode()
-                tail_node = head_node
-
-            next_node = curr_node.next
-            curr_node.next = None
-            tail_node.next = curr_node
-            tail_node = tail_node.next
-            curr_node = next_node
-            count += 1
-
-        final_tail_node.next = head_node.next
-        return final_head_node.next
-
-    def reverseList(self, head: ListNode) -> ListNode:
-        prev_node = None                                # "上一个"指针节点
-        curr_node = head                                # 当前指针节点
-        while curr_node:                                                                             # 时间复杂度 O(n)
-            next_node = curr_node.next                  # 创建临时变量保存"下一个节点"
-            curr_node.next = prev_node                  # 截断 curr_node 链表, 将"上一个"节点, 链接到此处.
-            prev_node = curr_node                       # 将 curr_node 存放在 prev_node 中.
-            curr_node = next_node                       # curr_node 向右移动一位.
-        return prev_node
 
 
 def test_1():
@@ -140,9 +123,9 @@ def test_1():
     l1.next.next = ListNode(val=3)
     l1.next.next.next = ListNode(val=4)
     l1.next.next.next.next = ListNode(val=5)
-    ss = Solution().reverseKGroup(l1, 2)
+    ss = Solution().reverseKGroup(l1, 3)
     xx = ss.walk()
-    assert xx == [2, 1, 4, 3, 5]
+    assert xx == [3, 2, 1, 4, 5]
 
 
 def test_2():
