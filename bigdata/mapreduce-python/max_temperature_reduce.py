@@ -5,6 +5,8 @@ last_key = None
 max_val = 0
 
 
+# 这是一个实时流读取和实时排序算法.
+# 从当前案例来看它即可以是每个节点上的job, 也可以是汇聚节点上的 combiner.
 for line in sys.stdin.readlines():
     key, val = line.strip().split("\t")
 

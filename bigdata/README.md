@@ -11,4 +11,4 @@
 3. [hadoop 权限](./HadoopPermissions.md)
 
 ### mapreduce
-1. [Python版-气象数据操作](./mapreduce-py/MapReduce-Python.md)
+1. [Python版-气象数据操作](mapreduce-python/README.md)
