@@ -21,13 +21,20 @@ class ListNode:
 
 def reverse(head: ListNode) -> ListNode:
     """
-    将链表反向排序
-
-    特别注意:
-    慎重使用 None 来截断链表, 因为这会导致所有引用节点都会同步这个截断操作,
-    比如说下面的 curr_node = head 这个赋值操作，其实就是对 head 多增加一个引用,
-    当触发下面的 curr_node.next = None 时, curr_node 和 head 会同时被截断.
+    做完整链表反转, 必须增加一个 外部节点(这里是 prev_node)来截断 head 节点.
+    做部分链表反转, 可以不需要增加外部节点完成, 例如: 0025-reverse-k-group.py
     """
+    prev_node = None
+    curr_node = head
+    while curr_node:                                                  # 时间复杂度: O(n), 空间复杂度: O(1)
+        next_node = curr_node.next
+        curr_node.next = prev_node
+        prev_node = curr_node
+        curr_node = next_node
+    return prev_node
+
+
+def reverse_v2(head: ListNode) -> ListNode:
     reverse_node = ListNode()
     curr_node = head
     while curr_node:                                                  # 时间复杂度: O(n)
@@ -39,15 +46,21 @@ def reverse(head: ListNode) -> ListNode:
     return reverse_node.next
 
 
-def reverse_v2(head: ListNode) -> ListNode:
-    reverse_node = None
+def reverse_v3(head: ListNode) -> ListNode:
+    """
+    链表的禁忌
+
+    当链表不慎指向到自己时, 会产生环引用.
+    环引用会导致进程将内存全部打满最终被操作系统oom-kill.
+    """
+    prev_node = head
     curr_node = head
     while curr_node:                                                  # 时间复杂度: O(n), 空间复杂度: O(1)
         next_node = curr_node.next
-        curr_node.next = reverse_node
-        reverse_node = curr_node
+        curr_node.next = prev_node
+        prev_node = curr_node
         curr_node = next_node
-    return reverse_node
+    return prev_node
 
 
 def main():
@@ -56,7 +69,7 @@ def main():
     ln_10.next.next = ListNode(val=3)
     ln_10.next.next.next = ListNode(val=4)
     ln_10.next.next.next.next = ListNode(val=5)
-    assert reverse_v2(ln_10).walk() == [5, 4, 3, 2, 1]
+    assert reverse_v3(ln_10).walk() == [5, 4, 3, 2, 1]
 
 
 if __name__ == '__main__':
