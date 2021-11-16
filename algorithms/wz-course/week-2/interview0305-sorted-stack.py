@@ -34,13 +34,11 @@ class SortedStack:
 
         题目说对栈进行排序, 这通常是在写入时完成排序;
         """
-        self._top = -1
         self.stack_a = []
         self.stack_b = []
 
     def push(self, val: int) -> None:
         if not self.stack_a:
-            self._top = val
             self.stack_a.append(val)
             return
 
@@ -50,34 +48,24 @@ class SortedStack:
             if not inserted and val < a_val:
                 inserted = True
                 self.stack_b.append(val)
-                self.stack_b.append(a_val)
-            else:
-                self.stack_b.append(a_val)
+            self.stack_b.append(a_val)
 
         if not inserted:
             self.stack_b.append(val)
 
-        b_val = -1
         while self.stack_b:
             b_val = self.stack_b.pop()
             self.stack_a.append(b_val)
-
-        self._top = b_val
 
     def pop(self) -> None:
         if self.stack_a:
             self.stack_a.pop()
 
-        if self.stack_a:
-            val = self.stack_a.pop()
-            self._top = val
-            self.stack_a.append(val)
-
-        if not self.stack_a:
-            self._top = -1
-
     def peek(self) -> int:
-        return self._top
+        if not self.stack_a: return -1
+        value = self.stack_a.pop()
+        self.stack_a.append(value)
+        return value
 
     def isEmpty(self) -> bool:
         return not bool(self.stack_a)
