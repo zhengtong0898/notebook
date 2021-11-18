@@ -21,4 +21,4 @@
 4. [leet-code-0155. 最小栈](./0155-min-stack.py)
 5. interview03.01. 三合一（简单）
 6. [leet-code-0020. 有效的括号（简单）](./0020-valid-parentheses.py)
-
+7. [interview16.26. 计算器（中等）](./interview1626-calculator-lcci.py)
