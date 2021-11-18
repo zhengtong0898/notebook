@@ -22,3 +22,4 @@
 5. interview03.01. 三合一（简单）
 6. [leet-code-0020. 有效的括号（简单）](./0020-valid-parentheses.py)
 7. [interview16.26. 计算器（中等）](./interview1626-calculator-lcci.py)
+8. [leet-code-1047. 删除字符串中的所有相邻重复项](./1047-remove-duplicates.py)
