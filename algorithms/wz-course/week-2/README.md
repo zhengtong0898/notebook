@@ -24,4 +24,5 @@
 7. [interview16.26. 计算器（中等）](./interview1626-calculator-lcci.py)
 8. [leet-code-1047. 删除字符串中的所有相邻重复项](./1047-remove-duplicates.py)
 9. offer31. 栈的压入、弹出序列（中等）
-10. [leet-code-0739. 每日温度（中等） 单调栈](/0739-daily-temperatures.py) 
+10. [leet-code-0739. 每日温度（中等） 单调栈](./0739-daily-temperatures.py) 
+11. [leet-code-0042. 接雨水（困难）单调栈](./0042-trap.py)
