@@ -27,3 +27,5 @@
 10. [leet-code-0739. 每日温度（中等） 单调栈](./0739-daily-temperatures.py) 
 11. [leet-code-0042. 接雨水（困难）单调栈](./0042-trap.py)
 12. [leet-code-0083. 柱状图中最大的矩形（困难）单调栈](./0083-largest-rectangle-area.py)
+13. 面试题 03.06. 动物收容所（中等） 队列
+14. [Offer59-II. 队列的最大值（中等） 单调队列](./offer59-max-queue.py)
