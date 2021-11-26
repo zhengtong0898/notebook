@@ -17,6 +17,8 @@
 |关键字|名称| 
 |---|---|
 |queue.Queue|队列类型|
+|queue.LifoQueue|栈类型|
+|queue.PriorityQueue|优先级队列类型|
 |collections.deque|双向队列类型|
 |collections.defaultdict|默认值字典|
 |collections.ordereddict|有序字典|
