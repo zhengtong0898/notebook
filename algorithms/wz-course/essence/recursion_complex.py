@@ -6,6 +6,12 @@ count = 1
 
 def fibonacci(n: int, side=None, uid=None) -> int:
     """
+    fibonacci 数列的参考资料
+    https://youtu.be/VCJsUYeuqaY
+    https://zhuanlan.zhihu.com/p/26752744
+    https://www.sohu.com/a/38467194_114812
+
+
                                           6
                              /                         \
                            5                          4
@@ -80,8 +86,33 @@ def fibonacci_origin(n: int) -> int:
         return fibonacci_origin(n - 1) + fibonacci_origin(n -2)
 
 
+leftmost_init = True
+leftmost_leaf = {}
+def fibonacci_sequence(n: int, side=None, uid=None) -> int:
+    """
+    上面fibonacci采用的是递归实现, 一个输入, 最终计算出一个结果输出, 整个计算过程不可见.
+    当前函数采用特殊标记, 有效筛选和打印出 fibonacci 的数列.
+    """
+    global leftmost_init, leftmost_leaf
+    if side == "right":
+        leftmost_init = False
+
+    if leftmost_init:
+        leftmost_leaf[uid] = 1
+
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        result = fibonacci_sequence(n - 1, "left", uuid.uuid4()) + fibonacci_sequence(n - 2, "right", uuid.uuid4())
+        if leftmost_init is False and side in ("left", None) and leftmost_leaf.get(uid):
+            print(result)
+        return result
+
+
 def main():
-    print(fibonacci(6))
+    print("main: ", fibonacci_sequence(5))
 
 
 if __name__ == '__main__':
