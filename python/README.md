@@ -3,3 +3,10 @@
 3. [数据结构和算法的关系和区别?](./DataStructureAndAlgorithmRelationship.md)
 4. [字符串格式化技巧](./StringFormat.md)
 5. [repr和str的区别](./DiffBetweenReprAndStr.md)
+6. [变量、值、引用，三者的关系](./VariableReference.md)
+
+&nbsp;  
+**参考资料**  
+[Python学习手册(第五册)](https://item.jd.com/12452929.html)   
+[C语言中文网(数据结构)](http://c.biancheng.net/view/3328.html)  
+[C语言中文网(Python教程)](http://c.biancheng.net/python/)
