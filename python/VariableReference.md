@@ -58,5 +58,17 @@ a = "C++"                   # 用其他值来覆盖掉当前变量, 最终达到
 
 
 &nbsp;  
+### 引用计数
+```
+import sys
+
+a = "Cython is very fast."   # 右侧的字符串对象被变量a引用, 此时引用计数器是: 1
+print(sys.getrefcount(a))    # 输出: 2       
+                             # 变量a传递进入 sys.getrefcount 函数, 
+                             # 字符串对象的引用计数+1, 所以此时引用计数器是: 2
+```
+
+
+&nbsp;  
 ### 参考资料
 [Python 存储字符串时，是如何节省空间的？](https://cloud.tencent.com/developer/article/1423754)
