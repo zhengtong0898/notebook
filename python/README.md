@@ -7,6 +7,7 @@
 5. [repr和str的区别](./DiffBetweenReprAndStr.md)
 6. [变量、值、引用，三者的关系](./VariableReference.md)
 7. [浅拷贝和深拷贝](./ShadowAndDeepCopy.md)
+8. [编程语言的通用语法](./Syntax.md)
 
 &nbsp;  
 ### 参考资料  
