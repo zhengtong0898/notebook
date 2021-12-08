@@ -34,12 +34,21 @@ print(ss)                           # output: <generator object example at 0x7fc
 ```python3
 
 def example():
-    yield "10"  
+    yield "10"                      # 函数中使用了 yield 关键字.
 
-ss = example()
+print(type(example))                # 未调用example之前, Python 认为它是一个普通函数.
+
+ss = example()                      # 调用 example 时, 
+                                    # Python 发现函数体内有 yield 关键字, 
+                                    # Python 将 example 函数转换成 <class 'generator'>, 
+                                    # Python 然后实例化这个生成器类.
+                                    
 print(ss)                           # output: <generator object example at 0x7fc04b0db9d0>
 xx = next(ss)                       # 执行 example 体内的代码.
 print(xx)                           # output: 10
 ```
+
+&nbsp;  
+**StopIteration异常**  
 
 
