@@ -17,3 +17,4 @@
 1. [leet-code-0070. 爬楼梯（简单）](./0070-climb-stairs.py)
 2. [classic1-cell-duplicate（复杂）](./classic1-cell-duplicate.py)
 3. [剑指 Offer 10- I. 斐波那契数列 （简单）](./offer10-fibonacci.py)
+4. [剑指 Offer 10- II. 青蛙跳台阶问题（简单）](./offer10-num-ways.py)
