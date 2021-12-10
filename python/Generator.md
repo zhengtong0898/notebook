@@ -164,7 +164,7 @@ xx = next(ss)                                               # 已关闭的生成
 
 &nbsp;  
 **StopIteration 异常处理**   
-`tornado`利用生成器的异常处理机制, 可以将结果即时的返回给外部程序.  
+`tornado`利用生成器的异常处理机制, 可以将[结果即时的返回](https://www.tornadoweb.org/en/stable/gen.html#tornado.gen.Return) 给外部程序.  
 这是一个比较抽象的情况, 不理解不要紧, 以后阅读框架性源码遇到的时候在过来看就好.  
 ```python3
 
@@ -199,3 +199,76 @@ except StopIteration as ex:                 #
 
 &nbsp;  
 **yield from 关键字**  
+从`python3.3`开始提供了`yield from`关键字, 这个关键字为生成器提供了两个能力:
+1. 让代码扁平化, 简化代码的编写(用处不大).
+```python3
+
+# yield的编码方式
+def example_1():
+    for i in [5, 4, 3, 2, 1]:
+        yield i
+
+    for i in [0, 1, 2, 3, 4]:
+        yield i
+
+# yield from的编码方式
+def example_2():
+    yield from [5, 4, 3, 2, 1]
+    yield from [0, 1, 2, 3, 4]
+
+
+list(example_1()) == list(example_2()) == True
+
+```
+2. 使`generator.send`具备将`值`和`异常`持续(多级的)透传给`子生成器`的能力.  
+3. `yield from`使代码抽象到子生成器中变得更容易一些, 对父生成器起到扁平化、逻辑简化的效果.
+```python3
+
+# 子生成器
+def accumulate():
+    tally = 0                                   # 计数器
+    while True:
+        recv = yield                            # yield 右侧的值, 会透传回给非生成器(外部)对象
+                                                # 由于这里的 yield 右侧没有值, 所以透传回给非生成器对象是一个None
+                                                # yield 左侧的值, 是由外部通过 generator.send 传递进来的.
+        
+        if recv is None:                        # 当外部 generator.send(None) 进来时,                                                 
+            return tally                        # 会结束掉当前生成器.
+        
+        tally += recv
+
+
+# 父生成器
+def gather_tallies(tallies):
+    while True:
+        tally = yield from accumulate()         # generator.send 的值会透传到 accumulate 子生成器中,
+                                                # next() 触发的也是accumulate子生成器,
+                                                # yield from 还有一个隐藏能力, 就是不需要处理StopIteration.
+                                                # 当 accumulate 子生成器 return 值时, 
+                                                # yield from自动捕获StopIteration并将值, 赋值给tally.
+        tallies.append(tally)
+
+
+tallies = []
+acc = gather_tallies(tallies)                   # 将函数转换和实例化成为生成器对象.
+next(acc)                                       # 开始执行生成器对象, 要么遇到yield挂起生成器, 要么抵达底部抛StopIteration.
+                                                # next(acc) 这个动作会透传到 accumulate 子生成器中.
+                                                
+for i in range(4):
+    acc.send(i)                                 # 透传四个值进入accumulate子生成器: 0, 1, 2, 3 = 6
+
+acc.send(None)                                  # 透传一个None进入accumulate子生成器, 
+                                                # 此时 accumulate 子生成器, 抛一个StopIteration异常.
+                                                # 但被 yield from 捕获, 并将异常返回的值, 赋值给 tally 并添加到 tallies 中.
+                                                
+assert tallies == [6, ]                         # 所以此时, tallies 预期时等于 [6, ]                       
+
+for i in range(5):                              
+    acc.send(i)
+
+acc.send(None)
+
+assert tallies == [6, 10]
+print(tallies)                                  # 输出: [6, 10]
+
+```
