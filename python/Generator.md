@@ -163,4 +163,39 @@ xx = next(ss)                                               # 已关闭的生成
 ```
 
 &nbsp;  
+**StopIteration 异常处理**   
+`tornado`利用生成器的异常处理机制, 可以将结果即时的返回给外部程序.  
+这是一个比较抽象的情况, 不理解不要紧, 以后阅读框架性源码遇到的时候在过来看就好.  
+```python3
+
+def example():
+    count = 0
+    while True:
+        recv = yield count
+        count += 10
+        if recv == "close generator":       
+            return "closed"                 # return "closed", 其实是告诉生成器, 抵达函数底部了, 抛 StopIteration 异常把.
+
+
+ss = example()
+
+xx1 = next(ss)                              # next 返回的是 yield 右侧的值
+assert xx1 == 0                             
+
+xx2 = next(ss)
+assert xx2 == 10
+
+xx3 = next(ss)
+assert xx3 == 20
+
+try:
+    ss.send("close generator")              # send 完成的是 yield 左侧的赋值
+except StopIteration as ex:                 # 
+    xx4 = ex.value                          # 重点在这里: 利用异常机制的 value 接口获取正确的值.
+    assert xx4 == "closed"
+
+```
+
+
+&nbsp;  
 **yield from 关键字**  
