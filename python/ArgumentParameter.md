@@ -118,11 +118,31 @@ example("apple", "banana", "orange")
 
 &nbsp;  
 ### 固定参数
-固定参数(**Positional-Only Parameters**)要求传参时, 必须按照固定的位置填写值.
+固定参数(**Positional-Only Parameters**)要求传参时, 必须按照固定的位置填写值.  
 备注: 从`Python3.8`开支支持这个特性.
 ```python3
 
-def example(a, b, /, c, d):
-    pass
+def example(a, b, /, c, d):                     # 定义形式参数: 第一个a是必填参数, 不允许指定变量名赋值
+    print(f"a: {a}; b: {b}; c: {c}; d: {d}")    #             第二个b是必填参数, 不允许指定变量名赋值
+                                                #             第三个/是占位符
+                                                #             第四个c是关键字参数, 要求传参时必须指定变量名
+                                                #             第五个d是关键字参数, 要求传参时必须指定变量名
 
+# 传参(实际参数), 支持的写法
+example("apple", "banana",                      # 标准写法
+        c="orange", d="lemon")                  
+
+items = ["apple", "banana"]
+kws = {"c": "orange", "d": "lemon"}
+example(*items, **kws)                          # 占位符(/)是一个非常典型的分水岭，将 *items 和 **kws 传参完美融合.  
+
+
+# 传参(实际参数), 不支持的写法
+example(a="apple", b="banana", 
+        c="orange", d="lemon")                  # 占位符(/)要求左侧的形参不允许以指定变量名的方式来传参, 
+
+kws = {"a": "apple", "b": "banana", 
+       "c": "orange", "d": "lemon"}
+example(**kws)                                  # 占位符(/)要求左侧的形参不允许以指定变量名的方式来传参, 
+                                                # 然而**采取的就是解构字典后, 采取指定变量名的方式入参, 因此报错.  
 ```
