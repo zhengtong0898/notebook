@@ -4,7 +4,41 @@ import uuid
 count = 1
 
 
-def fibonacci(n: int, side=None, uid=None) -> int:
+def fibonacci(n: int) -> int:
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n -2)
+
+
+leftmost_init = True
+leftmost_leaf = {}
+def fibonacci_sequence(n: int, side=None, uid=None) -> int:
+    """
+    上面fibonacci采用的是递归实现, 一个输入, 最终计算出一个结果输出, 整个计算过程不可见.
+    当前函数采用特殊标记, 有效筛选和打印出 fibonacci 的数列.
+    """
+    global leftmost_init, leftmost_leaf
+    if side == "right":
+        leftmost_init = False
+
+    if leftmost_init:
+        leftmost_leaf[uid] = 1
+
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        result = fibonacci_sequence(n - 1, "left", uuid.uuid4()) + fibonacci_sequence(n - 2, "right", uuid.uuid4())
+        if leftmost_init is False and side in ("left", None) and leftmost_leaf.get(uid):
+            print(result)
+        return result
+
+
+def fibonacci_debug(n: int, side=None, uid=None) -> int:
     """
     fibonacci 数列的参考资料
     https://youtu.be/VCJsUYeuqaY
@@ -72,47 +106,15 @@ def fibonacci(n: int, side=None, uid=None) -> int:
     elif n == 1:                                                                                     # 满足终止层层递进条件
         return 1
     else:
-        result = fibonacci(n - 1, "left", uuid.uuid4()) + fibonacci(n - 2, "right", uuid.uuid4())   # 最终返回结果给外部程序
+        left = fibonacci_debug(n - 1, "left", uuid.uuid4())
+        right = fibonacci_debug(n - 2, "right", uuid.uuid4())
+        result = left + right                                                                      # 最终返回结果给外部程序
         print(f"count: {count}; n: {n}; side: {side}; uid: {str(uid).split('-')[0]}; result: {result}")
         return result
 
 
-def fibonacci_origin(n: int) -> int:
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fibonacci_origin(n - 1) + fibonacci_origin(n -2)
-
-
-leftmost_init = True
-leftmost_leaf = {}
-def fibonacci_sequence(n: int, side=None, uid=None) -> int:
-    """
-    上面fibonacci采用的是递归实现, 一个输入, 最终计算出一个结果输出, 整个计算过程不可见.
-    当前函数采用特殊标记, 有效筛选和打印出 fibonacci 的数列.
-    """
-    global leftmost_init, leftmost_leaf
-    if side == "right":
-        leftmost_init = False
-
-    if leftmost_init:
-        leftmost_leaf[uid] = 1
-
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        result = fibonacci_sequence(n - 1, "left", uuid.uuid4()) + fibonacci_sequence(n - 2, "right", uuid.uuid4())
-        if leftmost_init is False and side in ("left", None) and leftmost_leaf.get(uid):
-            print(result)
-        return result
-
-
 def main():
-    print("main: ", fibonacci_sequence(5))
+    print("main: ", fibonacci_debug(5))
 
 
 if __name__ == '__main__':

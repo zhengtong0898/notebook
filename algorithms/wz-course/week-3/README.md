@@ -19,3 +19,4 @@
 3. [剑指 Offer 10- I. 斐波那契数列 （简单）](./offer10-fibonacci.py)
 4. [剑指 Offer 10- II. 青蛙跳台阶问题（简单）](./offer10-num-ways.py)
 5. [面试题 08.01. 三步问题 （简单）](./interview0801-ways-to-step.py)  
+6. [剑指 Offer 06. 从尾到头打印链表 （简单）](./offer06-reverse-print.py)

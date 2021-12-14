@@ -1,3 +1,4 @@
+import uuid
 
 
 def recursion(n: int) -> int:
@@ -22,8 +23,26 @@ def recursion(n: int) -> int:
     return recursion(n - 1) + 3         # 最终返回结果给外部程序
 
 
+count = 1
+def recursion_debug(n: int, side=None, uid=None) -> int:
+    """
+    关键信息:
+    递归函数, 会无线循环的递进,
+    只需要一次跳出动作,
+    递归函数, 将会开始层层回归, 直到回到递归函数的栈顶.
+    """
+    global count
+    print(f"count: {count}; n: {n}; side: {side}; uid={str(uid).split('-')[0] if uid else uid}")
+    count += 1
+    if n == 1: return n                                                                                 # 符合递进终止条件
+    s = n - 1
+    result = recursion_debug(s, side="left", uid=uuid.uuid4()) + 3
+    print(f"count: {count}; n: {n}; side: {side}; uid: {str(uid).split('-')[0]}; s: {s}; result: {result}")
+    return result
+
+
 def main():
-    ss = recursion(5)
+    ss = recursion_debug(5)
     assert ss == 13
 
 
