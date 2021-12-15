@@ -13,6 +13,10 @@
 11. [生成器](./Generator.md)  
 12. [参数的使用技巧](./ArgumentParameter.md)
 
+### 通用的技术知识
+1. [多线程](./Threading.md)  
+
+
 &nbsp;  
 ### 参考资料  
 [Python学习手册(第五册-上册)](https://item.jd.com/12452929.html)   
