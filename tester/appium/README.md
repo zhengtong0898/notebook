@@ -23,13 +23,13 @@ adb 全名 Android Debug Bridge, 是一个调试工具.
 
 |方法|模块|说明|
 |---|---|---|
-|start_activity|appium.webdriver.extensions.android.activities.Activities| [启动一个app](./scripts/0002-get-package-and-activity.py#L18) |
-|current_activity|appium.webdriver.extensions.android.activities.Activities| [获取当前界面名](./scripts/0002-get-package-and-activity.py#L28) |
-|current_package|[webdriver.extensions.android.common.Common](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/common.py#L58)| [获取当前包名](./scripts/0002-get-package-and-activity.py#L23) |
-|terminate_app|appium.webdriver.extensions.applications.Applications| [关闭一个app](./scripts/0003-terminate-app.py#L23) |
-|is_app_installed|appium.webdriver.extensions.applications.Applications| [检查app是否已安装](./scripts/0004-install-app.py#L12) |
-|install_app|appium.webdriver.extensions.applications.Applications| [安装一个app](./scripts/0004-install-app.py#L24) |
-|remove_app|appium.webdriver.extensions.applications.Applications| [卸载一个app](./scripts/0004-install-app.py#L17) |
+|start_activity|appium.webdriver.extensions.android.activities.Activities| [启动一个app](scripts/0002-get-package-and-activity.py#L18) |
+|current_activity|appium.webdriver.extensions.android.activities.Activities| [获取当前界面名](scripts/0002-get-package-and-activity.py#L28) |
+|current_package|[webdriver.extensions.android.common.Common](https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/common.py#L58)| [获取当前包名](scripts/0002-get-package-and-activity.py#L23) |
+|terminate_app|appium.webdriver.extensions.applications.Applications| [关闭一个app](scripts/0003-terminate-app.py#L23) |
+|is_app_installed|appium.webdriver.extensions.applications.Applications| [检查app是否已安装](scripts/0004-install-app.py#L12) |
+|install_app|appium.webdriver.extensions.applications.Applications| [安装一个app](scripts/0004-install-app.py#L24) |
+|remove_app|appium.webdriver.extensions.applications.Applications| [卸载一个app](scripts/0004-install-app.py#L17) |
 |query_app_state|appium.webdriver.extensions.applications.Applications| [查询一个app的状态](scripts/0005-app-state-and-background.py#L20) |
 |background_app|appium.webdriver.extensions.applications.Applications| [长按 `Home` 键, 将app放置后台(单位: 秒), 然后再回到屏幕前](scripts/0005-app-state-and-background.py#L26) |
 |find_element_by_id|selenium.webdriver.remote.webdriver.WebDriver| [对应于: resource-id 标签](scripts/0006-find-element-by.py#L26) |

@@ -48,9 +48,9 @@
 &nbsp;  
 &nbsp;  
 ### Tips
-[1. 安装Jenkins](./tips/jenkins_install.md)   
-[2. 如何切换Jenkins的语言?](./tips/switch_language.md)       
-[3. 如何生成和添加密钥凭证?](./tips/generate_credential.md)   
-[4. 如何添加一个节点?](./tips/new_node.md)   
-[5. 如何在指定节点上构建任务?](./tips/choose_node_for_build.md)  
+[1. 安装Jenkins](tips/jenkins_install.md)   
+[2. 如何切换Jenkins的语言?](tips/switch_language.md)       
+[3. 如何生成和添加密钥凭证?](tips/generate_credential.md)   
+[4. 如何添加一个节点?](tips/new_node.md)   
+[5. 如何在指定节点上构建任务?](tips/choose_node_for_build.md)  
 [6. 什么是jenkinsfile?](./tips/jenkinsfile.md)  
