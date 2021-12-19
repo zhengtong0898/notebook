@@ -5,6 +5,6 @@
 $ pip3.8  install tornado==4.5
 ```
 
-2.准备服务端程序, [server.py](./write_case/server.py)  
+2.准备服务端程序, [server.py](./server.py)  
 
-3.客户端调试程序, [client.py](./write_case/client.py)
+3.客户端调试程序, [client.py](./client.py)
