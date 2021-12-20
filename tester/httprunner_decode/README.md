@@ -3,9 +3,12 @@
 1. [安装httprunner](https://github.com/httprunner/httprunner/blob/master/docs/installation.md)  
 2. [创建httprunner项目](https://github.com/httprunner/httprunner/blob/master/docs/user/scaffold.md)  
 3. [前置准备工作](write_case/Prepare.md)
-4. [写最小单元的用例](write_case/WriteCase.md)
-5. [生成测试报告]()
-6. [优化测试报告]()
+4. [单接口用例](write_case/SingleCase.md)
+5. [单接口用例参数化](write_case/ParameterCase.md)
+6. [写分层用例](write_case/LayerCase.md)
+7. [写流程性用例](write_case/WorkflowCase.md)
+8. [生成测试报告]()
+9. [优化测试报告]()
 
 
 ### httprunner框架源码分析
