@@ -1,7 +1,7 @@
 
 
 &nbsp;  
-### 写最小单元的用例
+### 单接口用例
 最小单元的用例指的是单接口用例(不含任何依赖的用例).
 
 &nbsp;  
@@ -57,5 +57,36 @@ validate:
     - eq: ["status_code", 200]
     - eq: ["body.status", 400]
     - eq: ["body.msg", "login error"]
+
+```
+
+
+&nbsp;  
+&nbsp;  
+**测试场景-3:**   
+`测试场景-1`和`测试场景-2`采取的策略是按实际值来硬编测试用例.  
+`测试场景-3`采取的策略是将可变部分抽象出来, 使其升华为一个测试用例模板.  
+
+测试用例: [login-api-variables.yml](./login-api-variables.yml)  
+```yaml
+
+name: login
+variables:
+    username: "zhangsan"
+    password: "zhangsan123"
+    status_code: 200
+    body_status: 200
+    body_msg: "login success"
+request:
+    method: POST
+    url: http://127.0.0.1:8888/login
+    headers:
+        User-Agent: HttpRunner/${get_httprunner_version()}
+        Content-Type: "application/x-www-form-urlencoded"
+    data: "username=${username}&password=${password}"
+validate:
+    - eq: ["status_code", "${status_code}"]
+    - eq: ["body.status", "${body_status}"]
+    - eq: ["body.msg", "${body_msg}"]
 
 ```
