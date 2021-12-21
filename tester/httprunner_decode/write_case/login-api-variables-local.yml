@@ -2,6 +2,7 @@
 
 name: login
 variables:
+    host: "http://127.0.0.1:8888"
     username: "zhangsan"
     password: "zhangsan123"
     status_code: 200
@@ -9,7 +10,7 @@ variables:
     body_msg: "login success"
 request:
     method: POST
-    url: http://127.0.0.1:8888/login
+    url: "${host}/login"
     headers:
         User-Agent: HttpRunner/${get_httprunner_version()}
         Content-Type: "application/x-www-form-urlencoded"

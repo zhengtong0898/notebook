@@ -65,13 +65,18 @@ validate:
 &nbsp;  
 **测试场景-3:**   
 `测试场景-1`和`测试场景-2`采取的策略是按实际值来硬编测试用例.  
-`测试场景-3`采取的策略是将可变部分抽象出来, 使其升华为一个测试用例模板.  
+当前场景采取的策略是将可变部分抽象出来, 使其升华为一个测试用例模板,  
+将下面yml文件转换成代码的话, 它就如同定义了一个 login-api-variables-local 函数,    
+这个函数要求提供6个参数, 同时这个函数为每个参数提供了默认值, 所以不提供参数也能运行.  
 
-测试用例: [login-api-variables.yml](./login-api-variables.yml)  
+
+
+测试用例: [login-api-variables-local.yml](./login-api-variables-local.yml)  
 ```yaml
 
 name: login
 variables:
+    host: "http://127.0.0.1:8888"
     username: "zhangsan"
     password: "zhangsan123"
     status_code: 200
@@ -79,7 +84,7 @@ variables:
     body_msg: "login success"
 request:
     method: POST
-    url: http://127.0.0.1:8888/login
+    url: "${host}/login"
     headers:
         User-Agent: HttpRunner/${get_httprunner_version()}
         Content-Type: "application/x-www-form-urlencoded"

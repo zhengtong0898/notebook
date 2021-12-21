@@ -4,11 +4,12 @@
 2. [创建httprunner项目](https://github.com/httprunner/httprunner/blob/master/docs/user/scaffold.md)  
 3. [前置准备工作](write_case/Prepare.md)
 4. [单接口用例](write_case/SingleCase.md)
-5. [单接口用例参数化](write_case/ParameterCase.md)
-6. [写分层用例](write_case/LayerCase.md)
-7. [写流程性用例](write_case/WorkflowCase.md)
-8. [生成测试报告]()
-9. [优化测试报告]()
+5. [单接口用例分析和总结](write_case/SingleCaseSummary.md)
+6. [单接口用例参数化](write_case/ParameterCase.md)
+7. [写分层用例](write_case/LayerCase.md)
+8. [写流程性用例](write_case/WorkflowCase.md)
+9. [生成测试报告]()
+10. [优化测试报告]()
 
 
 ### httprunner框架源码分析
