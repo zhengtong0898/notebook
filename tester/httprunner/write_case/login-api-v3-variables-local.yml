@@ -1,0 +1,27 @@
+
+
+config:
+    name: "login v3"
+
+
+teststeps:
+-
+    name: login
+    variables:
+        host: "http://127.0.0.1:8888"
+        username: "zhangsan"
+        password: "zhangsan123"
+        status_code: 200
+        body_status: 200
+        body_msg: "login success"
+    request:
+        method: POST
+        url: "${host}/login"
+        headers:
+            User-Agent: HttpRunner/${get_httprunner_version()}
+            Content-Type: "application/x-www-form-urlencoded"
+        data: "username=${username}&password=${password}"
+    validate:
+        - eq: ["status_code", "${status_code}"]
+        - eq: ["body.status", "${body_status}"]
+        - eq: ["body.msg", "${body_msg}"]

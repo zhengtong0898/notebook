@@ -1,0 +1,20 @@
+
+
+config:
+    name: "login v3"
+
+
+teststeps:
+-
+    name: login
+    request:
+        method: POST
+        url: http://127.0.0.1:8888/login
+        headers:
+            User-Agent: HttpRunner/${get_httprunner_version()}
+            Content-Type: "application/x-www-form-urlencoded"
+        data: "username=lisi&password=lisi123"
+    validate:
+        - eq: ["status_code", 200]
+        - eq: ["body.status", 400]
+        - eq: ["body.msg", "login error"]

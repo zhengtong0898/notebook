@@ -1,5 +1,4 @@
 
-
 &nbsp;  
 ### 单接口用例
 最小单元的用例指的是单接口用例(不含任何依赖的用例).
@@ -13,8 +12,9 @@
 |:---:|---|---|---|
 |1|POST `/login`|{"username": "zhangsan", <br/>&nbsp;"password": "zhangsan123"}|status==200|
 
-测试用例: [login-api-success.yml](./login-api-success.yml)
+测试用例(httprunner-2.x语法): [login-api-v2-success.yml](./login-api-v2-success.yml)
 ```yaml
+
 
 name: login
 request:
@@ -31,6 +31,32 @@ validate:
 
 ```
 
+测试用例(httprunner-3.x语法): [login-api-v3-success.yml](./login-api-v3-success.yml)
+
+```yaml
+
+
+config:
+    name: "login global variable"
+
+
+teststeps:
+-
+    name: login
+    request:
+        method: POST
+        url: http://127.0.0.1:8888/login
+        headers:
+            User-Agent: HttpRunner/${get_httprunner_version()}
+            Content-Type: "application/x-www-form-urlencoded"
+        data: "username=zhangsan&password=zhangsan123"
+    validate:
+        - eq: ["status_code", 200]
+        - eq: ["body.status", 200]
+        - eq: ["body.msg", "login success"]
+
+```
+
 
 
 &nbsp;  
@@ -42,8 +68,9 @@ validate:
 |:---:|---|---|---|
 |1|POST `/login`|{"username": "lisi", <br/>&nbsp;"password": "lisi123"}|status==400|
 
-测试用例: [login-api-failed.yml](./login-api-failed.yml)
+测试用例(httprunner-2.x语法): [login-api-v2-failed.yml](./login-api-v2-failed.yml)
 ```yaml
+
 
 name: login
 request:
@@ -60,6 +87,32 @@ validate:
 
 ```
 
+测试用例(httprunner-3.x语法): [login-api-v3-failed.yml](./login-api-v3-failed.yml)
+
+```yaml
+
+
+config:
+    name: "login v3"
+
+
+teststeps:
+-
+    name: login
+    request:
+        method: POST
+        url: http://127.0.0.1:8888/login
+        headers:
+            User-Agent: HttpRunner/${get_httprunner_version()}
+            Content-Type: "application/x-www-form-urlencoded"
+        data: "username=lisi&password=lisi123"
+    validate:
+        - eq: ["status_code", 200]
+        - eq: ["body.status", 400]
+        - eq: ["body.msg", "login error"]
+
+```
+
 
 &nbsp;  
 &nbsp;  
@@ -71,7 +124,7 @@ validate:
 
 
 
-测试用例: [login-api-variables-local.yml](./login-api-variables-local.yml)  
+测试用例(httprunner-2.x语法): [login-api-v2-variables-local.yml](./login-api-v2-variables-local.yml)  
 ```yaml
 
 name: login
@@ -93,6 +146,108 @@ validate:
     - eq: ["status_code", "${status_code}"]
     - eq: ["body.status", "${body_status}"]
     - eq: ["body.msg", "${body_msg}"]
+
+```
+测试用例(httprunner-3.x语法): [login-api-v3-variables-local.yml](./login-api-v3-variables-local.yml)  
+```yaml
+
+
+config:
+    name: "login v3"
+
+
+teststeps:
+-
+    name: login
+    variables:
+        host: "http://127.0.0.1:8888"
+        username: "zhangsan"
+        password: "zhangsan123"
+        status_code: 200
+        body_status: 200
+        body_msg: "login success"
+    request:
+        method: POST
+        url: "${host}/login"
+        headers:
+            User-Agent: HttpRunner/${get_httprunner_version()}
+            Content-Type: "application/x-www-form-urlencoded"
+        data: "username=${username}&password=${password}"
+    validate:
+        - eq: ["status_code", "${status_code}"]
+        - eq: ["body.status", "${body_status}"]
+        - eq: ["body.msg", "${body_msg}"]
+
+```
+
+
+&nbsp;  
+&nbsp;  
+**测试场景-4:**   
+将本地变量换成全局变量   
+这个例子的例子在 httprunner-v3.1.6 版本中是无法运行的,   
+我提了个 [Bug](https://github.com/httprunner/httprunner/issues/1137) 并附上了一个 [Fix PR](https://github.com/httprunner/httprunner/pull/1138) 来解决这个问题.  
+
+测试用例: [login-api-v2-variables-global.yml](./login-api-v2-variables-global.yml)
+
+```yaml
+
+config:
+    name: "global variable"
+    variables:
+        host: "http://127.0.0.1:8888"
+        username: "zhangsan"
+        password: "zhangsan123"
+        status_code: 200
+        body_status: 200
+        body_msg: "login success"
+
+
+name: login
+request:
+    method: POST
+    url: "${host}/login"
+    headers:
+        User-Agent: HttpRunner/${get_httprunner_version()}
+        Content-Type: "application/x-www-form-urlencoded"
+    data: "username=${username}&password=${password}"
+validate:
+    - eq: ["status_code", "${status_code}"]
+    - eq: ["body.status", "${body_status}"]
+    - eq: ["body.msg", "${body_msg}"]
+
+```
+
+测试用例: [login-api-v3-variables-global.yml](./login-api-v3-variables-global.yml)
+
+```yaml
+
+
+config:
+    name: "global variable"
+    variables:
+        host: "http://127.0.0.1:8888"
+        username: "zhangsan"
+        password: "zhangsan123"
+        status_code: 200
+        body_status: 200
+        body_msg: "login success"
+
+
+teststeps:
+-
+    name: login
+    request:
+        method: POST
+        url: "${host}/login"
+        headers:
+            User-Agent: HttpRunner/${get_httprunner_version()}
+            Content-Type: "application/x-www-form-urlencoded"
+        data: "username=${username}&password=${password}"
+    validate:
+        - eq: ["status_code", "${status_code}"]
+        - eq: ["body.status", "${body_status}"]
+        - eq: ["body.msg", "${body_msg}"]
 
 ```
 
