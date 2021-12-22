@@ -88,3 +88,8 @@ if __name__ == "__main__":
 1. yml中定义的config全局变量, 但是转换成Python文件后对应的是Config对象.  
 2. yml中定义的teststeps用例集关键字, 但是转换成Python文件后对应的是teststeps列表.  
 3. yml中定义的单接口用例, 转换成Python文件后, 对应的是一个RunRequest对象, 并被封装在Step对象中.  
+
+
+&nbsp;  
+**重点提示**  
+> 单个用例不适合参数化, 单个用例就应该是抽象好变量, 然后安静的躺在原地被调用/引用即可.  

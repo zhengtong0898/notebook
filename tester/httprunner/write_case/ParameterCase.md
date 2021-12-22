@@ -257,3 +257,7 @@ if __name__ == "__main__":
     TestCaseLoginApiV3ParametersCartesian().test_start()
 
 ```
+
+&nbsp;  
+**重点提示**  
+> 单个用例不适合参数化, 单个用例就应该是抽象好变量, 然后安静的躺在原地被调用/引用即可.  

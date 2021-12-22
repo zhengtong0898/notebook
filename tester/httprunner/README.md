@@ -8,8 +8,8 @@
 4. [单接口用例](write_case/SingleCase.md)
 5. [单接口用例分析和总结](write_case/SingleCaseSummary.md)
 6. [单接口用例参数化](write_case/ParameterCase.md)
-7. [写分层用例](write_case/LayerCase.md)
-8. [写流程性用例](write_case/WorkflowCase.md)
+7. [写流程性用例](write_case/WorkflowCase.md)
+8. [写分层用例](write_case/LayerCase.md)
 9. [生成测试报告]()
 10. [优化测试报告]()
 
