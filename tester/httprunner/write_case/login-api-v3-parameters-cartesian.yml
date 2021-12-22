@@ -1,0 +1,35 @@
+
+
+config:
+    name: "login parameters cartesian v3"
+    variables:
+        host: "http://127.0.0.1:8888"
+        status_code: 200
+    parameters:
+        username: ["zhangsan", "lisi", "xiaoming"]
+        password: ["zhangsan123", "lisi123", "xiaoming123"]
+
+
+teststeps:
+-
+    name: login
+    request:
+        method: POST
+        url: "${host}/login"
+        headers:
+            User-Agent: HttpRunner/${get_httprunner_version()}
+            Content-Type: "application/x-www-form-urlencoded"
+        data: "username=${username}&password=${password}"
+    validate:
+        - eq: ["status_code", "${status_code}"]
+
+
+# {'host': 'http://127.0.0.1:8888', 'status_code': 200, 'username': 'zhangsan', 'password': 'zhangsan123'}
+# {'host': 'http://127.0.0.1:8888', 'status_code': 200, 'username': 'zhangsan', 'password': 'lisi123'}
+# {'host': 'http://127.0.0.1:8888', 'status_code': 200, 'username': 'zhangsan', 'password': 'xiaoming123'}
+# {'host': 'http://127.0.0.1:8888', 'status_code': 200, 'username': 'lisi', 'password': 'zhangsan123'}
+# {'host': 'http://127.0.0.1:8888', 'status_code': 200, 'username': 'lisi', 'password': 'lisi123'}
+# {'host': 'http://127.0.0.1:8888', 'status_code': 200, 'username': 'lisi', 'password': 'xiaoming123'}
+# {'host': 'http://127.0.0.1:8888', 'status_code': 200, 'username': 'xiaoming', 'password': 'zhangsan123'}
+# {'host': 'http://127.0.0.1:8888', 'status_code': 200, 'username': 'xiaoming', 'password': 'lisi123'}
+# {'host': 'http://127.0.0.1:8888', 'status_code': 200, 'username': 'xiaoming', 'password': 'xiaoming123'}

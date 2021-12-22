@@ -1,0 +1,27 @@
+
+
+config:
+    name: "login parameters v3"
+    variables:
+        host: "http://127.0.0.1:8888"
+    parameters:
+        username-password-status_code-body_status-body_msg:
+            - ["zhangsan", "zhangsan123", 200, 200, "login success"]
+            - ["lisi", "lisi123", 200, 400, "login error"]
+
+
+teststeps:
+-
+    name: login
+    request:
+        method: POST
+        url: "${host}/login"
+        headers:
+            User-Agent: HttpRunner/${get_httprunner_version()}
+            Content-Type: "application/x-www-form-urlencoded"
+        data: "username=${username}&password=${password}"
+    validate:
+        - eq: ["status_code", "${status_code}"]
+        - eq: ["body.status", "${body_status}"]
+        - eq: ["body.msg", "${body_msg}"]
+
