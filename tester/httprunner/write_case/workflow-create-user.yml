@@ -1,0 +1,55 @@
+
+
+config:
+    name: "workflow global variable"
+
+
+teststeps:
+-
+    name: "login"
+    testcase: login.yml
+    variables:
+        host: "http://127.0.0.1:8888"
+        username: "zhangsan"
+        password: "zhangsan123"
+        status_code: 200
+        body_status: 200
+        body_msg: "login success"
+
+-
+    name: "create user"
+    testcase: create-user.yml
+    variables:
+        host: "http://127.0.0.1:8888"
+        username: "lisi"
+        status_code: 200
+        body_status: 200
+        body_msg: "user ${username} create success."
+
+-
+    name: "get all users"
+    testcase: list-users.yml
+    variables:
+        host: "http://127.0.0.1:8888"
+        status_code: 200
+        body_status: 200
+        body_msg: ["zhangsan", "lisi"]
+
+-
+    name: "logout"
+    testcase: logout.yml
+    variables:
+        host: "http://127.0.0.1:8888"
+        status_code: 200
+        body_status: 200
+        body_msg: "logout success"
+
+
+-
+    name: "get all users"
+    testcase: list-users.yml
+    variables:
+        host: "http://127.0.0.1:8888"
+        status_code: 200
+        body_status: 400
+        body_msg: "permission deny."

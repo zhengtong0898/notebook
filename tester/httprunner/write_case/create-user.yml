@@ -6,7 +6,6 @@ config:
     variables:
         host: ""
         username: ""
-        password: ""
         status_code: ""
         body_status: ""
         body_msg: ""
@@ -14,15 +13,15 @@ config:
 
 teststeps:
 -
-    name: login
+    name: "create user"
     request:
         method: POST
-        url: "${host}/login"
+        url: "${host}/user"
         headers:
             User-Agent: HttpRunner/${get_httprunner_version()}
             Content-Type: "application/x-www-form-urlencoded"
-        data: "username=${username}&password=${password}"
+        data: "username=${username}"
     validate:
         - eq: ["status_code", "${status_code}"]
         - eq: ["body.status", "${body_status}"]
-        - eq: ["body.msg", "${body_msg}"]
+        - eq: ["body.msg", "user ${username} create success."]
