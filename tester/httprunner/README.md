@@ -4,31 +4,15 @@
 
 1. [安装httprunner](https://github.com/httprunner/httprunner/blob/master/docs/installation.md)  
 2. [创建httprunner项目](https://github.com/httprunner/httprunner/blob/master/docs/user/scaffold.md)  
-3. [前置准备工作](write_case/Prepare.md)
-4. [单接口用例](write_case/SingleCase.md)
-5. [单接口用例分析和总结](write_case/SingleCaseSummary.md)
-6. [单接口用例参数化](write_case/ParameterCase.md)
-7. [流程性用例](write_case/WorkflowCase.md)
-8. [分层用例](write_case/LayerCase.md)
-9. [给用例打标签](write_case/TagCase.md)
-10. [生成测试报告]()
-11. [优化测试报告]()
+3. [前置准备工作](docs/Prepare.md)
+4. [单接口用例](docs/SingleCase.md)
+5. [单接口用例-分析](docs/SingleCaseSummary.md)
+6. [单接口用例-参数化](docs/ParameterCase.md)
+7. [流程性用例-简单引用](docs/WorkflowCaseRef.md)
+8. [流程性用例-提取变量](docs/WorkflowCaseExtract.md)
+9. [流程性用例-导出变量](docs/WorkflowCaseExport.md)
+10. [分层用例](docs/LayerCase.md)
+11. [给用例打标签](docs/TagCase.md)
+12. [生成测试报告]()
+13. [优化测试报告]()
 
-
-### httprunner框架源码分析
-
-1. 如果是两个用例，那`httprunner/runner.py::HttpRunner`中的`test_start`是被触发两次吗?
-
-
-
-### 问题清单  
-
-1. TConfig.verify 是做什么用的?
-2. TRequest.verify 是不验证https的意思吗?
-3. 如何访问response的值?
-4. 如何访问response.headers的值?
-5. 如何访问session.headers的值?
-6. 如何访问session.params的值?
-7. 如何访问session.body的值?
-8. 如何访问session对象?
-9. 运行结果保存在哪里?

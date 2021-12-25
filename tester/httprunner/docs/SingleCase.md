@@ -12,7 +12,7 @@
 |:---:|---|---|---|
 |1|POST `/login`|{"username": "zhangsan", <br/>&nbsp;"password": "zhangsan123"}|status==200|
 
-测试用例(httprunner-2.x语法): [login-api-v2-success.yml](./login-api-v2-success.yml)
+测试用例(httprunner-2.x语法): [login-api-v2-success.yml](../apis/login-api-v2-success.yml)
 ```yaml
 
 
@@ -31,13 +31,13 @@ validate:
 
 ```
 
-测试用例(httprunner-3.x语法): [login-api-v3-success.yml](./login-api-v3-success.yml)
+测试用例(httprunner-3.x语法): [login-api-v3-success.yml](../apis/login-api-v3-success.yml)
 
 ```yaml
 
 
 config:
-    name: "login global variable"
+    name: "login module variable"
 
 
 teststeps:
@@ -68,7 +68,7 @@ teststeps:
 |:---:|---|---|---|
 |1|POST `/login`|{"username": "lisi", <br/>&nbsp;"password": "lisi123"}|status==400|
 
-测试用例(httprunner-2.x语法): [login-api-v2-failed.yml](./login-api-v2-failed.yml)
+测试用例(httprunner-2.x语法): [login-api-v2-failed.yml](../apis/login-api-v2-failed.yml)
 ```yaml
 
 
@@ -87,7 +87,7 @@ validate:
 
 ```
 
-测试用例(httprunner-3.x语法): [login-api-v3-failed.yml](./login-api-v3-failed.yml)
+测试用例(httprunner-3.x语法): [login-api-v3-failed.yml](../apis/login-api-v3-failed.yml)
 
 ```yaml
 
@@ -124,7 +124,7 @@ teststeps:
 
 
 
-测试用例(httprunner-2.x语法): [login-api-v2-variables-local.yml](./login-api-v2-variables-local.yml)  
+测试用例(httprunner-2.x语法): [login-api-v2-variables-local.yml](../apis/login-api-v2-variables-local.yml)  
 ```yaml
 
 name: login
@@ -148,7 +148,7 @@ validate:
     - eq: ["body.msg", "${body_msg}"]
 
 ```
-测试用例(httprunner-3.x语法): [login-api-v3-variables-local.yml](./login-api-v3-variables-local.yml)  
+测试用例(httprunner-3.x语法): [login-api-v3-variables-local.yml](../apis/login-api-v3-variables-local.yml)  
 ```yaml
 
 
@@ -184,16 +184,16 @@ teststeps:
 &nbsp;  
 &nbsp;  
 **测试场景-4:**   
-将本地变量换成全局变量   
+将本地变量换成模块变量   
 这个例子的例子在 httprunner-v3.1.6 版本中是无法运行的,   
 我提了个 [Bug](https://github.com/httprunner/httprunner/issues/1137) 并附上了一个 [Fix PR](https://github.com/httprunner/httprunner/pull/1138) 来解决这个问题.  
 
-测试用例: [login-api-v2-variables-global.yml](./login-api-v2-variables-global.yml)
+测试用例: [login-api-v2-variables-module.yml](../apis/login-api-v2-variables-module.yml)
 
 ```yaml
 
 config:
-    name: "global variable"
+    name: "module variable"
     variables:
         host: "http://127.0.0.1:8888"
         username: "zhangsan"
@@ -218,13 +218,13 @@ validate:
 
 ```
 
-测试用例: [login-api-v3-variables-global.yml](./login-api-v3-variables-global.yml)
+测试用例: [login-api-v3-variables-module.yml](../apis/login-api-v3-variables-module.yml)
 
 ```yaml
 
 
 config:
-    name: "global variable"
+    name: "module variable"
     variables:
         host: "http://127.0.0.1:8888"
         username: "zhangsan"

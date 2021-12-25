@@ -1,7 +1,7 @@
 
 
 config:
-    name: "global variable"
+    name: "module variable"
     variables:
         host: "http://127.0.0.1:8888"
         username: "zhangsan"

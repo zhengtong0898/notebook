@@ -1,14 +1,15 @@
 
 
 config:
-    name: "global variable"
+    name: "module variable"
+    desc: "这里定义的是当前API要求必填的参数"
     variables:
-        host: "http://127.0.0.1:8888"
-        username: "zhangsan"
-        password: "zhangsan123"
-        status_code: 200
-        body_status: 200
-        body_msg: "login success"
+        host: ""
+        username: ""
+        password: ""
+        status_code: ""
+        body_status: ""
+        body_msg: ""
 
 
 teststeps:

@@ -1,13 +1,13 @@
 
 
 config:
-    name: "workflow global variable"
+    name: "testcases module variable"
 
 
 teststeps:
 -
     name: "login"
-    testcase: login.yml
+    testcase: apis/login.yml
     variables:
         host: "http://127.0.0.1:8888"
         username: "zhangsan"
@@ -18,7 +18,7 @@ teststeps:
 
 -
     name: "create user"
-    testcase: create-user.yml
+    testcase: apis/create-user.yml
     variables:
         host: "http://127.0.0.1:8888"
         username: "lisi"
@@ -28,7 +28,7 @@ teststeps:
 
 -
     name: "get all users"
-    testcase: list-users.yml
+    testcase: apis/list-users.yml
     variables:
         host: "http://127.0.0.1:8888"
         status_code: 200
@@ -37,7 +37,7 @@ teststeps:
 
 -
     name: "logout"
-    testcase: logout.yml
+    testcase: apis/logout.yml
     variables:
         host: "http://127.0.0.1:8888"
         status_code: 200
@@ -47,7 +47,7 @@ teststeps:
 
 -
     name: "get all users"
-    testcase: list-users.yml
+    testcase: apis/list-users.yml
     variables:
         host: "http://127.0.0.1:8888"
         status_code: 200

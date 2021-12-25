@@ -1,7 +1,7 @@
 
 
 config:
-    name: "global variable"
+    name: "module variable"
     desc: "这里定义的是当前API要求必填的参数"
     variables:
         host: ""
