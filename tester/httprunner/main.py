@@ -12,6 +12,7 @@ if __name__ == '__main__':
     # sys.argv.append("apis/login-api-v3-success.yml")
 
     # sys.argv.append("testcases/create-user-ref.yml")
-    sys.argv.append("testcases/create-user-extract.yml")
+    # sys.argv.append("testcases/create-user-extract.yml")
+    sys.argv.append("testcases/create-user-export.yml")
 
     sys.exit(main())
