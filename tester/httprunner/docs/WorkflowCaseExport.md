@@ -150,8 +150,7 @@ config:
 teststeps:
 -
     name: login
-    testcase: apis/login-export.yml             # 这个用例使用 export 将 body2 变量声明为是父用例的 module variable
-                                                # 所以当前用例的所有步骤, 不需要做任何处理, 都可以直接使用body2变量.
+    testcase: apis/login-export.yml             
     variables:
         host: "http://127.0.0.1:8888"
         username: "zhangsan"
@@ -173,7 +172,7 @@ teststeps:
         data: "username=${username}"
     variables:
         host: "http://127.0.0.1:8888"
-        username: "${body2}"                    # 这里使用子用例export出来的变量.                
+        username: "${body2}"                    # 这里使用上一步导出的变量.                 
         status_code: 200
         body_status: 200
         body_msg: "user ${username} create success."
