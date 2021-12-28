@@ -13,8 +13,15 @@
 11. [生成器](./Generator.md)  
 12. [参数的使用技巧](./ArgumentParameter.md)
 
+&nbsp;  
 ### 通用的技术知识
 1. [多线程](./Threading.md)  
+
+
+
+&nbsp;  
+### 不确定性验证
+1. [父类的类变量是否共享给所有派生类?](./IsClassVariableSharedToSubClass.md)
 
 
 &nbsp;  
