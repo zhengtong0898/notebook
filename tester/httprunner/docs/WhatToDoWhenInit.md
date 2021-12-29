@@ -14,6 +14,12 @@ from typing import Dict, NoReturn
 
 class HttpRunner(object):
 
+    config: Config
+    teststeps: List[Step]
+    
+    __config: TConfig
+    __teststeps: List[TStep]
+    
     def __init_tests__(self) -> NoReturn:
         self.__config = self.config.perform()                  # self.config.perform() 返回的是 TConfig 对象.
         self.__teststeps = []

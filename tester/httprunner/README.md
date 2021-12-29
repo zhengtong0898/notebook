@@ -26,6 +26,7 @@
 1. [httprunner框架的单元测试用例如何运行?](docs/RunUnittestCase.md)  
 2. [httprunner框架的用例运行入口在哪里?](docs/EntryPoint.md)
 3. [httprunner框架的用例初始化阶段在做什么?](docs/WhatToDoWhenInit.md)  
+4. [httprunner框架的用例准备阶段在做什么?](docs/WhatToDoWhenPrepare.md)  
 
 
 
