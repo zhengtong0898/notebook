@@ -19,4 +19,13 @@
 7. 如何访问session.body的值?
 8. 如何访问session对象?
 9. 运行结果保存在哪里?
-10. 如果是两个用例，那`httprunner/runner.py::HttpRunner`中的`test_start`是被触发两次吗?
+10. 如果是两个用例，那`httprunner/runner.py::HttpRunner`中的`test_start`是被触发两次吗?  
+
+
+&nbsp;  
+11.[StepRequestValidation是如何运作的?](docs/ValidationTheory)     
+   1). testcase.py  
+   2). models.py      
+    3). make.py  
+
+12[RunRequest和RunTestCase的运行顺序?](docs/RunOrder.md)  
