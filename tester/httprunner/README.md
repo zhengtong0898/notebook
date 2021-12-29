@@ -32,5 +32,7 @@
 &nbsp;  
 &nbsp;  
 ### 源码分析-对象
-1. [testcase.Config](docs/ConfigObject.md)
+1. [testcase.Config](docs/ObjectConfig.md)  
+2. [testcase.Step](docs/ObjectStep.md)  
+
 
