@@ -1,4 +1,4 @@
-### 用例运行入口在哪里?   
+### httprunner框架的用例运行入口在哪里?   
 `httprunner-3.x`是基于`pytest`进行封装, 所以用例的驱动将遵循`pytest`的[运行规则](../../pytest/docs/CreateTestCase.md)来进行.  
 `httprunner-3.x`的用例驱动入口是在 [HttpRunner.test_start](https://github.com/zhengtong0898/httprunner/blob/master/httprunner/runner.py#L424) .
 
