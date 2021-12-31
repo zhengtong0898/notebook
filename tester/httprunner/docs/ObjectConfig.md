@@ -72,3 +72,50 @@ class Config(object):
         )
 
 ```
+
+
+&nbsp;  
+### TConfig对象
+
+`httprunner`使用了`pydantic`来定义数据模型,   
+然后再`make`生成用例阶段会使用`pydantic.validate`来[验证用例的格式](https://github.com/zhengtong0898/httprunner/blob/master/httprunner/make.py#L450) 是否符合标准.  
+除此之外并没有用到`pydantic`的其他特性.  
+
+
+```python3
+from typing import Any
+from typing import Dict, Text, Union, Callable
+from typing import List
+
+from pydantic import BaseModel, Field
+from pydantic import HttpUrl
+
+
+Name = Text
+Url = Text
+BaseUrl = Union[HttpUrl, Text]
+VariablesMapping = Dict[Text, Any]
+FunctionsMapping = Dict[Text, Callable]
+Headers = Dict[Text, Text]
+Cookies = Dict[Text, Text]
+Verify = bool
+Hooks = List[Union[Text, Dict[Text, Text]]]
+Export = List[Text]
+Validators = List[Dict]
+Env = Dict[Text, Any]
+
+
+class TConfig(BaseModel):
+    name: Name                                                          # 用例名字
+    verify: Verify = False                                              # 是否开启https验证
+    base_url: BaseUrl = ""                                              # 基础路径
+    # Text: prepare variables in debugtalk.py, ${gen_variables()}
+    variables: Union[VariablesMapping, Text] = {}                       # 模块变量
+    parameters: Union[VariablesMapping, Text] = {}                      # 参数化
+    # setup_hooks: Hooks = []
+    # teardown_hooks: Hooks = []
+    export: Export = []                                                 # 导出变量
+    path: Text = None                                                   # 用例路径
+    weight: int = 1                                                     # locust 使用的变量
+
+```

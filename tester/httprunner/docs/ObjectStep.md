@@ -7,6 +7,11 @@
 
 Step对象并没有更多的实质用处, 它的目的就是为了统一用例的组织口径.  
 
+`httprunner`使用了`pydantic`来定义数据模型,   
+然后再`make`生成用例阶段会使用`pydantic.validate`来[验证用例的格式](https://github.com/zhengtong0898/httprunner/blob/master/httprunner/make.py#L450) 是否符合标准.  
+除此之外并没有用到`pydantic`的其他特性.  
+
+
 ```python3
 from typing import Union
 
