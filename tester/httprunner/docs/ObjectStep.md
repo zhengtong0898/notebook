@@ -7,10 +7,6 @@
 
 Step对象并没有更多的实质用处, 它的目的就是为了统一用例的组织口径.  
 
-`httprunner`使用了`pydantic`来定义数据模型,   
-然后再`make`生成用例阶段会使用`pydantic.validate`来[验证用例的格式](https://github.com/zhengtong0898/httprunner/blob/master/httprunner/make.py#L450) 是否符合标准.  
-除此之外并没有用到`pydantic`的其他特性.  
-
 
 ```python3
 from typing import Union
@@ -46,4 +42,79 @@ class Step(object):
     def perform(self) -> TStep:
         return self.__step_context
 
+```
+
+
+&nbsp;  
+### TStep对象
+
+`httprunner`使用了`pydantic`来定义数据模型,   
+然后再`make`生成用例阶段会使用`pydantic.validate`来[验证用例的格式](https://github.com/zhengtong0898/httprunner/blob/master/httprunner/make.py#L450) 是否符合标准.  
+除此之外并没有用到`pydantic`的其他特性.  
+
+```python3
+from enum import Enum
+from typing import Any
+from typing import Dict, Text, Union, Callable
+from typing import List
+
+from pydantic import BaseModel, Field
+from pydantic import HttpUrl
+
+
+Name = Text
+Url = Text
+BaseUrl = Union[HttpUrl, Text]
+VariablesMapping = Dict[Text, Any]
+FunctionsMapping = Dict[Text, Callable]
+Headers = Dict[Text, Text]
+Cookies = Dict[Text, Text]
+Verify = bool
+Hooks = List[Union[Text, Dict[Text, Text]]]
+Export = List[Text]
+Validators = List[Dict]
+Env = Dict[Text, Any]
+
+
+class MethodEnum(Text, Enum):
+    GET = "GET"
+    POST = "POST"
+    PUT = "PUT"
+    DELETE = "DELETE"
+    HEAD = "HEAD"
+    OPTIONS = "OPTIONS"
+    PATCH = "PATCH"
+
+
+class TRequest(BaseModel):
+    """requests.Request model"""
+
+    method: MethodEnum                                                # requests method
+    url: Url                                                          # requests url
+    params: Dict[Text, Text] = {}                                     # requests params
+    headers: Headers = {}                                             # requests headers
+    req_json: Union[Dict, List, Text] = Field(None, alias="json")     # requests json
+    data: Union[Text, Dict[Text, Any]] = None                         # requests data
+    cookies: Cookies = {}                                             # requests cookies
+    timeout: float = 120                                              # requests timeout
+    allow_redirects: bool = True                                      # requests allow_redirects
+    verify: Verify = False                                            # requests verify
+    upload: Dict = {}  # used for upload files                        # requests upload
+
+
+class TStep(BaseModel):
+    name: Name                                                        # 测试步骤名字
+    request: Union[TRequest, None] = None                             # requests请求参数对象
+    testcase: Union[Text, Callable, None] = None                      # 测试用例
+    variables: VariablesMapping = {}                                  # 函数变量(function variable) + 
+                                                                      # 上一个步骤的提取变量(extract variable) +
+                                                                      # 模块变量(module variable)
+    setup_hooks: Hooks = []                                           # 测试用例的前置
+    teardown_hooks: Hooks = []                                        # 测试用例的后置
+    # used to extract request's response field
+    extract: VariablesMapping = {}                                    # 提取变量(extract variable)
+    # used to export session variables from referenced testcase
+    export: Export = []                                               # 导出变量给父用例
+    validators: Validators = Field([], alias="validate")              # 断言
+    validate_script: List[Text] = []
 ```
