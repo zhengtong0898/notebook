@@ -35,11 +35,8 @@
 ### 源码分析-对象
 1. [testcase.Config](docs/ObjectConfig.md)  
 2. [testcase.Step](docs/ObjectStep.md)  
-
-
- 
-&nbsp;  
-### 源码分析-核心处理逻辑
-1. [什么是session_variables?](docs/WhatIsSessionVariables.md)
-2. [什么是module_variables?](docs/WhatIsSessionVariables.md)  
-3. 
+3. [testcase.RunRequest](docs/ObjectRunRequest.md)  
+4. [testcase.StepRefCase](docs/ObjectStepRefCase.md)  
+5. [testcase.RunTestCase](docs/ObjectRunTestCase.md)  
+6. [testcase.StepRequestValidation](docs/ObjectStepRequestValidation.md)  
+7. [runner.HttpRunner.Attributes](docs/ClassAttributes.md)  
