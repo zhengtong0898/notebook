@@ -39,4 +39,6 @@
 4. [testcase.RunTestCase](docs/ObjectRunTestCase.md)
 5. [testcase.StepRefCase](docs/ObjectStepRefCase.md)  
 6. [testcase.StepRequestValidation](docs/ObjectStepRequestValidation.md)  
-7. [runner.HttpRunner.Attributes](docs/ClassAttributes.md)  
+7. [testcase.StepRequestExtraction](docs/ObjectStepRequestExtraction.md)  
+8. [testcase.RequestWithOptionalArgs](docs/ObjectRequestWithOptionalArgs.md)  
+9. [runner.HttpRunner.Attributes](docs/ClassAttributes.md)  
