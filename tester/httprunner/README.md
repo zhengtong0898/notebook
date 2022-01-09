@@ -10,15 +10,16 @@
 6. [单接口用例-分析](docs/SingleCaseSummary.md)
 7. [单接口用例-参数化](docs/ParameterCase.md)
 8. [流程性用例-简单引用](docs/WorkflowCaseRef.md)
-9. [流程性用例-提取变量](docs/WorkflowCaseExtract.md)
-10. [流程性用例-导出变量](docs/WorkflowCaseExport.md)
-11. [流程性用例-覆盖断言(尚未实现)](docs/WorkflowCaseExport.md)
-12. [流程性用例-增量断言(尚未实现)](docs/WorkflowCaseExport.md)
-13. [流程性用例-循环调用(尚未实现)](docs/WorkflowCaseExport.md)
-14. [测试用例-分层机制](docs/LayerCase.md)
-15. [给用例打标签(尚未实现)](docs/TagCase.md)
-16. [生成测试报告]()
-17. [优化测试报告]()
+9. [流程性用例-分层机制](docs/LayerCase.md)
+10. [流程性用例-提取变量](docs/WorkflowCaseExtract.md)
+11. [流程性用例-导出变量](docs/WorkflowCaseExport.md)
+12. [流程性用例-覆盖断言(尚未实现)](docs/WorkflowCaseExport.md)
+13. [流程性用例-增量断言(尚未实现)](docs/WorkflowCaseExport.md)
+14. [流程性用例-循环调用(尚未实现)](docs/WorkflowCaseExport.md)
+15. [流程性用例-使用Fixture(尚未实现)](docs/TagCase.md)
+16. [流程性用例-打标签(尚未实现)](docs/TagCase.md)
+17. [生成测试报告]()
+18. [优化测试报告]()
 
 
 &nbsp;  
@@ -28,7 +29,8 @@
 3. [httprunner框架的用例初始化阶段在做什么?](docs/WhatToDoWhenInit.md)  
 4. [httprunner框架的用例准备阶段在做什么?](docs/WhatToDoWhenPrepare.md)  
 5. [httprunner框架的用例执行阶段在做什么?](docs/WhatToDoWhenRunTestCase.md)
-
+6. [httprunner框架的断言是怎么工作的?](docs/HowValidatorWork.md)  
+7. [httprunner框架的参数化是如何区分两种语法的?](docs/IdentifyTwoSyntaxParameters.md)
 
 
 &nbsp;  
@@ -41,4 +43,4 @@
 6. [testcase.StepRequestValidation](docs/ObjectStepRequestValidation.md)  
 7. [testcase.StepRequestExtraction](docs/ObjectStepRequestExtraction.md)  
 8. [testcase.RequestWithOptionalArgs](docs/ObjectRequestWithOptionalArgs.md)  
-9. [runner.HttpRunner.Attributes](docs/ClassAttributes.md)  
+9. [runner.HttpRunner.Attributes](docs/HttpRunnerClassAttributes.md)  
