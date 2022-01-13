@@ -14,7 +14,7 @@
 10. [流程性用例-提取变量](docs/WorkflowCaseExtract.md)
 11. [流程性用例-导出变量](docs/WorkflowCaseExport.md)
 12. [流程性用例-增量断言(已实现)](docs/WorkflowIncrementValidate.md)
-13. [流程性用例-循环调用(尚未实现)](docs/WorkflowCaseExport.md)
+13. [流程性用例-失败重试(已实现)](docs/WorkflowErrorRetry.md)
 14. [流程性用例-使用Fixture(尚未实现)](docs/TagCase.md)
 15. [流程性用例-打标签(尚未实现)](docs/TagCase.md)
 16. [生成测试报告]()
