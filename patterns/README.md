@@ -6,4 +6,5 @@
 3. [术语](Terms.md)
 4. [UML元素](UMLElements.md)
 5. [描述事物](Describe.md)
+6. [UML视图](UMLViews.md)
 
