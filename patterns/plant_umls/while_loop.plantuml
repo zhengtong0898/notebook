@@ -1,0 +1,13 @@
+@startuml
+while (i < 8 ?)
+  if (i > 4 ?) then (yes)
+      :a = 1;
+  else (no)
+      if (i >= 2 ?) then (yes)
+      :b = 2;
+      else (no)
+      endif
+  endif
+ endwhile (no)
+:Carry out the next task;
+@enduml

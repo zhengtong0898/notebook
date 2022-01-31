@@ -1,0 +1,3 @@
+@startuml
+fibonacci->fibonacci: 递归调用
+@enduml
