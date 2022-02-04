@@ -55,3 +55,13 @@ TODO: 待补充
 ### 面向过程与面向对象的区别  
 参考这里: [Difference between Procedural Programming and Object Oriented Programming](https://www.geeksforgeeks.org/differences-between-procedural-and-object-oriented-programming/)
 
+|差异|面向过程|面向对象|
+|---|---|---|
+|代码封装|代码封装在函数中|代码封装在类的方法中|
+|设计方法|遵循自顶向下方法|遵循自底向上方法|
+|访问控制|-|`private`、`public`、`protect`|
+|流程或数据变更|改动大|改动小|
+|数据安全|数据都是公开的|类数据默认都是私有的, <br />通过显式声明公开来访问, <br />通过方法代理访问, <br />通过方法代理修改. |
+|多态机制|-|支持多态机制|
+|侧重点-1|认为函数比数据重要|认为类的数据比类的方法重要|
+|侧重点-2|面向操作系统的API来设计和开发|面向现实世界的对象和关系来设计、抽象和开发|
