@@ -81,3 +81,35 @@
   <p align="center">
     <img src="plant_umls/activate.png">
   </p>
+
+
+&nbsp;  
+&nbsp;  
+### 关联关系(Association)
+TODO: 待补充
+
+
+&nbsp;  
+&nbsp;  
+### 依赖关系(Dependency)  
+TODO: 待补充
+
+&nbsp;  
+&nbsp;  
+### 实现关系(Realize)
+TODO: 待补充
+
+&nbsp;  
+&nbsp;  
+### 精化关系(Refine)
+TODO: 待补充
+
+&nbsp;  
+&nbsp;  
+### 聚合关系(Aggregation)
+TODO: 待补充
+
+&nbsp;  
+&nbsp;  
+### 组合关系(Composition)  
+TODO: 待补充
