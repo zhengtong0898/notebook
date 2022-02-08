@@ -1,0 +1,4 @@
+@startuml
+'一个老师对应多个学生
+Student "1..*" -  Teacher: \t\t
+@enduml

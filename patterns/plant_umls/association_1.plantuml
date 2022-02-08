@@ -1,0 +1,4 @@
+@startuml
+'仅使用-, 表示横向排列.
+a-b
+@enduml

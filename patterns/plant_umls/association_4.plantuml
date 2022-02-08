@@ -1,0 +1,6 @@
+@startuml
+'一个班级有多个老师, 一个老师也可以带多个班级.
+@startuml
+Class "0..*" - "1..*" Teachers
+(Class, Teachers) .. Enrollment
+@enduml
