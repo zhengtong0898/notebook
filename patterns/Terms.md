@@ -253,7 +253,7 @@ TODO: 没有在讲人话.
 ### 视图
 [参考资料-1](https://plantuml.com/zh/) 、
 [参考资料-2](https://zhuanlan.zhihu.com/p/375129998)  
-静态视图: 用例图、类图、对象图、组件图(包图)、部署图  
+静态视图: 用例图、类图、对象图、包图(组件图)、部署图  
 动态视图: 顺序图(时序图)、活动图、状态图  
 面向过程的视图: [数据流(DFD)图](https://zhuanlan.zhihu.com/p/231863024)
 
@@ -274,6 +274,15 @@ TODO: 没有在讲人话.
   > **基本元素:** object、relationship   
   > **对象关系:** Extension、Aggregation、Composition  
   > [参考这里](https://plantuml.com/zh/object-diagram)  
+
+- [包图](https://zhuanlan.zhihu.com/p/381028072)  
+  包图通常用于描述系统的逻辑架构: 层、子系统、包;  
+  > **基本元素:** 类、接口、组件、节点、协作、用例、图以及其他包. 
+  > **包的关系:** 依赖、继承、实现.  
+  > [参考这里](https://plantuml.com/zh/component-diagram)  
+
+- [部署图](https://zhuanlan.zhihu.com/p/381027189)  
+  部署图描述的是系统运行时的结构, 展示了系统的硬件配置、硬件部署, 以及其软件如何部署到网络结构中.  
   
 
 ### 视角  
