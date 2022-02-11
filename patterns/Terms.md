@@ -60,6 +60,11 @@
 [参考资料-2](https://sceweb.uhcl.edu/helm/RationalUnifiedProcess/process/modguide/md_buc.htm) 、
 [参考资料-3](https://sceweb.uhcl.edu/helm/RationalUnifiedProcess/process/modguide/md_uc.htm)    
 
+> 获取业务用例是什么意思?  
+> 当我们手握需求文档或与客户沟通完需求后, 需要从这些信息中提炼出业务用例的这个过程, 叫做获取业务用例.  
+> 业务用例通常包含了: 业务主角 和 业务目标;   
+> 说人话就是系统需要提供具体服务来满足客户的具体需求.  
+
 ### 用例实例(Use Case Instance)  
 用例实例 == 业务用例实现(Business use case realization),  
 就像对象实例与之对象, 一个用例实例也只是用例的一个侧面.  
