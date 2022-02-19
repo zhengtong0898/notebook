@@ -12,3 +12,4 @@
 12. [数据库语言](./docs/DatabaseLanguages.md)
 13. [外键操作](./docs/ReferenceAction.md)
 14. [隐藏主键](./docs/NotDefinePrimaryKey.md)
+15. [慢查询日志](./docs/SlowQueryLog.md)
