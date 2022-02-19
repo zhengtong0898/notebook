@@ -14,3 +14,4 @@
 14. [隐藏主键](./docs/NotDefinePrimaryKey.md)
 15. [慢查询日志](./docs/SlowQueryLog.md)
 16. [内存溢出](./docs/OutOfMemory.md)  
+17. [配置清单](./docs/Settings.md)
