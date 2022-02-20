@@ -17,3 +17,4 @@
 17. [内存溢出](./docs/OutOfMemory.md)  
 18. [配置清单](./docs/Settings.md)
 19. [分库分表](./docs/Split.md)  
+20. [锁](./docs/Locking.md)
