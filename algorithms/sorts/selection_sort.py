@@ -1,6 +1,7 @@
 # 选择排序
 # 原理: https://www.bilibili.com/video/BV14341177bG
 # 参考: https://www.geeksforgeeks.org/python-program-for-selection-sort/
+#      https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
 # 时间复杂度: 平均复杂度-O(n^2), 最坏复杂度-O(n^2), 最佳复杂度-O(n).
 import random
 from typing import List
