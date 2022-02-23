@@ -27,6 +27,7 @@
 &nbsp;  
 ### 排序  
 1. [冒泡排序](./sorts/bubble_sort.py)  
+2. [选择排序](./sorts/selection_sort.py)  
 
 
 
