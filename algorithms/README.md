@@ -29,6 +29,7 @@
 1. [冒泡排序(Bubble Sort)](./sorts/bubble_sort.py)  
 2. [选择排序(Selection Sort)](./sorts/selection_sort.py)  
 3. [插入排序(Insertion Sort)](./sorts/insertion_sort.py)  
+4. [希尔排序(Shell Sort)](./sorts/shell_sort.py)
 
 
 
