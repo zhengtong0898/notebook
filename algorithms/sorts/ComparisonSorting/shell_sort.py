@@ -3,7 +3,7 @@
 #       https://www.pythonpool.com/shell-sort-python/
 #       https://www.programiz.com/dsa/shell-sort
 # 参考: https://www.geeksforgeeks.org/python-program-for-shellsort/
-# 时间复杂度: Worst-O(n2)     Average-O(nlog n)    Best-O(nlog n)    Space-O(1)    Stability-No
+# 时间复杂度: Average-O(nlog n)    Worst-O(n2)     Best-O(nlog n)    Space-O(1)    Stability-No
 import random
 
 

@@ -1,8 +1,9 @@
 # 选择排序
 # 原理: https://www.bilibili.com/video/BV14341177bG
+#      https://www.programiz.com/dsa/selection-sort
 # 参考: https://www.geeksforgeeks.org/python-program-for-selection-sort/
 #      https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
-# 时间复杂度: Worst-O(n^2)    Average-O(n^2)    Best-O(n)    Space-O(1)    Stability-No
+# 时间复杂度: Average-O(n^2)    Worst-O(n^2)    Best-O(n^2)    Space-O(1)    Stability-No
 import random
 from typing import List
 

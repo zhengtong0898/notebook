@@ -2,7 +2,7 @@
 # 原理: https://www.bilibili.com/video/BV1Ck4y1B7N4
 #      https://www.programiz.com/dsa/insertion-sort
 # 参考: https://www.geeksforgeeks.org/insertion-sort/
-# 时间复杂度: Worst-O(n2)    Average-O(n2)    Best-O(n)    Space-O(1)    Stability-Yes
+# 时间复杂度: Average-O(n2)    Worst-O(n2)    Best-O(n)    Space-O(1)    Stability-Yes
 import random
 from typing import List, Union
 
