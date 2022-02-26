@@ -29,7 +29,10 @@
 1. [冒泡排序(Bubble Sort)](sorts/ComparisonSorting/bubble_sort.py)  
 2. [选择排序(Selection Sort)](sorts/ComparisonSorting/selection_sort.py)  
 3. [插入排序(Insertion Sort)](sorts/ComparisonSorting/insertion_sort.py)  
-4. [希尔排序(Shell Sort)](sorts/ComparisonSorting/shell_sort.py)
+4. [希尔排序(Shell Sort)](sorts/ComparisonSorting/shell_sort.py)  
+5. [快速排序(Quick Sort Recursion Version)](sorts/ComparisonSorting/quick_sort_recursion.py)  
+6. [快速排序(Quick Sort Partition Version)](sorts/ComparisonSorting/quick_sort_partition.py)  
+
 
 
 

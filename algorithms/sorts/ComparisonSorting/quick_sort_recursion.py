@@ -1,13 +1,14 @@
-# 快速排序
+# 快速排序-递归版本
 # 原理: https://www.bilibili.com/video/BV1at411T75o?from=search&seid=16200417356150128649
+# 参考: https://github.com/TheAlgorithms/Python/blob/master/sorts/quick_sort.py
+# 时间复杂度: Average-O(n*log n)    Worst-O(n2)    Best-O(n*log n)    Space-O(log n)    Stability-No
 import random
-import logging
-logger = logging.getLogger("quick_sort")
 
 
 def quick_sort(items: list) -> list:
     # 递归保护边界取值异常
-    if len(items) < 2: return items
+    if len(items) < 2:
+        return items
 
     # 取第一个值做 pivot.
     pivot = items.pop()
@@ -29,7 +30,6 @@ def quick_sort(items: list) -> list:
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)
     collection = random.sample(range(-30, 30), 30)
     sorted_collection = sorted(collection)
     assert quick_sort(collection) == sorted_collection
