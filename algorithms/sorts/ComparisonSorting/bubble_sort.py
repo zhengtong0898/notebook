@@ -1,5 +1,4 @@
 # 冒泡排序
-# 思想: 从左往右两两相比排序便利到结尾, 继续重复从0到n-1, 继续重复从0到n-2, 直到n==1.
 # 原理: https://www.bilibili.com/video/BV1Zz4y1D7ZE
 #      https://www.programiz.com/dsa/bubble-sort
 # 参考: https://www.geeksforgeeks.org/python-program-for-bubble-sort/

@@ -1,5 +1,4 @@
 # 桶排序
-# 思想: 参考下面 bucket_sort 的描述.
 # 原理: https://www.bilibili.com/video/av55573441
 # 参考: https://github.com/TheAlgorithms/Python/blob/master/sorts/bucket_sort.py
 #      https://www.geeksforgeeks.org/bucket-sort-2/
