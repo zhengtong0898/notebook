@@ -1,9 +1,14 @@
-from typing import List
+# 桶排序
+# 思想: 参考下面 bucket_sort 的描述.
+# 原理: https://www.bilibili.com/video/av55573441
+# 参考: https://github.com/TheAlgorithms/Python/blob/master/sorts/bucket_sort.py
+#      https://www.geeksforgeeks.org/bucket-sort-2/
+# 时间复杂度: Average-O(n)    Worst-O(n^2)     Best-O(n+k)    Space-O(n+k)    Stability-Yes
 import random
 
 
 # 桶排序--线性表
-def bucket_sort_linear(items, bucket_size: int) -> list:
+def bucket_sort(items) -> list:
     """
     桶排序, 也是区间分组算法.
 
@@ -28,15 +33,23 @@ def bucket_sort_linear(items, bucket_size: int) -> list:
       37
       29         101                              500
     bucket1    bucket2    bucket3    bucket4    bucket5
+
+    上面两个假设由于 bucket_size 都是一个固定值, 所以很多时候会导致偏差严重,
+    为了解决这个问题, 就需要动态的创建桶数量.
     """
-    if not items: return []
+    if not items:
+        return []
+
+    # 遍历获得列表中最大和最小的值.
+    # 目的: 为了让桶在有效的范围.
     max_value, min_value = max(items), min(items)
 
-    # 创建木桶数量
-    buckets = [[] for i in range(bucket_size)]
+    # 桶数量
+    bucket_size: int = int(max_value - min_value) + 1
 
-    # 计算每个木桶的高度
-    bucket_high = (max_value - min_value) / bucket_size
+    # 按桶数量创建数量相同的空列表, 每个列表都代表一个桶.
+    # 目的: 用于将各个区间的值放入对应的列表中.
+    buckets = [[] for i in range(bucket_size)]
 
     # 将元素分散到正确的木桶.
     for item in items:
@@ -44,28 +57,16 @@ def bucket_sort_linear(items, bucket_size: int) -> list:
         distance = item - min_value
 
         # 通过距离可以得出它应该存放在哪个桶内.
-        float_index = distance / bucket_high
-        int_index = int(float_index)
+        index = int(distance) // bucket_size
 
-        # 计算边界:
-        #   float_index - int_index > 0 时, 表示含有小数, 即: 它应该存放在整数的那个桶里面.
-        #   float_index - int_index == 0 时, 表示没有小数, 即: 它应该存放在整数-1的那个桶的最后一个位置.
-        #
-        # 边界的特殊情况:
-        #   item == min_value 时, distance = 0; float_index = 0; int_index = 0;
-        #   这种情况下它不应该是-1, 因为这样会导致它尝试定位到 buckets[-1] 的位置.
-        #   所以解决办法有两种:
-        #   1. index = (int_index - 1) if float_index - int_index == 0 and item != min_value else int_index
-        #   2. index = max((int_index - 1), 0) if float_index - int_index == 0 else int_index
-        index = max((int_index - 1), 0) if float_index - int_index == 0 else int_index
+        # 将元素写入到对应的桶中.
         buckets[index].append(item)
 
-    # 上面这些代码只是将数据分门别类放在不同的桶里面, 没有任何排序效果.
-    # 这里还是要调用 sorted 来排序.
+    # 上面这些代码只是将数据分门别类放在不同的桶里面, 没有任何排序效果, 这里还是要调用 sorted 来排序.
     return [v for bucket in buckets for v in sorted(bucket)]
 
 
 if __name__ == '__main__':
     collection = random.sample(range(-50, 50), 50)
     sorted_collection = sorted(collection)
-    assert bucket_sort_linear(collection, 5) == sorted_collection
+    assert bucket_sort(collection) == sorted_collection
