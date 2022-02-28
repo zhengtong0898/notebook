@@ -10,21 +10,39 @@ from typing import List, Union
 def insertion_sort(items: List[Union[int, None]]):
     n = len(items)
     for i in range(1, n):
+
         # 将 key 提取出来, 它原来所在的地方会被覆盖掉.
         key = items[i]
+
+        # left_index 是插入排序的关键游标.
+        # left_index 可用来做持续左移前置游标.
         left_index = i - 1
 
-        # 如果key的值小于左侧的值, key所在的位置将会被前一个值覆盖掉, 前一个值和它所在的位置是一个空槽.
-        # 如果key的值持续小于左侧的之, 那么将空槽前一个值放入空槽位置, 并且置空空槽前一个位置的值.
-        while left_index >= 0 and key < items[left_index]:
+        while True:
+
+            # 处理越界防护 -> items[left_index]
+            if left_index < 0:
+                break
+
+            # items[left_index] 是前置值,
+            # 隐藏条件: items[:i] 的这些元素都是排过序的.
+            # 所以当 key >= 前置值, 表示顺序没问题不需要做任何操作, 跳出当前循环.
+            if key >= items[left_index]:
+                break
+
+            # key < 前置值, 将前置值右移一位.
             items[left_index + 1] = items[left_index]
-            items[left_index] = None                        # 最佳实践的算法是可以省略掉这一步的.
+            # 置空前置值所在的槽位.
+            items[left_index] = None
+            # 前置游标左移一位, 为下一次比较做准备.
             left_index -= 1
+
+        # 由于前置值所在的槽位已被置空, 这里需要将key吸入到该槽位中来.
         items[left_index + 1] = key
 
 
 if __name__ == '__main__':
-    collection = random.sample(range(-50, 50), 50)
+    collection = random.sample(range(0, 20), 20)
     sorted_collection = sorted(collection)
     insertion_sort(collection)
     assert collection == sorted_collection
