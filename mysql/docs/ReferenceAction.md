@@ -26,3 +26,5 @@
   `MySQL`不支持该机制.  
   当建表时声明了 `ON DELETE SET DEFAULT` 或 `ON UPDATE SET DEFAULT` 时, `MySQL`会忽略它;     
   即: 建表语句中不包含该机制声明, 采用的时默认机制(RESTRICT).   
+
+![img.png](foreign_key.png)
