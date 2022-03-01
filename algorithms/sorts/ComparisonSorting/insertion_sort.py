@@ -8,6 +8,10 @@ from typing import List, Union
 
 
 def insertion_sort(items: List[Union[int, None]]):
+    """
+    两个循环, 外部循环向右遍历, 内部循环向左遍历.
+    """
+
     n = len(items)
     for i in range(1, n):
 
@@ -18,19 +22,11 @@ def insertion_sort(items: List[Union[int, None]]):
         # left_index 可用来做持续左移前置游标.
         left_index = i - 1
 
-        while True:
-
-            # 处理越界防护 -> items[left_index]
-            if left_index < 0:
-                break
-
-            # items[left_index] 是前置值,
-            # 隐藏条件: items[:i] 的这些元素都是排过序的.
-            # 所以当 key >= 前置值, 表示顺序没问题不需要做任何操作, 跳出当前循环.
-            if key >= items[left_index]:
-                break
-
-            # key < 前置值, 将前置值右移一位.
+        # 代码含义1: left_index >= 0          是为了防止后面的 items[left_index] 取值超出边界.
+        # 代码含义2: items[left_index] > key  表示"左大右小"不符合顺序预期, 需要将左侧大的值右移.
+        # 隐藏信息:  items[:i]                的元素都是排过序的.
+        while left_index >= 0 and items[left_index] > key:
+            # 将前置值右移一位.
             items[left_index + 1] = items[left_index]
             # 置空前置值所在的槽位.
             items[left_index] = None
