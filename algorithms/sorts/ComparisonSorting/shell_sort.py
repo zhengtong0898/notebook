@@ -19,30 +19,39 @@ def shell_sort(items):
         for r_index in range(gap, n):
 
             r_value = items[r_index]
+
+            # l_index 是一个游标.
+            # 隐藏信息: 它是一个偏移的游标, 它需要 - gap 才能得到正确的左侧索引值.
             l_index = r_index
             while True:
 
-                # 为了保护 items[l_index - gap] 操作, 所以必须加这个条件.
+                # 处理越界防护 -> items[l_index - gap].
                 if l_index < gap:
                     break
 
-                # 与右侧位置相对应的左侧元素 <= r_value 时, 表示左小右大, 排序正确.
-                if items[l_index - gap] <= r_value:
+                # 排序正确, 不做任何动作, 跳出循环.
+                l_value = items[l_index - gap]
+                if l_value <= r_value:
                     break
 
-                # 当左大右小时, 代码会来到这里, 执行: 将左侧大的值写入到右侧位置.
+                # 当左大右小时, 代码会来到这里,
+                # 执行: 将左侧大的值写入到右侧位置.
+                #
+                # 隐藏信息-1: 此时左侧大的值并没有被销毁, 即: items[l_index - gap] 仍然存在.
+                #            l_index -= gap 会将索引位置计算出来, 交给后续的 items[l_index] = r_value 来完成交换动作.
+                #
+                # 隐藏信息-2: 当 (l_index - gap) >= gap 时, r_value 需要跟不同gap位置的元素进行比较和交换位置.
                 items[l_index] = items[l_index - gap]
                 l_index -= gap
 
-            # 如果没有执行位置交换, 那么 l_index 依旧是等于 r_index, 下面这条语句相当于将值复位.
-            # 如果已执行位置交换, 那么 l_index 的位置就是左侧对应的位置, 下面这条语句相当于是将右侧小的值写入左侧.
+            # 将右侧小的值写入到左侧空槽位置.
             items[l_index] = r_value
 
         gap //= 2
 
 
 if __name__ == '__main__':
-    collection = random.sample(range(-50, 50), 50)
+    collection = [5, 4, 3, 2, 1]
     sorted_collection = sorted(collection)
     shell_sort(collection)
     assert collection == sorted_collection

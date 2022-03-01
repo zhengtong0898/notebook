@@ -5,9 +5,6 @@
 import random
 
 
-# This Function handles sorting part of quick sort
-# start and end points to first and last element of
-# an array respectively
 def partition(start, end, array):
     # why: 这里为什么要 pivot_index = start         而不是直接  pivot_index = 0 ?
     # ans: 因为 partition 函数不知道外部传入进来的start是什么, 所以不能直接写 0 .
@@ -20,6 +17,7 @@ def partition(start, end, array):
     # 这个循环试图找出start和end游标交叉的点,
     # 当交叉点出现时意味着: start游标位置的值一定大于 pivot值
     #                   end游标位置的值一定小于 pivot值
+    # 真相: 只有pivot是真正被排好序的.
     while start < end:
 
         # 游标start所在位置的值 <= pivot 时, 游标start递增1.

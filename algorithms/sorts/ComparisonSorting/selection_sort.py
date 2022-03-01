@@ -12,11 +12,15 @@ def selection_sort(items: List[int]):
 
     n = len(items)
     for curr_index in range(n):
+
+        # 向右遍历, 找到最小的那个元素.
         min_index = curr_index
         for next_index in range(curr_index+1, n):
             if items[next_index] < items[min_index]:
                 min_index = next_index
 
+        # 最小元素的 跟 当前元素交换;
+        # 隐藏条件: 当前元素位置左侧(含当前元素)的所有元素都是排过序的.
         items[curr_index], items[min_index] = items[min_index], items[curr_index]
 
 
