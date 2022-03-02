@@ -1,4 +1,18 @@
 ### 稳定性  
-排序前后两个相等的数相对位置不变, 则算法稳定.   
-对象虽然值
-TODO: 使用C++验证同一个数字的两个变量的指针是否一致.
+排序前后两个相等的数相对位置不变, 则算法稳定, [参考资料](https://www.baeldung.com/cs/stable-sorting-algorithms).   
+![stable-vs-unstable](https://www.baeldung.com/wp-content/uploads/2019/08/Stable-vs-Unstable-1.png)  
+
+
+|算法(英)|算法名(中)|稳定性|
+|---|---|---|
+|bubble sort|冒泡排序|稳定|
+|insertion sort|插入排序|稳定|
+|merge sort|希尔排序|稳定|
+|bucket sort|桶排序|稳定|
+|counting sort|技数排序|稳定|
+|radix sort|基数排序|稳定|
+|tim sort|-|稳定|
+|selection sort|选择排序|不稳定|
+|shell sort|希尔排序|不稳定|
+|quick sort|快速排序|不稳定|
+|heap sort|堆排序|不稳定|
