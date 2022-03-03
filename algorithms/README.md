@@ -32,7 +32,10 @@
 4. [希尔排序(Shell Sort)](sorts/ComparisonSorting/shell_sort.py)  
 5. [快速排序(Quick Sort Recursion Version)](sorts/ComparisonSorting/quick_sort_recursion.py)  
 6. [快速排序(Quick Sort Partition Version)](sorts/ComparisonSorting/quick_sort_partition.py)  
-7. [归并排序(Merge Sort Partition Version)](sorts/ComparisonSorting/merge_sort.py)  
+7. [归并排序(Merge Sort)](sorts/ComparisonSorting/merge_sort.py)  
+8. [桶排序(Bucket Sort)](sorts/bucket_sort.py)  
+9. [堆排序(Heap Sort)](sorts/heap_sort.py)  
+
 
 
 
