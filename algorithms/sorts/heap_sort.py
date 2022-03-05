@@ -1,10 +1,11 @@
 # 桶排序
-# 原理: https://www.cs.usfca.edu/~galles/visualization/HeapSort.html
-# 参考: https://github.com/TheAlgorithms/Python/blob/master/sorts/heap_sort.py
-#      https://www.programiz.com/dsa/heap-sort
-#      https://zhuanlan.zhihu.com/p/153216919
-#      https://baike.baidu.com/item/%E5%A0%86/20606834
+# 原理:      https://www.cs.usfca.edu/~galles/visualization/HeapSort.html
+# 参考:      https://github.com/TheAlgorithms/Python/blob/master/sorts/heap_sort.py
+#           https://www.programiz.com/dsa/heap-sort
+#           https://zhuanlan.zhihu.com/p/153216919
+#           https://baike.baidu.com/item/%E5%A0%86/20606834
 # 时间复杂度: Average-O(n*log n)    Average-O(n*log n)     Average-O(n*log n)    Space-O(1)    Stability-No
+# 困难程度:   Medium
 import random
 
 
