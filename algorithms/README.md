@@ -35,6 +35,8 @@
 7. [归并排序(Merge Sort)](sorts/ComparisonSorting/merge_sort.py)  
 8. [桶排序(Bucket Sort)](sorts/bucket_sort.py)  
 9. [堆排序(Heap Sort)](sorts/heap_sort.py)  
+10. [计数排序(Count Sort Simple Version)](sorts/count_sort_simple.py)
+10. [计数排序(Count Sort Complex Version)](sorts/count_sort_complex.py)
 
 
 
