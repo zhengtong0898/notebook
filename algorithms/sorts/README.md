@@ -10,7 +10,7 @@
 |merge sort|归并排序|稳定||
 |bucket sort|桶排序|稳定||
 |count sort|计数排序|稳定|Easy|
-|radix sort|基数排序|稳定||
+|radix sort|基数排序|稳定|Medium|
 |tim sort|-|稳定||
 |selection sort|选择排序|不稳定||
 |shell sort|希尔排序|不稳定||
