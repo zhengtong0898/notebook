@@ -7,18 +7,18 @@
 # 困难程度:   Medium
 
 
-def count_sort(arr, exp1):
+def count_sort(arr, int_cursor):
     n = len(arr)
 
     # The output array elements that will have sorted arr
-    output = [0] * (n)
+    output = [0] * n
 
     # initialize count array as 0
-    count = [0] * (10)
+    count = [0] * 10
 
     # Store count of occurrences in count[]
     for i in range(0, n):
-        index = arr[i] // exp1
+        index = arr[i] // int_cursor
         count[index % 10] += 1
 
     # Change count[i] so that count[i] now contains actual
@@ -29,7 +29,7 @@ def count_sort(arr, exp1):
     # Build the output array
     i = n - 1
     while i >= 0:
-        index = arr[i] // exp1
+        index = arr[i] // int_cursor
         output[count[index % 10] - 1] = arr[i]
         count[index % 10] -= 1
         i -= 1
@@ -41,18 +41,11 @@ def count_sort(arr, exp1):
         arr[i] = output[i]
 
 
-# Method to do Radix Sort
 def radix_sort(arr):
-    # Find the maximum number to know number of digits
-    max1 = max(arr)
-
-    # Do counting sort for every digit. Note that instead
-    # of passing digit number, exp is passed. exp is 10^i
-    # where i is current digit number
-    exp = 1
-    while max1 / exp > 1:
-        count_sort(arr, exp)
-        exp *= 10
+    int_cursor = 1                                     # 标记数字的游标, 采取 * 10 的进位法, 锁定个位、十位、百位等索引位置.
+    while (max(arr) / int_cursor) > 1:
+        count_sort(arr, int_cursor)                    # 对所标记的索引位置的数字进行排序.
+        int_cursor *= 10                               # 进位.
 
 
 if __name__ == '__main__':
