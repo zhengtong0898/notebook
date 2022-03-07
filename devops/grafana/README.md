@@ -1,0 +1,1 @@
+1. [安装Grafana](./install.md)
