@@ -7,38 +7,32 @@
 # 困难程度:   Medium
 
 
-def count_sort(arr, int_cursor):
-    n = len(arr)
+def count_sort(items, int_cursor):
+    n = len(items)
 
-    # The output array elements that will have sorted arr
-    output = [0] * n
+    count = [0] * 10                                   # 有效计数范围是 0 - 9
+    ordered = [0] * n                                  # 创建一个空的有序列表, 长度与原始列表长度一致.
 
-    # initialize count array as 0
-    count = [0] * 10
+    for i in range(0, n):                              # 将 items 中的每个元素按相同索引位置进行分桶.
+        index = items[i] // int_cursor                 # 当 items[i] == 6240, 6240 % 10 得到 0.
+        count[index % 10] += 1                         # 当 items[i] == 6240,  624 % 10 得到 4.
+                                                       # 当 items[i] == 6240,   62 % 10 得到 2.
+                                                       # 当 items[i] == 6240,    6 % 10 得到 6.
 
-    # Store count of occurrences in count[]
-    for i in range(0, n):
-        index = arr[i] // int_cursor
-        count[index % 10] += 1
-
-    # Change count[i] so that count[i] now contains actual
-    # position of this digit in output array
     for i in range(1, 10):
-        count[i] += count[i - 1]
+        count[i] += count[i - 1]                       # 推算出实际值(从右往左)的索引位置, 这里无法言传只能debug去感受.
 
-    # Build the output array
     i = n - 1
-    while i >= 0:
-        index = arr[i] // int_cursor
-        output[count[index % 10] - 1] = arr[i]
-        count[index % 10] -= 1
-        i -= 1
+    while i >= 0:                                      # 从右往左遍历
+        index = items[i] // int_cursor                 # 剔除已经计算过的数值.
+        layer_int = index % 10                         # 获取到具体那一层的数字.
+        ordered_index = count[layer_int] - 1           # 由于索引是从0开始, 所以这里要-1
+        ordered[ordered_index] = items[i]              # 将数值写入到已排序的那个位置.
+        count[layer_int] -= 1                          # 写入后-1, 表示下一个相同的数值应该写在当前位置的前一个位置.
+        i -= 1                                         # i递减1是从右往左进一位, 为下一次循环做准备.
 
-    # Copying the output array to arr[],
-    # so that arr now contains sorted numbers
-    i = 0
-    for i in range(0, len(arr)):
-        arr[i] = output[i]
+    for i in range(0, len(items)):                     # 将 ordered 写入到 items 原始列表中.
+        items[i] = ordered[i]
 
 
 def radix_sort(arr):
@@ -50,7 +44,7 @@ def radix_sort(arr):
 
 if __name__ == '__main__':
     # collection = random.sample(range(-50, 50), 50)
-    collection = [2, 5, 1, 2, 2, 5, 1, 1]
+    collection = [6420, 5365, 7534, 7910, 1779, 3142, 2385, 3930]
     sorted_collection = sorted(collection)
     radix_sort(collection)
     assert collection == sorted_collection
