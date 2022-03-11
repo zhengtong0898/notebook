@@ -6,3 +6,4 @@
 2. [hash](./hash.md)
 3. [list](./list.md)  
 4. [set](./set.md)  
+5. [zset](./zset.md)  
