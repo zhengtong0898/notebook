@@ -2,7 +2,7 @@
 # 原理: https://www.bilibili.com/video/av55573441
 # 参考: https://github.com/TheAlgorithms/Python/blob/master/sorts/bucket_sort.py
 #      https://www.geeksforgeeks.org/bucket-sort-2/
-# 时间复杂度: Average-O(n)    Worst-O(n^2)     Best-O(n+k)    Space-O(n+k)    Stability-Yes
+# 时间复杂度: Average-O(n + k)    Worst-O(n^2)     Best-O(n+k)    Space-O(n+k)    Stability-Yes
 import random
 
 

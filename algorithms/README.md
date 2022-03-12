@@ -1,14 +1,5 @@
-### 集合环绕取值公式
-环绕指的是当索引数(下标)大于列表大小时, 绕回到0接着往后找(通过求余可以减少边界值判断).     
-> index % list.size()
-
-&nbsp;  
-&nbsp;  
 
 ### 常见的时间复杂度
-![Big-O-Complexity-Chart](./Big-O-Complexity-Chart.jpg)   
-
-&nbsp;   
 
 | 符号 | 英文名 | 中文名 |
 |---|:---:|:---:|
@@ -22,26 +13,47 @@
 | O(n!) |Factorial Time | [阶乘阶](time_complexity/On!.md) |
 
 
+&nbsp;  
+**log的底数是多少?**    
+在数学中: log的底数是10.  
+在算法中: log的底数是2, 因为算法中最佳效果是二分, 所以底数是2.
+```python3
+import math
+
+math.log2(2)  == 1 
+math.log2(4)  == 2  
+math.log2(8)  == 3  
+...
+math.log2(1073741824) == 30     # 10亿个元素, 只需要30次比较就能精准命中.      
+```
+
+![Big-O-Complexity-Chart](./Big-O-Complexity-Chart.jpg)   
+
+
 
 &nbsp;  
 &nbsp;  
 ### 排序  
-1. [冒泡排序(Bubble Sort)](sorts/ComparisonSorting/bubble_sort.py)  
-2. [选择排序(Selection Sort)](sorts/ComparisonSorting/selection_sort.py)  
-3. [插入排序(Insertion Sort)](sorts/ComparisonSorting/insertion_sort.py)  
-4. [希尔排序(Shell Sort)](sorts/ComparisonSorting/shell_sort.py)  
-5. [快速排序(Quick Sort Recursion Version)](sorts/ComparisonSorting/quick_sort_recursion.py)  
-6. [快速排序(Quick Sort Partition Version)](sorts/ComparisonSorting/quick_sort_partition.py)  
-7. [归并排序(Merge Sort)](sorts/ComparisonSorting/merge_sort.py)  
-8. [桶排序(Bucket Sort)](sorts/bucket_sort.py)  
-9. [堆排序(Heap Sort)](sorts/heap_sort.py)  
-10. [计数排序(Count Sort Simple Version)](sorts/count_sort_simple.py)
-10. [计数排序(Count Sort Complex Version)](sorts/count_sort_complex.py)
-10. [基数排序(Radix Sort)](sorts/radix_sort.py)
 
+|稳定性|算法名(中)|算法(英)|最好复杂度|均摊复杂度|最差复杂度|程度|
+|---|---|---|---|---|---|---|
+|稳定|-|tim sort|O(n)|O(n log n)|O(n log n)|Medium|
+|稳定|[冒泡排序](./sorts/ComparisonSorting/bubble_sort.py)|bubble sort|O(n)|O(n^2)|O(n^2)|Easy|
+|稳定|[插入排序](./sorts/ComparisonSorting/insertion_sort.py)|insertion sort|O(n)|O(n^2)|O(n^2)|Easy|
+|稳定|[归并排序](./sorts/ComparisonSorting/merge_sort.py)|merge sort|O(n log n)|O(n log n)|O(n^2)|Medium|
+|稳定|[桶排序](./sorts/bucket_sort.py)|bucket sort|O(n + k)|O(n + k)|O(n^2)|Easy|
+|稳定|[基数排序](./sorts/radix_sort.py)|radix sort|O(n + k)|O(n + k)|O(n + k)|Medium|
+|稳定|[计数排序-复杂版本](./sorts/count_sort_complex.py)|count sort|O(n + k)|O(n + k)|O(n + k)|Medium|
+|不稳定|[计数排序-简单版本](./sorts/count_sort_simple.py)|count sort|O(n + k)|O(n + k)|O(n + k)|Easy|
+|不稳定|[选择排序](./sorts/ComparisonSorting/selection_sort.py)|selection sort|O(n^2)|O(n^2)|O(n^2)|Easy|
+|不稳定|[希尔排序](./sorts/ComparisonSorting/shell_sort.py)|shell sort|O(n log n)|O(n log n)|O(n^2)|Easy|
+|不稳定|[快速排序-递归版本](./sorts/ComparisonSorting/quick_sort_recursion.py)|quick sort|O(n log n)|O(n log n)|O(n^2)|Medium|
+|不稳定|[快速排序-分割版本](./sorts/ComparisonSorting/quick_sort_partition.py)|quick sort|O(n log n)|O(n log n)|O(n^2)|Medium|
+|不稳定|[堆排序](./sorts/heap_sort.py)|heap sort|O(n log n)|O(n log n)|O(n log n)|Medium||
 
-
-
+> #### 稳定性  
+> 排序前后两个相等的数相对位置不变, 则算法稳定, [参考资料](https://www.baeldung.com/cs/stable-sorting-algorithms).   
+> ![stable-vs-unstable](https://www.baeldung.com/wp-content/uploads/2019/08/Stable-vs-Unstable-1.png)  
 
 
 
