@@ -6,4 +6,6 @@
 2. [hash](./hash.md)
 3. [list](./list.md)  
 4. [set](./set.md)  
-5. [zset](./zset.md)  
+5. [zset](./zset.md)
+6. [缓存击穿(超时)](./cache_expire.md)
+7. [缓存穿透(无数据)](./cache_miss.md)
