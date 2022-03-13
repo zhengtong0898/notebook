@@ -11,7 +11,9 @@
 9. [作用域](./Scope.md)
 10. [可迭代对象、迭代器、生成器, 三者的关系](./IterableIteratorGenerator.md)
 11. [生成器](./Generator.md)  
-12. [参数的使用技巧](./ArgumentParameter.md)
+12. [参数的使用技巧](./ArgumentParameter.md)  
+13. [is、isinstance、==三者的区别](./diff_is_isinstance_==.md)  
+
 
 &nbsp;  
 ### 通用的技术知识
