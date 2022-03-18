@@ -1,3 +1,5 @@
+### Thinking in UML
+
 > 参考资料:  
 > [UML官方网站](https://www.uml-diagrams.org/)    
 > [PlantUML官方网站](https://plantuml.com/zh/)  
@@ -9,3 +11,8 @@
 1. [术语](Terms.md)
 2. [图标](UMLIcons.md)  
 3. [用例图](UMLViews.md)
+
+
+### Design Patterns
+1. 享元模式  
+2. 

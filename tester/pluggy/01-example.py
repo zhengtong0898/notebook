@@ -30,7 +30,7 @@ class MySpec:
     """
 
     @hookspec
-    def myhook(self, arg1, arg3):
+    def myhook(self, arg1, arg2):
         """My special little hook that you can customize.
         """
 

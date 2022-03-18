@@ -4,3 +4,25 @@
 3. [如何实时打印logging日志信息?](./examples/live_logs/README.md)  
 4. [如何展示错误堆栈中的变量?](./examples/showlocals/README.md)  
 5. [如何动态生成allure报告?](./examples/dynamic_generate_allure_report/README.md)  
+6. [Pytest由那些组件构成?](./docs/Components.md)  
+
+
+&nbsp;  
+### 核心  
+1. [pluggy是什么?](./docs/WhatIsPluggy.md)  
+
+
+&nbsp;  
+### pluggy源码
+
+
+&nbsp;  
+### pytest源码  
+
+
+&nbsp;  
+### allure源码
+
+
+&nbsp;  
+### xdist源码  
