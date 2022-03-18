@@ -9,20 +9,20 @@
 
 &nbsp;  
 ### 核心  
-1. [pluggy是什么?](./docs/WhatIsPluggy.md)  
+1. [Pluggy是什么?](./docs/WhatIsPluggy.md)  
 
 
 &nbsp;  
-### pluggy源码
+### Pluggy源码
 
 
 &nbsp;  
-### pytest源码  
+### Pytest源码  
 
 
 &nbsp;  
-### allure源码
+### allure插件源码
 
 
 &nbsp;  
-### xdist源码  
+### xdist插件源码  
