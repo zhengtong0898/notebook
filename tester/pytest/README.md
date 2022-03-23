@@ -12,6 +12,7 @@
 1. [Pluggy是什么?](./docs/WhatIsPluggy.md)  
 2. [Pluggy解决了什么问题?](./docs/WhyIsPluggyUseful.md)  
 3. [Pluggy由哪些关键组件构成?](./docs/HowDoesItWork.md)  
+4. [Pluggy的函数签名和实现](./docs/HookSpecAndImpl.md)  
 
 &nbsp;  
 ### Pluggy源码
