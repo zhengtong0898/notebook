@@ -1,3 +1,24 @@
+
+### HookspecMarker 类对象的介绍
+
+**HookspecMarker**类是一个装饰器类, 用于将函数`标记`为是`hook规范`.   
+`hook规范`指的是根据 `函数名` + `函数参数` 组成的一个约束, 所有的`hook实现`都必须与该规范保持一致才能被识别和执行.  
+`标记`指的是在`代码load阶段`为其注入一些`键值属性`, 其中`Key`=`project_name_spec` 而 `value`是一个子键值字典.  
+
+**HookspecMarker**类通过实例化成为一个装饰器, 实例化需要提供一个`project_name`字符串参数, 像这样:  
+`pm = pluggy.PluginManager(project_name="myproject")`  
+`标记`、`查找`、`注册` 全部都是围绕 `project_name` 来展开, 所以这个参数至关重要, 举例:  
+
+当执行`pm.add_hookspecs(MySpec)`时, 它会去查找`MySpec`类中的所有方法,   
+那些属性中包含了`myproject_spec`的方法, 都会被收录在`pm.hook: _HookRelay`中作为一个子属性而存在.  
+比如说 `MySpec` 有一个 `myhook` 方法是`hook规范`.
+
+
+当执行`pm.register(Plugin_1())`时, 它会去查找`Plugin_1`对象中的所有方法,  
+只有当 `Plugin_1` 中有 `myhook` 方法并且属性中包含了`myproject_impl`键值信息.  
+满足了这两个条件才会被收录在`pm.hook.myhook._wrappers`或`pm.hook.myhook._nonwrappers`列表中.    
+
+
 ```python3
 import inspect
 import sys
@@ -7,10 +28,7 @@ import warnings
 class HookspecMarker:
     """
     Decorator helper class for marking functions as hook specifications.
-    当前类对象是一个装饰器类, 用于将函数标记为是钩子规范, 所谓的钩子规范指的是公共的接口和其参数约束.  
-
     You can instantiate it with a project_name to get a decorator.
-    要让当前类成为一个装饰器, 需要先实例化当前类, 并且提供一个project_name字符串参数.
     
     Calling :py:meth:`.PluginManager.add_hookspecs` later will discover all marked functions
     if the :py:class:`.PluginManager` uses the same project_name.

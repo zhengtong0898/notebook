@@ -53,3 +53,5 @@ results = pm.hook.myhook(arg1=1, arg2=2)                    # pm.hook.myhook: _H
 
 print(results)                                              # [-1, 3]
 ```
+
+`pluggy.HookspecMarker(project_name="myproject")` 的源码分析, [请参考这里](./pluggy/hooks_HookspecMarker.md).    
