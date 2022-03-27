@@ -55,3 +55,4 @@ print(results)                                              # [-1, 3]
 ```
 
 `pluggy.HookspecMarker(project_name="myproject")` 的源码分析, [请参考这里](./pluggy/hooks_HookspecMarker.md).    
+`pm = pluggy.PluginManager(project_name="myproject")` 的源码分析, [请参考这里](./pluggy/manager_PluginManager.md)   
