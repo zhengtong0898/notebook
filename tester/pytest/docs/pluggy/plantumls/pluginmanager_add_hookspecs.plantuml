@@ -1,0 +1,16 @@
+@startuml
+
+start
+
+repeat :当module_or_class.name是一个接口规范方法时;
+  if (self.hook.name 是否已注册) then (no)
+    :未注册过\n创建一个_HookCaller对象\n并写入self.hook对象\netattr(self.hook, name, hc);
+  else (yes)
+    :已注册过, 所以这里采取覆盖策略\n并且重新验证所有的实现是否与\n新的接口规范签名保持一致;
+  endif
+
+repeat while (当 dir(module_or_class) 仍然还有数据可遍历时) is (    持续循环);
+->跳出循环;
+stop
+
+@enduml
