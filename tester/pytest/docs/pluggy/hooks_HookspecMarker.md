@@ -36,6 +36,8 @@ def pytest_addhooks(pluginmanager: "PytestPluginManager") -> None:
 **historic:** 当 `historic` 参数是 `True` 时,   
 每次注册`hook实现函数`时会尝试执行该实现, 每次`call_historic`都会增加一个`_cal_history`.  
 
+**warn_on_impl:** 这是一个警告对象参数, 通常用于通知插件即将过期或者即将废弃.  
+
 &nbsp;  
 **HookspecMarker**代码片段
 ```python3
