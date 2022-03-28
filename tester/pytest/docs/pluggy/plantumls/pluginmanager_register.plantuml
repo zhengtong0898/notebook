@@ -1,0 +1,36 @@
+@startuml
+
+start
+
+:获取插件名称\n1). 从参数中获取.\n2). 从plugin.__name__中获取.\n3). 从str(id(plugin))中获取.;
+
+if (plugin_name 已存在于 self._name2plugin.keys()) then ( 抛异常: 插件已注册. )
+stop;
+endif
+
+if (plugin 已存在于 self._name2plugin.values()) then ( 抛异常: 插件已注册, 插件名不相同. )
+stop;
+endif
+
+:将plugin_name作为key, 将plugin作为value, 写入到self._name2plugin;
+
+repeat :如果当前遍历的插件方法含有`project_name_impl`属性\n表示它是一个有效的实现函数, 满足继续处理条件.;
+
+:为实现函数打上一组标记\ntryfirst=False\ntrylast=False\nhookwrapper=False\noptionalhook=False\nspecname=None;
+:创建一个HookImpl对象;
+
+if (实现函数名 是否存在于 self.hook) then (\n不存在\n)
+:创建_HookCaller对象\n然后作为属性写入self.hook对象中.;
+else (已存在)
+:验证两个实现函数的属性是否一致\nTODO: history验证待补充;
+endif
+
+:将hookimpl对象添加到self.hook的调用链条中.;
+
+repeat while ( 当 dir(plugin) 仍然还有数据可遍历时 ) is (    持续遍历);
+->跳出循环;
+
+
+stop
+
+@enduml

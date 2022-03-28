@@ -13,18 +13,6 @@
 ```python3
 
 class PluginManager:
-    """Core class which manages registration of plugin objects and 1:N hook
-    calling.
-
-    You can register new hooks by calling :meth:`add_hookspecs(module_or_class)
-    <PluginManager.add_hookspecs>`.
-
-    You can register plugin objects (which contain hook implementations) by
-    calling :meth:`register(plugin) <PluginManager.register>`.
-
-    For debugging purposes you can call :meth:`PluginManager.enable_tracing`
-    which will subsequently send debug information to the trace helper.
-    """
 
     __slots__ = (
         "project_name",
@@ -46,21 +34,10 @@ class PluginManager:
         kwargs: Mapping[str, object],
         firstresult: bool,
     ) -> Union[object, List[object]]:
-        """
-        # called from all hookcaller instances.
-        # enable_tracing will set its own wrapping function at self._inner_hookexec
-        """
+        """called from all hookcaller instances."""
 
     def register(self, plugin: _Plugin, name: Optional[str] = None) -> Optional[str]:
-        """Register a plugin and return its name.
-
-        If a name is not specified, a name is generated using
-        :func:`get_canonical_name`.
-
-        If the name is blocked from registering, returns ``None``.
-
-        If the plugin is already registered, raises a :class:`ValueError`.
-        """
+        """Register a plugin and return its name."""
 
     def parse_hookimpl_opts(
         self, plugin: _Plugin, name: str
@@ -70,11 +47,7 @@ class PluginManager:
     def unregister(
         self, plugin: Optional[_Plugin] = None, name: Optional[str] = None
     ) -> _Plugin:
-        """Unregister a plugin and all of its hook implementations.
-
-        The plugin can be specified either by the plugin object or the plugin
-        name. If both are specified, they must agree.
-        """
+        """Unregister a plugin and all of its hook implementations."""
 
     def set_blocked(self, name: str) -> None:
         """Block registrations of the given name, unregister if already registered."""
@@ -83,11 +56,7 @@ class PluginManager:
         """Return whether the given plugin name is blocked."""
 
     def add_hookspecs(self, module_or_class: _Namespace) -> None:
-        """Add new hook specifications defined in the given ``module_or_class``.
-
-        Functions are recognized as hook specifications if they have been
-        decorated with a matching :class:`HookspecMarker`.
-        """
+        """Add new hook specifications defined in the given ``module_or_class``."""
 
     def parse_hookspec_opts(
         self, module_or_class: _Namespace, name: str
@@ -101,13 +70,7 @@ class PluginManager:
         """Return whether the plugin is already registered."""
 
     def get_canonical_name(self, plugin: _Plugin) -> str:
-        """Return a canonical name for a plugin object.
-
-        Note that a plugin may be registered under a different name
-        specified by the caller of :meth:`register(plugin, name) <register>`.
-        To obtain the name of n registered plugin use :meth:`get_name(plugin)
-        <get_name>` instead.
-        """
+        """Return a canonical name for a plugin object."""
 
     def get_plugin(self, name: str) -> Optional[Any]:
         """Return the plugin registered under the given name, if any."""
@@ -116,31 +79,21 @@ class PluginManager:
         """Return whether a plugin with the given name is registered."""
 
     def get_name(self, plugin: _Plugin) -> Optional[str]:
-        """Return the name the plugin is registered under, or ``None`` if
-        is isn't."""
+        """Return the name the plugin is registered under, or ``None`` if is isn't."""
 
     def _verify_hook(self, hook: _HookCaller, hookimpl: HookImpl) -> None:
         """"""
 
     def check_pending(self) -> None:
-        """Verify that all hooks which have not been verified against a
-        hook specification are optional, otherwise raise
-        :class:`PluginValidationError`."""
+        """"""
 
     def load_setuptools_entrypoints(
         self, group: str, name: Optional[str] = None
     ) -> int:
-        """Load modules from querying the specified setuptools ``group``.
-
-        :param str group: Entry point group to load plugins.
-        :param str name: If given, loads only plugins with the given ``name``.
-        :rtype: int
-        :return: The number of plugins loaded by this call.
-        """
+        """Load modules from querying the specified setuptools ``group``."""
 
     def list_plugin_distinfo(self) -> List[Tuple[_Plugin, DistFacade]]:
-        """Return a list of (plugin, distinfo) pairs for all
-        setuptools-registered plugins."""
+        """Return a list of (plugin, distinfo) pairs for all setuptools-registered plugins."""
 
     def list_name_plugin(self) -> List[Tuple[str, _Plugin]]:
         """Return a list of (name, plugin) pairs for all registered plugins."""
@@ -151,31 +104,15 @@ class PluginManager:
     def add_hookcall_monitoring(
         self, before: _BeforeTrace, after: _AfterTrace
     ) -> Callable[[], None]:
-        """Add before/after tracing functions for all hooks.
-
-        Returns an undo function which, when called, removes the added tracers.
-
-        ``before(hook_name, hook_impls, kwargs)`` will be called ahead
-        of all hook calls and receive a hookcaller instance, a list
-        of HookImpl instances and the keyword arguments for the hook call.
-
-        ``after(outcome, hook_name, hook_impls, kwargs)`` receives the
-        same arguments as ``before`` but also a :class:`_Result` object
-        which represents the result of the overall hook call.
-        """
+        """"""
 
     def enable_tracing(self) -> Callable[[], None]:
-        """Enable tracing of hook calls.
-
-        Returns an undo function which, when called, removes the added tracing.
-        """
+        """Enable tracing of hook calls. Returns an undo function which, when called, removes the added tracing."""
 
     def subset_hook_caller(
         self, name: str, remove_plugins: Iterable[_Plugin]
     ) -> _HookCaller:
-        """Return a proxy :py:class:`._hooks._HookCaller` instance for the named
-        method which manages calls to all registered plugins except the ones
-        from remove_plugins."""
+        """"""
 ```
 
 
@@ -251,5 +188,97 @@ class PluginManager:
 
 ```
 
-用一张图来描述它的工作原理.
-![img.png](plantumls/img.png)
+用一张图来描述它的工作原理.   
+![img.png](plantumls/pluginmanager_add_hookspecs.png)
+
+
+&nbsp;  
+### get_canonical_name 方法
+
+从`plugin.__name__`获取名称, 如果没有设定, 则使用 `str(id(plugin))` 生成一个唯一编号.  
+
+注: 一个插件可能会被使用不同的名字来注册多次, 所以当前类提供了`get_name(plugin)`和`get_plugin(name)`两种方法来获取一个插件.  
+
+```python3
+
+class PluginManager:
+
+    def get_canonical_name(self, plugin: _Plugin) -> str:
+        """Return a canonical name for a plugin object.
+
+        Note that a plugin may be registered under a different name
+        specified by the caller of :meth:`register(plugin, name) <register>`.
+        To obtain the name of n registered plugin use :meth:`get_name(plugin)
+        <get_name>` instead.
+        """
+        name: Optional[str] = getattr(plugin, "__name__", None)
+        return name or str(id(plugin))
+
+```
+
+
+&nbsp;  
+### register 方法  
+
+注册一个插件并返回插件名称.  
+
+由于插件采取hash键值存储结构, `plugin_name`作为`key`, `plugin对象`作为`value`,   
+因此如果没有提供参数`name`, 那么就从`self.get_canonical_name`方法获取.  
+
+如果提供的插件名已存在, 当前方法会抛出`ValueError`报错, 提示插件已注册过了.  
+
+```python3
+
+class PluginManager:
+
+    def register(self, plugin: _Plugin, name: Optional[str] = None) -> Optional[str]:
+        """Register a plugin and return its name.
+
+        If a name is not specified, a name is generated using
+        :func:`get_canonical_name`.
+
+        If the name is blocked from registering, returns ``None``.
+
+        If the plugin is already registered, raises a :class:`ValueError`.
+        """
+        plugin_name = name or self.get_canonical_name(plugin)
+
+        if plugin_name in self._name2plugin:
+            if self._name2plugin.get(plugin_name, -1) is None:
+                return None  # blocked plugin, return None to indicate no registration
+            raise ValueError(
+                "Plugin name already registered: %s=%s\n%s"
+                % (plugin_name, plugin, self._name2plugin)
+            )
+
+        if plugin in self._name2plugin.values():
+            raise ValueError(
+                "Plugin already registered under a different name: %s=%s\n%s"
+                % (plugin_name, plugin, self._name2plugin)
+            )
+
+        # XXX if an error happens we should make sure no state has been
+        # changed at point of return
+        self._name2plugin[plugin_name] = plugin
+
+        # register matching hook implementations of the plugin
+        for name in dir(plugin):
+            hookimpl_opts = self.parse_hookimpl_opts(plugin, name)
+            if hookimpl_opts is not None:
+                normalize_hookimpl_opts(hookimpl_opts)
+                method: _HookImplFunction[object] = getattr(plugin, name)
+                hookimpl = HookImpl(plugin, plugin_name, method, hookimpl_opts)
+                name = hookimpl_opts.get("specname") or name
+                hook: Optional[_HookCaller] = getattr(self.hook, name, None)
+                if hook is None:
+                    hook = _HookCaller(name, self._hookexec)
+                    setattr(self.hook, name, hook)
+                elif hook.has_spec():
+                    self._verify_hook(hook, hookimpl)
+                    hook._maybe_apply_history(hookimpl)
+                hook._add_hookimpl(hookimpl)
+        return plugin_name
+```
+
+用一张图来描述它的工作原理.  
+![img.png](plantumls/pluginmanager_register.png)
