@@ -275,6 +275,7 @@ class PluginManager:
                     setattr(self.hook, name, hook)
                 elif hook.has_spec():
                     self._verify_hook(hook, hookimpl)
+                    # TODO: 待补充.
                     hook._maybe_apply_history(hookimpl)
                 hook._add_hookimpl(hookimpl)
         return plugin_name
