@@ -29,6 +29,8 @@ def pytest_addhooks(pluginmanager: "PytestPluginManager") -> None:
     pass
 ```
 
+&nbsp;  
+### 装饰器参数
 **firstresult:** 当 `firstresult` 参数是 `True` 时, 任意一个`implement`返回值是非None时, 就停止执行后续的`implement`.   
 验证依据: pluggy/testing/test_invocations.test_firstresult_definition 在这个测试用例中断点调试.  
 

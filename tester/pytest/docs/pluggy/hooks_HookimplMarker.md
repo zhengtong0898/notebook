@@ -33,7 +33,29 @@ def test_hookwrapper() -> None:
 
 ```
 
-TODO: 参数补充说明.
+&nbsp;
+### 装饰器参数
+**hookwrapper:**   
+默认是`False`, 表示当前`hook实现函数`就是一个`hook实现函数`.  
+当该参数是`True`时, 表示当前`hook实现函数`是一个`setup(前置)`+`teardown(后置)`夹具, 统称`Fixture`.  
+
+**optionalhook:**   
+默认是`False`, 表示当前`hook实现函数`没有匹配任何`HookspecMarker`则会报错.  
+当该参数是`True`时, 表示当前`hook实现函数`没有匹配`HookspecMarker`也不会报错.
+
+**tryfirst:**   
+默认情况下`pluggy`对`hook实现函数`的执行策略是`LIFO`, 即写入的时候是`append`, 执行的时候是`pop`.    
+当该参数是`True`时, 写入的时候是`insert to end`, 执行的时候是`pop`不变.   
+
+**trylast:**    
+默认情况下`pluggy`对`hook实现函数`的执行策略是`LIFO`, 即写入的时候是`append`, 执行的时候是`pop`.    
+当该参数是`True`时, 写入的时候是`insert to begin`, 执行的时候是`pop`不变.  
+
+**specname:** 
+默认是`None`, 表示按函数名来和`HookspecMarker`进行匹配.  
+当该字符串参数时, 按照提供的字符串来与`HookspecMarker`进行匹配.  
+[样例代码参考这里](https://github.com/pytest-dev/pluggy/blob/main/testing/test_hookcaller.py#L360)  
+
 
 &nbsp;  
 **HookspecMarker**代码片段
@@ -125,3 +147,4 @@ class HookimplMarker:
         else:
             return setattr_hookimpl_opts(function)
 ```
+
