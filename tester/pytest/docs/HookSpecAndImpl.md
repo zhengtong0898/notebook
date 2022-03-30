@@ -1,5 +1,11 @@
 ### Pluggy的函数签名和实现
 
+
+`hookspec = pluggy.HookspecMarker(project_name="myproject")` 的源码分析, [请参考这里](./pluggy/hooks_HookspecMarker.md).    
+`hookimpl = pluggy.HookimplMarker(project_name="myproject")` 的源码分析, [请参考这里](./pluggy/hooks_HookimplMarker.md).    
+`pm = pluggy.PluginManager(project_name="myproject")` 的源码分析, [请参考这里](./pluggy/manager_PluginManager.md)   
+
+
 ```python3
 import pluggy
 
@@ -50,9 +56,8 @@ results = pm.hook.myhook(arg1=1, arg2=2)                    # pm.hook.myhook: _H
                                                             # 先获取所有的实现(get_hookimpls),
                                                             # 然后丢给 _callers._multicall 去执行.
                                                             # 执行策略是: LIFO.
+                                                            # 写入采取: append.
+                                                            # 执行采取: pop.
 
 print(results)                                              # [-1, 3]
 ```
-
-`pluggy.HookspecMarker(project_name="myproject")` 的源码分析, [请参考这里](./pluggy/hooks_HookspecMarker.md).    
-`pm = pluggy.PluginManager(project_name="myproject")` 的源码分析, [请参考这里](./pluggy/manager_PluginManager.md)   
