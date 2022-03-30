@@ -15,11 +15,26 @@
 
 
 &nbsp;  
-### 参数  
-TODO: 待补充
+### 对象属性  
+
+**self.name:**   
+`hook`的名称, 通常与`hook规范函数名`一致.  
+
+**self._hookexec:**  
+`hook实现函数`的执行器, 一般情况下它是`PluginManager._hookexec`, 它其实是一个代理方法.  
+使用这个方法的目的是为了能够让 `PluginManager._inner_hookexec` 可被替换, 加强它的可替代性.  
+
+**self._call_history:**  
+该参数是一个历史参数集合, 也就是说`_call_history`里面有多少个元素, 那么每个`hook实现函数`就执行多少次.  
+如果有多个`hook实现函数`, 那么执行次数就是 `n * n` 次.  
+
+**self.spec:**  
+TODO: 待补充.
 
 
 
+&nbsp;  
+**HookCaller**代码片段
 ```python3
 
 class _HookCaller:
