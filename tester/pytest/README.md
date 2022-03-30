@@ -18,6 +18,7 @@
 ### Pluggy源码
 1. [pluggy._hooks.HookspecMarker](./docs/pluggy/hooks_HookspecMarker.md)  
 1. [pluggy._hooks.HookimplMarker](./docs/pluggy/hooks_HookimplMarker.md)  
+1. [pluggy._hooks._HookCaller](./docs/pluggy/hooks_HookCaller.md)  
 2. [pluggy._manager.PluginManager](./docs/pluggy/manager_PluginManager.md)  
 
 
