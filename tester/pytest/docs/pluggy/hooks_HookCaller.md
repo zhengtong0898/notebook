@@ -116,3 +116,109 @@ class _HookCaller:
         """Apply call history to a new hookimpl if it is marked as historic."""
 
 ```
+
+&nbsp;  
+### set_specification 方法
+
+`spec_opts: _HookSpecOpts`是字典数据, 将该字典作为参数实例化`HookSpec`对象, 完成`hook.spec`属性初始化动作.   
+
+```python3
+
+class _HookCaller:
+    
+    def set_specification(
+        self,
+        specmodule_or_class: _Namespace,
+        spec_opts: "_HookSpecOpts",
+    ) -> None:
+        assert not self.has_spec()
+        self.spec = HookSpec(specmodule_or_class, self.name, spec_opts)
+        if spec_opts.get("historic"):
+            self._call_history = []
+
+```
+
+
+&nbsp;  
+### _remove_plugin 方法
+
+由于一个`hook规范签名`可以注册多个`plugin`(实例对象),   
+只要`plugin`(实例对象)的方法与`hook规范签名`一致,   
+都会被加入到`_HookCaller._hookimpls`列表中.    
+
+因此当前方法是按`plugin`在`_HookCaller._hookimpls`找到对应的`hook实现函数`并删除该对象.  
+注: 一个`plugin`之会有一个`hook实现函数`, 因此这里做完删除动作后就直接`return`了.  
+
+```python3
+
+class _HookCaller:
+
+    def _remove_plugin(self, plugin: _Plugin) -> None:
+        for i, method in enumerate(self._hookimpls):
+            if method.plugin == plugin:
+                del self._hookimpls[i]
+                return
+        raise ValueError(f"plugin {plugin!r} not found")
+```
+
+
+&nbsp;  
+### _add_hookimpl 方法 
+
+当前方法维护一个"有序"列表,   
+`hookimpl.tryfirst=True`会被排在列表的右侧,  
+`hookimpl.trylast=True`会被排在列表的左侧,  
+`hookimpl`会被排在`tryfirst`的左侧,   
+`hookimpl.hookwrapper=True`会被排在和上一个`hookimpl.hookwrapper=True`的右侧.  
+
+所以整个列表存放的顺序是: [`hookimpl.trylast=True`, `hookimpl`, `hookimpl.hookwrapper=True`, `hookimpl.tryfirst`]  
+
+**第一段代码**  
+计算出`splitpoint`的位置.
+
+
+**第二段代码**  
+根据`splitpoint`计算出游标位置.  
+
+
+**第三段代码**  
+
+当`hookimpl.hookwrapper=True`时,   
+从左往右遍历`self._hookimpls`寻找第一个`method.hookwrapper=True`的元素位置,     
+目的是为了让当前的`hookimpl`对象插入第一个`hookimpl.hookwrapper=True`的元素的右侧.  
+
+当`hookimpl.hookwrapper=False`时,
+插入在第一个`hookimpl.hookwrapper=True`元素的左侧.  
+
+
+
+```python3
+
+class _HookCaller:
+
+    def _add_hookimpl(self, hookimpl: "HookImpl") -> None:
+        """Add an implementation to the callback chain."""
+        for i, method in enumerate(self._hookimpls):
+            if method.hookwrapper:
+                splitpoint = i
+                break
+        else:
+            splitpoint = len(self._hookimpls)
+
+        if hookimpl.hookwrapper:
+            start, end = splitpoint, len(self._hookimpls)
+        else:
+            start, end = 0, splitpoint
+
+        if hookimpl.trylast:
+            self._hookimpls.insert(start, hookimpl)
+        elif hookimpl.tryfirst:
+            self._hookimpls.insert(end, hookimpl)
+        else:
+            # find last non-tryfirst method
+            i = end - 1
+            while i >= start and self._hookimpls[i].tryfirst:
+                i -= 1
+            self._hookimpls.insert(i + 1, hookimpl)
+
+```
