@@ -193,7 +193,7 @@ class _HookCaller:
 **测试用例**  
 由于这个算法有点复杂, 所以需要设计几个测试用例来验证上面的表述是正确的.  
 测试场景-1: [所有插件的实现都声明hookwrapper=True, 期望效果像append一样.](./testing/test_add_hookimpl.py#L4)  
-测试场景-2: [混合注册插件, 期望是按trylast, normal, tryfirst, hookwrapper的分类顺序](./testing/test_add_hookimpl.py#57)
+测试场景-2: [混合注册插件, 期望是按trylast, normal, tryfirst, hookwrapper的分类顺序](./testing/test_add_hookimpl.py#L57)
 
 ```python3
 
