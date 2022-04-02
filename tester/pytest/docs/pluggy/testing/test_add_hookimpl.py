@@ -198,9 +198,30 @@ def test_register_order_mix():
         assert isinstance(actual_plugin, expect_plugin)
 
 
+def test_verify_all_args_are_provided():
+    hookspec = pluggy._hooks.HookspecMarker("example")
+    hookimpl = pluggy._hooks.HookimplMarker("example")
+
+    class Api:
+        @hookspec
+        def hello(self, arg):
+            """api hook 1"""
+
+    class Plugin:
+        @hookimpl
+        def hello(self, arg):
+            return 1
+
+    pm = pluggy.PluginManager("example")
+    pm.add_hookspecs(Api)
+    pm.register(Plugin())
+    pm.hook.hello(a="b", b="c")                         # 打印警告信息
+
+
 def main():
     test_register_order_with_hookwrapper()
     test_register_order_mix()
+    test_verify_all_args_are_provided()
 
 
 if __name__ == '__main__':

@@ -225,3 +225,31 @@ class _HookCaller:
             self._hookimpls.insert(i + 1, hookimpl)
 
 ```
+
+&nbsp;  
+### _verify_all_args_are_provided 方法
+检查 `kwargs` 与 `hook规范签名` 的参数是否匹配.  
+如果不匹配则将警告信息打印到控制台.  
+注: 这个方法不会中断程序, [测试用例](./testing/test_add_hookimpl.py#L201).  
+```python3
+
+class _HookCaller:
+
+    def _verify_all_args_are_provided(self, kwargs: Mapping[str, object]) -> None:
+        # This is written to avoid expensive operations when not needed.
+        if self.spec:
+            for argname in self.spec.argnames:
+                if argname not in kwargs:
+                    notincall = ", ".join(
+                        repr(argname)
+                        for argname in self.spec.argnames
+                        # Avoid self.spec.argnames - kwargs.keys() - doesn't preserve order.
+                        if argname not in kwargs.keys()
+                    )
+                    warnings.warn(
+                        "Argument(s) {} which are declared in the hookspec "
+                        "cannot be found in this hook call".format(notincall),
+                        stacklevel=2,
+                    )
+                    break
+```
