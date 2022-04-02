@@ -146,3 +146,42 @@ kws = {"a": "apple", "b": "banana",
 example(**kws)                                  # 占位符(/)要求左侧的形参不允许以指定变量名的方式来传参, 
                                                 # 然而**采取的就是解构字典后, 采取指定变量名的方式入参, 因此报错.  
 ```
+
+&nbsp;  
+### inspect 库对参数的描述
+
+**args:** 固定参数  
+**varargs:** 可变长列表参数  
+**varkw:** 可变长字典参数  
+**defaults:** 从又往左与固定参数的默认值一一对应  
+**kwonlyargs:** 关键字参数  
+**kwonlydefaults:** 关键字参数的默认值  
+**annotations:** 类型注解
+
+```python3
+import inspect
+
+
+def hello(a: str="A", *, b: int, c: str="C") -> None:
+    pass
+
+
+def main():
+    resp = inspect.getfullargspec(hello)
+    
+    # FullArgSpec(
+    #     args=['a'], 
+    #     varargs=None, 
+    #     varkw=None, 
+    #     defaults=('A',), 
+    #     kwonlyargs=['b', 'c'], 
+    #     kwonlydefaults={'c': 'C'}, 
+    #     annotations={'return': None, 'a': <class 'str'>, 'b': <class 'int'>, 'c': <class 'str'>}
+    # )
+    print(resp)                                 
+
+
+if __name__ == '__main__':
+    main()
+
+```
