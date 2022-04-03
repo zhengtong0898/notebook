@@ -349,3 +349,24 @@ class _HookCaller:
         firstresult = self.spec.opts.get("firstresult", False) if self.spec else False
         return self._hookexec(self.name, hookimpls, kwargs, firstresult)
 ```
+
+&nbsp;  
+### _maybe_apply_history 方法  
+
+当前方法会遍历`self._call_history`这个历史参数集合去执行`method`函数.  
+
+```python3
+
+class _HookCaller:
+
+    def _maybe_apply_history(self, method: "HookImpl") -> None:
+        """Apply call history to a new hookimpl if it is marked as historic."""
+        if self.is_historic():
+            assert self._call_history is not None
+            for kwargs, result_callback in self._call_history:
+                res = self._hookexec(self.name, [method], kwargs, False)
+                if res and result_callback is not None:
+                    # XXX: remember firstresult isn't compat with historic
+                    assert isinstance(res, list)
+                    result_callback(res[0])
+```
