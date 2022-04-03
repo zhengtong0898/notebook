@@ -272,3 +272,39 @@ class _HookCaller:
         firstresult = self.spec.opts.get("firstresult", False) if self.spec else False
         return self._hookexec(self.name, self._hookimpls, kwargs, firstresult)
 ```
+
+&nbsp;  
+### call_historic 方法  
+
+和`self.__call__`相同, 都是根据提供的`kwargs`去执行所有个`self._hookimpls`函数,   
+和`self.__call__`不同的是, 当前方法多出了两个动作:    
+1. 将这次执行的`kwargs`写入到`self._call_history`中进行保存.   
+2. 执行完所有的`self._hookimpls`函数后, 将返回值作为参数传给回调函数`result_callback`.    
+
+```python3
+
+class _HookCaller:
+
+    def call_historic(
+        self,
+        result_callback: Optional[Callable[[Any], None]] = None,
+        kwargs: Optional[Mapping[str, object]] = None,
+    ) -> None:
+        """Call the hook with given ``kwargs`` for all registered plugins and
+        for all plugins which will be registered afterwards.
+        If ``result_callback`` is provided, it will be called for each
+        non-``None`` result obtained from a hook implementation.
+        """
+        assert self._call_history is not None
+        kwargs = kwargs or {}
+        self._verify_all_args_are_provided(kwargs)
+        self._call_history.append((kwargs, result_callback))
+        # Historizing hooks don't return results.
+        # Remember firstresult isn't compatible with historic.
+        res = self._hookexec(self.name, self._hookimpls, kwargs, False)
+        if result_callback is None:
+            return
+        if isinstance(res, list):
+            for x in res:
+                result_callback(x)
+```
