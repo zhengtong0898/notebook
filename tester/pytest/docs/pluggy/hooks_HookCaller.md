@@ -253,3 +253,22 @@ class _HookCaller:
                     )
                     break
 ```
+
+&nbsp;  
+### __call__ 方法
+
+检查所有入参(`kwargs`)和`hook规范签名`的参数是否一致, 不一致则抛出警告,  
+执行所有`self._hookimpls`中的`hook实现函数`.  
+
+```python3
+
+class _HookCaller:
+    
+    def __call__(self, **kwargs: object) -> Any:
+        assert (
+            not self.is_historic()
+        ), "Cannot directly call a historic hook - use call_historic instead."
+        self._verify_all_args_are_provided(kwargs)
+        firstresult = self.spec.opts.get("firstresult", False) if self.spec else False
+        return self._hookexec(self.name, self._hookimpls, kwargs, firstresult)
+```
