@@ -308,3 +308,44 @@ class _HookCaller:
             for x in res:
                 result_callback(x)
 ```
+
+&nbsp;  
+### call_extra 方法  
+
+`__call__`和`call_historic`的执行范围都只是`self._hookimpls`集合中的`hook实现`.  
+当前方法通过`methods`形参来支持执行一些外部(额外)的函数, 前提是这些外部函数的签名要和`hook规范签名`一致.  
+也就是说当前方法既要执行`self,_hookimpls`也要执行`methods`函数.  
+注: `methods`只能插入在 `tryfirst=True` 和 `hookwrapper=True` 的左侧(后面).  
+参考: [测试用例](https://github.com/pytest-dev/pluggy/blob/main/testing/test_pluginmanager.py#L358)  
+
+```python3
+
+class _HookCaller:
+
+    def call_extra(
+        self, methods: Sequence[Callable[..., object]], kwargs: Mapping[str, object]
+    ) -> Any:
+        """Call the hook with some additional temporarily participating
+        methods using the specified ``kwargs`` as call parameters."""
+        assert (
+            not self.is_historic()
+        ), "Cannot directly call a historic hook - use call_historic instead."
+        self._verify_all_args_are_provided(kwargs)
+        opts: "_HookImplOpts" = {
+            "hookwrapper": False,
+            "optionalhook": False,
+            "trylast": False,
+            "tryfirst": False,
+            "specname": None,
+        }
+        hookimpls = self._hookimpls.copy()
+        for method in methods:
+            hookimpl = HookImpl(None, "<temp>", method, opts)
+            # Find last non-tryfirst nonwrapper method.
+            i = len(hookimpls) - 1
+            while i >= 0 and hookimpls[i].tryfirst and not hookimpls[i].hookwrapper:
+                i -= 1
+            hookimpls.insert(i + 1, hookimpl)
+        firstresult = self.spec.opts.get("firstresult", False) if self.spec else False
+        return self._hookexec(self.name, hookimpls, kwargs, firstresult)
+```
