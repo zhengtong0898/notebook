@@ -162,23 +162,23 @@ example(**kws)                                  # 占位符(/)要求左侧的形
 import inspect
 
 
-def hello(a: str="A", *, b: int, c: str="C") -> None:
+def hello(a, b: str = "A", *, c: int, d: str = "C") -> None:
     pass
 
 
 def main():
     resp = inspect.getfullargspec(hello)
-    
+
     # FullArgSpec(
-    #     args=['a'], 
+    #     args=['a', 'b'], 
     #     varargs=None, 
     #     varkw=None, 
     #     defaults=('A',), 
-    #     kwonlyargs=['b', 'c'], 
-    #     kwonlydefaults={'c': 'C'}, 
-    #     annotations={'return': None, 'a': <class 'str'>, 'b': <class 'int'>, 'c': <class 'str'>}
+    #     kwonlyargs=['c', 'd'], 
+    #     kwonlydefaults={'d': 'C'}, 
+    #     annotations={'return': None, 'b': <class 'str'>, 'c': <class 'int'>, 'd': <class 'str'>}
     # )
-    print(resp)                                 
+    print(resp)
 
 
 if __name__ == '__main__':
