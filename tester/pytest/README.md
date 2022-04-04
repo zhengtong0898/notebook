@@ -23,7 +23,8 @@
 5. [pluggy._hooks.HookImpl](./docs/pluggy/hooks_HookImpl.md)  
 6. [pluggy._hooks._HookCaller](./docs/pluggy/hooks_HookCaller.md)  
 7. [pluggy._hooks._SubsetHookCaller](./docs/pluggy/hooks_SubsetHookCaller.md)  
-8. [pluggy._manager.PluginManager](./docs/pluggy/manager_PluginManager.md)  
+8. [pluggy._manager.DistFacade](./docs/pluggy/manager_DistFacade.md)
+9. [pluggy._manager.PluginManager](./docs/pluggy/manager_PluginManager.md)  
 
 
 &nbsp;  
