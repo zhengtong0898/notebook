@@ -26,7 +26,7 @@
 8. [pluggy._manager.DistFacade](./docs/pluggy/manager_DistFacade.md)
 9. [pluggy._manager.PluginManager](./docs/pluggy/manager_PluginManager.md)  
 10. [pluggy._result._Result](./docs/pluggy/result_Result.md)  
-
+11. [pluggy._caller._multicall](./docs/pluggy/caller_multicall.md)  
 
 
 &nbsp;  
