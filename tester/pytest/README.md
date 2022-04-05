@@ -6,6 +6,7 @@
 5. [如何动态生成allure报告?](./examples/dynamic_generate_allure_report/README.md)  
 6. [Pytest由那些组件构成?](./docs/Components.md)  
 7. [当用例失败时是用skip还是xfail?](./docs/skip_or_xfail.md)
+8. [Fixture调用顺序?](./docs/fixture_call_order.md)  
 
 
 &nbsp;  
