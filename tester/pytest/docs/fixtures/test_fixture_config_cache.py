@@ -43,10 +43,10 @@ def test_config_cache_b(request):                                            # �
 platform linux -- Python 3.8.10, pytest-7.1.0, pluggy-1.0.0
 ------------------------------------------- cache values for '*' --------------------------------------------
 cache/lastfailed contains:
-  {'test_config_cache.py::test_config_cache_a': True}                        # 失败用例被缓存了
+  {'test_fixture_config_cache.py::test_config_cache_a': True}                        # 失败用例被缓存了
 cache/nodeids contains:
-  ['test_config_cache.py::test_config_cache_a',
-   'test_config_cache.py::test_config_cache_b']
+  ['test_fixture_config_cache.py::test_config_cache_a',
+   'test_fixture_config_cache.py::test_config_cache_b']
 cache/stepwise contains:
   []
 test_config_cache_a::actual contains:
