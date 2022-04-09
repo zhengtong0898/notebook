@@ -7,6 +7,10 @@ monkeypatch 解决了什么问题?
 1. 节省冗余的样板代码(数据备份、数据恢复、异常捕获).  
 2. 每个用例的对象/数据篡改都是隔离的, 不会影响其他用例.  
 3. 让测试代码更聚焦, 减少样板代码的干扰.  
+
+参考:  
+https://holgerkrekel.net/2009/03/03/monkeypatching-in-unit-tests-done-right/
+https://docs.pytest.org/en/7.1.x/how-to/monkeypatch.html#monkeypatching
 """
 
 
