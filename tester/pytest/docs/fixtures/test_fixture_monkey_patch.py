@@ -21,5 +21,38 @@ def test_env_reading_1(monkeypatch):
 
 
 def test_env_reading_2(monkeypatch):
-    val = os.environ.get("ENV1")                        # 这里拿不到 test_env_reading_1 中 ENV1 的变量.
-    assert val == "myval"
+    val = os.environ.get("ENV1")                        # 这里拿不到 test_env_reading_1 中 ENV1 的变量, 符合预期
+    assert val == "myval"                               # 因为 monekypatch 是以测试用例为单位来做隔离的.
+
+
+"""
+期望:
+test_env_reading_1 成功
+test_env_reading_2 失败
+
+输出结果:
+
+============================= test session starts ==============================
+collecting ... collected 2 items
+
+test_fixture_monkey_patch.py::test_env_reading_1 PASSED                  [ 50%]
+test_fixture_monkey_patch.py::test_env_reading_2 FAILED                  [100%]
+test_fixture_monkey_patch.py:22 (test_env_reading_2)
+None != myval
+
+Expected :myval
+Actual   :None
+<Click to see difference>
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f6cc9fd74c0>
+
+    def test_env_reading_2(monkeypatch):
+        val = os.environ.get("ENV1")                        # 这里拿不到 test_env_reading_1 中 ENV1 的变量, 符合预期
+>       assert val == "myval"                               # 因为 monekypatch 是以测试用例为单位来做隔离的.
+E       AssertionError: assert None == 'myval'
+
+test_fixture_monkey_patch.py:25: AssertionError
+
+
+========================= 1 failed, 1 passed in 0.10s ==========================
+"""
