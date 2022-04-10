@@ -283,3 +283,82 @@ class PluginManager:
 
 用一张图来描述它的工作原理.  
 ![img.png](plantumls/pluginmanager_register.png)
+
+
+&nbsp;  
+### set_blocked 方法
+
+下线(`unregister`)一个插件, 并将该插件写入黑名单.  
+
+****
+
+```python3
+
+class PluginManager:
+
+    def set_blocked(self, name: str) -> None:
+        """Block registrations of the given name, unregister if already registered."""
+        self.unregister(name=name)
+        self._name2plugin[name] = None
+
+
+```
+
+
+&nbsp;  
+### is_blocked 方法  
+
+当插件(`name`)存在于`self._name2plugin`并且值是`None`时, 表示该插件已经被拉入黑名单.  
+
+```python3
+
+class PluginManager:
+
+    def is_blocked(self, name: str) -> bool:
+        """Return whether the given plugin name is blocked."""
+        return name in self._name2plugin and self._name2plugin[name] is None
+
+```
+
+&nbsp;  
+### load_setuptools_entrypoints 方法
+
+批量注册插件的`hook实现函数`, 并存储插件的发布信息, 前提是满足下面四个条件的:  
+
+1. `参数group` == `ep.group`.
+2. `参数name` == `ep.name`.
+3. 同名的`hook实现函数`尚未注册过.  
+4. `hook实现函数`不再黑名单中.  
+
+
+```python3
+
+class PluginManager:
+
+    def load_setuptools_entrypoints(
+        self, group: str, name: Optional[str] = None
+    ) -> int:
+        """Load modules from querying the specified setuptools ``group``.
+
+        :param str group: Entry point group to load plugins.
+        :param str name: If given, loads only plugins with the given ``name``.
+        :rtype: int
+        :return: The number of plugins loaded by this call.
+        """
+        count = 0
+        for dist in list(importlib_metadata.distributions()):
+            for ep in dist.entry_points:
+                if (
+                    ep.group != group
+                    or (name is not None and ep.name != name)
+                    # already registered
+                    or self.get_plugin(ep.name)
+                    or self.is_blocked(ep.name)
+                ):
+                    continue
+                plugin = ep.load()
+                self.register(plugin, name=ep.name)
+                self._plugin_distinfo.append((plugin, DistFacade(dist)))
+                count += 1
+        return count
+```
