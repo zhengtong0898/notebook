@@ -8,3 +8,4 @@
 |caplog|拦截`logging日志`并写入到`caplog`对象 |[test_fixture_caplog.py](./fixtures/test_fixture_caplog.py)|
 |[monkeypatch](https://www.geeksforgeeks.org/monkey-patching-in-python-dynamic-behavior/)|通过`运行时`动态的修改对象(属性、方法)或数据(字段、值)来完成不同场景的测试目标 |[test_fixture_monkey_patch.py](./fixtures/test_fixture_monkey_patch.py)|
 |pytester|**适用于自研插件的测试场景:** <br/>在pytester之前, 测试插件的话需要用目录来隔离独立的testcase. <br/>在pytester之后, 可以将testcase写在一个测试函数中, 可以做到统一执行.  |[官网教程](https://docs.pytest.org/en/7.1.x/how-to/writing_plugins.html#testing-plugins) <br/>[test_assertion.py](https://github.com/pytest-dev/pytest/blob/7.1.1/testing/test_assertion.py#L33)|  
+|tmp_path|为测试用例创建一个独立的(隔离的)临时文件夹.<br/> 测试用例产生的临时文件都可以放在这里.|[test_fixture_tmp_path.py](./fixtures/test_fixture_tmp_path.py)|
