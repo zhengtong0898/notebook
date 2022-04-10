@@ -290,8 +290,6 @@ class PluginManager:
 
 下线(`unregister`)一个插件, 并将该插件写入黑名单.  
 
-****
-
 ```python3
 
 class PluginManager:
