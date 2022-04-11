@@ -16,7 +16,7 @@
 2. [Pluggy解决了什么问题?](./docs/WhyIsPluggyUseful.md)  
 3. [Pluggy由哪些关键组件构成?](./docs/HowDoesItWork.md)  
 4. [Pluggy的函数签名和实现](./docs/HookSpecAndImpl.md)  
-5. [Pluggy编写插件的官方案例](./docs/pluggy/eggsample/eggsample/host.py#L39)
+5. [Pluggy编写一个插件](./docs/pluggy/eggsample/eggsample/host.py#L39)
 
 &nbsp;  
 ### Pluggy源码
