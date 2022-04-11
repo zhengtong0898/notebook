@@ -8,6 +8,7 @@
 7. [当用例失败时是用skip还是xfail?](./docs/skip_or_xfail.md)
 8. [Fixture执行策略](./docs/fixture_call_order.md)  
 9. [Fixture内置对象](./docs/fixture_built_in.md)
+10. [Pytest对外暴露的Hooks清单](./docs/Hooks.md)  
 
 
 &nbsp;  
