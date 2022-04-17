@@ -1,3 +1,4 @@
+import inspect
 import pytest
 from typing import List
 
@@ -9,4 +10,4 @@ class CmdLineParse:
         pluginmanager: pytest.PytestPluginManager,
         args: List[str]
     ):
-        print("hello world!")
+        print(f"{inspect.currentframe().f_code.co_name}")

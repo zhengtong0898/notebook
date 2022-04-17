@@ -1,4 +1,4 @@
-import logging
+import inspect
 import pytest
 from typing import List
 
@@ -9,6 +9,7 @@ def pytest_load_initial_conftests(
     args: List[str],
     parser: pytest.Parser
 ) -> None:
+    print(f"{inspect.currentframe().f_code.co_name}")
     early_config.inicfg["log_cli"] = "true"
     early_config.inicfg["log_cli_level"] = "DEBUG"
     early_config.inicfg["log_cli_format"] = "[%(asctime)s] %(message)s"
