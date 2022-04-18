@@ -8,7 +8,7 @@
 
 
 &nbsp;  
-### Hooks的执行顺序是?
+### Hooks执行顺序
 根据这[个测试用例](./hooks/pytest-hookorder/)可以观测hooks的执行顺序.  
 ```shell
 pytest_load_initial_conftests
@@ -110,9 +110,6 @@ pytest_unconfigure
 
 
 &nbsp;  
-### 每个hook都有哪些插件排队在做.  
-
-
-&nbsp;  
-### hook和hook之间的controller代码在哪里?  
+### Hooks调用链路图
+![hooks_invocation_chain.png](hooks/hooks_invocation_chain.png)
 

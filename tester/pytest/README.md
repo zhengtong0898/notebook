@@ -9,6 +9,8 @@
 8. [Fixture执行策略](./docs/fixture_call_order.md)  
 9. [Fixture内置对象](./docs/fixture_built_in.md)
 10. [Pytest对外暴露的Hooks清单](./docs/Hooks.md)  
+11. [Hooks的执行顺序](./docs/Hooks.md#Hooks执行顺序)  
+12. [Hooks的调用链路图](./docs/Hooks.md#Hooks调用链路图)  
 
 
 &nbsp;  
