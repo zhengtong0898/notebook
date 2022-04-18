@@ -30,10 +30,22 @@ LC_IDENTIFICATION="zh_CN.UTF-8"
 LC_ALL=
 ```
 
-解决办法
+临时解决办法
 ```shell
 [user@f2a4d2c8 ~]# localedef -c -f UTF-8 -i en_US en_US.UTF-8
 [user@f2a4d2c8 ~]# export LANG=en_US.UTF-8
 [user@f2a4d2c8 ~]# export LC_ALL=en_US.UTF-8
 ```
 
+持久解决办法
+```shell
+[user@f2a4d2c8 ~]# echo "localedef -c -f UTF-8 -i en_US en_US.UTF-8" >> ~/.bashrc
+[user@f2a4d2c8 ~]# echo "export LANG=en_US.UTF-8" >> ~/.bashrc
+[user@f2a4d2c8 ~]# echo "export LC_ALL=en_US.UTF-8" >> ~/.bashrc
+```
+
+验收
+```shell
+[user@f2a4d2c8 ~]# python3 hello.py
+你好
+```
