@@ -1,5 +1,5 @@
 ### 测开相关
-- [ ] 用Python写一个Prometheus的exporter    
+- [x] 用Python写一个Prometheus的exporter    
 - [ ] Pytest Fixture 的工作流程图
 - [ ] Django Rest Framework 基础使用
 - [ ] Django Swagger
