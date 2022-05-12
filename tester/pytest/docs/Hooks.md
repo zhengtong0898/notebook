@@ -111,5 +111,5 @@ pytest_unconfigure
 
 &nbsp;  
 ### Hooks调用链路图
-![hooks_invocation_chain.png](hooks/hooks_invocation_chain.png)
+![hooks_invocation_chain.png](hooks/pytest_hooks_invocation_chain.png)
 
