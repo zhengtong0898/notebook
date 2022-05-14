@@ -38,6 +38,7 @@
 
 &nbsp;  
 ### Pytest源码  
+1. [hookspec加载链路图](./docs/pytest_load_hookspec.png)
 
 
 &nbsp;  
