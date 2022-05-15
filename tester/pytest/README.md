@@ -10,9 +10,7 @@
 9. [Fixture内置对象](./docs/fixture_built_in.md)
 10. [Pytest对外暴露的Hooks清单](./docs/Hooks.md)  
 11. [Hooks的执行顺序](./docs/Hooks.md#Hooks执行顺序)  
-12. [Hooks的调用链路图](./docs/Hooks.md#Hooks调用链路图)  
-13. [HookCaller对象的_wrappers和_nonwrappers属性谁的优先级高?](./docs/_wrappers_nonwrappers_priority.md)  
-14. [Debug打印pluginmanager的_wrappers和_nonwrappers代码](./docs/debug_print_wrappers_nonwrappers.md)
+12. [Hooks的调用链路图](./docs/Hooks.md#Hooks调用链路图)
 
 &nbsp;  
 ### 核心  
@@ -40,8 +38,10 @@
 &nbsp;  
 ### Pytest源码  
 1. [hookspec加载链路图](./docs/pytest_load_hookspec.png)
-2. [hooks的加载和执行顺序](./docs/HooksLoadAndExecuteOrder.md)
-3. [fixture在源码里面是什么对象?](./docs/FixtureInSourceCode.md)
+2. [HookCaller对象的_wrappers和_nonwrappers属性谁的优先级高?](./docs/_wrappers_nonwrappers_priority.md)
+3. [Debug打印pluginmanager的_wrappers和_nonwrappers代码](./docs/debug_print_wrappers_nonwrappers.md)
+4. [hooks的注册过程(强调顺序、动机)](./docs/pytest_register_hooks.png)
+
 
 &nbsp;  
 ### allure插件源码
