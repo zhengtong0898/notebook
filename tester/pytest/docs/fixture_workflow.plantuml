@@ -1,0 +1,17 @@
+@startuml
+
+start
+
+:发现和加载Fixture;
+
+:发现和加载测试用例\n(session.items);
+
+repeat :for item in session.items ;
+    :执行fixtures\n(item.fixturenames);
+    :执行测试用力\n(item);
+backward: 持续遍历;
+repeat while ();
+
+stop
+
+@enduml
