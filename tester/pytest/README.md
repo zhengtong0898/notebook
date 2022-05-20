@@ -15,11 +15,13 @@
 
 
 &nbsp;  
-### Pytest源码  
+### Pytest各个工作流程图  
 1. [hookspec加载链路图](./docs/pytest_load_hookspec.png)
 2. [hooks的注册过程顺序图(强调顺序、动机)](./docs/pytest_register_hooks.png)
 3. [hooks的调用链路图](./docs/hooks/pytest_hooks_invocation_chain.png)
 4. [fixture的工作流程图](./docs/fixture_workflow.png)
+5. [ ] [fixture的scope是function的工作流程图](./docs/fixture_workflow_scope_function.png)
+6. [ ] [fixture的scope是module的工作流程图](./docs/fixture_workflow_scope_function.png)  
 
 
 &nbsp;  
