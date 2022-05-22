@@ -1,6 +1,11 @@
 import pytest
 
 
-@pytest.fixture
-def fixture_a():
-    print("\nmulti_conftest.same_fixture_name.conftest.fixture_a")
+@pytest.fixture(scope="module")
+def fixture_a(request):
+    return "fixture_a_rst"
+
+
+def fixture_b():
+
+    return "fixture_b_rst"

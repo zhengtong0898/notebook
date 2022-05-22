@@ -1,0 +1,22 @@
+@startuml
+
+start
+
+:pytest_runtestloop\n   (_pytest.main);
+:pytest_runtest_setup\n    (_pytest.runner);
+:        fixturedef.execute\n(_pytest.fixtures.FixtureDef);
+    if (fixturedef.cached_result) then (缓存存在)
+        :使用缓存结果, 不再执行fixture.\n   (scope='function'不适用);
+    else (缓存不存在)
+        :                         无缓存, 需要执行fixture.\n                (当scope='function'时会来到这里)\n(当scope!='function'且尚未执行过fixture时也会来到这里);
+        :pytest_fixture_setup\n   (_pytest.fixtures);
+        :执行fixture;
+        :执行测试用例;
+        :pytest_runtest_teardown\n       (_pytest.runner);
+        :         teardown_exact\n(_pytest.runner.SetupState);
+        :                fixturedef.finish\n(FixtureRequest._schedule_finalizers)\n                 (重要: 删除缓存.);
+    endif
+
+stop
+
+@enduml

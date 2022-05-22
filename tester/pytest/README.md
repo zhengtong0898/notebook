@@ -1,15 +1,15 @@
 ### Pytest入门
-1. [Pytest是如何识别一个测试用例的?](./docs/HowToFindTestCase.md)  
-2. [如何写一个测试用例?](./docs/CreateTestCase.md)  
-3. [如何实时打印logging日志信息?](./examples/live_logs/README.md)  
-4. [如何展示错误堆栈中的变量?](./examples/showlocals/README.md)  
-5. [如何动态生成allure报告?](./examples/dynamic_generate_allure_report/README.md)  
-6. [Pytest由那些组件构成?](./docs/Components.md)  
-7. [当用例失败时是用skip还是xfail?](./docs/skip_or_xfail.md)
-8. [Fixture执行策略](./docs/fixture_call_order.md)  
-9. [Fixture内置对象](./docs/fixture_built_in.md)
-10. [Pytest对外暴露的Hooks清单](./docs/Hooks.md)  
-11. [Hooks的执行顺序](./docs/Hooks.md#Hooks执行顺序)
+1. [Pytest是如何识别一个测试用例的?](docs/HowToFindTestCase.md)  
+2. [如何写一个测试用例?](docs/CreateTestCase.md)  
+3. [如何实时打印logging日志信息?](examples/live_logs/README.md)  
+4. [如何展示错误堆栈中的变量?](examples/showlocals/README.md)  
+5. [如何动态生成allure报告?](examples/dynamic_generate_allure_report/README.md)  
+6. [Pytest由那些组件构成?](docs/Components.md)  
+7. [当用例失败时是用skip还是xfail?](docs/skip_or_xfail.md)
+8. [Fixture执行策略](docs/fixture_call_order.md)  
+9. [Fixture内置对象](docs/fixture_built_in.md)
+10. [Pytest对外暴露的Hooks清单](docs/Hooks.md)  
+11. [Hooks的执行顺序](docs/Hooks.md#Hooks执行顺序)
 12. [HookCaller对象的_wrappers和_nonwrappers属性谁的优先级高?](./docs/_wrappers_nonwrappers_priority.md)
 13. [Debug打印pluginmanager的_wrappers和_nonwrappers代码](./docs/debug_print_wrappers_nonwrappers.md)
 
@@ -20,9 +20,9 @@
 2. [hooks的注册过程顺序图(强调顺序、动机)](./docs/pytest_register_hooks.png)
 3. [hooks的调用链路图](./docs/hooks/pytest_hooks_invocation_chain.png)
 4. [fixture的工作流程图](./docs/fixture_workflow.png)
-5. [fixture的加载(load)的工作流程图](./docs/load_fixture_workflow.png)
-6. [ ] [fixture的scope是function的工作流程图](./docs/fixture_workflow_scope_function.png)
-7. [ ] [fixture的scope是module的工作流程图](./docs/fixture_workflow_scope_function.png)  
+5. [fixture的加载(load)工作流程图](./docs/load_fixture_workflow.png)
+6. [fixture的作用域(scope)工作流程图](./docs/execute_fixture.md)  
+
 
 
 &nbsp;  
