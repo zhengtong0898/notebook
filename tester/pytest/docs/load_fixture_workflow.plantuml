@@ -1,0 +1,19 @@
+@startuml
+
+start
+
+:pytest.main;
+:pytest_cmdline_main\n(_pytest.main);
+:wrap_session\n(_pytest.main);
+:pytest_sessionstart\n(_pytest.fixtures);
+:FixtureManager(session)\n(_pytest.fixtures.pytest_sessionstart);
+:session.config.pluginmanager.register(self, "funcmanage")\n(_pytest.fixtures.FixtureManager)\n(备注: load当前类FixtureManager的所有pytest打头的方法);
+repeat :hooks=[pytest_collection_modifyitems, \n            pytest_generate_tests, \n            pytest_plugin_registered]\n\nfor hook in hooks:;
+    :pytest_plugin_registered\n(注册这个插件);
+    :_maybe_apply_history\n(执行所有插件的pytest_plugin_registered的hook)\n;
+    :self.parsefactories(plugin, nodeid)\n(将每个插件的fixture写入到FixtureManager._arg2fixturedefs);
+repeat while ();
+
+stop
+
+@enduml

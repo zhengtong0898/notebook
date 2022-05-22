@@ -2,13 +2,13 @@
 
 start
 
-:发现和加载Fixture;
+:load fixture\n(session._fixturemanager._arg2fixturedefs);
 
-:发现和加载测试用例\n(session.items);
+:load testcase\n(session.items);
 
 repeat :for item in session.items ;
-    :执行fixtures\n(item.fixturenames);
-    :执行测试用力\n(item);
+    :execute fixtures\n(item.fixturenames);
+    :execute testcase\n(item._pyfuncitem);
 backward: 持续遍历;
 repeat while ();
 
