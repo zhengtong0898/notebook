@@ -4,7 +4,10 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+<<<<<<< HEAD
     
+=======
+>>>>>>> 4e74362... rust: 增加<各基础类型(内存占用)的大小>
         {
             "type": "lldb",
             "request": "launch",
