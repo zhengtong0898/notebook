@@ -57,6 +57,15 @@
 
 &nbsp;  
 ### 字符串
+> 为什么字符串的内存占用是24个字节?
+> 
+> String: [ ptr<8> | len<8> | cap<8> ]  
+> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ptr is a pointer to a location on the heap that stores the string  
+> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; len is the length of the string  
+> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cap is the total capacity of the buffer being pointed to  
+> 
+
+
 |字符串|占用内存<br>(bytes)|
 |---|---|
 |String::from("z")|24|
