@@ -11,8 +11,10 @@ def count_single_word(filename="lvyexianzong.txt"):
         content = f.read()
         counter = Counter(content)
         ordered_items: List[Tuple[str, int]] = counter.most_common()
-        for index, (k, v) in enumerate(ordered_items):
-            print(index, k, v, lazy_pinyin(k))
+        for k, v in ordered_items:
+            k_pinyin = ' '.join(lazy_pinyin(k))
+            if "ang" in k_pinyin:
+                print(f"词频: {v:>4}; 拼音: {k_pinyin:>18}; 词组: {k};")
 
 
 def count_group_words(filename="lvyexianzong.txt"):
@@ -52,11 +54,14 @@ def count_group_words(filename="lvyexianzong.txt"):
             # if count >= 20:
             #     break
 
+            if "ang" not in ' '.join(lazy_pinyin(k)):
+                continue
+
             if len(k) > 1:
                 print(f"词频: {v:>4}; 拼音: {' '.join(lazy_pinyin(k)):>18}; 词组: {k};")
                 count += 1
 
 
 if __name__ == '__main__':
-    # count_single_word()
+    count_single_word()
     count_group_words()
