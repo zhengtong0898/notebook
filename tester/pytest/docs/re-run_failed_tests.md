@@ -8,7 +8,7 @@
 |`pytest --failed-first`|先跑失败用例, 再跑剩下的其他用例.|[测试案例](cmdlines/failed-first)|
 |`pytest --failed-first --last-failed-no-failures all`|当上一次执行没有失败用例时, 执行所有用例.<br>(`--failed-first`是固定搭配)|[测试案例](cmdlines/last-failed-no-failures/main.py#L9)|
 |`pytest --failed-first --last-failed-no-failures none`|当上一次执行没有失败用例时, 不执行任何用例.<br>(`--failed-first`是固定搭配)|[测试案例](cmdlines/last-failed-no-failures/main.py#L12)|
-|`pytest --new-first`|||
+|`pytest --new-first`|按`最后修改时间`(最新的在最前面)排序来执行用例.|[测试案例](cmdlines/new-first/main.py)|
 |`pytest --stepwise`|||
 |`pytest --stepwise-skip`|||
 |`pytest -x`|||
