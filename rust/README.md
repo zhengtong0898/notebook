@@ -9,8 +9,10 @@
 - [x] [Attributes: 介绍](./attributes.md)
 - [x] [Attributes: 关闭未使用代码警告](./disable_unused_code_warning.md)
 - [x] [Attributes: 将对象打印出来](./debug_object.md)
-- [x] [match: 模式匹配的变量绑定](./match_bind_variable.md)
+- [x] [Match: 模式匹配的变量绑定](./match_bind_variable.md)
+- [x] [AssociatedFunctions: 关联函数](./associated_functions.md)
 
 &nbsp;  
 ### 问题清单
-- [ ] 为什么创建字符串使用`String::from`而不是`String.from`?  
+- [x] [为什么创建字符串使用`String::from`而不是`String.from`?](./associated_functions.md)
+
