@@ -11,6 +11,7 @@
 - [x] [Attributes: 将对象打印出来](./debug_object.md)
 - [x] [Match: 模式匹配的变量绑定](./match_bind_variable.md)
 - [x] [AssociatedFunctions: 关联函数](./associated_functions.md)
+- [x] [Lifetimes: 生命周期](./lifetimes.md)
 
 &nbsp;  
 ### 问题清单
