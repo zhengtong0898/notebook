@@ -12,7 +12,7 @@
 &nbsp;  
 ### Pytest
 ##### tutorials(教程)
-- [x] pytest的缓存机制介绍
+- [x] [pytest的缓存机制](./tester/pytest/docs/pytest_cache.md)
 - [x] [pytest如何重跑失败用例](./tester/pytest/docs/re-run_failed_tests.md)
 - [ ] How to manage logging
 ##### fixture(前置、后置)
