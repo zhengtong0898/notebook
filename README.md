@@ -24,7 +24,7 @@
 - [x] [pytest内置的fixture清单](tester/pytest/docs/pytest_builtin_fixtures.md)
 ##### marks(标签)
 - [x] [当用例失败时是用skip还是xfail?](tester/pytest/docs/skip_or_xfail.md) 
-- [ ] 参数化执行测试用例 / Parametrizing fixtures / Using marks with parametrized fixtures / How to parametrize fixtures and test functions
+- [ ] [参数化执行测试用例](tester/pytest/docs/pytest_parameters.md)
 - [ ] How to mark test functions with attributes
 ##### hooks(钩子: pytest内核)
 - [x] [hooks的调用链路图](tester/pytest/docs/hooks/pytest_hooks_invocation_chain.png)
