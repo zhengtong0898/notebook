@@ -1,0 +1,7 @@
+- [ ] [OpenAPI官网介绍](https://oai.github.io/Documentation/start-here.html)
+- [ ] [Swagger官网对OpenAPI3.0的介绍](https://swagger.io/specification/)
+- [ ] [B站视频介绍OpenAPI2.0的介绍](https://www.bilibili.com/video/BV1iV411e7hx)
+- [ ] [OpenAPI2.0和OpenAPI3.0的区别](https://blog.stoplight.io/difference-between-open-v2-v3-v31)  
+- [ ] [drf-yasg: Swagger generator(OpenAPI2.0): Django-rest-framework](https://drf-yasg.readthedocs.io/en/stable/readme.html)
+- [ ] [B站drf-yasg安装教程](https://www.bilibili.com/video/BV1VQ4y1v7Ug)
+- [ ] [drf-spectacular: OpenAPI3.0 generator: Django-rest-framework](https://drf-spectacular.readthedocs.io/en/latest/)
