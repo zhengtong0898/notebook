@@ -1,8 +1,8 @@
 ### 测开相关
 - [x] [用Python写一个Prometheus的exporter](./devops/grafana/prometheus_exporter.md)    
-- [x] Pytest Fixture 的工作流程图
-- [ ] Django Rest Framework 基础使用
-- [ ] Django Swagger
+- [x] [Pytest Fixture 的工作流程图](./README.md#fixture)
+- [x] [Django Rest Framework 基础使用](./djangoprojects/tutorial)
+- [x] [Django Swagger](./djangoprojects/tutorial/tutorial/urls.py#L25)
 - [ ] Python 解析 Swagger
 - [ ] Python 解析 Postman
 - [ ] Python 解析 Har (参考HttpRunner)
