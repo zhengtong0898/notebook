@@ -15,7 +15,7 @@
 - [x] [pytest的缓存机制](./tester/pytest/docs/pytest_cache.md)
 - [x] [pytest如何重跑失败用例](./tester/pytest/docs/re-run_failed_tests.md)
 - [ ] How to manage logging
-- [ ] pytest在测试用例中编写测试用例
+- [ ] [pytester用于插件测试](./tester/pytest/docs/pytester.md)
 ##### fixture(前置、后置)
 - [x] [fixture的执行优先级](tester/pytest/docs/fixture_call_order.md)  
 - [x] [fixture的工作流程图](tester/pytest/docs/fixture_workflow.png)
