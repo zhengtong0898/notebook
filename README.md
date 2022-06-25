@@ -15,7 +15,8 @@
 - [x] [pytest的缓存机制](./tester/pytest/docs/pytest_cache.md)
 - [x] [pytest如何重跑失败用例](./tester/pytest/docs/re-run_failed_tests.md)
 - [ ] How to manage logging
-- [ ] [pytester用于插件测试](./tester/pytest/docs/pytester.md)
+- [x] [pytester用于插件测试](./tester/pytest/docs/pytester.md)
+- [x] [如何将http请求的入参和响应打印出来](./tester/pytest/docs/inject_http_client.md)
 ##### fixture(前置、后置)
 - [x] [fixture的执行优先级](tester/pytest/docs/fixture_call_order.md)  
 - [x] [fixture的工作流程图](tester/pytest/docs/fixture_workflow.png)
