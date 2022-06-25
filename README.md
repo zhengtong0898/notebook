@@ -33,7 +33,7 @@
 - [x] [hookspec加载链路图](tester/pytest/docs/pytest_load_hookspec.png)
 - [x] [hooks的注册过程顺序图(强调顺序、动机)](tester/pytest/docs/pytest_register_hooks.png)
 ##### discovery(收集和发现)
-- [ ] Run tests in a module
+- [x] [pytest如何发现一个模块中的测试用例](tester/pytest/docs/discovery/run_tests_in_a_module/main.py)
 - [ ] Run tests in a directory
 - [ ] Run tests by keyword expressions
 - [ ] Run tests by node ids
