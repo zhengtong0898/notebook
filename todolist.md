@@ -9,6 +9,8 @@
 - [ ] Python 写一个 pytest 插件
 - [ ] Pytest Mock
 - [ ] Python Locust
+- [ ] [Property-Base-Testing(Hypothesis)](https://www.youtube.com/watch?v=mkgd9iOiICc)
+- [ ] [Property-Base-Testing(schemathesis)](https://github.com/schemathesis/schemathesis)
 
 
 ### 研发相关

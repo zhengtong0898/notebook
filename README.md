@@ -34,7 +34,7 @@
 - [x] [hooks的注册过程顺序图(强调顺序、动机)](tester/pytest/docs/pytest_register_hooks.png)
 ##### discovery(收集和发现)
 - [x] [pytest如何发现一个模块中的测试用例](tester/pytest/docs/discovery/run_tests_in_a_module/main.py)
-- [ ] Run tests in a directory
+- [x] [pytest如何发现一个目录中的测试用例](tester/pytest/docs/discovery/run_tests_in_a_directory/README.md)
 - [ ] Run tests by keyword expressions
 - [ ] Run tests by node ids
 - [ ] Run tests by marker expressions
