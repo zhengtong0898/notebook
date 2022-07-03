@@ -1,0 +1,11 @@
+groups:
+- name: single_file_group
+    rules:
+    - alert: warning when file size grow to toplimit
+        expr: file_size > (1024000000 * 0.7)
+        # 持续触发expr表达式条件10分钟后,再发送告警.
+        # for: 10m
+        labels:
+          severity: "warning"
+        annotations:
+          summary: High request latency

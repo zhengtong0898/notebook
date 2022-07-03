@@ -1,0 +1,11 @@
+route:
+    receiver: "web.hook"
+    # 无法准确的描述这个参数是什么意思, 后续的multiple_file再看看能不能描述清楚.
+    group_interval: "5s"
+    # 当指标达到阈值时会触发告警(此时告警是fire状态), 只有当指标恢复正常时才会从告警列表中移除.
+    # 当告警持续处于fire状态, 重复的告警通知发送成功后, 间隔多久才能再次(重复的)发送?
+    repeat_interval: "5s"
+receivers:
+    - name: "web.hook"
+        webhook_configs:
+            - url: "http://192.168.101.111:5001/"
