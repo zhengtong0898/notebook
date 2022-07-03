@@ -1,0 +1,60 @@
+route:
+  # 仅就当前multiple_file示例来看, 有效的labels是:
+  # alertname
+  # file_map
+  # instance
+  # job
+  # severity
+  # 所以 group_by 的意思就是: 那些数据可以被聚合(合并在alerts字段中)一起将通知推送出去.
+  #
+  # 如果不提供group_by, 那么它默认是把所有告警数据全部聚合(合并在alerts字段中)一起将通知推送出去.
+  # 当 group_by: ['file_map'] 时, 它将会按file_map字段的值来聚合(相同的值的告警会被合并在alerts字段中)一起将通知推送出去.
+  # 然而当前数据中, 'file_map'有三个值('file_1', 'file_2', 'file_3'), 因此会推送三次通知, 每个通知只包含一条alert数据.
+  # {
+  #    "receiver": "web\\.hook",
+  #    "status": "firing",
+  #    "alerts": [
+  #        {
+  #            "status": "firing",
+  #            "labels": {
+  #                "alertname": "warning when file size grow to toplimit2",
+  #                "file_map": "file_2",
+  #                "instance": "192.168.101.111:9876",
+  #                "job": "prometheus",
+  #                "severity": "warning"
+  #            },
+  #            "annotations": {
+  #                "summary": "file_2\u6587\u4ef6\u5927\u5c0f\u8d85\u51fa\u9608\u503c"
+  #            },
+  #            "startsAt": "2022-07-03T15:28:53.08Z",
+  #            "endsAt": "0001-01-01T00:00:00Z",
+  #            "generatorURL": "http://prometheus:9090/graph?g0.expr=file_size%7Bfile_map%3D%22file_2%22%7D+%3E+%281.024e%2B08+%2A+0.7%29&g0.tab=1",
+  #            "fingerprint": "54f8d03c83f77052"
+  #        }
+  #    ],
+  #    "groupLabels": {
+  #        "file_map": "file_2"                             # 关键信息在这里.
+  #    },
+  #    "commonLabels": {
+  #        "alertname": "warning when file size grow to toplimit2",
+  #        "file_map": "file_2",
+  #        "instance": "192.168.101.111:9876",
+  #        "job": "prometheus",
+  #        "severity": "warning"
+  #    },
+  #    "commonAnnotations": {
+  #        "summary": "file_2\u6587\u4ef6\u5927\u5c0f\u8d85\u51fa\u9608\u503c"
+  #    },
+  #    "externalURL": "http://prometheus:9093",
+  #    "version": "4",
+  #    "groupKey": "{}:{file_map=\"file_2\"}",
+  #    "truncatedAlerts": 0
+  # }
+  group_by: ['file_map']
+  group_interval: 5s
+  repeat_interval: 5s
+  receiver: 'web.hook'
+receivers:
+  - name: 'web.hook'
+    webhook_configs:
+      - url: 'http://192.168.101.111:5001/'

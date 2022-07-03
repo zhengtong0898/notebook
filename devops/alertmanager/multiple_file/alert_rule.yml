@@ -1,0 +1,23 @@
+groups:
+- name: multiple_file_group
+  rules:
+    - alert: warning when file size grow to toplimit
+      expr: file_size{file_map="file_1"} > (10240000 * 0.7)
+      labels:
+        severity: "warning"
+      annotations:
+        summary: "file_1文件大小超出阈值"
+
+    - alert: warning when file size grow to toplimit2
+      expr: file_size{file_map="file_2"} > (102400000 * 0.7)
+      labels:
+        severity: "warning"
+      annotations:
+        summary: "file_2文件大小超出阈值"
+
+    - alert: warning when file size grow to toplimit3
+      expr: file_size{file_map="file_3"} > (1024000000 * 0.7)
+      labels:
+        severity: "warning"
+      annotations:
+        summary: "file_3文件大小超出阈值"
