@@ -16,3 +16,16 @@
 ### 研发相关
 - [ ] [断点调试CPython的资料1](https://stackoverflow.com/a/58346169)   
 - [ ] [断点调试CPython的资料2](https://realpython.com/cpython-source-code-guide/#why-is-cpython-written-in-c-and-not-python)   
+
+
+- bdd test  
+https://cucumber.io/docs/gherkin/reference/
+
+
+- Fuzz test  
+https://baijiahao.baidu.com/s?id=1688756886180018558&wfr=spider&for=pc  
+https://www.cnblogs.com/guanhe/p/3484343.html  
+https://en.wikipedia.org/wiki/Fuzzing  
+https://developer.mozilla.org/en-US/docs/Glossary/Fuzzing  
+https://www.squarefree.com/categories/fuzzing/
+https://www.bilibili.com/video/BV1cW4y1S7Tc
