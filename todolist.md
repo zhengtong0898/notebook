@@ -9,7 +9,7 @@
 - [ ] Python 写一个 pytest 插件
 - [ ] Pytest Mock
 - [ ] Python Locust
-- [ ] [Property-Base-Testing(Hypothesis)](https://www.youtube.com/watch?v=mkgd9iOiICc)
+- [x] [Property-Base-Testing(Hypothesis)](./tester/hypothesis2022/README.md)  
 - [ ] [Property-Base-Testing(schemathesis)](https://github.com/schemathesis/schemathesis)
 
 
@@ -22,10 +22,3 @@
 https://cucumber.io/docs/gherkin/reference/
 
 
-- Fuzz test  
-https://baijiahao.baidu.com/s?id=1688756886180018558&wfr=spider&for=pc  
-https://www.cnblogs.com/guanhe/p/3484343.html  
-https://en.wikipedia.org/wiki/Fuzzing  
-https://developer.mozilla.org/en-US/docs/Glossary/Fuzzing  
-https://www.squarefree.com/categories/fuzzing/
-https://www.bilibili.com/video/BV1cW4y1S7Tc

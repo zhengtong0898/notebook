@@ -44,5 +44,8 @@
 - [ ] 测试报告对象清单与作用
 - [ ] 测试报告集合调用链路图
 - [ ] 测试报告集合对象清单与作用
+##### property-base testing(基于参数类型的自动化测试, 简称: PBT)  
+- [x] [Property-Base-Testing(Hypothesis)](./tester/hypothesis2022/README.md)  
+- [ ] [Property-Base-Testing(schemathesis)](https://github.com/schemathesis/schemathesis)  
 
 
