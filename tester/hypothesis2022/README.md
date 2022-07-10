@@ -28,6 +28,12 @@
   &nbsp; &nbsp; &nbsp;就像`schemathesis`的默认行为一样, 只对`status`返回值是不是200作为通过的断言依据.  
 
 &nbsp;  
+### 什么场景不适合使用Hypothesis?  
+前面有提到可逆场景适合使用Hypothesis, 这里来说一下什么场景不适合使用Hypothesis.  
+1). 根据不同的值做判断返回True或False的场景, 不适合使用Hypothesis, [案例](./anti_patterns/condition/test_case.py).  
+
+
+&nbsp;  
 ### 参考资料  
 https://www.youtube.com/watch?v=mkgd9iOiICc  
 https://hypothesis.readthedocs.io/en/latest/  
