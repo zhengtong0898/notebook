@@ -127,11 +127,15 @@ func employee(name *string, age int){
     }
 }
 
-func main() {
-  empName := "Samia"
-  age := 55
 
-  employee(&empName, age)      
+func main() {
+    empName := "Samia"
+    age := 95
+
+    employee(&empName, age)
 }
+
+# 输出
+# RECOVER Age cannot be greater than retirement age
 ```
 
