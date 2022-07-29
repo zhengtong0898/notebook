@@ -1,16 +1,15 @@
 interface    
 select  
-defer        
 go      
 map          
 struct  
 chan  
 goto  
-const  
 range          
 type  
 
 
+const
 continue   
 for            
 import    
@@ -27,3 +26,6 @@ switch
 fallthrough  
 default  
 case  
+
+defer  
+recover  

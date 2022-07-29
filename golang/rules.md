@@ -46,11 +46,11 @@ func main() {
 
 
 # 输出
-0 10
-1 20
-2 30
-3 40
-4 50
+# 0 10
+# 1 20
+# 2 30
+# 3 40
+# 4 50
 ```
 
 
@@ -67,4 +67,71 @@ func main() {
 
 
 
+- defer  
+两种情况会触发执行defer指令:  
+1). 当函数执行结束后, 会执行defer函数;  
+2). 当函数执行遇到panic后, 会执行defer函数;   
+因此可以理解为defer关键字是一个teardown的行为.  
+当函数体内有多个defer指令时, 采取LIFO策略执行这些defer指令.  
+```go
+package main
+import "fmt"
+
+
+func example(text string) {
+    fmt.Println(text)
+}
+
+
+func main() {
+    defer example("11111")
+    defer example("22222")
+    defer example("33333")
+    fmt.Println("hello world!")
+}
+
+# 输出
+# hello world!
+# 33333
+# 22222
+# 11111
+```
+
+
+- recover  
+当执行recover()时, 发现没有panic则返回nil.  
+当执行recover()时, 发现有panic则返回panic对象.  
+recover只能定义在defer指定的函数内.  
+recover的覆盖场景其实就是另一种形态的try,  
+当发现recover返回的是panic对象时可以做一些判断,   
+如果符合预期则继续业务处理,   
+如果不符合预期则可以让panic继续下去终止程序.  
+```go
+package main
+import "fmt"
+
+func panicHandler(){
+    rec := recover()
+    if rec != nil {
+        fmt.Println("RECOVER", rec)
+    } else {
+        fmt.Println("sssss")
+    }
+}
+
+
+func employee(name *string, age int){
+    defer panicHandler()
+    if age > 75 {
+        panic("Age cannot be greater than retirement age")
+    }
+}
+
+func main() {
+  empName := "Samia"
+  age := 55
+
+  employee(&empName, age)      
+}
+```
 
