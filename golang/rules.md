@@ -166,13 +166,13 @@ recov/
 
 
 [root@localhost ~]# cd recov/ 
-[root@localhost ~]# cat go.mod 
+[root@localhost recov]# cat go.mod 
 module recov
 
 go 1.18
 
 
-[root@localhost ~]# cat main.go 
+[root@localhost recov]# cat main.go 
 package main
 import "fmt"
 import _ "recov/gun"
@@ -188,7 +188,7 @@ func main() {
 }
 
 
-[root@localhost ~]# cat gun/se.go 
+[root@localhost recov]# cat gun/se.go 
 package gun
 import "fmt"
 
@@ -202,9 +202,54 @@ func init() {
 # 先执行package gun的init前置函数
 # 再执行package main的init前置函数
 # 最后执行package main的main入口函数
-[root@localhost ~]# go run main.go 
+[root@localhost recov]# go run main.go 
 package gun: init
 package main: init
 package main: hello world!
 
+```
+
+&nbsp;  
+### goto  
+用goto来实现一个`while`循环
+```shell
+[root@localhost ~]# mkdir gotoprac
+
+
+[root@localhost ~]# cd gotoprac
+[root@localhost ~]# go mod init gotoprac
+
+
+[root@localhost gotoprac]# cat main.go 
+package main
+import "fmt"
+
+
+func main() {
+
+    i := 0
+
+Here:
+
+    if i < 10 {
+        fmt.Println(i)
+	i++
+	goto Here
+    }
+
+}
+
+
+# 输出
+[root@localhost gotoprac]# go run main.go
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
 ```
