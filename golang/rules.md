@@ -1,31 +1,37 @@
 
-- `_`下划线变量  
+### `_`下划线变量  
 当变量赋值给下划线`_`变量时, 编译器会丢弃该值; 引用下划线变量会报错.  
 
 
-- 变量定义但未使用  
+&nbsp;  
+### 变量定义但未使用  
 变量定义但未使用, 会报错.   
 
 
-- public  
+&nbsp;  
+### public  
 1). 大写字母开头的变量.  
 2). 大写字母开头的函数.  
 
 
-- private  
+&nbsp;  
+### private  
 1). 小写字母开头的变量.  
 2). 小写字母开头的函数.  
 
 
-- array  
+&nbsp;  
+### array  
 定长数组
 
 
-- slice  
+&nbsp;  
+### slice  
 动态数组
 
 
-- Variadic functions(变参)  
+&nbsp;  
+### Variadic functions(变参)  
 ```go
 package main
 
@@ -54,11 +60,13 @@ func main() {
 ```
 
 
-- 指针   
+&nbsp;  
+### 指针   
 一个指针占位是8bytes.
 
 
-- 函数的形参和实参     
+&nbsp;  
+### 函数的形参和实参     
 对于基础类型, golang的函数默认采取完全拷贝策略.    
 如果想要避免完全拷贝, 需要在定义和传递两端做一些特殊声明.    
 在定义端使用 `*type` 来接参数.    
@@ -67,7 +75,8 @@ func main() {
 
 
 
-- defer  
+&nbsp;  
+### defer  
 两种情况会触发执行defer指令:  
 1). 当函数执行结束后, 会执行defer函数;  
 2). 当函数执行遇到panic后, 会执行defer函数;   
@@ -98,7 +107,8 @@ func main() {
 ```
 
 
-- recover  
+&nbsp;  
+### recover  
 当执行recover()时, 发现没有panic则返回nil.  
 当执行recover()时, 发现有panic则返回panic对象.  
 recover只能定义在defer指定的函数内.  
@@ -139,3 +149,62 @@ func main() {
 # RECOVER Age cannot be greater than retirement age
 ```
 
+
+&nbsp;  
+### main和init
+`package main`是程序入口文件, `func main() {}`是程序入口函数, `func init() {}`是当前程序的前置`hook`.      
+`package pkg`是程序包, `func init() {}`是当前包的前置`hook`.  
+```shell
+[root@localhost ~]# tree recov/
+recov/
+├── go.mod
+├── gun
+│   └── se.go
+└── main.go
+
+1 directory, 3 files
+
+
+[root@localhost ~]# cd recov/ 
+[root@localhost ~]# cat go.mod 
+module recov
+
+go 1.18
+
+
+[root@localhost ~]# cat main.go 
+package main
+import "fmt"
+import _ "recov/gun"
+
+
+func init() {
+    fmt.Println("package main: init")
+}
+
+
+func main() {
+    fmt.Println("package main: hello world!")
+}
+
+
+[root@localhost ~]# cat gun/se.go 
+package gun
+import "fmt"
+
+
+func init() {
+    fmt.Println("package gun: init")
+}
+
+
+# 输出
+# 先执行package gun的init前置函数
+# 再执行package main的init前置函数
+# 最后执行package main的main入口函数
+[root@localhost ~]# go run main.go 
+package gun: init
+package main: init
+package main: hello world!
+
+```
