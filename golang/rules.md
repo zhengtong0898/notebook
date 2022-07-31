@@ -253,3 +253,171 @@ Here:
 8
 9
 ```
+
+&nbsp;  
+### goroutine
+goroutine是一个执行线程, 它从线程池中获取一个执行线程来执行一个函数.  
+
+`runtime.GOMAXPROCS`负责管理线程池的大小,   
+在go1.5版本之前, 它的默认值是1,   
+在go1.5版本之后, 它的默认值是cpu个数, 例如: I7 8770 是6核12线程, 所以值为12.  
+
+当线程池的值为1时, 表示只有一个线程在运行多个goroutine, go的表现是模拟cpu做时间  
+切片去运行多个的goroutine, 每个goroutine运行一小撮时间(比如说: 20us).
+
+Example-1: 当线程池大小为1时, 同时开启多个goroutine, 仅占用一个cpu.
+```shell
+[root@localhost ~]# mkdir goroutinee
+[root@localhost ~]# cd goroutinee
+[root@localhost goroutinee]# go mod init goroutinee
+[root@localhost goroutinee]# go get golang.org/x/sys/unix
+[root@localhost goroutinee]# go mod tidy
+[root@localhost goroutinee]# cat main.go 
+package main
+
+
+// refer
+// https://blog.actorsfit.com/a?ID=00750-92325ec1-fe3f-4670-aadb-b68f8510f3d5
+// https://blog.csdn.net/liangzhiyang/article/details/52669851?utm_source=blogxgwz3
+// https://draveness.me/golang/docs/part3-runtime/ch06-concurrency/golang-goroutine/
+// https://golang.design/go-questions/sched/goroutine-vs-thread/
+// https://morsmachine.dk/go-scheduler
+import (
+    "bytes"
+    "fmt"
+    "runtime"
+    "strconv"
+
+    "golang.org/x/sys/unix"
+)
+
+
+func getGoID() uint64 {
+    b := make([]byte, 64)
+    b = b[:runtime.Stack(b, false)]
+    b = bytes.TrimPrefix(b, []byte("goroutine "))
+    b = b[:bytes.IndexByte(b, ' ')]
+    n, _ := strconv.ParseUint(string(b), 10, 64)
+    return n
+}
+
+
+func say(text string) {
+    for i := 1; i > 0; i++ {
+        _ = fmt.Sprintf("[process-id: %d; thread-id: %d; goroutine-id:%d] %s: %d\n", unix.Getpid(), unix.Gettid(), getGoID(), text, i)
+    }
+}
+
+
+func main() {
+    runtime.GOMAXPROCS(1)
+    go say("world 1")
+    go say("world 2")
+    go say("world 3")
+    go say("world 4")
+    say("hello")
+}
+
+
+[root@localhost goroutinee]# go mod tidy
+[root@localhost goroutinee]# go run main.go
+
+# 开另外一个窗口来观察, %CPU字段占用一颗cpu的100%
+[root@localhost goroutinee]# top -c
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND  
+  75124 zt        20   0  703420   6580   1132 S 100.3   0.0   0:36.18 /tmp/go-build3384966463/b001/exe/main                                                                                                                                                                              
+
+```
+
+Example-2: 当线程池大小为12时, 开启多少个goroutine就会吃满多少个cpu.  
+```shell
+
+// 代码与上面一致.
+func main() {
+    // runtime.GOMAXPROCS(1)         // 注释掉线程池设置, 让它使用默认值: 12(cpu个数).
+    go say("world 1")
+    go say("world 2")
+    go say("world 3")
+    go say("world 4")
+    say("hello")
+}
+
+[root@localhost goroutinee]# go run main.go
+
+# 开另外一个窗口来观察, %CPU字段占用一颗cpu的500%
+[root@localhost goroutinee]# top -c
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND  
+  75124 zt        20   0  703420   6580   1132 S 500.3   0.0   0:36.18 /tmp/go-build3384966463/b001/exe/main   
+```
+
+Example-3: 当线程池大小为1时, 一个goroutine堵塞, 不影响另外一个goroutine.  
+也就是说我可以放心的去写堵塞代码, goroutine会帮我挂起堵塞代码，帮我唤醒, 同时不会堵塞其他goroutine.  
+```shell
+[root@localhost goroutinee]# cat main.go 
+package main
+
+// refer
+// https://blog.actorsfit.com/a?ID=00750-92325ec1-fe3f-4670-aadb-b68f8510f3d5
+// https://blog.csdn.net/liangzhiyang/article/details/52669851?utm_source=blogxgwz3
+// https://draveness.me/golang/docs/part3-runtime/ch06-concurrency/golang-goroutine/
+// https://golang.design/go-questions/sched/goroutine-vs-thread/
+// https://morsmachine.dk/go-scheduler
+import (
+	"bytes"
+	"fmt"
+	"runtime"
+	"strconv"
+	"time"
+
+	"golang.org/x/sys/unix"
+)
+
+
+const (
+    date_format = "2006-01-02 15:04:05.000000"
+)
+
+
+func getGoID() uint64 {
+    b := make([]byte, 64)
+    b = b[:runtime.Stack(b, false)]
+    b = bytes.TrimPrefix(b, []byte("goroutine "))
+    b = b[:bytes.IndexByte(b, ' ')]
+    n, _ := strconv.ParseUint(string(b), 10, 64)
+    return n
+}
+
+
+func say_block(text string) {
+    fmt.Printf("[%s: process-id: %d; thread-id: %d; goroutine-id:%d] %s\n", time.Now().Format(date_format), unix.Getpid(), unix.Gettid(), getGoID(), text)
+    time.Sleep(10 * time.Second)
+    fmt.Printf("[%s: process-id: %d; thread-id: %d; goroutine-id:%d] %s\n", time.Now().Format(date_format), unix.Getpid(), unix.Gettid(), getGoID(), text)
+}
+
+
+func say(text string) {
+    j := 1
+    for i := 1; i > 0; i++ {
+        if i > 100000000 {
+            fmt.Printf("[%s: process-id: %d; thread-id: %d; goroutine-id:%d] %s: %d\n", time.Now().Format(date_format), unix.Getpid(), unix.Gettid(), getGoID(), text, j)
+            i = 1
+            j += 1
+        }
+    }
+}
+
+
+func main() {
+    runtime.GOMAXPROCS(1)
+    go say_block("world block")
+    go say("world 2")
+    say("hello")
+}
+
+[root@localhost goroutinee]# go run main.go
+
+# 三个goroutine都在同时运行, 堵塞的goroutine-1并没有堵塞其他两个goroutine.
+# goroutine-1: world block
+# goroutine-2: world 2
+# goroutine-3: hello 
+```
