@@ -49,3 +49,6 @@
 - [ ] [Property-Base-Testing(schemathesis)](https://github.com/schemathesis/schemathesis)  
 
 
+&nbsp;  
+### Python  
+- [x] [如何将包上传到pypi?](https://github.com/zhengtong0898/pypiexample-zt0898)  
