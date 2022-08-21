@@ -59,76 +59,96 @@ https://tecadmin.net/install-ruby-2-2-on-centos-rhel/
 https://github.com/jeremycole/innodb_ruby/wiki#quick-start
 
 
-# 使用 innodb_ruby
+# 使用 innodb_ruby 
+
+观察一页16kb, 当插入的数据大于16kb, 页会怎么表现.
+1. 如果一页只能存放一条时, 会把这条数据当作是blob, 不会增加索引页来存储, 而是增加blob页来存储.  
+2. 当一页存储能存储两条或两条以上时, 数据就会存放在index页中.
+3. 当隶属于该页中的所有行的所有列的值加起来大于16kb时, mysql会自动增加一页来存储后续的行.  
+
 
 - 前置准备工作
     ```shell
     mysql> create database zt;
     mysql> use zt;
     
-    -- 创建第一张表
-    mysql> CREATE TABLE test_1 (
-        `id` INT,
-        `name` VARCHAR(20) NOT NULL
-    )  CHARACTER SET = 'latin1';
-    
-    -- 创建第二张表
-    mysql> CREATE TABLE test_2 (
-        `col1` INT PRIMARY KEY,                -- 1个索引
-        `col2` INT NOT NULL,
-        `col3` INT NOT NULL,
-        `col4` VARCHAR(20),
-        INDEX test_2_idx_23 (col2, col3),      -- 1个索引
-        INDEX test_2_idx_34 (col3, col4)       -- 1个索引
-    );
+    mysql> CREATE TABLE `test_1` (
+        `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        `name` varchar(8000)
+    ) ENGINE=InnoDB;  
     ```
 
-- **system-spaces**  
-    List all tablespaces available from the system, including some basic stats. This is basically a list of tables:    
-    列出所有有效的表的表空间.
+- **space-page-type-regions(关键)**  
+    Iterate through all pages in a space and print a summary of page types coalesced into “regions” of same-type pages:    
+    显示test_2表都有哪些类型的页, 每个页的其实位置，页的数量.  
     ```shell
-    [root@client_2 mysql]# innodb_space -s ibdata1 system-spaces
-    name                            pages       indexes     
-    (system)                        768         7           
-    mysql/engine_cost               6           1           
-    mysql/gtid_executed             6           1           
-    mysql/help_category             7           2           
-    mysql/help_keyword              18          2           
-    mysql/help_relation             10          1           
-    mysql/help_topic                576         2           
-    mysql/innodb_index_stats        6           1           
-    mysql/innodb_table_stats        6           1           
-    mysql/plugin                    6           1           
-    mysql/server_cost               6           1           
-    mysql/servers                   6           1           
-    mysql/slave_master_info         6           1           
-    mysql/slave_relay_log_info      6           1           
-    mysql/slave_worker_info         6           1           
-    mysql/time_zone                 6           1           
-    mysql/time_zone_leap_second     6           1           
-    mysql/time_zone_name            6           1           
-    mysql/time_zone_transition      6           1           
-    mysql/time_zone_transition_type 6           1           
-    sys/sys_config                  6           1           
-    zt/test_1                       6           1           
-    zt/test_2                       8           3   
+    [root@client_2 mysql]# innodb_space -f zt/test_1.ibd space-page-type-regions
+    start       end         count       type                
+    0           0           1           FSP_HDR             
+    1           1           1           IBUF_BITMAP         
+    2           2           1           INODE               
+    3           5           3           INDEX               
+    6           7           2           FREE (ALLOCATED)  
     ```
 
-- **space-indexes**  
-    List all indexes available from the space (system space or file-per-table space):  
-    列出具体表空间中的所有索引.
+
+- **space-index-pages-summary(关键)**  
+    The space-index-pages-summary mode will give us a count of records in each page.
+    page 这一列对应的是上面的 space-page-type-regions 的 start 和 end 范围.  
     ```shell
-    [root@client_2 mysql]# innodb_space -s ibdata1 -T zt/test_1 space-indexes
-    id          name                            root        fseg        fseg_id     used        allocated   fill_factor 
-    42          GEN_CLUST_INDEX                 3           internal    1           1           1           100.00%     
-    42          GEN_CLUST_INDEX                 3           leaf        2           0           0           0.00%
+    # 插入数据之前
+    [root@client_2 mysql]# innodb_space -f zt/test_1.ibd space-index-pages-summary
+    page        index   level   data    free    records 
+    3           63      0       0       16252   0       
+    4           0       0       0       16384   0       
+    5           0       0       0       16384   0       
+
+    # 插入一条数据
+    mysql> insert into `test_1` select null, repeat('a', 8000);
+    [root@client_2 mysql]# innodb_space -f zt/test_1.ibd space-index-pages-summary
+    page        index   level   data    free    records 
+    3           63      0       8025    8227    1       
+    4           0       0       0       16384   0       
+    5           0       0       0       16384   0   
   
-    [root@client_2 mysql]# innodb_space -s ibdata1 -T zt/test_2 space-indexes
-    id          name                            root        fseg        fseg_id     used        allocated   fill_factor 
-    49          PRIMARY                         3           internal    1           1           1           100.00%     
-    49          PRIMARY                         3           leaf        2           0           0           0.00%       
-    50          test_2_idx_23                   4           internal    3           1           1           100.00%     
-    50          test_2_idx_23                   4           leaf        4           0           0           0.00%       
-    51          test_2_idx_34                   5           internal    5           1           1           100.00%     
-    51          test_2_idx_34                   5           leaf        6           0           0           0.00% 
+    # 插入第二条数据
+    mysql> insert into `test_1` select null, repeat('a', 8000);
+    [root@client_2 mysql]# innodb_space -f zt/test_1.ibd space-index-pages-summary
+    page        index   level   data    free    records 
+    3           63      0       16050   202     2       
+    4           0       0       0       16384   0       
+    5           0       0       0       16384   0   
+  
+    # 插入第三条数据
+    # 平衡二叉树，开始出现分叉
+    mysql> insert into `test_1` select null, repeat('a', 8000);
+    [root@client_2 mysql]# innodb_space -f zt/test_1.ibd space-index-pages-summary
+    page        index   level   data    free    records 
+    3           63      1       28      16224   2       
+    4           63      0       8025    8227    1       
+    5           63      0       16050   202     2
+  
+    # 插入第四条数据
+    mysql> insert into `test_1` select null, repeat('a', 8000);
+    [root@client_2 mysql]# innodb_space -f zt/test_1.ibd space-index-pages-summary
+    page        index   level   data    free    records 
+    3           63      1       42      16210   3       
+    4           63      0       8025    8227    1       
+    5           63      0       16050   202     2       
+    6           63      0       8025    8227    1       
+    7           0       0       0       16384   0   
+    ```
+
+
+- **space-page-type-summary**  
+    Iterate through all pages and print a summary of total counts of pages by type:  
+    遍历所有与test_2表相关的页, 并将各类型的页给列出来, 统计每个类型的页的数量.  
+    ```shell
+    [root@client_2 mysql]# innodb_space -s ibdata1 -T zt/test_2 space-page-type-summary
+    type                count       percent     description         
+    INDEX               3           37.50       B+Tree index        
+    ALLOCATED           2           25.00       Freshly allocated   
+    FSP_HDR             1           12.50       File space header   
+    IBUF_BITMAP         1           12.50       Insert buffer bitmap
+    INODE               1           12.50       File segment inode  
     ```
