@@ -57,3 +57,51 @@ SELECT 1 XOR 0 FROM DUAL;     -- 输出: 1
 ### 运算符优先级
 http://c.biancheng.net/view/7399.html    
 
+
+&nbsp;  
+### count 函数
+
+当 `count` 在遍历过程中遇到的值对象是 `null` 时, 不会统计该值, 因此可能存在统计遗漏.  
+解决办法: 使用 `count(*)` 或者 `count(1)`; [这两个是没有区别的.](https://stackoverflow.com/a/181281)  
+
+
+&nbsp;  
+### 聚合函数
+
+> **高亮-1:**  
+> `GROUP BY` 中声明的字段可以不出现在 `SELECT` 中.  
+> `SELECT columns FROM table GROUP BY column_a` 其中 `columns` 字段,   
+> 要么是`GROUP BY`声明的字段、要么是`聚合函数`包字段, 不可以添其他字段(因为只会现实分组中的第一行数据).  
+> 
+> &nbsp;  
+> **高亮-2:**  
+> 当使用了 `GROUP BY` 分组函数后,   
+> 只能使用 `HAVING` 来做分组后的数据进行条件过滤, 不能使用 `WHERE`.  
+
+- count
+- min
+- max
+- sum
+- avg
+- group by
+- having
+
+
+&nbsp;  
+### SQL执行过程
+
+
+> **高亮问题: 为什么WHERE的效率比HAVING高?**  
+> 1. 从算法层面来看他们两并没有区别, 都是过滤数据.  
+> 2. 从执行优先级的角度来看, 由于先执行了`WHERE`, `GROUP BY`计算的数据集小了,   
+> `HAVING`计算的数据集也效率, 因此整体的执行效率是会有提升的.  
+
+
+1. 先 `FROM` 读取表数据(含 `JOIN` ).  
+2. 再 `WHERE` 过滤数据.  
+3. 再 `GROUP BY` 分组数据.  
+4. 再 `HAVING` 来做分组后的数据进行条件过滤.  
+5. 再 `SELECT` 来对列进行筛选(指定具体数量的字段, 同时含聚合函数: `MIN/MAX/COUNT/SUM/AVG`).  
+6. 再 `DISTINCT` 来对数据再次去重筛选(不能放在聚合函数的前面).  
+7. 再 `ORDER BY` 来对数据进行排序.  
+8. 再 `LIMIT` 来对数据进行数量限制/分页.  
