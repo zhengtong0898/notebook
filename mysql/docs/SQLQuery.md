@@ -105,3 +105,31 @@ http://c.biancheng.net/view/7399.html
 6. 再 `DISTINCT` 来对数据再次去重筛选(不能放在聚合函数的前面).  
 7. 再 `ORDER BY` 来对数据进行排序.  
 8. 再 `LIMIT` 来对数据进行数量限制/分页.  
+
+
+&nbsp;  
+### SELECT 生成多行数据
+
+```shell
+mysql> SELECT 1 as column_name FROM DUAL UNION ALL
+    -> SELECT 2 FROM DUAL UNION ALL
+    -> SELECT 3 FROM DUAL UNION ALL
+    -> SELECT 4 FROM DUAL;
++-------------+
+| column_name |
++-------------+
+|           1 |
+|           2 |
+|           3 |
+|           4 |
++-------------+
+4 rows in set (0.00 sec)
+
+```
+
+&nbsp;  
+### 查看当前使用的数据库
+
+```shell
+SELECT DATABASE() FROM DUAL;
+```
