@@ -1,4 +1,7 @@
 ### 按书上的操作
+
+关注排名
+
 - [max_temperature_map.py](./max_temperature_map.py)
 - [max_temperature_reduce.py](./max_temperature_reduce.py)
 ```shell

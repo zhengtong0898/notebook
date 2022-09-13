@@ -10,7 +10,16 @@
 - [ ] Pytest Mock
 - [ ] Python Locust
 - [x] [Property-Base-Testing(Hypothesis)](./tester/hypothesis2022/README.md)  
-- [ ] [Property-Base-Testing(schemathesis)](https://github.com/schemathesis/schemathesis)
+- [ ] [Property-Base-Testing(schemathesis)](https://github.com/schemathesis/schemathesis)  
+- [ ] [pyarrow]()
+- [ ] [parquet]()
+- [ ] [spark]()
+- [ ] [kylin4]()
+- [ ] [mysql]()
+- [ ] [分布式]()
+https://www.51cto.com/article/615293.html
+https://zhuanlan.zhihu.com/p/161000135
+https://developer.aliyun.com/article/652543
 
 
 ### 研发相关
