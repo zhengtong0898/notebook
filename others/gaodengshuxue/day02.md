@@ -21,14 +21,14 @@
 > 代入消元法  
 
 - **例-1**  
+$
 \begin{align}
-    gcd(x, y) =
     \begin{cases}
-        x                    & y = 0 \\\\
-        gcd(y, x \ mod \  y) & y > 0
+        x + y = 3 \\\\
+        x \over y = 5  
     \end{cases}
 \end{align}
-
+$
 
 > 加减消元法  
 
