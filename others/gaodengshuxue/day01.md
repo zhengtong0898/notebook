@@ -1,11 +1,4 @@
 
-
-### 资源  
-课程链接: https://www.bilibili.com/video/BV1vP4y157Pr  
-mathjax: https://www.mathjax.org/#demo  
-syntax: https://docs.mathjax.org/_/downloads/en/v3.0-latest/pdf/   
-
-
 &nbsp;  
 ### 找出方程的一般式(a、b、c)  
 > **一般式的公式:** $ 当 (a \ne 0) ;  ax^2 + bx + c = 0 ;  $  
