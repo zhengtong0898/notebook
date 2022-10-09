@@ -25,7 +25,7 @@ $
 \begin{align}
     \begin{cases}
         x + y = 3 \\\\\\\\
-        x \over y = 5  
+        {x \over y} = 5  
     \end{cases}
 \end{align}
 $
