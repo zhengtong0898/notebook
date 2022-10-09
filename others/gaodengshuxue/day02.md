@@ -21,7 +21,6 @@
 > 代入消元法  
 
 - **例-1**  
-$$ 
 \begin{align}
     gcd(x, y) =
     \begin{cases}
@@ -29,7 +28,6 @@ $$
         gcd(y, x \ mod \  y) & y > 0
     \end{cases}
 \end{align}
-$$
 
 
 > 加减消元法  
