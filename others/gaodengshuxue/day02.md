@@ -24,7 +24,7 @@
 \begin{align}
     gcd(x, y) =
     \begin{cases}
-        x                    & y = 0 \\
+        x                    & y = 0 \\\\
         gcd(y, x \ mod \  y) & y > 0
     \end{cases}
 \end{align}
