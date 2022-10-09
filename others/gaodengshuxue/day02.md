@@ -49,7 +49,7 @@
   过程: $ x = {6 \over 2} - {1 \over 2} $  
   结果(x): $ x = {5 \over 2} $  
   结论: $ \begin{cases}
-              x = {5 \over 2} \\\\\\\\ 
+              x = {5 \over 2} \\\\
               y = {1 \over 2}  
           \end{cases}
         $
