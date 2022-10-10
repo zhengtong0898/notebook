@@ -9,11 +9,8 @@
 
 &nbsp;  
 ### 集合的关系  
-**全集:** $ A \union B $  
-**包含:** $ \displaylines{\subset \\\\
-            \union \subset A  // 表示全局包含A这个子集 }
-          $  
+**全集:** $ A \cup B $  
+**包含:** $ \cup \subset A  // 表示全集U包含A这个子集 $  
 
-**ss**: $ \inter $
 
 
