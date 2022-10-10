@@ -10,7 +10,11 @@
 &nbsp;  
 ### 集合的关系  
 **全集:** $ A \cup B $  
-**包含:** $ \cup \subset A  \ \ \ \ \ \ \ \ \ \ // 表示全集U包含A这个子集 $  
+**包含:** $ \displaylines{
+               A \subset \cup   \ \ \ \ \ \ \ \ \ \  // 表示A是U的子集  \\
+               \cup \subset A   \ \ \ \ \ \ \ \ \ \  // 表示U包含A
+            }
+          $  
 
 
 
