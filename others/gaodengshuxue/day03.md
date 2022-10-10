@@ -12,9 +12,9 @@
 **全集:** $ A \cup B $  
 **包含:** $ \displaylines{ 
                \\\\
-               A \subset \cup   \ \ \ \ \ \ \ \ \ \  // 表示A是U的子集  
+              \ \ \ \  A \subset \cup   \ \ \ \ \ \ \ \ \ \  // 表示A是U的子集  
                \\\\
-               \cup \subset A   \ \ \ \ \ \   // 表示U包含A
+               \cup \subset A   \ \ \ \ \ \ \ \ \ \  // 表示U包含A
             }
           $  
 
