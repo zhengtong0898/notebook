@@ -14,4 +14,6 @@
             \union \subset A  // 表示全局包含A这个子集 }
           $  
 
+**ss**: $ \inter $
+
 
