@@ -9,7 +9,7 @@
 
 &nbsp;  
 ### 集合的关系  
-**全集:** $ A \cup B $  
+**全集:** $ \ \ \ \ \ \ \  A \cup B $  
 **包含:** $ \displaylines{ 
                \\\\
                \cup \supset A   \ \ \ \ \ \ \ \ \ \  // 表示U包含A
@@ -17,8 +17,8 @@
               \ \ \ \ \ \ \  A \subset \cup   \ \ \ \ \ \ \ \ \ \  // 表示A是U的子集
             }
           $  
-**交集:** $ \cap       \ \ \ \ \ \ \ \ \ \   // 对应于Python中的 intersection 操作 $  
-**并集:** $ \cup       \ \ \ \ \ \ \ \ \ \   // 对应于Python中的 union 操作, 重叠部分去重  $  
-**余集:** $ \setminus  \ \ \ \ \ \ \ \ \ \   // 对应于Python中的 difference 操作 $  
-**补集:** $ U包含A，取非A的部分, 称为补集 $  
+**交集:** $ \ \ \ \ \ \ \ \cap       \ \ \ \ \ \ \ \ \ \   // 对应于Python中的 intersection 操作 $  
+**并集:** $ \ \ \ \ \ \ \ \cup       \ \ \ \ \ \ \ \ \ \   // 对应于Python中的 union 操作, 重叠部分去重  $  
+**余集:** $ \ \ \ \ \ \ \ \setminus  \ \ \ \ \ \ \ \ \ \   // 对应于Python中的 difference 操作 $  
+**补集:** $ \ \ \ \ \ \ \ \ \ \ \                          // U包含A，取非A的部分, 称为补集 $  
 
