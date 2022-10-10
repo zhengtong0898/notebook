@@ -10,8 +10,8 @@
 &nbsp;  
 ### 集合的关系  
 **全集:** $ A \union B $  
-**包含:** $ \subset \\\\
-            \union \subset A  // 表示全局包含A这个子集
+**包含:** $ \displaylines{\subset \\\\
+            \union \subset A  // 表示全局包含A这个子集 }
           $  
 
 
