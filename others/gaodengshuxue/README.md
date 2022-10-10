@@ -25,3 +25,4 @@ syntax: https://icl.utk.edu/~mgates3/docs/latex.pdf
 &nbsp;  
 ### mathjax FAQ  
 1. [如何换行?](./MathJaxFAQ.md#如何换行?)  
+2. [全集符号怎么打?](./MathJaxFAQ.md#全集符号怎么打?)  

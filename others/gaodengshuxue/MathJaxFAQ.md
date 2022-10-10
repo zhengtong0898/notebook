@@ -3,3 +3,11 @@
 ```shell
 \displaylines{x = a + b \\ y = b + c}
 ```  
+
+&nbsp;  
+### 全集符号怎么打?  
+参考资料: https://www.physicsread.com/latex-union-symbol/  
+```shell
+$ \cup $ 
+```
+
