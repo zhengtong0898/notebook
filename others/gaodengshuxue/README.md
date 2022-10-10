@@ -21,3 +21,7 @@ syntax: https://icl.utk.edu/~mgates3/docs/latex.pdf
 |$ 18^2 $|324|
 |$ 19^2 $|361|
 |$ 20^2 $|400|
+
+&nbsp;  
+### mathjax FAQ  
+1. [如何换行?](./MathJaxFAQ.md#如何换行?)  
