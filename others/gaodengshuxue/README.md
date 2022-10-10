@@ -3,7 +3,7 @@
 ### 资源  
 课程链接: https://www.bilibili.com/video/BV1vP4y157Pr  
 mathjax: https://www.mathjax.org/#demo  
-syntax: https://docs.mathjax.org/_/downloads/en/v3.0-latest/pdf/   
+syntax: https://icl.utk.edu/~mgates3/docs/latex.pdf   
 语法解析: 所有表达式采用的都是Mathjax语法, 目前只有Chrome的 [MathJax3 plugin for github](https://chrome.google.com/webstore/detail/mathjax-3-plugin-for-gith/peoghobgdhejhcmgoppjpjcidngdfkod) 插件可以正常显示.  
 
 &nbsp;  
