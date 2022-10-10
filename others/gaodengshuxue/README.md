@@ -4,7 +4,7 @@
 课程链接: https://www.bilibili.com/video/BV1vP4y157Pr  
 mathjax: https://www.mathjax.org/#demo  
 syntax: https://icl.utk.edu/~mgates3/docs/latex.pdf  
-syntax: https://math.meta.stackexchange.com/q/5020
+syntax: https://math.meta.stackexchange.com/q/5020  
 语法解析: 所有表达式采用的都是Mathjax语法, 目前只有Chrome的 [MathJax3 plugin for github](https://chrome.google.com/webstore/detail/mathjax-3-plugin-for-gith/peoghobgdhejhcmgoppjpjcidngdfkod) 插件可以正常显示.  
 
 &nbsp;  
